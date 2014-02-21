@@ -1,6 +1,5 @@
 slogo
 =====
-
 SLogo Design Document
 
 Introduction
@@ -26,17 +25,20 @@ View Package:
 Instance variable: myParser
 	- void draw(): get x and y position of the turtle and draw
 	
-Model Package
+Model: 3 packages: turtle, parse, and nodes
 - Interface Movable: 
 	public method:
 	- void updatePosition(double changeInX, double changeInY)
 Movable turtle = new Turtle();
 
-- Class Turtle: double myXPos, double myYPos
+- Class TurtleFactory: 
+	public Turtle createTurtle();
+
+- Class Turtle implements Movable: double myXPos, double myYPos
 	public methods:
 	- double getXPos() 
 	- double getYPos()
-	- void updatePosition(double changeInX, double changeInY)
+	- void updatePosition(double changeInX, changeInY)
 	
 - Class Parser implements Token: 
 	Constructor:
@@ -47,12 +49,15 @@ public methods:
 - AbstractNode createTree()
 - void compileTree(AbstractNode node): interpret the tree and update the turtle position
 
-- Interface Token: has public instance variables for parsing, e.g. FOR_LOOP for “repeat”
-	- PARAMETER
-	- FOR_LOOP
-	- WHILE_LOOP
-	- IF_TREE
-	- …
+- public interface Token: has public instance variables for parsing
+	- final String INITIAL_POSITION = “setxy”;
+	- final String SET_PARAMETER = “set”;
+	- final String PARAMETER = “parameter”;
+	- final String FOR_LOOP = “repeat”;
+	- final String RIGHT = “rt”;
+	- final String FORWARD = “fd”;
+	- final String LEFT = “lt”;
+	- …(more to add)
 	- Token tokenize(String text): implemented in Parser
  	
 - abstract class AbstractNode: 
@@ -70,14 +75,8 @@ public methods:
 	- void action(AbstractNode node): update position of the turtle
 
 - Class IfNode extends AbstractNode
-- Class WhileNode extends AbstractNode
 - Class ForNode extends AbstractNode
 - Class ActionNode extends AbstractNode
+- … (more to add)
 - Class FdNode extends ActionNode
 - (more actions extends action node)
-
-
-
-Controller Package:
-
-MVC and factory method
