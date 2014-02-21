@@ -33,7 +33,7 @@ Model: 3 packages: turtle, parse, and nodes
 - Interface Movable: 
 	public method:
 	- void updatePosition(double changeInX, double changeInY)
-Movable turtle = new Turtle();
+	Example of creating a new turtle object in frontend: Movable turtle = new Turtle();
 
 - Class TurtleFactory: 
 	public Turtle createTurtle();
@@ -67,8 +67,8 @@ Movable turtle = new Turtle();
  	
 - abstract class AbstractNode: 
 	constructors:
-- AbstractNode(Token token, double value)
-- AbstractNode(Token token)
+	- AbstractNode(Token token, double value)
+	- AbstractNode(Token token)
 	public methods:
 	- AbstractNode makeNode(Token token)
 	- AbstractNode getLeftNode()
