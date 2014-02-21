@@ -47,8 +47,17 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 	Constructor:
 	- Parser(String text, Turtle turtle)
 	public methods:
-	- boolean isValid(String text)
-	- Token tokenize(String text)
+	- boolean isValid()
+	- void createAndStoreFunctions()
+	- List<Function> getFunctions() 
+	- void parseAllFunctions(List<Function>): calls tokenize, createTree, and compileTree in class Function, and updates turtle position
+	
+#####class Function:
+	Constructor: 
+	- Function(String text)
+	public methods:
+	- String getText()
+	- Token tokenize(Function function)
 	- AbstractNode createTree()
 	- void compileTree(AbstractNode node): interpret the tree and update the turtle position
 
@@ -98,7 +107,7 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 		double oldX = myTurtle.getXPos();
 		double oldY = myTurtle.getYPos();
 		myParser = new Parser(‘fd 50’, myTurtle); 
-		myParser.compileTree(AbstractNode Root) //Turtle position updated
+		parseAllFunctions(myParser.createAndStoreFunctions());
 		 drawTrailLine(oldX, oldY, myTurtle.getXPos, myTurtle.getYPos()): 
 
 
