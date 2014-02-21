@@ -102,5 +102,8 @@ Example Code
 Sub-teams
 
 
-		Viju and Talal will work on developing the View package which will contain the front-end user interface 
-		classes.
+Viju and Talal will work on developing the View and Controller (probably) package which will contain the front-end user interface classes.
+		
+Descriptive paragraph. Fall??
+We chose to not use front end because there is a lot of code that is suited for a specific implementation of a game. Also, it might be hard to translate among coordinate systems and retain the information.  Debugging would be very difficult because there would also be a lot of code that I am just not sure at all what to do. We stuck with Swing and AWT mainly because those were the ones discussed in class and talked about with a larger contex omg. 
+
