@@ -78,6 +78,11 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 	- void makeRightChild(AbstractNode node)
 	- double getValue(AbstractNode node)
 	- void action(AbstractNode node): update position of the turtle
+	
+	The following public methods are mainly for for-loops and if-trees, in other types of Nodes where they're irrelevant they will be override with do nothing
+	- AbstractNode getStartingNode()
+	- AbstractNode getEndingNode()
+	
 
 - Class IfNode extends AbstractNode
 - Class ForNode extends AbstractNode
