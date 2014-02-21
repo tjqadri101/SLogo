@@ -86,6 +86,8 @@ public methods:
 - (more actions extends action node)
 
 Example Code
+
+
 		When user types ‘fd 50’ (assuming a turtle already exists on the canvas)
 		double oldX = myTurtle.getXPos();
 		double oldY = myTurtle.getYPos();
@@ -97,5 +99,7 @@ Example Code
 
 
 Sub-teams
+
+
 		Viju and Talal will work on developing the View package which will contain the front-end user interface 
 		classes.
