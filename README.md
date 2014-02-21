@@ -33,6 +33,7 @@ Model: 3 packages: turtle, parse, and nodes
 - Interface Movable: 
 	public method:
 	- void updatePosition(double changeInX, double changeInY)
+	
 	Example of creating a new turtle object in frontend: Movable turtle = new Turtle();
 
 - Class TurtleFactory: 
@@ -66,6 +67,7 @@ Model: 3 packages: turtle, parse, and nodes
 	- Token tokenize(String text): implemented in Parser
  	
 - abstract class AbstractNode: 
+	
 	constructors:
 	- AbstractNode(Token token, double value)
 	- AbstractNode(Token token)
