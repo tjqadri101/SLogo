@@ -117,6 +117,8 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 
 
 Viju and Talal will work on developing the View and Controller (probably) package which will contain the front-end user interface classes.
+
+Tara, Benson, and Chad will work on developing the back-end user packages, which include turtle, parse, and nodes.
 		
 ###Why?
 
@@ -124,3 +126,8 @@ We chose to not use JGame for front end because there is a lot of code that is s
 
 ###Screenshot
 https://f.cloud.github.com/assets/4603228/2229071/7ba8d964-9ae6-11e3-9816-5d384c2d8a83.png
+
+###UML Design
+Located in the root directory of the master branch.
+
+https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/UML%20for%20Model.pdf
