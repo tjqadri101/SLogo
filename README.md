@@ -48,11 +48,11 @@ Movable turtle = new Turtle();
 - Class Parser implements Token: 
 	Constructor:
 	- Parser(String text, Turtle turtle)
-public methods:
-- boolean isValid(String text)
-- Token tokenize(String text)
-- AbstractNode createTree()
-- void compileTree(AbstractNode node): interpret the tree and update the turtle position
+	public methods:
+	- boolean isValid(String text)
+	- Token tokenize(String text)
+	- AbstractNode createTree()
+	- void compileTree(AbstractNode node): interpret the tree and update the turtle position
 
 - public interface Token: has public instance variables for parsing
 	- final String INITIAL_POSITION = “setxy”;
