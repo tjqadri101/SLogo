@@ -36,6 +36,9 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 #####Class TurtleFactory: 
 	public Turtle createTurtle();
 
+#####Class FunctionFactory:
+	public Function createFunction();
+
 #####Class Turtle implements Movable: double myXPos, double myYPos
 	public methods:
 	- double getXPos() 
@@ -91,11 +94,13 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 	The following public methods are mainly for for-loops and if-trees, in other types of Nodes where they're irrelevant they will be override with do nothing
 	- AbstractNode getStartingNode()
 	- AbstractNode getEndingNode()
+	- void setStartingNode()
+	- void setEndingNode()
 	
 
-- Class IfNode extends AbstractNode
-- Class ForNode extends AbstractNode
-- Class ActionNode extends AbstractNode
+- Class IfNode extends AbstractNode implements Token
+- Class ForNode extends AbstractNode implements Token
+- Class ActionNode extends AbstractNode implements Token
 - ... (more to add)
 - Class FdNode extends ActionNode
 - (more actions extends action node)
