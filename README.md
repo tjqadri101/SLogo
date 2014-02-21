@@ -23,7 +23,10 @@ One of the most integral components of the backend is the code parser. In order 
 View Package: 
 - Class Panel: has a submit button, text field, label to display command history (uses jswing - can use JFrame to update frame), pop-up window to display error, and a canvas
 Instance variable: myParser
-	- void draw(): get x and y position of the turtle and draw
+Instance variable: myTurtlle (initially set by default to lie in the center of the canvas)
+    - void drawTrailLine(oldXPos, old YPos, newXpos, newYpos): draw a trail line from 
+previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
+- void rotateTurtle()
 	
 Model: 3 packages: turtle, parse, and nodes
 - Interface Movable: 
@@ -39,6 +42,7 @@ Movable turtle = new Turtle();
 	- double getXPos() 
 	- double getYPos()
 	- void updatePosition(double changeInX, changeInY)
+	- -void paint(); draws a turtle at the coordinates corresponding to myXPos and myYPos 
 	
 - Class Parser implements Token: 
 	Constructor:
@@ -80,3 +84,18 @@ public methods:
 - … (more to add)
 - Class FdNode extends ActionNode
 - (more actions extends action node)
+
+Example Code
+		When user types ‘fd 50’ (assuming a turtle already exists on the canvas)
+		double oldX = myTurtle.getXPos();
+		double oldY = myTurtle.getYPos();
+		myParser = new Parser(‘fd 50’, myTurtle); 
+		myParser.compileTree(AbstractNode Root) //Turtle position updated
+		 drawTrailLine(oldX, oldY, myTurtle.getXPos, myTurtle.getYPos()): 
+
+
+
+
+Sub-teams
+		Viju and Talal will work on developing the View package which will contain the front-end user interface 
+		classes.
