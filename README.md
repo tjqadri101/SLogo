@@ -14,10 +14,7 @@ The frontend is simply the graphical user interface onto which the user will typ
 Back End
 
 The backend is responsible for logic and other necessary components not visible to the user but critical to correct functionality of our IDE. 
-One of the most integral components of the backend is the code parser. In order to parse the code we decided to first translate all of the user inputed code into a single string which we iterate through creating nodes where necessary (ie at methods, variables, etc.).  We also opted to use a Linked List to hold all of these nodes. Furthermore, we are still looking into implementing a syntax tree as part of our parser. The tree would be created based on nodes contained within our Linked List. 
-
-
-	
+One of the most integral components of the backend is the code parser. In order to parse the code we decided to first translate all of the user inputed code into a single string which we iterate through creating nodes where necessary (ie at methods, variables, etc.).  We also opted to use a syntax tree to hold all of these nodes.
 
 
 View Package: 
@@ -33,7 +30,6 @@ Model: 3 packages: turtle, parse, and nodes
 - Interface Movable: 
 	public method:
 	- void updatePosition(double changeInX, double changeInY)
-	
 	Example of creating a new turtle object in frontend: Movable turtle = new Turtle();
 
 - Class TurtleFactory: 
@@ -56,14 +52,14 @@ Model: 3 packages: turtle, parse, and nodes
 	- void compileTree(AbstractNode node): interpret the tree and update the turtle position
 
 - public interface Token: has public instance variables for parsing
-	- final String INITIAL_POSITION = “setxy”;
-	- final String SET_PARAMETER = “set”;
-	- final String PARAMETER = “parameter”;
-	- final String FOR_LOOP = “repeat”;
-	- final String RIGHT = “rt”;
-	- final String FORWARD = “fd”;
-	- final String LEFT = “lt”;
-	- …(more to add)
+	- final String INITIAL_POSITION = "setxy";
+	- final String SET_PARAMETER = "set";
+	- final String PARAMETER = "parameter";
+	- final String FOR_LOOP = "repeat";
+	- final String RIGHT = "rt";
+	- final String FORWARD = "fd";
+	- final String LEFT = "lt";
+	- ...(more to add)
 	- Token tokenize(String text): implemented in Parser
  	
 - abstract class AbstractNode: 
@@ -71,6 +67,7 @@ Model: 3 packages: turtle, parse, and nodes
 	constructors:
 	- AbstractNode(Token token, double value)
 	- AbstractNode(Token token)
+	
 	public methods:
 	- AbstractNode makeNode(Token token)
 	- AbstractNode getLeftNode()
@@ -84,7 +81,7 @@ Model: 3 packages: turtle, parse, and nodes
 - Class IfNode extends AbstractNode
 - Class ForNode extends AbstractNode
 - Class ActionNode extends AbstractNode
-- … (more to add)
+- ... (more to add)
 - Class FdNode extends ActionNode
 - (more actions extends action node)
 
