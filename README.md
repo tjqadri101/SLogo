@@ -22,10 +22,11 @@ One of the most integral components of the backend is the code parser. In order 
 
 View Package: 
 - Class Panel: has a submit button, text field, label to display command history (uses jswing - can use JFrame to update frame), pop-up window to display error, and a canvas
+
 Instance variable: myParser
 Instance variable: myTurtlle (initially set by default to lie in the center of the canvas)
-    - void drawTrailLine(oldXPos, old YPos, newXpos, newYpos): draw a trail line from 
-previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
+- void drawTrailLine(oldXPos, old YPos, newXpos, newYpos): draw a trail line from 
+  previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
 - void rotateTurtle()
 	
 Model: 3 packages: turtle, parse, and nodes
