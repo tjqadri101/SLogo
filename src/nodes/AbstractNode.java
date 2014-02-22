@@ -19,6 +19,8 @@ public abstract class AbstractNode {
     private AbstractNode myStartingNode;
     private AbstractNode myEndingNode;
     
+    private Expression myExpressionNode;
+    
     public AbstractNode(Turtle turtle, String token) {
         myToken = token;
         myTurtle = turtle;
@@ -31,6 +33,14 @@ public abstract class AbstractNode {
     
     public AbstractNode(Turtle turtle, String token, double value, AbstractNode startingNode, AbstractNode endingNode) {
         this(turtle, token, value);
+        myStartingNode = startingNode;
+        myEndingNode = endingNode;
+    }
+    
+    public AbstractNode(Turtle turtle, String token, Expression expressionNode, 
+                        AbstractNode startingNode, AbstractNode endingNode) {
+        this(turtle, token);
+        
         myStartingNode = startingNode;
         myEndingNode = endingNode;
     }
@@ -74,5 +84,6 @@ public abstract class AbstractNode {
     }
     
     public abstract void action();
+    public abstract double evaluate();
     
 }

@@ -1,9 +1,9 @@
 package test_nodes;
 
 import nodes.AbstractNode;
-import nodes.ForNode;
-import nodes.ForwardNode;
 import nodes.Token;
+import nodes.commandnodes.ForwardNode;
+import nodes.controlnodes.ForNode;
 import turtle.Turtle;
 
 public class ForNodeTest implements Token{

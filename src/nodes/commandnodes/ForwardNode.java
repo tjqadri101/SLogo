@@ -1,8 +1,8 @@
-package nodes;
+package nodes.commandnodes;
 
 import turtle.Turtle;
 
-public class ForwardNode extends ActionNode {
+public class ForwardNode extends CommandNode {
 
     private Turtle myTurtle;
     private double myValue;
