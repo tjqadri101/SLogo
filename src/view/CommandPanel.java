@@ -4,11 +4,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 //component that takes into account the users texts - chose JPanel because this is more of a container
-public class CommandCenter extends JPanel{
+public class CommandPanel extends JPanel{
 	
 	private JTextField myTextField;
 	
-	CommandCenter(){
+	CommandPanel(){
 		myTextField = makeTextField();
 		this.add(myTextField);
 	}

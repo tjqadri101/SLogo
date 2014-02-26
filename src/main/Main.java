@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import view.Workspace;
+import view.WorkspacePanel;
 
 public class Main {
 
@@ -19,7 +19,7 @@ public class Main {
 		JFrame frame = new JFrame("SLOGO");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Container mainWindow = new Workspace();
+		Container mainWindow = new WorkspacePanel();
 		frame.add(mainWindow);
 
 		frame.pack();

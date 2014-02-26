@@ -11,7 +11,7 @@ import turtle.Moveable;
 import turtle.Turtle;
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
-public class Workspace extends JPanel{
+public class WorkspacePanel extends JPanel{
 	
 	public static final Integer LENGTH = 800;
 	public static final Integer HEIGHT = 600;
@@ -19,10 +19,10 @@ public class Workspace extends JPanel{
 	
 	private Parser myParser;
 	private Moveable myTurtle;
-	private CommandCenter myCommandCenter;
-	private ActionDisplay myActionDisplay;
+	private CommandPanel myCommandPanel;
+	private ActionDisplayPanel myActionDisplayPanel;
 	
-	public Workspace(){
+	public WorkspacePanel(){
 		Turtle tempTurtle = new Turtle();
 		myParser = new Parser(tempTurtle, "");
 		myTurtle = (Moveable) tempTurtle;
@@ -33,14 +33,14 @@ public class Workspace extends JPanel{
 		
 	}
 	
-	private CommandCenter setAndMakeCommandCenter(){
-		myCommandCenter = new CommandCenter();
-		return myCommandCenter;
+	private CommandPanel setAndMakeCommandCenter(){
+		myCommandPanel = new CommandPanel();
+		return myCommandPanel;
 	}
 	
-	private ActionDisplay setAndMakeActionDisplay(){
-		myActionDisplay = new ActionDisplay();
-		return myActionDisplay;
+	private ActionDisplayPanel setAndMakeActionDisplay(){
+		myActionDisplayPanel = new ActionDisplayPanel();
+		return myActionDisplayPanel;
 	}
 	
 	private JPanel makePanel(){
