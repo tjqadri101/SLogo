@@ -22,7 +22,7 @@ public class ParserTest {
     
     public static void main(String[] args) {
         ParserTest test = new ParserTest();
-        String string = "fd 50 ft 100";
+        String string = "repeat 2 [ fd 50 ft 100 ]";
         AbstractNode node = test.parseAndCreateTree(string);
         
         while (node != null) {

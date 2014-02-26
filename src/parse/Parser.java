@@ -8,14 +8,14 @@ import java.util.Queue;
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
-import nodes.ConditionNode;
-import nodes.IfElseNode;
 import nodes.LeftBracketNode;
 import nodes.NodeFactory;
 import nodes.NumberNode;
 import nodes.RightBracketNode;
 import nodes.VariableNode;
 import nodes.Token;
+import nodes.controlnodes.ConditionNode;
+import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 

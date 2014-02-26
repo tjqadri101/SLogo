@@ -1,6 +1,7 @@
 package nodes;
 
 import nodes.commandnodes.ForwardNode;
+import nodes.controlnodes.RepeatNode;
 import turtle.Turtle;
 
 public class NodeFactory implements Token{
@@ -24,7 +25,9 @@ public class NodeFactory implements Token{
         if (isNumeric(word)) {
             return new NumberNode(myTurtle, Double.parseDouble(word));
         }
-
+        if (word.equals("repeat")) {
+            return new RepeatNode(myTurtle);
+        }
             return null;
     }
 

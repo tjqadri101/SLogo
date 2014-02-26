@@ -1,24 +1,22 @@
-package nodes;
+package nodes.controlnodes;
 
+import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class ConditionNode extends AbstractNode {
 
     public ConditionNode (Turtle turtle) {
         super(turtle);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void action () {
-        // TODO Auto-generated method stub
-
+        // do nothing
     }
 
     @Override
     public double evaluate () {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.getLeftNode().evaluate();
     }
 
 }

@@ -11,24 +11,24 @@ public class RepeatNode extends AbstractNode {
 
     private double traverseSubtree() {
         // check left (condition node)
-        
-        // if count > 0, go to right block
-        
-        // 
-        
+        AbstractNode conditionNode = this.getLeftNode();
+        double count = conditionNode.evaluate();
+        while (count > 0) {
+            this.getRightNode().evaluate();
+            this.getRightNode().action();
+            count --;
+        }
         return 0;
     }
     
     @Override
     public void action () {
-        // TODO Auto-generated method stub
-        
+        traverseSubtree();
     }
 
     @Override
     public double evaluate () {
-        // TODO Auto-generated method stub
-        return 0;
+        return traverseSubtree();
     }
 
 }

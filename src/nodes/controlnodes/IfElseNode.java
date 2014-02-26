@@ -1,5 +1,6 @@
-package nodes;
+package nodes.controlnodes;
 
+import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class IfElseNode extends AbstractNode {
