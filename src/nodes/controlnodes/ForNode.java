@@ -2,7 +2,6 @@ package nodes.controlnodes;
 
 import nodes.AbstractNode;
 import nodes.Token;
-import nodes.commandnodes.CommandNode;
 import turtle.Turtle;
 
 public class ForNode extends AbstractNode implements Token {

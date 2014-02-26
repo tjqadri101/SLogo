@@ -22,15 +22,13 @@ import nodes.controlnodes.RepeatNode;
 public class Parser implements Token {
     
     private Turtle myTurtle;
-    private String myText;
     private boolean myValidBoolean = true;
     
     private List<VariableNode> myVariables = new ArrayList<VariableNode>();
     private List<Function> myFunctions = new ArrayList<Function>();
     
-    public Parser(Turtle turtle, String text) {
+    public Parser(Turtle turtle) {
         myTurtle = turtle;
-        myText = text;
     }
     
     public boolean isValid() {
@@ -71,9 +69,8 @@ public class Parser implements Token {
                 // return to parent
                 currentNode = currentNode.getParent();
             }
-            if (currentNode.getChildren().size() >= 2 || !(currentNode instanceof BlockNode
-                    || currentNode instanceof RightBracketNode)) {
-                // only block nodes are allowed to have more than 2 children
+            
+            if (currentNode instanceof RightBracketNode) {
                 currentNode = currentNode.getParent();
             }
             

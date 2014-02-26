@@ -1,11 +1,11 @@
 package nodes.commandnodes;
 
+import nodes.AbstractNode;
 import turtle.Turtle;
 
-public class ForwardNode extends CommandNode {
+public class ForwardNode extends AbstractNode {
 
     private Turtle myTurtle;
-    private double myValue;
     
     public ForwardNode (Turtle turtle) {
         super(turtle);
@@ -15,7 +15,17 @@ public class ForwardNode extends CommandNode {
 
     
     public void action() {
-        myTurtle.updatePosition(0, myValue);
+        double distance = this.getLeftNode().evaluate();
+        myTurtle.updatePosition(0, distance);
+    }
+
+
+
+
+    @Override
+    public double evaluate () {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }

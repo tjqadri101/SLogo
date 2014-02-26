@@ -4,21 +4,22 @@ import turtle.Turtle;
 
 public class NumberNode extends AbstractNode{
 
-    public NumberNode (Turtle turtle) {
+    private double myValue;
+    
+    public NumberNode (Turtle turtle, double value) {
         super(turtle);
-        // TODO Auto-generated constructor stub
+        myValue = value;
     }
 
     @Override
     public void action () {
-        // TODO Auto-generated method stub
+        // do nothing
         
     }
 
     @Override
     public double evaluate () {
-        // TODO Auto-generated method stub
-        return 0;
+        return myValue;
     }
 
 }
