@@ -1,11 +1,13 @@
 package nodes;
 
+import turtle.Turtle;
+
 public class NodeFactory implements Token{
     
-    private String myText; 
+    private Turtle myTurtle; 
     
-    public NodeFactory(String text) {
-        myText = text;
+    public NodeFactory(Turtle turtle) {
+        myTurtle = turtle;
     }
     
     public AbstractNode createNode() {
@@ -16,6 +18,11 @@ public class NodeFactory implements Token{
     
     public Token createToken(String text) {
         
+        return null;
+    }
+
+    public AbstractNode createNode (String word) {
+        // TODO Auto-generated method stub
         return null;
     }
 }

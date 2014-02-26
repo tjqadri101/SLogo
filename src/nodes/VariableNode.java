@@ -2,7 +2,7 @@ package nodes;
 
 import turtle.Turtle;
 
-public class VariableNode extends AbstractNode{
+public class VariableNode extends AbstractNode{ //TODO a function can be a variable node
 
     private double myValue;
     

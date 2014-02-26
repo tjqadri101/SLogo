@@ -2,9 +2,12 @@ package parse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import turtle.Turtle;
 import nodes.AbstractNode;
+import nodes.NodeFactory;
 import nodes.NumberNode;
 import nodes.VariableNode;
 import nodes.Token;
@@ -16,7 +19,7 @@ public class Parser implements Token {
     private boolean myValidBoolean = true;
     
     private List<VariableNode> myVariables = new ArrayList<VariableNode>();
-    private List<FunctionNode> myFunctions = new ArrayList<FunctionNode>();
+    private List<Function> myFunctions = new ArrayList<Function>();
     
     public Parser(Turtle turtle, String text) {
         myTurtle = turtle;
@@ -30,7 +33,7 @@ public class Parser implements Token {
     public void createFunctionsAndVariables(String s) {
         String[] functionString = s.split("to");
         for (String thisFunction : functionString) {
-            myFunctions.add(new FunctionNode(myTurtle, thisFunction));
+            myFunctions.add(new Function(thisFunction));
         }
         
         String[] words = s.split(" ");
@@ -44,10 +47,29 @@ public class Parser implements Token {
     }
     
     
-    public AbstractNode createTree(FunctionNode function) {
+    public AbstractNode createTree(Function function) {
+        NodeFactory nodeFactory = new NodeFactory(myTurtle);
+        //TODO create the tree
+        String[] words = function.getContent().split(" ");
+        Queue<String> queue = new LinkedList<String>();
+        for (String word : words) {
+            queue.add(word);
+        }
+        String currentWord = queue.poll();
+        AbstractNode root = nodeFactory.createNode(currentWord);
+        AbstractNode currentNode = root;
+        while (queue.size() > 0) {
+            if (currentNode instanceof NumberNode ||
+                    currentNode instanceof VariableNode) {
+                
+            }
+            
+            
+        }
         
         
-        return null;
+        
+        return root;
     }
     
     public void traverseTree(AbstractNode root) {
