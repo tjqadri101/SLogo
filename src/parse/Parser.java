@@ -54,6 +54,7 @@ public class Parser implements Token {
     
     public AbstractNode createTree(Function function) {
         NodeFactory nodeFactory = new NodeFactory(myTurtle);
+        AbstractNode root = new BlockNode(myTurtle);
         
         String[] words = function.getContent().split(" ");
         Queue<String> queue = new LinkedList<String>();
@@ -61,8 +62,8 @@ public class Parser implements Token {
             queue.add(word);
         }
         String currentWord = queue.poll();
-        AbstractNode root = nodeFactory.createNode(currentWord);
-        AbstractNode currentNode = root;
+        AbstractNode currentNode = nodeFactory.createNode(currentWord);
+        root.setLeftNode(currentNode);
         while (queue.size() > 0) {
             if (currentNode instanceof NumberNode ||
                     currentNode instanceof VariableNode) {

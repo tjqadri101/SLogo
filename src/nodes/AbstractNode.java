@@ -18,9 +18,9 @@ public abstract class AbstractNode {
         myTurtle = turtle;
     }
     
-//    public String toString() {
-//        return myLeftNode.getClass().getName() + myRightNode.getClass().getName(); //TODO: temporary
-//    }
+    public String toString() {
+        return this.getClass().getName();//TODO: temporary
+    }
  
     public AbstractNode getLeftNode() {
         return myLeftNode;

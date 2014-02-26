@@ -7,9 +7,18 @@ public class RepeatNode extends AbstractNode {
 
     public RepeatNode (Turtle turtle) {
         super(turtle);
-        // TODO Auto-generated constructor stub
     }
 
+    private double traverseSubtree() {
+        // check left (condition node)
+        
+        // if count > 0, go to right block
+        
+        // 
+        
+        return 0;
+    }
+    
     @Override
     public void action () {
         // TODO Auto-generated method stub
