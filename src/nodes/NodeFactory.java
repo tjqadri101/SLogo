@@ -10,12 +10,6 @@ public class NodeFactory implements Token{
         myTurtle = turtle;
     }
     
-    public AbstractNode createNode() {
-        
-        
-        return null;
-    }
-    
     public Token createToken(String text) {
         
         return null;

@@ -7,10 +7,17 @@ import java.util.List;
 import java.util.Queue;
 import turtle.Turtle;
 import nodes.AbstractNode;
+import nodes.BlockNode;
+import nodes.ConditionNode;
+import nodes.IfElseNode;
+import nodes.LeftBracketNode;
 import nodes.NodeFactory;
 import nodes.NumberNode;
+import nodes.RightBracketNode;
 import nodes.VariableNode;
 import nodes.Token;
+import nodes.controlnodes.IfNode;
+import nodes.controlnodes.RepeatNode;
 
 public class Parser implements Token {
     
@@ -49,7 +56,7 @@ public class Parser implements Token {
     
     public AbstractNode createTree(Function function) {
         NodeFactory nodeFactory = new NodeFactory(myTurtle);
-        //TODO create the tree
+        
         String[] words = function.getContent().split(" ");
         Queue<String> queue = new LinkedList<String>();
         for (String word : words) {
@@ -61,8 +68,68 @@ public class Parser implements Token {
         while (queue.size() > 0) {
             if (currentNode instanceof NumberNode ||
                     currentNode instanceof VariableNode) {
+                // return to parent
+                currentNode = currentNode.getParent();
+            }
+            if (currentNode.getChildren().size() >= 2 || !(currentNode instanceof BlockNode
+                    || currentNode instanceof RightBracketNode)) {
+                // only block nodes are allowed to have more than 2 children
+                currentNode = currentNode.getParent();
+            }
+            
+            if (currentNode instanceof LeftBracketNode) {
+                //TODO
+                // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
+                if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
+                    currentNode = currentNode.getParent().getRightNode(); // go to block
+                } else if (currentNode.getParent().getParent() instanceof IfElseNode) {
+                    //TODO
+                }
                 
             }
+            
+            
+            
+            
+            if (currentNode instanceof IfElseNode) {
+                // create two block nodes
+                AbstractNode bnLeft = new BlockNode(myTurtle);
+                AbstractNode bnRight = new BlockNode(myTurtle);
+                currentNode.setLeftNode(bnLeft);
+                currentNode.setRightNode(bnRight);
+                // create a condition node and a block node for each of the blocks
+                AbstractNode conditionLeft = new ConditionNode(myTurtle);
+                AbstractNode conditionRight = new ConditionNode(myTurtle);
+                bnLeft.setLeftNode(conditionLeft);
+                bnLeft.setRightNode(new BlockNode(myTurtle));
+                bnRight.setLeftNode(conditionRight);
+                bnRight.setRightNode(new BlockNode(myTurtle));
+                
+                // create condition for condition left; condition right is the opposite of condition left
+                currentNode = bnLeft.getLeftNode();
+            }
+            if (currentNode instanceof IfNode || currentNode instanceof RepeatNode) {
+                // create 1 block node
+                AbstractNode bn = new BlockNode(myTurtle);
+                // create 1 condition node
+                AbstractNode conditionNode = new ConditionNode(myTurtle);
+                currentNode.setLeftNode(conditionNode);
+                currentNode.setRightNode(bn);
+                currentNode = conditionNode;
+            }
+            
+            String nextWord = queue.poll();
+            AbstractNode nextNode = nodeFactory.createNode(currentWord);
+            
+            if (currentNode.getLeftNode()!= null) {
+                currentNode.setLeftNode(nextNode);
+            } else if (currentNode.getRightNode() != null) {
+                currentNode.setRightNode(nextNode);
+            } else { //is a block node; had more than 2 children
+                currentNode.addChild(nextNode);
+            }
+            
+            currentNode = nextNode;
             
             
         }

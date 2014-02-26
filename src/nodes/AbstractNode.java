@@ -36,16 +36,19 @@ public abstract class AbstractNode {
     
     public void setLeftNode(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
         myLeftNode = node;
     }
     
     public void setRightNode(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
         myRightNode = node;
     }
     
     public void addChild(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
     }
     
     public boolean hasChild() {
