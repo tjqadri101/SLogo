@@ -1,8 +1,12 @@
 package parse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import turtle.Turtle;
 import nodes.AbstractNode;
+import nodes.NumberNode;
+import nodes.VariableNode;
 import nodes.Token;
 
 public class Parser implements Token {
@@ -10,6 +14,9 @@ public class Parser implements Token {
     private Turtle myTurtle;
     private String myText;
     private boolean myValidBoolean = true;
+    
+    private List<VariableNode> myVariables = new ArrayList<VariableNode>();
+    private List<Function> myFunctions = new ArrayList<Function>();
     
     public Parser(Turtle turtle, String text) {
         myTurtle = turtle;
@@ -20,50 +27,59 @@ public class Parser implements Token {
         return myValidBoolean;
     }
     
-    public AbstractNode createTree() {
-        // break text into a list of strings according to spaces
+    public void createFunctionsAndVariables(String s) {
+        String[] functionString = s.split("to");
+        for (String thisFunction : functionString) {
+            myFunctions.add(new Function(thisFunction));
+        }
+        
+        String[] words = s.split(" ");
+        for (int i=0;i<words.length;i++) {
+            if (words[i].charAt(0) == ':') {
+                //create a variable node
+                VariableNode vn = new VariableNode(myTurtle, Double.parseDouble(words[i+1]));
+            }
+        }
+        
+    }
+    
+    
+    public AbstractNode createTree(Function function) {
+        
         
         return null;
     }
     
-    public void readTextAndAddNodes(String[] textArray, AbstractNode node) { // use recursion
-        if (textArray.length == 0) {
+    public void traverseTree(AbstractNode root) {
+        AbstractNode node = root;
+        List<AbstractNode> visited = new ArrayList<AbstractNode>();
+        
+        if (node == null) {
             return;
         }
-        String thisString = textArray[0];
-        String maybeNumber = textArray[1];
+        if (visited.contains(node)) {
+            return;
+        }
+        visited.add(node);
         
-        AbstractNode childNode = null;
-        // TODO create token
-        //
-        //create child node
-        
-        node.setLeftNode(childNode);
-        
-        if (isNumeric(maybeNumber)) {
-            //TODO
-        } else {
-            String[] nextArray = Arrays.copyOfRange(textArray, 1, textArray.length);
-            readTextAndAddNodes(nextArray, childNode);
+        if (node.getChildren().size() > 2) {
+            for (AbstractNode child : node.getChildren()) {
+                traverseTree(child);
+            }
+        } else if (!visited.contains(node.getLeftNode())) {
+            traverseTree(node.getLeftNode());
+        } else if (!visited.contains(node.getRightNode())) {
+            traverseTree(node.getRightNode());
+        } else { //no children
+            if (node instanceof NumberNode || node instanceof VariableNode) { //TODO: implement toString in AbstractNode and sub classes
+                return;
+            } else {
+                node.action();
+                node.evaluate();
+            }
         }
         
         
-        
-        
-    }
-    
-    public String[] breakText(String text) {
-        return text.split(" ");
-    }
-    
-    private static boolean isNumeric(String str)  {  
-      try {  
-        double d = Double.parseDouble(str);  
-      }  
-      catch(NumberFormatException nfe) {  
-        return false;  
-      }  
-      return true;  
     }
     
 }

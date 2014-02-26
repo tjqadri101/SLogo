@@ -11,7 +11,7 @@ public class ForNodeTest implements Token{
     public void moveTurtle() {
         Turtle turtle = new Turtle(0, 0);
         System.out.println("created turtle");
-        AbstractNode forNode = new ForNode(turtle, FOR_LOOP, 3);
+        AbstractNode forNode = new ForNode(turtle, FOR, 3);
         AbstractNode fdNode = new ForwardNode(turtle, FORWARD, 50);
         forNode.setLeftNode(fdNode);
         forNode.setEndingNode(fdNode);

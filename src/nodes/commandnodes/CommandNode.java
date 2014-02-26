@@ -6,8 +6,8 @@ import turtle.Turtle;
 
 public class CommandNode extends AbstractNode implements Token {
 
-    public CommandNode (Turtle turtle, String token, double value) {
-        super(turtle, token, value);
+    public CommandNode (Turtle turtle) {
+        super(turtle);
         
     }
 
