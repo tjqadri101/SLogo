@@ -16,7 +16,7 @@ public class Parser implements Token {
     private boolean myValidBoolean = true;
     
     private List<VariableNode> myVariables = new ArrayList<VariableNode>();
-    private List<Function> myFunctions = new ArrayList<Function>();
+    private List<FunctionNode> myFunctions = new ArrayList<FunctionNode>();
     
     public Parser(Turtle turtle, String text) {
         myTurtle = turtle;
@@ -30,7 +30,7 @@ public class Parser implements Token {
     public void createFunctionsAndVariables(String s) {
         String[] functionString = s.split("to");
         for (String thisFunction : functionString) {
-            myFunctions.add(new Function(thisFunction));
+            myFunctions.add(new FunctionNode(myTurtle, thisFunction));
         }
         
         String[] words = s.split(" ");
@@ -44,7 +44,7 @@ public class Parser implements Token {
     }
     
     
-    public AbstractNode createTree(Function function) {
+    public AbstractNode createTree(FunctionNode function) {
         
         
         return null;
@@ -71,7 +71,7 @@ public class Parser implements Token {
         } else if (!visited.contains(node.getRightNode())) {
             traverseTree(node.getRightNode());
         } else { //no children
-            if (node instanceof NumberNode || node instanceof VariableNode) { //TODO: implement toString in AbstractNode and sub classes
+            if (node instanceof NumberNode || node instanceof VariableNode) {
                 return;
             } else {
                 node.action();
