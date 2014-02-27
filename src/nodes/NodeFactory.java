@@ -2,7 +2,8 @@ package nodes;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
+import nodes.commandnodes.ForwardNode;
+import nodes.controlnodes.RepeatNode;
 import turtle.Turtle;
 
 public class NodeFactory implements Token {
@@ -25,27 +26,27 @@ public class NodeFactory implements Token {
 
 		// TODO THE FOLLOWING CODE IS ONLY FOR TESTING PURPOSES; add real code
 		// later
-		// if (word.equals("fd") || word.equals("forward")) {
-		// return new ForwardNode(myTurtle);
-		// }
-		// if (isNumeric(word)) {
-		// return new NumberNode(myTurtle, Double.parseDouble(word));
-		// }
-		// if (word.equals("repeat")) {
-		// return new RepeatNode(myTurtle);
-		// }
-		// return null;
+		 if (word.equals("fd") || word.equals("forward")) {
+		 return new ForwardNode(myTurtle);
+		 }
+		 if (isNumeric(word)) {
+		 return new NumberNode(myTurtle, Double.parseDouble(word));
+		 }
+		 if (word.equals("repeat")) {
+		 return new RepeatNode(myTurtle);
+		 }
+		 return null;
 		
-		AbstractNode genericNode = null;;
-
-		if (!isNumeric(word)) {
-			Class<?> c = Class.forName(word + "Node");
-			Constructor<?> constructor = c.getConstructor(Turtle.class);
-			genericNode = (AbstractNode) constructor
-					.newInstance(myTurtle);
-		}
-		
-		return genericNode;
+//		AbstractNode genericNode = null;;
+//
+//		if (!isNumeric(word)) {
+//			Class<?> c = Class.forName(word + "Node");
+//			Constructor<?> constructor = c.getConstructor(Turtle.class);
+//			genericNode = (AbstractNode) constructor
+//					.newInstance(myTurtle);
+//		}
+//		
+//		return genericNode;
 
 	}
 

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
+import java.util.Stack;
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
@@ -148,33 +148,21 @@ public class Parser implements Token {
         return root;
     }
 
-    public void traverseTree(AbstractNode node, List<AbstractNode> visited) {
-        
-        System.out.println("**Parser traverseTree: visited = " + visited + ", current node is " + node);
-        
-        if (node == null) {
-            return;
+    public void traverseTree(AbstractNode root, List<AbstractNode> visited) {    
+        if (root!=null) {
+            traverseTree(root.getLeftNode(), visited);
+            traverseTree(root.getRightNode(), visited);
+            root.evaluate();
+            root.action();
         }
-        if (visited.contains(node)) {
-            return;
-        }
-        visited.add(node);
-
-        if (node.getChildren().size() > 2) {
-            for (AbstractNode child : node.getChildren()) {
-                traverseTree(child, visited);
-            }
-        } else if (!visited.contains(node.getLeftNode())) {
-            traverseTree(node.getLeftNode(), visited);
-        } else if (!visited.contains(node.getRightNode())) {
-            traverseTree(node.getRightNode(), visited);
-        } else { //no children
-
-            node.action();
-            node.evaluate();
-        }
-
-
     }
 
+    private void popAndProcessNode (List<AbstractNode> visited,
+                                    Stack<AbstractNode> stack,
+                                    AbstractNode currentNode) {
+        stack.pop();
+        currentNode.evaluate();
+        currentNode.action();
+        visited.add(currentNode);
+    }
 }

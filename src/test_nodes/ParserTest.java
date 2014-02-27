@@ -33,25 +33,25 @@ public class ParserTest {
 //        String string = "fd 50 fd 100";
 
         AbstractNode node = test.parseAndCreateTree(string);
-//        System.out.println("ParserTest parseAndCreateTree: root is " + node);
-//        
-//        while (node != null) {
-//            
-//            AbstractNode nextNode = new BlockNode(myTurtle);
-//            if (node.getLeftNode()!=null) {
-//                nextNode = node.getLeftNode();
-//                System.out.println("ParserTest parseAndCreateTree: node" + node+"'s left node is " + nextNode);
-//            }
-//            if (node.getRightNode()!=null) {
-//                nextNode = node.getRightNode();
-//                System.out.println("ParserTest parseAndCreateTree: node" + node+"'s right node is " + nextNode);
-//            }
-//            node = nextNode;
-//        }
+        System.out.println("ParserTest parseAndCreateTree: root is " + node);
         
-        test.traverseTree(node);
-        System.out.println("ParserTest traverseTree: turtle's final position is " + myTurtle.getXPos() 
-                                                                                   + ", " + myTurtle.getYPos());
+        while (node != null) {
+            
+            AbstractNode nextNode = new BlockNode(myTurtle);
+            if (node.getLeftNode()!=null) {
+                nextNode = node.getLeftNode();
+                System.out.println("ParserTest parseAndCreateTree: node" + node+"'s left node is " + nextNode);
+            }
+            if (node.getRightNode()!=null) {
+                nextNode = node.getRightNode();
+                System.out.println("ParserTest parseAndCreateTree: node" + node+"'s right node is " + nextNode);
+            }
+            node = nextNode;
+        }
+        
+//        test.traverseTree(node);
+//        System.out.println("ParserTest traverseTree: turtle's final position is " + myTurtle.getXPos() 
+//                                                                                   + ", " + myTurtle.getYPos());
         
     }
 }
