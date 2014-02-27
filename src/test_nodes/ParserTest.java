@@ -24,9 +24,9 @@ public class ParserTest {
         ParserTest test = new ParserTest();
         String string = "repeat 2 [ fd 50 ft 100 ]";
         AbstractNode node = test.parseAndCreateTree(string);
-        
+        System.out.println(node);
         while (node != null) {
-            System.out.println(node);
+            
             AbstractNode nextNode = new BlockNode(myTurtle);
             if (node.getLeftNode()==null && node.getRightNode()==null) {
                 return;
