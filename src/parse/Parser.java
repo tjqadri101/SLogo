@@ -78,17 +78,11 @@ public class Parser implements Token {
             if (currentNode instanceof NumberNode ||
                     currentNode instanceof VariableNode) {
                 // return to parent
-                
                 currentNode = currentNode.getParent();
                 if (!currentNode.allowsTwoChildren() || 
                         (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
                     currentNode = currentNode.getParent();
                 }
-                
-//                // go to the block node
-//                if (! (currentNode instanceof BlockNode)) { //TODO
-//                    currentNode = currentNode.getRightNode();
-//                }
             }
 
             if (currentNode instanceof IfElseNode) {
@@ -124,7 +118,7 @@ public class Parser implements Token {
                 if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
                     currentNode = currentNode.getParent().getRightNode(); // go to block
                 } else if (currentNode.getParent().getParent() instanceof IfElseNode) {
-                    //TODO
+                    //TODO implement IfElseNode
                 }
                 nextWord = queue.poll();
             }
@@ -161,14 +155,5 @@ public class Parser implements Token {
             root.evaluate();
             root.action();
         }
-    }
-
-    private void popAndProcessNode (List<AbstractNode> visited,
-                                    Stack<AbstractNode> stack,
-                                    AbstractNode currentNode) {
-        stack.pop();
-        currentNode.evaluate();
-        currentNode.action();
-        visited.add(currentNode);
     }
 }
