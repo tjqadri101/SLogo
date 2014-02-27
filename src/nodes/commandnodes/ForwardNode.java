@@ -31,7 +31,7 @@ public class ForwardNode extends AbstractNode {
 
 
     @Override
-    public boolean allowsTwo () {
+    public boolean allowsTwoChildren () {
         return false;
     }
 
@@ -39,7 +39,7 @@ public class ForwardNode extends AbstractNode {
 
 
     @Override
-    public boolean allowsThree () {
+    public boolean allowsThreeChildren () {
         return false;
     }
 

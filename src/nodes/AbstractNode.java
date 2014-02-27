@@ -65,8 +65,8 @@ public abstract class AbstractNode {
         return myChildren;
     }
 
-    public abstract boolean allowsTwo ();
+    public abstract boolean allowsTwoChildren ();
     
-    public abstract boolean allowsThree() ;
+    public abstract boolean allowsThreeChildren() ;
     
 }

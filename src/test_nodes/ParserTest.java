@@ -28,7 +28,12 @@ public class ParserTest {
     
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         ParserTest test = new ParserTest();
-        String string = "repeat 2 [ fd 50 fd 100 ]";
+        // test repeat
+//        String string = "repeat 2 [ fd 50 fd 100 ]"; 
+        
+        // test if
+        String string = "if greaterp 3 2 [ fd 50 ]";
+        
         
 //        String string = "fd 50 fd 100";
 

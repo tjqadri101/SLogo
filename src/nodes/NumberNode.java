@@ -23,12 +23,12 @@ public class NumberNode extends AbstractNode{
     }
 
     @Override
-    public boolean allowsTwo () {
+    public boolean allowsTwoChildren () {
         return false;
     }
 
     @Override
-    public boolean allowsThree () {
+    public boolean allowsThreeChildren () {
         return false;
     }
 

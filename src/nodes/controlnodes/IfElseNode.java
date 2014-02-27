@@ -23,12 +23,12 @@ public class IfElseNode extends AbstractNode {
     }
 
     @Override
-    public boolean allowsTwo () {
+    public boolean allowsTwoChildren () {
         return true;
     }
 
     @Override
-    public boolean allowsThree () {
+    public boolean allowsThreeChildren () {
         return false;
     }
 

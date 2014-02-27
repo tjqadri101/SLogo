@@ -26,12 +26,12 @@ public class VariableNode extends AbstractNode{ //TODO a function can be a varia
     }
 
     @Override
-    public boolean allowsTwo () {
+    public boolean allowsTwoChildren () {
         return false;
     }
 
     @Override
-    public boolean allowsThree () {
+    public boolean allowsThreeChildren () {
         return false;
     }
 

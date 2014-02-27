@@ -78,11 +78,17 @@ public class Parser implements Token {
             if (currentNode instanceof NumberNode ||
                     currentNode instanceof VariableNode) {
                 // return to parent
-                currentNode = currentNode.getParent().getParent();
-                // go to the block node
-                if (! (currentNode instanceof BlockNode)) {
-                    currentNode = currentNode.getRightNode();
+                
+                currentNode = currentNode.getParent();
+                if (!currentNode.allowsTwoChildren() || 
+                        (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
+                    currentNode = currentNode.getParent();
                 }
+                
+//                // go to the block node
+//                if (! (currentNode instanceof BlockNode)) { //TODO
+//                    currentNode = currentNode.getRightNode();
+//                }
             }
 
             if (currentNode instanceof IfElseNode) {
@@ -135,7 +141,7 @@ public class Parser implements Token {
 
             if (currentNode.getLeftNode()== null) {
                 currentNode.setLeftNode(nextNode);
-            } else if (currentNode.getRightNode() == null && currentNode.allowsTwo()) {
+            } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {
                 currentNode.setRightNode(nextNode);
             } else { //is a block node; had more than 2 children
                 currentNode.addChild(nextNode);
