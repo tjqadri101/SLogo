@@ -33,7 +33,7 @@ public class GreaterNode extends AbstractNode {
     }
 
     @Override
-    public boolean allowsThreeChildren () {
+    public boolean allowsMoreThanTwoChildren () {
         return false;
     }
 

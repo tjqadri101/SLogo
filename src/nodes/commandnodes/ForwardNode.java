@@ -39,7 +39,7 @@ public class ForwardNode extends AbstractNode {
 
 
     @Override
-    public boolean allowsThreeChildren () {
+    public boolean allowsMoreThanTwoChildren () {
         return false;
     }
 

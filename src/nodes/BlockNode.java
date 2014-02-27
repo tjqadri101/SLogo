@@ -27,7 +27,7 @@ public class BlockNode extends AbstractNode {
     }
 
     @Override
-    public boolean allowsThreeChildren () {
+    public boolean allowsMoreThanTwoChildren () {
         return true;
     }
 

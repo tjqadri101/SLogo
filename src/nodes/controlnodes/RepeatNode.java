@@ -37,7 +37,7 @@ public class RepeatNode extends AbstractNode {
     }
 
     @Override
-    public boolean allowsThreeChildren () {
+    public boolean allowsMoreThanTwoChildren () {
         return false;
     }
 

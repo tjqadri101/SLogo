@@ -25,7 +25,7 @@ public class ConditionNode extends AbstractNode {
     }
 
     @Override
-    public boolean allowsThreeChildren () {
+    public boolean allowsMoreThanTwoChildren () {
         return false;
     }
 
