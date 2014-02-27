@@ -25,4 +25,14 @@ public class VariableNode extends AbstractNode{ //TODO a function can be a varia
         return myValue;
     }
 
+    @Override
+    public boolean allowsTwo () {
+        return false;
+    }
+
+    @Override
+    public boolean allowsThree () {
+        return false;
+    }
+
 }

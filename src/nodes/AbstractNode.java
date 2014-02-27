@@ -40,11 +40,13 @@ public abstract class AbstractNode {
     
     public void setLeftNode(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
         myLeftNode = node;
     }
     
     public void setRightNode(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
         myRightNode = node;
     }
     
@@ -62,5 +64,9 @@ public abstract class AbstractNode {
     public List<AbstractNode> getChildren () {
         return myChildren;
     }
+
+    public abstract boolean allowsTwo ();
+    
+    public abstract boolean allowsThree() ;
     
 }

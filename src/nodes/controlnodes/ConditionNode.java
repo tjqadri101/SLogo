@@ -19,4 +19,14 @@ public class ConditionNode extends AbstractNode {
         return this.getLeftNode().evaluate();
     }
 
+    @Override
+    public boolean allowsTwo () {
+        return false;
+    }
+
+    @Override
+    public boolean allowsThree () {
+        return false;
+    }
+
 }

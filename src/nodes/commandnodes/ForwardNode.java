@@ -28,4 +28,20 @@ public class ForwardNode extends AbstractNode {
         return 0;
     }
 
+
+
+
+    @Override
+    public boolean allowsTwo () {
+        return false;
+    }
+
+
+
+
+    @Override
+    public boolean allowsThree () {
+        return false;
+    }
+
 }

@@ -22,25 +22,28 @@ public class ParserTest {
     
     public static void main(String[] args) {
         ParserTest test = new ParserTest();
-        String string = "repeat 2 [ fd 50 ft 100 ]";
+        String string = "repeat 2 [ fd 50 fd 100 ]";
+        
+//        String string = "fd 50 fd 100";
+
         AbstractNode node = test.parseAndCreateTree(string);
+        System.out.println("ParserTest: root is " + node);
         
         while (node != null) {
-            System.out.println(node);
+            
             AbstractNode nextNode = new BlockNode(myTurtle);
-            if (node.getLeftNode()==null && node.getRightNode()==null) {
-                return;
-            }
             if (node.getLeftNode()!=null) {
                 nextNode = node.getLeftNode();
-                System.out.println(nextNode);
+                System.out.println("ParserTest: node" + node+"'s left node is " + nextNode);
             }
             if (node.getRightNode()!=null) {
                 nextNode = node.getRightNode();
-                System.out.println(nextNode);
+                System.out.println("ParserTest: node" + node+"'s right node is " + nextNode);
             }
             node = nextNode;
         }
+        
+        return;
         
     }
 }

@@ -21,4 +21,14 @@ public class BlockNode extends AbstractNode {
         return 0;
     }
 
+    @Override
+    public boolean allowsTwo () {
+        return true;
+    }
+
+    @Override
+    public boolean allowsThree () {
+        return true;
+    }
+
 }
