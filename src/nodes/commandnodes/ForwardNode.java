@@ -24,7 +24,6 @@ public class ForwardNode extends AbstractNode {
 
     @Override
     public double evaluate () {
-        // TODO Auto-generated method stub
         return 0;
     }
 

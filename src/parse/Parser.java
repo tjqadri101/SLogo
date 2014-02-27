@@ -71,15 +71,12 @@ public class Parser implements Token {
         String currentWord = queue.poll();
         AbstractNode currentNode = nodeFactory.createNode(currentWord);
         root.setLeftNode(currentNode);
-        
+
         while (!queue.isEmpty()) {
             if (currentNode instanceof NumberNode ||
                     currentNode instanceof VariableNode) {
                 // return to parent
-                currentNode = currentNode.getParent().getParent(); //TODO: if parent is a condition node, go to the parent's parent
-//                if (currentNode.getParent() instanceof ConditionNode) {
-//                    currentNode = currentNode.getParent();
-//                }
+                currentNode = currentNode.getParent().getParent();
                 // go to the block node
                 if (! (currentNode instanceof BlockNode)) {
                     currentNode = currentNode.getRightNode();
@@ -115,7 +112,6 @@ public class Parser implements Token {
 
             String nextWord = queue.poll();
             if (nextWord.equals("[")) {
-              //TODO
                 // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
                 if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
                     currentNode = currentNode.getParent().getRightNode(); // go to block
@@ -131,10 +127,10 @@ public class Parser implements Token {
             if (nextWord == null) {
                 return root;
             }
-            
+
             AbstractNode nextNode = nodeFactory.createNode(nextWord);
-            
-            
+
+
             if (currentNode.getLeftNode()== null) {
                 currentNode.setLeftNode(nextNode);
             } else if (currentNode.getRightNode() == null && currentNode.allowsTwo()) {
@@ -147,16 +143,13 @@ public class Parser implements Token {
             currentWord = nextWord;
 
         }
-
-
-
         return root;
     }
 
-    public void traverseTree(AbstractNode root) {
-        AbstractNode node = root;
-        List<AbstractNode> visited = new ArrayList<AbstractNode>();
-
+    public void traverseTree(AbstractNode node, List<AbstractNode> visited) {
+        
+        System.out.println("**Parser traverseTree: visited = " + visited + ", current node is " + node);
+        
         if (node == null) {
             return;
         }
@@ -167,19 +160,16 @@ public class Parser implements Token {
 
         if (node.getChildren().size() > 2) {
             for (AbstractNode child : node.getChildren()) {
-                traverseTree(child);
+                traverseTree(child, visited);
             }
         } else if (!visited.contains(node.getLeftNode())) {
-            traverseTree(node.getLeftNode());
+            traverseTree(node.getLeftNode(), visited);
         } else if (!visited.contains(node.getRightNode())) {
-            traverseTree(node.getRightNode());
+            traverseTree(node.getRightNode(), visited);
         } else { //no children
-            if (node instanceof NumberNode || node instanceof VariableNode) {
-                return;
-            } else {
-                node.action();
-                node.evaluate();
-            }
+
+            node.action();
+            node.evaluate();
         }
 
 
