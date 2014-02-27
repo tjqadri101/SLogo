@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JComponent;
@@ -13,9 +15,8 @@ import turtle.Turtle;
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel{
 	
-	public static final Integer LENGTH = 800;
+	public static final Integer WIDTH = 800;
 	public static final Integer HEIGHT = 600;
-	public static final Dimension SIZE = new Dimension(LENGTH, HEIGHT);
 	
 	private Parser myParser;
 	private Moveable myTurtle;
@@ -26,29 +27,18 @@ public class WorkspacePanel extends JPanel{
 		Turtle tempTurtle = new Turtle();
 		myParser = new Parser(tempTurtle, "");
 		myTurtle = (Moveable) tempTurtle;
-		
-		this.add(makePanel());
-		this.add(setAndMakeCommandCenter());
-		this.add(setAndMakeActionDisplay());
-		
+		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
+		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
 	}
 	
 	private CommandPanel setAndMakeCommandCenter(){
-		myCommandPanel = new CommandPanel();
+		myCommandPanel = new CommandPanel(WIDTH, HEIGHT, .33);
 		return myCommandPanel;
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
-		myActionDisplayPanel = new ActionDisplayPanel();
+		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67);
 		return myActionDisplayPanel;
 	}
-	
-	private JPanel makePanel(){
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(LENGTH, HEIGHT/60));
-		return panel;
-	}
-	
-	
 	
 }
