@@ -31,4 +31,14 @@ public class RepeatNode extends AbstractNode {
         return traverseSubtree();
     }
 
+    @Override
+    public boolean allowsTwo () {
+        return true;
+    }
+
+    @Override
+    public boolean allowsThree () {
+        return false;
+    }
+
 }

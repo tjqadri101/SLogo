@@ -22,4 +22,14 @@ public class NumberNode extends AbstractNode{
         return myValue;
     }
 
+    @Override
+    public boolean allowsTwo () {
+        return false;
+    }
+
+    @Override
+    public boolean allowsThree () {
+        return false;
+    }
+
 }
