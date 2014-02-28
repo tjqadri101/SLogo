@@ -19,7 +19,7 @@ public abstract class AbstractNode {
     }
     
     public String toString() {
-        return this.getClass().getName();//TODO: temporary
+        return this.getClass().getName();
     }
  
     public AbstractNode getLeftNode() {
@@ -65,8 +65,16 @@ public abstract class AbstractNode {
         return myChildren;
     }
 
+    /**
+     * Check if a node allows two child nodes
+     * @return
+     */
     public abstract boolean allowsTwoChildren ();
     
+    /**
+     * check if a node allows more than two child nodes (such as BlockNode)
+     * @return
+     */
     public abstract boolean allowsMoreThanTwoChildren() ;
     
 }

@@ -122,7 +122,11 @@ public class Parser implements Token {
                 }
                 nextWord = queue.poll();
             }
-            if (nextWord.equals("]")) {
+            if (nextWord.equals("]") && queue.isEmpty()) {
+                return root; 
+            } 
+            
+            if (nextWord.equals("]")) {    
                 currentNode = currentNode.getParent();
                 nextWord = queue.poll();
             }
@@ -137,7 +141,7 @@ public class Parser implements Token {
                 currentNode.setLeftNode(nextNode);
             } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {
                 currentNode.setRightNode(nextNode);
-            } else { //is a block node; had more than 2 children
+            } else if (currentNode.getRightNode() != null && currentNode.allowsMoreThanTwoChildren()){
                 currentNode.addChild(nextNode);
             }
 

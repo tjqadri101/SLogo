@@ -32,7 +32,7 @@ public class ParserTest {
 //        String string = "repeat 2 [ fd 50 fd 100 ]"; 
         
         // test if
-        String string = "if greaterp 3 2 [ fd 50 ]";
+        String string = "if greaterp 3 2 [ fd 50 fd 100 fd 80 ]";
         
         
 //        String string = "fd 50 fd 100";
