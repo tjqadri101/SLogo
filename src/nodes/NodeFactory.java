@@ -14,7 +14,7 @@ public class NodeFactory {
 	private final String COMMAND_LIST = "Commands.Properties";
 	private final String[] PACKAGES = { "nodes.booleannodes.",
 			"nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
-			"nodes." };
+			"nodes.booleannodes", "nodes." };
 
 	public NodeFactory(Turtle turtle) {
 		myTurtle = turtle;
