@@ -16,8 +16,6 @@ import javax.swing.JTextField;
 //component that takes into account the users texts - chose JPanel because this is more of a container
 public class CommandPanel extends JPanel{
 	
-	//Dimensions of our Panel?
-	public static final Dimension SIZE = new Dimension(800, 600);
 	private static final Integer RATIO = 12;
 	
 	//text field class for displaying and storing user input

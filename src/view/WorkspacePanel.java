@@ -24,20 +24,20 @@ public class WorkspacePanel extends JPanel{
 	private ActionDisplayPanel myActionDisplayPanel;
 	
 	public WorkspacePanel(){
-		Turtle tempTurtle = new Turtle();
-		myParser = new Parser(tempTurtle, "");
-		myTurtle = (Moveable) tempTurtle;
+		//Turtle tempTurtle = new Turtle();
+		//myParser = new Parser(tempTurtle, "");
+		//myTurtle = (Moveable) tempTurtle;
 		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
 		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
 	}
 	
 	private CommandPanel setAndMakeCommandCenter(){
-		myCommandPanel = new CommandPanel(WIDTH, HEIGHT, .33);
+		myCommandPanel = new CommandPanel(WIDTH/2, HEIGHT, .33);
 		return myCommandPanel;
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
-		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67);
+		myActionDisplayPanel = new ActionDisplayPanel(WIDTH/2, HEIGHT, .67);
 		return myActionDisplayPanel;
 	}
 	
