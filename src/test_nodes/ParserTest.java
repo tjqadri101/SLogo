@@ -39,8 +39,10 @@ public class ParserTest {
 //        String string = "repeat 2 [ fd 50 fd 100 ]"; 
         
         // test if
-        String string = "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
+//        String string = "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
         
+        // test if else
+        String string = "ifelse greaterp 3 2 [ fd 50 ] [ fd 100 ]";
         
 //        String string = "fd 50 fd 100";
 

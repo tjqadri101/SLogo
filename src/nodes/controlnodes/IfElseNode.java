@@ -12,16 +12,32 @@ public class IfElseNode extends AbstractNode {
         myTurtle = turtle;
     }
 
+    private double traverseSubtree() {
+        // go to left block: if satisfies condition, go to its block; if not, go to right block
+        AbstractNode leftBlock = this.getLeftNode();
+        AbstractNode rightBlock = this.getRightNode();
+        
+        AbstractNode conditionNode = this.getLeftNode();
+        double count = conditionNode.evaluate();
+        if (count == 1) { // condition is true
+            this.getLeftNode().getRightNode().evaluate(); 
+            this.getLeftNode().getRightNode().action(); 
+        } else {
+            this.getRightNode().evaluate();
+            this.getRightNode().action();
+        }
+        
+        return 0;
+    }
+    
     @Override
     public void action () {
-        // TODO Auto-generated method stub
-
+        traverseSubtree();
     }
 
     @Override
     public double evaluate () {
-        // TODO Auto-generated method stub
-        return 0;
+        return traverseSubtree();
     }
 
     @Override

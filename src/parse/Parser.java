@@ -84,8 +84,9 @@ public class Parser {
     }
 
 
-    public AbstractNode createTree(Function function, Turtle turtle) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        try {
+    public AbstractNode createTree(Function function, Turtle turtle) throws ClassNotFoundException, 
+                                            NoSuchMethodException, SecurityException, InstantiationException, 
+                                            IllegalAccessException, IllegalArgumentException, InvocationTargetException {
             myTurtle = turtle;
             NodeFactory nodeFactory = new NodeFactory(myTurtle);
             AbstractNode root = new BlockNode(myTurtle);
@@ -126,13 +127,10 @@ public class Parser {
                     AbstractNode bnRight = new BlockNode(myTurtle);
                     currentNode.setLeftNode(bnLeft);
                     currentNode.setRightNode(bnRight);
-                    // create a condition node and a block node for each of the blocks
+                    // create a condition node for left block
                     AbstractNode conditionLeft = new ConditionNode(myTurtle);
-                    AbstractNode conditionRight = new ConditionNode(myTurtle);
                     bnLeft.setLeftNode(conditionLeft);
                     bnLeft.setRightNode(new BlockNode(myTurtle));
-                    bnRight.setLeftNode(conditionRight);
-                    bnRight.setRightNode(new BlockNode(myTurtle));
 
                     // create condition for condition left; condition right is the opposite of condition left
                     currentNode = bnLeft.getLeftNode();
@@ -156,7 +154,7 @@ public class Parser {
                     if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
                     } else if (currentNode.getParent().getParent() instanceof IfElseNode) {
-                        //TODO implement IfElseNode
+                        currentNode = currentNode.getParent().getRightNode(); // go to block
                     }
                     nextWord = queue.poll();
                 }
@@ -166,13 +164,47 @@ public class Parser {
                         return root;
                     }
                     currentNode = currentNode.getParent();
+                    if (currentNode.getParent() instanceof IfElseNode) {
+                        currentNode = currentNode.getParent();
+                    }
                     nextWord = queue.poll();
+                    if (nextWord == null) {
+                        return root;
+                    }
                 }
 
 
+                
+                //DUPLICATED CODE
+                if (nextWord.equals("[")) {
+                    // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
+                    if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
+                        currentNode = currentNode.getParent().getRightNode(); // go to block
+                    } else if (currentNode.getParent().getParent() instanceof IfElseNode) {
+                        currentNode = currentNode.getParent().getRightNode(); // go to block
+                    } else if (currentNode instanceof IfElseNode && currentNode.getLeftNode().getChildren().size()>=2) {
+                        // ifelse node's left block is completed --> go to right block
+                        currentNode = currentNode.getRightNode();
+                    }
+                    nextWord = queue.poll();
+                }
+
+                if (nextWord.equals("]")) {    
+                    if (currentNode == null) {
+                        return root;
+                    }
+                    currentNode = currentNode.getParent();
+                    if (currentNode.getParent() instanceof IfElseNode) {
+                        currentNode = currentNode.getParent();
+                    }
+                    nextWord = queue.poll();
+                    if (nextWord == null) {
+                        return root;
+                    }
+                }
+                
                 AbstractNode nextNode = nodeFactory.createNode(nextWord);
-
-
+                
                 if (currentNode.getLeftNode()== null) {
                     currentNode.setLeftNode(nextNode);
                 } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {
@@ -186,13 +218,17 @@ public class Parser {
 
             }
             return root;
-            
-        } catch (Exception e) {
-            myValidBoolean = false;
-            return null;
-        }
+
     }
 
+    private AbstractNode checkForBrackets() {
+        //TODO
+        
+        return null;
+    }
+    
+    
+    
     public void traverseTree(Turtle turtle, AbstractNode root) {  
         myTurtle = turtle;
         if (root!=null) {

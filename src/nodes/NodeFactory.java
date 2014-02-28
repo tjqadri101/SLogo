@@ -3,6 +3,7 @@ package nodes;
 import java.lang.reflect.InvocationTargetException;
 import nodes.booleannodes.GreaterNode;
 import nodes.commandnodes.ForwardNode;
+import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 import turtle.Turtle;
@@ -36,6 +37,9 @@ public class NodeFactory {
 	    }
 	    if (word.equals("greaterp")) {
 	        return new GreaterNode(myTurtle);
+	    }
+	    if (word.equals("ifelse")) {
+	        return new IfElseNode(myTurtle);
 	    }
 	    return null;
 		
