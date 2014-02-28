@@ -40,6 +40,8 @@ public class Turtle {
      * 
      * Turning left = CCW = positive change in angle.
      * Turning right = CW = negative change in angle.
+     * 
+     * Need to mod360?
      */
     
     public void updateAngle(double changeInAngle){
