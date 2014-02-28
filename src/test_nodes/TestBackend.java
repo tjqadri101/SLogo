@@ -91,8 +91,43 @@ public class TestBackend {
         }
     }
     
-    //TODO: test traverseTree
+    @org.junit.Test
+    public void testForTraverseTree_IfElse() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+        String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
+        Turtle turtle = new Turtle(0, 0);
+        Parser parser = new Parser(turtle);
+        parser.createFunctionsAndVariables(string);
+        for (Function function : parser.getFunctions()) {
+            AbstractNode root = parser.createTree(function, turtle);
+            parser.traverseTree(turtle, root);
+            assert turtle.getYPos()==230;
+        }
+    }
     
+    @org.junit.Test
+    public void testForTraverseTree_Repeat() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+        String string = "repeat 20 [ fd 50 ]";
+        Turtle turtle = new Turtle(0, 0);
+        Parser parser = new Parser(turtle);
+        parser.createFunctionsAndVariables(string);
+        for (Function function : parser.getFunctions()) {
+            AbstractNode root = parser.createTree(function, turtle);
+            parser.traverseTree(turtle, root);
+            assert turtle.getYPos()==1000;
+        }
+    }
     
+    @org.junit.Test
+    public void testForTraverseTree_If() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+        String string = "if and equalp 1 1 greaterp 3 2 [ fd 50 ]";
+        Turtle turtle = new Turtle(0, 0);
+        Parser parser = new Parser(turtle);
+        parser.createFunctionsAndVariables(string);
+        for (Function function : parser.getFunctions()) {
+            AbstractNode root = parser.createTree(function, turtle);
+            parser.traverseTree(turtle, root);
+            assert turtle.getYPos()==50;
+        }
+    }
     
 }
