@@ -20,7 +20,6 @@ public class CommandPanel extends JPanel{
 	public static final Dimension SIZE = new Dimension(800, 600);
 	
 	private static final Integer RATIO = 12;
-	private JTextField myTextField;
 	private Graphics g;
 	
 	//User-inputed data
@@ -45,51 +44,32 @@ public class CommandPanel extends JPanel{
 //    enableButtons();
 	
 	public CommandPanel(Integer width, Integer height, Double ratio){
-		myTextField = makeTextField(width*ratio);
-		
-		//Create new Graphics object
-		//g = new Graphics();
 		
 		//Set the border of the GUI
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		this.setPreferredSize(new Dimension((int) (ratio*width), height));
-		this.add(myTextField, BorderLayout.NORTH);
-		this.add(makeInputPanel(),BorderLayout.EAST);
+		this.add(makeTextField(width*ratio), BorderLayout.NORTH);
+		this.add(makeButtonPanel(),BorderLayout.EAST);
 	}
 	
 	//Creates the panel for the buttons
-	private JComponent makeInputPanel() {
+	private JComponent makeButtonPanel() {
+		
 		JPanel forButtons = new JPanel();
+		
 		forButtons.add(moveTurtleLeft);
 		forButtons.add(moveTurtleRight);
 		forButtons.add(moveTurtleUp);
 		forButtons.add(moveTurtleDown);
 		
-		return null;
+		return forButtons;
 	}
 
 	private JTextField makeTextField(Double size){
 		JTextField textField = new JTextField((int) (size/RATIO));
 		return textField;
 	}
-	
-	private void paint(){
-		//Paint the GUI onto the screen for user input
-		//paintComponent(this);
-		
-	}
-	
-	//Enable the buttons for user control
-    // only enable buttons when useful to user
-    private void enableButtons()
-    {
-        moveTurtleLeft.setEnabled(true);
-        moveTurtleRight.setEnabled(true);
-        moveTurtleUp.setEnabled(true);
-        moveTurtleDown.setEnabled(true);
-        //moveTurtleDown.
-    }
 	
 	/**To be implemented later**/
     // organize user's options for controlling/giving input to turtle
