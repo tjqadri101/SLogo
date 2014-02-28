@@ -1,8 +1,4 @@
 package parse;
-
-import turtle.Turtle;
-import nodes.AbstractNode;
-
 public class Function {
 
 	private String myFunctionName;

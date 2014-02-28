@@ -2,7 +2,6 @@ package test_nodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 
 import parse.Function;
 import parse.Parser;

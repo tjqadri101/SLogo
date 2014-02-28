@@ -5,11 +5,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import nodes.booleannodes.GreaterNode;
-import nodes.commandnodes.ForwardNode;
-import nodes.controlnodes.IfElseNode;
-import nodes.controlnodes.IfNode;
-import nodes.controlnodes.RepeatNode;
 import parse.CommandReader;
 import turtle.Turtle;
 
