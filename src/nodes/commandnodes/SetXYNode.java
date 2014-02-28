@@ -3,11 +3,11 @@ package nodes.commandnodes;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
-public class ForwardNode extends AbstractNode {
+public class SetXYNode extends AbstractNode {
 
 	private Turtle myTurtle;
 
-	public ForwardNode(Turtle turtle) {
+	public SetXYNode(Turtle turtle) {
 		super(turtle);
 		myTurtle = turtle;
 	}
@@ -17,13 +17,14 @@ public class ForwardNode extends AbstractNode {
 	}
 
 	/**
-	 * Updated by Benson. Not tested Yet. Feel free to change.
+	 * Benson: action() isn't complete. Should we use getter methods from the
+	 * turtle class?
 	 */
 
 	public void action() {
-		double distance = this.getLeftNode().evaluate();
-		double angle = myTurtle.getAngle();
-		myTurtle.updatePosition(distance*Math.cos(angle*(Math.PI/180)), distance*Math.sin(angle*(Math.PI/180)));
+		double x = this.getLeftNode().evaluate();
+		double y = this.getRightNode().evaluate();
+
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class ForwardNode extends AbstractNode {
 
 	@Override
 	public boolean allowsTwoChildren() {
-		return false;
+		return true;
 	}
 
 	@Override

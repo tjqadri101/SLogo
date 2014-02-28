@@ -1,16 +1,20 @@
 package nodes;
 
+import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import nodes.booleannodes.GreaterNode;
-import nodes.commandnodes.ForwardNode;
-import nodes.controlnodes.IfElseNode;
-import nodes.controlnodes.IfNode;
-import nodes.controlnodes.RepeatNode;
+import java.util.Map;
+
+import parse.CommandReader;
 import turtle.Turtle;
 
 public class NodeFactory {
 
 	private Turtle myTurtle;
+	private final String COMMAND_LIST = "Commands.Properties";
+	private final String[] PACKAGES = { "nodes.booleannodes.",
+			"nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
+			"nodes.booleannodes", "nodes." };
 
 	public NodeFactory(Turtle turtle) {
 		myTurtle = turtle;
@@ -19,41 +23,49 @@ public class NodeFactory {
 	public AbstractNode createNode(String word) throws ClassNotFoundException,
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException {
+			InvocationTargetException, IOException {
 
-		// TODO THE FOLLOWING CODE IS ONLY FOR TESTING PURPOSES; add real code
-		// later
-	    if (word.equals("fd") || word.equals("forward")) {
-	        return new ForwardNode(myTurtle);
-	    }
-	    if (isNumeric(word)) {
-	        return new NumberNode(myTurtle, Double.parseDouble(word));
-	    }
-	    if (word.equals("repeat")) {
-	        return new RepeatNode(myTurtle);
-	    }
-	    if (word.equals("if")) {
-	        return new IfNode(myTurtle);
-	    }
-	    if (word.equals("greaterp")) {
-	        return new GreaterNode(myTurtle);
-	    }
-	    if (word.equals("ifelse")) {
-	        return new IfElseNode(myTurtle);
-	    }
-	    return null;
-		
-//		AbstractNode genericNode = null;;
-//
-//		if (!isNumeric(word)) {
-//			Class<?> c = Class.forName(word + "Node");
-//			Constructor<?> constructor = c.getConstructor(Turtle.class);
-//			genericNode = (AbstractNode) constructor
-//					.newInstance(myTurtle);
-//		}
-//		
-//		return genericNode;
+		AbstractNode genericNode = null;
 
+		Map<String, String> commandsMap = CommandReader
+				.readCommands(COMMAND_LIST);
+
+		if (!isNumeric(word)) {
+
+			String command = commandsMap.get(word.toUpperCase());
+			Class<?> c = Class.forName(findClass(command));
+
+			Constructor<?> constructor = c.getConstructor(Turtle.class);
+			genericNode = (AbstractNode) constructor.newInstance(myTurtle);
+
+		}
+
+		else if (isNumeric(word)) {
+			return new NumberNode(myTurtle, Double.parseDouble(word));
+		}
+
+		return genericNode;
+
+	}
+
+	private String findClass(String command) {
+		for (String s : PACKAGES) {
+			if (classExists(s + command + "Node")) {
+				String classLocation = s + command + "Node";
+				return classLocation;
+			}
+		}
+		return null;
+	}
+
+	private boolean classExists(String className) {
+		try {
+			Class.forName(className);
+
+			return true;
+		} catch (ClassNotFoundException ex) {
+			return false;
+		}
 	}
 
 	private boolean isNumeric(String str) {

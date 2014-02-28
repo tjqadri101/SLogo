@@ -1,5 +1,6 @@
 package parse;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,7 +87,7 @@ public class Parser {
 
     public AbstractNode createTree(Function function, Turtle turtle) throws ClassNotFoundException, 
                                             NoSuchMethodException, SecurityException, InstantiationException, 
-                                            IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+                                            IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
             myTurtle = turtle;
             NodeFactory nodeFactory = new NodeFactory(myTurtle);
             AbstractNode root = new BlockNode(myTurtle);
@@ -220,6 +221,14 @@ public class Parser {
             return root;
 
     }
+
+    private AbstractNode checkForBrackets() {
+        //TODO
+        
+        return null;
+    }
+    
+    
     
     public void traverseTree(Turtle turtle, AbstractNode root) {  
         myTurtle = turtle;
