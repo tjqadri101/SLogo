@@ -11,7 +11,7 @@ import nodes.BlockNode;
 
 public class ParserTest {
 
-	private Parser myParser = new Parser(new Turtle(0, 0));
+	private Parser myParser = new Parser(new Turtle(0, 0, 0));
 
 	public AbstractNode parseAndCreateTree(String string, Turtle turtle)
 			throws ClassNotFoundException, NoSuchMethodException,
@@ -53,7 +53,7 @@ public class ParserTest {
 
 		// String string = "fd 50 fd 100";
 
-		Turtle turtle = new Turtle(0, 0);
+		Turtle turtle = new Turtle(0, 0, 0);
 
 		AbstractNode node = test.parseAndCreateTree(string, turtle);
 

@@ -4,20 +4,26 @@ public class Turtle {
     
     private double myX;
     private double myY;
-    private double angle = 90;
+    private double myAngle = 90;
     
     public Turtle() {
         //TODO: set default initial turtle position
     }
     
-    public Turtle(double initialX, double initialY) {
+    public Turtle(double initialX, double initialY, double initialAngle) {
         myX = initialX;
         myY = initialY;
+        myAngle = initialAngle;
     }
     
-    public void updatePosition(double changeInX, double changeInY) {
-        myX += changeInX;
-        myY += changeInY;
+    public void updatePosition(double changeInAngle, double changeInDistance) {
+        myAngle += changeInAngle;
+        if (myAngle >= 360) {
+            myAngle -= 360;
+        }
+        
+        myX += changeInDistance * Math.cos(myAngle*(Math.PI/180));
+        myY += changeInDistance * Math.sin(myAngle*(Math.PI/180));
     }
     
     public double getXPos() {
@@ -45,11 +51,11 @@ public class Turtle {
      */
     
     public void updateAngle(double changeInAngle){
-    	angle += changeInAngle;
+    	myAngle += changeInAngle;
     }
     
     public double getAngle(){
-    	return angle;
+    	return myAngle;
     }
     
     

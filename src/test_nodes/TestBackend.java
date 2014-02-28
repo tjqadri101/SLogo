@@ -20,7 +20,7 @@ public class TestBackend {
     @org.junit.Test
     public void testForCreateTree_Repeat() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
-        Turtle turtle = new Turtle(0, 0);
+        Turtle turtle = new Turtle(0, 0, 0);
         Parser parser = new Parser(turtle);
         parser.createFunctionsAndVariables(string);
         for (Function function : parser.getFunctions()) {
@@ -41,7 +41,7 @@ public class TestBackend {
     @org.junit.Test
     public void testForCreateTree_If() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "if equalp 2 2 [ fd 50 fd 100 fd 80 ]";
-        Turtle turtle = new Turtle(0, 0);
+        Turtle turtle = new Turtle(0, 0, 0);
         Parser parser = new Parser(turtle);
         parser.createFunctionsAndVariables(string);
         for (Function function : parser.getFunctions()) {
@@ -67,7 +67,7 @@ public class TestBackend {
     @org.junit.Test
     public void testForCreateTree_IfElse() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
-        Turtle turtle = new Turtle(0, 0);
+        Turtle turtle = new Turtle(0, 0, 0);
         Parser parser = new Parser(turtle);
         parser.createFunctionsAndVariables(string);
         for (Function function : parser.getFunctions()) {
@@ -94,7 +94,7 @@ public class TestBackend {
     @org.junit.Test
     public void testForTraverseTree_IfElse() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
-        Turtle turtle = new Turtle(0, 0);
+        Turtle turtle = new Turtle(0, 0, 0);
         Parser parser = new Parser(turtle);
         parser.createFunctionsAndVariables(string);
         for (Function function : parser.getFunctions()) {
@@ -107,7 +107,7 @@ public class TestBackend {
     @org.junit.Test
     public void testForTraverseTree_Repeat() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "repeat 20 [ fd 50 ]";
-        Turtle turtle = new Turtle(0, 0);
+        Turtle turtle = new Turtle(0, 0, 0);
         Parser parser = new Parser(turtle);
         parser.createFunctionsAndVariables(string);
         for (Function function : parser.getFunctions()) {
@@ -120,7 +120,7 @@ public class TestBackend {
     @org.junit.Test
     public void testForTraverseTree_If() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "if and equalp 1 1 greaterp 3 2 [ fd 50 ]";
-        Turtle turtle = new Turtle(0, 0);
+        Turtle turtle = new Turtle(0, 0, 0);
         Parser parser = new Parser(turtle);
         parser.createFunctionsAndVariables(string);
         for (Function function : parser.getFunctions()) {
