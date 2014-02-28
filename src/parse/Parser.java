@@ -220,14 +220,6 @@ public class Parser {
             return root;
 
     }
-
-    private AbstractNode checkForBrackets() {
-        //TODO
-        
-        return null;
-    }
-    
-    
     
     public void traverseTree(Turtle turtle, AbstractNode root) {  
         myTurtle = turtle;
