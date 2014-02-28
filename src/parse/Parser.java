@@ -13,13 +13,12 @@ import nodes.BlockNode;
 import nodes.NodeFactory;
 import nodes.NumberNode;
 import nodes.VariableNode;
-import nodes.Token;
 import nodes.controlnodes.ConditionNode;
 import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 
-public class Parser implements Token {
+public class Parser {
 
     private Turtle myTurtle;
     private boolean myValidBoolean = true;
@@ -87,7 +86,8 @@ public class Parser implements Token {
     }
 
 
-    public AbstractNode createTree(Function function) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public AbstractNode createTree(Function function, Turtle turtle) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        myTurtle = turtle;
         NodeFactory nodeFactory = new NodeFactory(myTurtle);
         AbstractNode root = new BlockNode(myTurtle);
         // getting rid of initial spaces and outside brackets
@@ -99,7 +99,7 @@ public class Parser implements Token {
         while(function.getContent().charAt(endIndex) == ' ' ||  function.getContent().charAt(endIndex)=='[') {
             endIndex --;
         }
-        function.setContent(function.getContent().substring(beginIndex, endIndex));
+        function.setContent(function.getContent().substring(beginIndex, endIndex + 1));
 
         String[] words = function.getContent().split(" ");
         Queue<String> queue = new LinkedList<String>();
@@ -149,6 +149,9 @@ public class Parser implements Token {
             }
 
             String nextWord = queue.poll();
+            if (nextWord == null) {
+                return root;
+            }
             if (nextWord.equals("[")) {
                 // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
                 if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
@@ -158,17 +161,15 @@ public class Parser implements Token {
                 }
                 nextWord = queue.poll();
             }
-            if (nextWord.equals("]") && queue.isEmpty()) {
-                return root; 
-            } 
 
             if (nextWord.equals("]")) {    
+                if (currentNode == null) {
+                    return root;
+                }
                 currentNode = currentNode.getParent();
                 nextWord = queue.poll();
             }
-            if (nextWord == null) {
-                return root;
-            }
+            
 
             AbstractNode nextNode = nodeFactory.createNode(nextWord);
 
@@ -188,12 +189,15 @@ public class Parser implements Token {
         return root;
     }
 
-    public void traverseTree(AbstractNode root, List<AbstractNode> visited) {    
+    public void traverseTree(Turtle turtle, AbstractNode root) {  
+        myTurtle = turtle;
         if (root!=null) {
-            traverseTree(root.getLeftNode(), visited);
-            traverseTree(root.getRightNode(), visited);
-            root.evaluate();
-            root.action();
+            traverseTree(myTurtle, root.getLeftNode());
+            traverseTree(myTurtle, root.getRightNode());
+//            if (root.getLeftNode() == null && root.getRightNode() == null) {
+                root.evaluate();
+                root.action();
+//            }
         }
     }
 }

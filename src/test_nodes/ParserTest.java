@@ -11,10 +11,9 @@ import nodes.BlockNode;
 
 public class ParserTest {
 
-    private Turtle myTurtle = new Turtle(0, 0);
-    private Parser myParser = new Parser(myTurtle);
+    private Parser myParser = new Parser(new Turtle(0, 0));
     
-    public AbstractNode parseAndCreateTree(String string) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public AbstractNode parseAndCreateTree(String string, Turtle turtle) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         
         // create functions
         myParser.createFunctionsAndVariables(string);
@@ -23,14 +22,14 @@ public class ParserTest {
         // get functions
         for (Function function : myParser.getFunctions()) {
             System.out.println("ParserTest parseAndCreateTree: myFunctions are " + function);
-            return myParser.createTree(function);
+            return myParser.createTree(function, turtle);
         }
         return null;
         
     }
     
-    public void traverseTree(AbstractNode node) {
-        myParser.traverseTree(node, new ArrayList<AbstractNode>());
+    public void traverseTree(Turtle turtle, AbstractNode node) {
+        myParser.traverseTree(turtle, node);
     }
     
     
@@ -45,14 +44,14 @@ public class ParserTest {
         
 //        String string = "fd 50 fd 100";
 
+        Turtle turtle = new Turtle(0,0);
+        AbstractNode node = test.parseAndCreateTree(string, turtle);
         
-        AbstractNode node = test.parseAndCreateTree(string);
         System.out.println("ParserTest parseAndCreateTree: root is " + node);
         
         while (node != null) {
             
-            Turtle myTurtle = new Turtle(0, 0);
-            AbstractNode nextNode = new BlockNode(myTurtle);
+            AbstractNode nextNode = new BlockNode(turtle);
             if (node.getLeftNode()!=null) {
                 nextNode = node.getLeftNode();
                 System.out.println("ParserTest parseAndCreateTree: node" + node+"'s left node is " + nextNode);
@@ -64,9 +63,9 @@ public class ParserTest {
             node = nextNode;
         }
         
-//        test.traverseTree(node);
-//        System.out.println("ParserTest traverseTree: turtle's final position is " + myTurtle.getXPos() 
-//                                                                                   + ", " + myTurtle.getYPos());
+//        test.traverseTree(turtle, node);
+//        System.out.println("ParserTest traverseTree: turtle's final position is " + turtle.getXPos() 
+//                                                                                   + ", " + turtle.getYPos());
         
     }
 }

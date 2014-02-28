@@ -9,9 +9,12 @@ public class ForwardNode extends AbstractNode {
     
     public ForwardNode (Turtle turtle) {
         super(turtle);
+        myTurtle = turtle;
     }
 
-    
+    public void setTurtle (Turtle turtle) {
+        myTurtle = turtle;
+    }
 
     
     public void action() {

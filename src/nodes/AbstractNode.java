@@ -58,7 +58,15 @@ public abstract class AbstractNode {
         return (myChildren.size()>0);
     }
     
+    /**
+     * changes the position of the turtle
+     */
     public abstract void action();
+    
+    /**
+     * perform calculation for all sub nodes and return the final value
+     * @return
+     */
     public abstract double evaluate();
 
     public List<AbstractNode> getChildren () {

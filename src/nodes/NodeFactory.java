@@ -1,6 +1,5 @@
 package nodes;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import nodes.booleannodes.GreaterNode;
 import nodes.commandnodes.ForwardNode;
@@ -8,17 +7,12 @@ import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 import turtle.Turtle;
 
-public class NodeFactory implements Token {
+public class NodeFactory {
 
 	private Turtle myTurtle;
 
 	public NodeFactory(Turtle turtle) {
 		myTurtle = turtle;
-	}
-
-	public Token createToken(String text) {
-
-		return null;
 	}
 
 	public AbstractNode createNode(String word) throws ClassNotFoundException,

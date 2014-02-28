@@ -2,9 +2,8 @@ package parse;
 
 import turtle.Turtle;
 import nodes.AbstractNode;
-import nodes.Token;
 
-public class Function implements Token {
+public class Function{
     
     private String myFunctionName;
     private String myContent;
