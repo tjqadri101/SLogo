@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-//chose JPanel because this is more of a container
+//choose JPanel because this is more of a container
 public class ActionDisplayPanel extends JPanel{
 
 	
