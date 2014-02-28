@@ -31,6 +31,16 @@ public class Parser implements Token {
         myTurtle = turtle;
     }
 
+    public List<Function> getFunctions () {
+        return myFunctions;
+    }
+
+
+
+    public List<VariableNode> getVariables() {
+        return myVariables;
+    }
+
     public boolean isValid() {
         return myValidBoolean;
     }
@@ -46,9 +56,25 @@ public class Parser implements Token {
         }
         if (hasTo) {
             String[] functionString = s.split("to");
+
             for (String thisFunction : functionString) {
-                myFunctions.add(new Function(thisFunction));
+                if (!thisFunction.equals("")) {
+
+                    String[] wordsInFunction = thisFunction.split(" ");
+                    int functionNameIndex = 0;
+                    int functionContentStartIndex = 0;
+                    while (wordsInFunction[functionNameIndex].equals("") ||
+                            wordsInFunction[functionNameIndex].equals(" ")) {
+                        functionNameIndex ++;
+                        functionContentStartIndex += wordsInFunction[functionNameIndex].length() + 1;
+                    }
+                    String functionName = wordsInFunction[functionNameIndex];
+                    String content = thisFunction.substring(functionContentStartIndex);
+                    myFunctions.add(new Function(functionName, content));
+                }
             }
+        } else { //hasTo = false
+            myFunctions.add(new Function("NoName", s));
         }
 
         for (int i=0;i<words.length;i++) {
@@ -64,6 +90,16 @@ public class Parser implements Token {
     public AbstractNode createTree(Function function) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         NodeFactory nodeFactory = new NodeFactory(myTurtle);
         AbstractNode root = new BlockNode(myTurtle);
+        // getting rid of initial spaces and outside brackets
+        int beginIndex = 0;
+        while (function.getContent().charAt(beginIndex)==' ' || function.getContent().charAt(beginIndex)=='[') {
+            beginIndex ++;
+        }
+        int endIndex = function.getContent().length() - 1;
+        while(function.getContent().charAt(endIndex) == ' ' ||  function.getContent().charAt(endIndex)=='[') {
+            endIndex --;
+        }
+        function.setContent(function.getContent().substring(beginIndex, endIndex));
 
         String[] words = function.getContent().split(" ");
         Queue<String> queue = new LinkedList<String>();
@@ -125,7 +161,7 @@ public class Parser implements Token {
             if (nextWord.equals("]") && queue.isEmpty()) {
                 return root; 
             } 
-            
+
             if (nextWord.equals("]")) {    
                 currentNode = currentNode.getParent();
                 nextWord = queue.poll();

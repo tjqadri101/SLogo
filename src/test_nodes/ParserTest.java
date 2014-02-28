@@ -11,13 +11,21 @@ import nodes.BlockNode;
 
 public class ParserTest {
 
-    private static Turtle myTurtle = new Turtle(0, 0);
-    private static Parser myParser = new Parser(myTurtle);
+    private Turtle myTurtle = new Turtle(0, 0);
+    private Parser myParser = new Parser(myTurtle);
     
     public AbstractNode parseAndCreateTree(String string) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        AbstractNode node = new BlockNode(myTurtle);
         
-        return myParser.createTree(new Function(string));
+        // create functions
+        myParser.createFunctionsAndVariables(string);
+        
+        
+        // get functions
+        for (Function function : myParser.getFunctions()) {
+            System.out.println("ParserTest parseAndCreateTree: myFunctions are " + function);
+            return myParser.createTree(function);
+        }
+        return null;
         
     }
     
@@ -32,16 +40,18 @@ public class ParserTest {
 //        String string = "repeat 2 [ fd 50 fd 100 ]"; 
         
         // test if
-        String string = "if greaterp 3 2 [ fd 50 fd 100 fd 80 ]";
+        String string = "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
         
         
 //        String string = "fd 50 fd 100";
 
+        
         AbstractNode node = test.parseAndCreateTree(string);
         System.out.println("ParserTest parseAndCreateTree: root is " + node);
         
         while (node != null) {
             
+            Turtle myTurtle = new Turtle(0, 0);
             AbstractNode nextNode = new BlockNode(myTurtle);
             if (node.getLeftNode()!=null) {
                 nextNode = node.getLeftNode();
