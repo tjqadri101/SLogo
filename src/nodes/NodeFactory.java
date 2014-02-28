@@ -13,7 +13,8 @@ public class NodeFactory {
 	private Turtle myTurtle;
 	private final String COMMAND_LIST = "Commands.Properties";
 	private final String[] PACKAGES = { "nodes.booleannodes.",
-			"nodes.commandnodes.", "nodes.controlnodes.", "nodes." };
+			"nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
+			"nodes." };
 
 	public NodeFactory(Turtle turtle) {
 		myTurtle = turtle;

@@ -17,7 +17,7 @@ public class ParserTest {
 			throws ClassNotFoundException, NoSuchMethodException,
 			SecurityException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, IOException {
-		
+
 		// create functions
 		myParser.createFunctionsAndVariables(string);
 
@@ -54,7 +54,7 @@ public class ParserTest {
 		// String string = "fd 50 fd 100";
 
 		Turtle turtle = new Turtle(0, 0);
-		
+
 		AbstractNode node = test.parseAndCreateTree(string, turtle);
 
 		System.out.println("ParserTest parseAndCreateTree: root is " + node);
