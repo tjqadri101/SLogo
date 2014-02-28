@@ -57,28 +57,28 @@ public class ParserTest {
 
 		AbstractNode node = test.parseAndCreateTree(string, turtle);
 
-		System.out.println("ParserTest parseAndCreateTree: root is " + node);
+//		System.out.println("ParserTest parseAndCreateTree: root is " + node);
+//
+//		while (node != null) {
+//
+//			AbstractNode nextNode = new BlockNode(turtle);
+//			if (node.getLeftNode() != null) {
+//				nextNode = node.getLeftNode();
+//				System.out.println("ParserTest parseAndCreateTree: node" + node
+//						+ "'s left node is " + nextNode);
+//			}
+//			if (node.getRightNode() != null) {
+//				nextNode = node.getRightNode();
+//				System.out.println("ParserTest parseAndCreateTree: node" + node
+//						+ "'s right node is " + nextNode);
+//			}
+//			node = nextNode;
+//		}
 
-		while (node != null) {
-
-			AbstractNode nextNode = new BlockNode(turtle);
-			if (node.getLeftNode() != null) {
-				nextNode = node.getLeftNode();
-				System.out.println("ParserTest parseAndCreateTree: node" + node
-						+ "'s left node is " + nextNode);
-			}
-			if (node.getRightNode() != null) {
-				nextNode = node.getRightNode();
-				System.out.println("ParserTest parseAndCreateTree: node" + node
-						+ "'s right node is " + nextNode);
-			}
-			node = nextNode;
-		}
-
-		// test.traverseTree(turtle, node);
-		// System.out.println("ParserTest traverseTree: turtle's final position is "
-		// + turtle.getXPos()
-		// + ", " + turtle.getYPos());
+		 test.traverseTree(turtle, node);
+		 System.out.println("ParserTest traverseTree: turtle's final position is "
+		 + turtle.getXPos()
+		 + ", " + turtle.getYPos());
 
 	}
 }

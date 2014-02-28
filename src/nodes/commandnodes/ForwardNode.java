@@ -19,7 +19,7 @@ public class ForwardNode extends AbstractNode {
 	/**
 	 * Updated by Benson. Not tested Yet. Feel free to change.
 	 */
-
+	//TODO
 	public void action() {
 		double distance = this.getLeftNode().evaluate();
 		double angle = myTurtle.getAngle();

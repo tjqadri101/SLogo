@@ -18,13 +18,9 @@ public class RandomNode extends AbstractNode {
 	}
 
 	@Override
-    /**
-     * Benson to Tara: I'm temporarily using this.getChildren to reference the single child.
-     * I'm not sure if you wanted to create a this.getChild method, so I just stuck with this
-     */
 	public double evaluate() {
 		
-    	AbstractNode child = this.getChildren().get(0);
+    	AbstractNode child = this.getLeftNode();
     	double max = child.evaluate();
 		return Math.random() * max;
 
