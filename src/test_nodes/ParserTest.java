@@ -42,14 +42,14 @@ public class ParserTest {
 			InvocationTargetException, IOException {
 		ParserTest test = new ParserTest();
 		// test repeat
-		// String string = "repeat 2 [ fd 50 fd 100 ]";
+//		 String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
 
 		// test if
-		// String string =
-		// "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
+		 String string =
+		 "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
 
 		// test if else
-		String string = "ifelse greaterp 3 2 [ fd 50 ] [ fd 100 ]";
+//		String string = "ifelse lessp 2 3 [ bk 50 ] [ fd 100 ]";
 
 		// String string = "fd 50 fd 100";
 

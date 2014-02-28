@@ -14,12 +14,6 @@ public class NumberNode extends AbstractNode{
     }
 
     @Override
-    public void action () {
-        // do nothing
-        
-    }
-
-    @Override
     public double evaluate () {
         return myValue;
     }

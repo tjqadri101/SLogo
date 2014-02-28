@@ -18,14 +18,8 @@ public class IfNode extends AbstractNode {
         double count = conditionNode.evaluate();
         if (count == 1) { // condition is true
             this.getRightNode().evaluate();
-            this.getRightNode().action();
         }
         return 0;
-    }
-    
-    @Override
-    public void action () {
-        traverseSubtree();
     }
 
     @Override

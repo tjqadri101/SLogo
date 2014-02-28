@@ -11,11 +11,6 @@ public class CompareNode extends AbstractNode {
 		super(turtle);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void action() {
-		// do nothing
-	}
 	
 	@Override
 	public boolean allowsTwoChildren() {
@@ -29,7 +24,7 @@ public class CompareNode extends AbstractNode {
 
 	@Override
 	public double evaluate() {
-		// TODO Auto-generated method stub
+	        //evaluated in sub classes
 		return 0;
 	}
 

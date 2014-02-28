@@ -11,12 +11,7 @@ public class TanNode extends AbstractNode{
 		super(turtle);
 		myTurtle = turtle;
 	}
-
-	@Override
-	public void action() {
-		// do nothing
-	}
-
+	
 	@Override
 	    public double evaluate () {
 	    	

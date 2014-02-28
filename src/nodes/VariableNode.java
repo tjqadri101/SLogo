@@ -18,11 +18,6 @@ public class VariableNode extends AbstractNode{ //TODO a function can be a varia
     }
 
     @Override
-    public void action () {
-        // do nothing
-    }
-
-    @Override
     public double evaluate () {
         return myValue;
     }

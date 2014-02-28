@@ -18,15 +18,9 @@ public class RepeatNode extends AbstractNode {
         double count = conditionNode.evaluate();
         while (count > 0) {
             this.getRightNode().evaluate();
-            this.getRightNode().action();
             count --;
         }
         return 0;
-    }
-    
-    @Override
-    public void action () {
-        traverseSubtree();
     }
 
     @Override

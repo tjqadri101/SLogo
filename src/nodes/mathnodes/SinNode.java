@@ -13,11 +13,6 @@ public class SinNode extends AbstractNode {
 	}
 
 	@Override
-	public void action() {
-		// do nothing
-	}
-
-	@Override
 	    public double evaluate () {
 	    	
 	    	AbstractNode child = this.getLeftNode();

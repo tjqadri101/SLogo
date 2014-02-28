@@ -16,18 +16,11 @@ public class RightNode extends AbstractNode {
 		myTurtle = turtle;
 	}
 
-	/**
-	 * Updated by Benson. Not tested Yet. Feel free to change.
-	 */
-	//TODO
-	public void action() {
-		double deltaAngle = this.getLeftNode().evaluate();
-		myTurtle.updateAngle(-deltaAngle);
-	}
-
 	@Override
 	public double evaluate() {
-		return 0;
+	    double deltaAngle = this.getLeftNode().evaluate();
+            myTurtle.updateAngle(-deltaAngle);
+		return deltaAngle;
 	}
 
 	@Override

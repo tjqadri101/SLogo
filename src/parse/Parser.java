@@ -136,7 +136,7 @@ public class Parser {
                     // create condition for condition left; condition right is the opposite of condition left
                     currentNode = bnLeft.getLeftNode();
                 }
-                if (currentNode instanceof IfNode || currentNode instanceof RepeatNode) {
+                if ((currentNode instanceof IfNode || currentNode instanceof RepeatNode) && currentNode.getLeftNode() == null) {
                     // create 1 block node
                     AbstractNode bn = new BlockNode(myTurtle);
                     // create 1 condition node
@@ -156,6 +156,8 @@ public class Parser {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
                     } else if (currentNode.getParent().getParent() instanceof IfElseNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
+                    } else if (currentNode instanceof RepeatNode || currentNode instanceof IfNode) {
+                        currentNode = currentNode.getRightNode(); // go to block
                     }
                     nextWord = queue.poll();
                 }
@@ -233,10 +235,10 @@ public class Parser {
     public void traverseTree(Turtle turtle, AbstractNode root) {  
         myTurtle = turtle;
         if (root!=null) {
-            traverseTree(myTurtle, root.getLeftNode());
-            traverseTree(myTurtle, root.getRightNode());
+            for (AbstractNode childNode : root.getChildren()) {
+                traverseTree(myTurtle, childNode);
+            }
             root.evaluate();
-            root.action();
         }
     }
 }

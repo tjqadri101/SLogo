@@ -12,11 +12,6 @@ public class DifferenceNode extends AbstractNode {
 	    }
 
 	    @Override
-	    public void action () {
-	        // do nothing
-	    }
-
-	    @Override
 
 	    public double evaluate () {
 	        AbstractNode leftNode = this.getLeftNode();
