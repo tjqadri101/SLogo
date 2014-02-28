@@ -5,8 +5,11 @@ import nodes.AbstractNode;
 
 public class RepeatNode extends AbstractNode {
 
+    private Turtle myTurtle; 
+    
     public RepeatNode (Turtle turtle) {
         super(turtle);
+        myTurtle = turtle;
     }
 
     private double traverseSubtree() {

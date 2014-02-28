@@ -4,9 +4,11 @@ import turtle.Turtle;
 
 public class BlockNode extends AbstractNode {
 
+    private Turtle myTurtle; 
+    
     public BlockNode (Turtle turtle) {
         super(turtle);
-        // TODO Auto-generated constructor stub
+        myTurtle = turtle;
     }
 
     @Override

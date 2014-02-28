@@ -5,8 +5,11 @@ import nodes.AbstractNode;
 
 public class IfNode extends AbstractNode {
 
+    private Turtle myTurtle; 
+    
     public IfNode (Turtle turtle) {
         super(turtle);
+        myTurtle = turtle;
     }
 
     private double traverseSubtree() {

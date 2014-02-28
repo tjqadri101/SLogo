@@ -5,8 +5,11 @@ import nodes.AbstractNode;
 
 public class GreaterNode extends AbstractNode {
 
+    private Turtle myTurtle; 
+    
     public GreaterNode (Turtle turtle) {
         super(turtle);
+        myTurtle = turtle;
     }
 
     @Override

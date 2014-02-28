@@ -5,8 +5,11 @@ import turtle.Turtle;
 
 public class ConditionNode extends AbstractNode {
 
+    private Turtle myTurtle; 
+    
     public ConditionNode (Turtle turtle) {
         super(turtle);
+        myTurtle = turtle;
     }
 
     @Override

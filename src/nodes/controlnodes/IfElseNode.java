@@ -5,9 +5,11 @@ import turtle.Turtle;
 
 public class IfElseNode extends AbstractNode {
 
+    private Turtle myTurtle; 
+    
     public IfElseNode (Turtle turtle) {
         super(turtle);
-        // TODO Auto-generated constructor stub
+        myTurtle = turtle;
     }
 
     @Override
