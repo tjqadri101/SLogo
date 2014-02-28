@@ -3,7 +3,7 @@ package nodes.booleannodes;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
-public class AndNode extends AbstractNode {
+public class AndNode extends CompareNode {
 
 	private Turtle myTurtle;
 
@@ -13,12 +13,6 @@ public class AndNode extends AbstractNode {
 	}
 
 	@Override
-	public void action() {
-		// do nothing
-	}
-
-	@Override
-
 	public double evaluate() {
 		AbstractNode leftNode = this.getLeftNode();
 		AbstractNode rightNode = this.getRightNode();
@@ -27,15 +21,4 @@ public class AndNode extends AbstractNode {
 		}
 		return 0;
 	}
-
-	@Override
-	public boolean allowsTwoChildren() {
-		return true;
-	}
-
-	@Override
-	public boolean allowsMoreThanTwoChildren() {
-		return false;
-	}
-
 }
