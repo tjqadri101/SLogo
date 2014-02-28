@@ -32,12 +32,12 @@ public class WorkspacePanel extends JPanel{
 	}
 	
 	private CommandPanel setAndMakeCommandCenter(){
-		myCommandPanel = new CommandPanel(WIDTH/2, HEIGHT, .33);
+		myCommandPanel = new CommandPanel(WIDTH, HEIGHT, .33);
 		return myCommandPanel;
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
-		myActionDisplayPanel = new ActionDisplayPanel(WIDTH/2, HEIGHT, .67);
+		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67);
 		return myActionDisplayPanel;
 	}
 	
