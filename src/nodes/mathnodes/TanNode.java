@@ -26,7 +26,7 @@ public class TanNode extends AbstractNode{
 	    	
 	    	AbstractNode child = this.getChildren().get(0);
 	    	double degrees = child.evaluate();
-	    	double result = Math.tan(degrees * 180/Math.PI);
+	    	double result = Math.tan(degrees * Math.PI/180);
 	    	
 	    	return result;
 
