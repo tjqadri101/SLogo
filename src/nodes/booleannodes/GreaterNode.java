@@ -1,43 +1,28 @@
 package nodes.booleannodes;
 
-import turtle.Turtle;
 import nodes.AbstractNode;
+import turtle.Turtle;
 
-public class GreaterNode extends AbstractNode {
+public class GreaterNode extends CompareNode {
 
-    private Turtle myTurtle; 
-    
-    public GreaterNode (Turtle turtle) {
-        super(turtle);
-        myTurtle = turtle;
-    }
+	private Turtle myTurtle;
 
-    @Override
-    public void action () {
-        // do nothing
-    }
+	public GreaterNode(Turtle turtle) {
+		super(turtle);
+		myTurtle = turtle;
+	}
 
-    @Override
-    /**
-     * Return 1 if left node is greater than right node; return 0 if left node is less than right node
-     */
-    public double evaluate () {
-        AbstractNode leftNode = this.getLeftNode();
-        AbstractNode rightNode = this.getRightNode();
-        if (leftNode.evaluate() > rightNode.evaluate()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public boolean allowsTwoChildren () {
-        return true;
-    }
-
-    @Override
-    public boolean allowsMoreThanTwoChildren () {
-        return false;
-    }
+	@Override
+	/**
+	 * Return 1 if left node is greater than right node; return 0 if left node is less than right node
+	 */
+	public double evaluate() {
+		AbstractNode leftNode = this.getLeftNode();
+		AbstractNode rightNode = this.getRightNode();
+		if (leftNode.evaluate() > rightNode.evaluate()) {
+			return 1;
+		}
+		return 0;
+	}
 
 }
