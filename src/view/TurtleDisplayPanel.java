@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 //via updates from the user
 public class TurtleDisplayPanel extends JPanel {
 	
-	public TurtleDisplayPanel(Integer width, Integer height, Double ratio){
-		this.setPreferredSize(new Dimension((int) (ratio*width/2), height/2));
+	public TurtleDisplayPanel(Integer width, Integer height,Double ratio){
+		this.setPreferredSize(new Dimension(width, (int) (height*ratio)));
+		//this.setPreferredSize(new Dimension(1000, 1000));
 		this.setBackground(Color.white);
 	}
-
 }

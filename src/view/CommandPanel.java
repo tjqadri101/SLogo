@@ -24,6 +24,9 @@ public class CommandPanel extends JPanel implements ActionListener{
 	private UserTextPanel userTextPanel;
 	private JButton execute = new JButton("Execute!");
 	private ExecutedCodePanel executedCodePanel = new ExecutedCodePanel();
+	
+	private JPanel userInputAndButton = new JPanel();
+	private JPanel userOutput = new JPanel();
     	
 	public CommandPanel(Integer width, Integer height, Double ratio){
 		
@@ -34,14 +37,19 @@ public class CommandPanel extends JPanel implements ActionListener{
 		//text field panel where the user inputs are displayed
 		this.setBackground(Color.MAGENTA);
 		this.setPreferredSize(new Dimension((int) (ratio*width), height));
+		
+		//userInputAndButton.add
 		this.add(userTextPanel, BorderLayout.NORTH);
-		this.add(execute,BorderLayout.NORTH);
+		this.add(execute,BorderLayout.CENTER);
+		this.add(executedCodePanel,BorderLayout.SOUTH);
+		
 		
 		execute.addActionListener(this);
 	}
 
 	//Called when the user clicks the execute button
 	public void actionPerformed(ActionEvent arg0) {
+		executedCodePanel.addToCodeList(userTextPanel.getText());
 		userTextPanel.clearText();
 	}
 }

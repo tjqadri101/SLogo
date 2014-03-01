@@ -50,6 +50,10 @@ public class UserTextPanel extends JScrollPane implements ActionListener{
 	public void clearText(){
 		userInput.setText(null);
 	}
+	
+	public String getText(){
+		return userInput.getText();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
