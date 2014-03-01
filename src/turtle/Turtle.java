@@ -2,13 +2,19 @@ package turtle;
 
 
 public class Turtle {
+	
+	private final double PEN_DOWN = 1;
+	private final double PEN_UP = 0;
+	private final double VISIBLE = 1;
+	private final double INVISIBLE = 0;
+	private final double DEFAULT_HEADING = 90;
 
 	private double myX;
 	private double myY;
 	private double myPen;
-	private final double PEN_DOWN = 1;
-	private final double PEN_UP = 0;
-	private double myAngle = 90;
+	private double myVisibility;
+	private double myAngle = DEFAULT_HEADING;
+	
 	
     /**
      * 0 degrees: Right.
@@ -24,7 +30,7 @@ public class Turtle {
 	public Turtle(double initialX, double initialY, double initialAngle) {
 		myX = initialX;
 		myY = initialY;
-		myAngle = initialAngle;
+		myAngle = DEFAULT_HEADING;
 		myPen = PEN_UP;
 	}
 
@@ -61,6 +67,15 @@ public class Turtle {
 		myPen = PEN_DOWN;
 	}
 	
+	public void setInvisible(){
+		myVisibility = INVISIBLE;
+	}
+	
+	public void setVisible(){
+		myVisibility = VISIBLE;
+	}
+	
+	
 	/*
 	 * Gets
 	 */
@@ -79,6 +94,10 @@ public class Turtle {
 	
 	public double getPen(){
 		return myPen;
+	}
+	
+	public double getVisibility(){
+		return myVisibility;
 	}
 
 
