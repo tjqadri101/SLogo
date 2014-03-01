@@ -60,9 +60,8 @@ public class TurtleDisplayPanel extends JPanel {
             BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
         int[] xPoints = new int[] {p1.x, p2.x, p3.x};
         int[] yPoints = new int[] {p1.y, p2.y, p3.y};
-        g2d.rotate(Math.toRadians(-90));
         g2d.fillPolygon(xPoints, yPoints, 3);
-      
+        g2d.rotate(Math.toRadians(-90));
     }
 
     protected void makeMouseListener(){
