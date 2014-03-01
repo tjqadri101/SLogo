@@ -2,7 +2,7 @@ package nodes;
 
 import turtle.Turtle;
 
-public class NumberNode extends AbstractNode{
+public class NumberNode extends LeafNode{
 
     private double myValue;
     private Turtle myTurtle; 
@@ -16,16 +16,6 @@ public class NumberNode extends AbstractNode{
     @Override
     public double evaluate () {
         return myValue;
-    }
-
-    @Override
-    public boolean allowsTwoChildren () {
-        return false;
-    }
-
-    @Override
-    public boolean allowsMoreThanTwoChildren () {
-        return false;
     }
 
 }

@@ -2,7 +2,7 @@ package nodes;
 
 import turtle.Turtle;
 
-public class VariableNode extends AbstractNode{ //TODO a function can be a variable node
+public class VariableNode extends LeafNode{ //TODO a function can be a variable node
 
     private double myValue;
     private Turtle myTurtle; 
@@ -22,14 +22,5 @@ public class VariableNode extends AbstractNode{ //TODO a function can be a varia
         return myValue;
     }
 
-    @Override
-    public boolean allowsTwoChildren () {
-        return false;
-    }
-
-    @Override
-    public boolean allowsMoreThanTwoChildren () {
-        return false;
-    }
 
 }
