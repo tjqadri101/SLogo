@@ -3,11 +3,11 @@ package nodes.commandnodes;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
-public class ForwardNode extends AbstractNode {
-
+public class RightNode extends AbstractNode {
+	
 	private Turtle myTurtle;
 
-	public ForwardNode(Turtle turtle) {
+	public RightNode(Turtle turtle) {
 		super(turtle);
 		myTurtle = turtle;
 	}
@@ -18,10 +18,9 @@ public class ForwardNode extends AbstractNode {
 
 	@Override
 	public double evaluate() {
-	    double distance = this.getLeftNode().evaluate();
-            double angle = myTurtle.getAngle();
-            myTurtle.updatePosition(distance*Math.cos(angle*(Math.PI/180)), distance*Math.sin(angle*(Math.PI/180)));
-            return distance;
+	    double deltaAngle = this.getLeftNode().evaluate();
+            myTurtle.updateAngle(-deltaAngle);
+		return deltaAngle;
 	}
 
 	@Override
@@ -33,5 +32,6 @@ public class ForwardNode extends AbstractNode {
 	public boolean allowsMoreThanTwoChildren() {
 		return false;
 	}
+
 
 }

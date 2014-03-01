@@ -9,42 +9,19 @@ public abstract class AbstractNode {
     private Turtle myTurtle;
     
     private double myValue;
-    private String myToken;
     private AbstractNode myParent;
     private List<AbstractNode> myChildren = new ArrayList<AbstractNode>();
     private AbstractNode myLeftNode;
     private AbstractNode myRightNode;
-    private AbstractNode mySibling;
     
-    private AbstractNode myStartingNode;
-    private AbstractNode myEndingNode;
-    
-    private Expression myExpressionNode;
-    
-    public AbstractNode(Turtle turtle, String token) {
-        myToken = token;
+    public AbstractNode(Turtle turtle) {
         myTurtle = turtle;
     }
     
-    public AbstractNode(Turtle turtle, String token, double value) {
-        this(turtle, token);
-        myValue = value;
+    public String toString() {
+        return this.getClass().getName();
     }
-    
-    public AbstractNode(Turtle turtle, String token, double value, AbstractNode startingNode, AbstractNode endingNode) {
-        this(turtle, token, value);
-        myStartingNode = startingNode;
-        myEndingNode = endingNode;
-    }
-    
-    public AbstractNode(Turtle turtle, String token, Expression expressionNode, 
-                        AbstractNode startingNode, AbstractNode endingNode) {
-        this(turtle, token);
-        
-        myStartingNode = startingNode;
-        myEndingNode = endingNode;
-    }
-    
+ 
     public AbstractNode getLeftNode() {
         return myLeftNode;
     }
@@ -53,37 +30,54 @@ public abstract class AbstractNode {
         return myRightNode;
     }
     
+    public AbstractNode getParent() {
+        return myParent;
+    }
+    
+    public void setParent(AbstractNode node) {
+        myParent = node;
+    }
+    
     public void setLeftNode(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
         myLeftNode = node;
     }
     
     public void setRightNode(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
         myRightNode = node;
     }
     
-    public void setStartingNode(AbstractNode node) {
-        myStartingNode = node;
-    }
-    
-    public AbstractNode getStartingNode(AbstractNode node) {
-        return myStartingNode;
-    }
-    
-    public void setEndingNode(AbstractNode node) {
-        myEndingNode = node;
-    }
-    
-    public AbstractNode getEndingNode(AbstractNode node) {
-        return myEndingNode;
+    public void addChild(AbstractNode node) {
+        myChildren.add(node);
     }
     
     public boolean hasChild() {
         return (myChildren.size()>0);
     }
-    
-    public abstract void action();
+
+    /**
+     * perform calculation changes the position of the turtle for all sub nodes and return the final value
+     * @return
+     */
     public abstract double evaluate();
+
+    public List<AbstractNode> getChildren () {
+        return myChildren;
+    }
+
+    /**
+     * Check if a node allows two child nodes
+     * @return
+     */
+    public abstract boolean allowsTwoChildren ();
+    
+    /**
+     * check if a node allows more than two child nodes (such as BlockNode)
+     * @return
+     */
+    public abstract boolean allowsMoreThanTwoChildren() ;
     
 }
