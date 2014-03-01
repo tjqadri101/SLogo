@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -27,6 +28,7 @@ public class WorkspacePanel extends JPanel{
 		//Turtle tempTurtle = new Turtle();
 		//myParser = new Parser(tempTurtle, "");
 		//myTurtle = (Moveable) tempTurtle;
+		this.setBackground(Color.black);
 		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
 		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
 	}

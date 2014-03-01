@@ -27,6 +27,7 @@ public class ActionDisplayPanel extends JPanel{
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 		
 		turtleDisplayPanel = new TurtleDisplayPanel(width,height,ratio);
+		turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
 		this.add(makeButtonPanel(),BorderLayout.EAST);
 		this.add(turtleDisplayPanel,BorderLayout.SOUTH);
