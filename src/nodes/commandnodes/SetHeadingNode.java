@@ -3,11 +3,11 @@ package nodes.commandnodes;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
-public class SetXYNode extends AbstractNode {
-
+public class SetHeadingNode extends AbstractNode {
+	
 	private Turtle myTurtle;
 
-	public SetXYNode(Turtle turtle) {
+	public SetHeadingNode(Turtle turtle) {
 		super(turtle);
 		myTurtle = turtle;
 	}
@@ -16,24 +16,22 @@ public class SetXYNode extends AbstractNode {
 		myTurtle = turtle;
 	}
 
+	// TODO
 	@Override
 	public double evaluate() {
-
-		double xNew = this.getLeftNode().evaluate();
-		double yNew = this.getRightNode().evaluate();
-
-		double xOld = myTurtle.getXPos();
-		double yOld = myTurtle.getYPos();
-
-		myTurtle.setPosition(xNew, yNew);
-
-		return Math.sqrt(Math.pow((xNew - xOld), 2)
-				+ Math.pow((yNew - yOld), 2));
+		AbstractNode child = this.getLeftNode();
+		
+		double degreesNew = child.evaluate();
+		double degreesOld = myTurtle.getAngle();
+		
+		myTurtle.setHeading(degreesNew);
+		
+		return Math.abs(degreesNew - degreesOld);
 	}
 
 	@Override
 	public boolean allowsTwoChildren() {
-		return true;
+		return false;
 	}
 
 	@Override
