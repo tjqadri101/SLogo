@@ -46,8 +46,10 @@ public class UserTextPanel extends JScrollPane implements ActionListener{
 		return userInputData;
 	}
 	
-	//Clears the text area field.Called when a user pressed the "Execute!" button
-	public void clearText(){
+	//Clears the text area field.Called when a user pressed the "Execute!" button and sends the code
+	//to the backend for parsing
+	public void executeText(){
+
 		userInput.setText(null);
 	}
 	
