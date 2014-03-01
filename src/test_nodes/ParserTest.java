@@ -36,49 +36,49 @@ public class ParserTest {
 		myParser.traverseTree(turtle, node);
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException,
-			NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException, IOException {
-		ParserTest test = new ParserTest();
-		// test repeat
-//		 String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
-
-		// test if
-		 String string =
-		 "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
-
-		// test if else
-//		String string = "ifelse lessp 2 3 [ bk 50 ] [ fd 100 ]";
-
-		// String string = "fd 50 fd 100";
-
-		Turtle turtle = new Turtle(0, 0, 0);
-
-		AbstractNode node = test.parseAndCreateTree(string, turtle);
-
-//		System.out.println("ParserTest parseAndCreateTree: root is " + node);
+//	public static void main(String[] args) throws ClassNotFoundException,
+//			NoSuchMethodException, SecurityException, InstantiationException,
+//			IllegalAccessException, IllegalArgumentException,
+//			InvocationTargetException, IOException {
+//		ParserTest test = new ParserTest();
+//		// test repeat
+////		 String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
 //
-//		while (node != null) {
+//		// test if
+//		 String string =
+//		 "to example [ if greaterp 3 2 [ fd 50 fd 100 fd 80 ] ]";
 //
-//			AbstractNode nextNode = new BlockNode(turtle);
-//			if (node.getLeftNode() != null) {
-//				nextNode = node.getLeftNode();
-//				System.out.println("ParserTest parseAndCreateTree: node" + node
-//						+ "'s left node is " + nextNode);
-//			}
-//			if (node.getRightNode() != null) {
-//				nextNode = node.getRightNode();
-//				System.out.println("ParserTest parseAndCreateTree: node" + node
-//						+ "'s right node is " + nextNode);
-//			}
-//			node = nextNode;
-//		}
-
-		 test.traverseTree(turtle, node);
-		 System.out.println("ParserTest traverseTree: turtle's final position is "
-		 + turtle.getXPos()
-		 + ", " + turtle.getYPos());
-
-	}
+//		// test if else
+////		String string = "ifelse lessp 2 3 [ bk 50 ] [ fd 100 ]";
+//
+//		// String string = "fd 50 fd 100";
+//
+//		Turtle turtle = new Turtle(0, 0, 0);
+//
+//		AbstractNode node = test.parseAndCreateTree(string, turtle);
+//
+////		System.out.println("ParserTest parseAndCreateTree: root is " + node);
+////
+////		while (node != null) {
+////
+////			AbstractNode nextNode = new BlockNode(turtle);
+////			if (node.getLeftNode() != null) {
+////				nextNode = node.getLeftNode();
+////				System.out.println("ParserTest parseAndCreateTree: node" + node
+////						+ "'s left node is " + nextNode);
+////			}
+////			if (node.getRightNode() != null) {
+////				nextNode = node.getRightNode();
+////				System.out.println("ParserTest parseAndCreateTree: node" + node
+////						+ "'s right node is " + nextNode);
+////			}
+////			node = nextNode;
+////		}
+//
+//		 test.traverseTree(turtle, node);
+//		 System.out.println("ParserTest traverseTree: turtle's final position is "
+//		 + turtle.getXPos()
+//		 + ", " + turtle.getYPos());
+//
+//	}
 }
