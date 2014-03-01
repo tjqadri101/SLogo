@@ -5,9 +5,9 @@ public class Turtle {
 
 	private double myX;
 	private double myY;
-	private int myPen;
-	private final int PEN_DOWN = 1;
-	private final int PEN_UP = 0;
+	private double myPen;
+	private final double PEN_DOWN = 1;
+	private final double PEN_UP = 0;
 	private double myAngle = 90;
 	
     /**
@@ -77,7 +77,7 @@ public class Turtle {
 		return myAngle;
 	}
 	
-	public int getPen(){
+	public double getPen(){
 		return myPen;
 	}
 
