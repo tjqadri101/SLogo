@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import parse.Parser;
+import test_nodes.ParserTest;
 import turtle.Moveable;
 import turtle.Turtle;
 
@@ -19,27 +20,30 @@ public class WorkspacePanel extends JPanel{
 	public static final Integer WIDTH = 800;
 	public static final Integer HEIGHT = 600;
 	
-	private Parser myParser;
-	private Moveable myTurtle;
+	private ParserTest myParser;
+	private Turtle myTurtle;
 	private CommandPanel myCommandPanel;
 	private ActionDisplayPanel myActionDisplayPanel;
 	
 	public WorkspacePanel(){
 		//Turtle tempTurtle = new Turtle();
-		//myParser = new Parser(tempTurtle, "");
+		//myParser = new ParserTest();
 		//myTurtle = (Moveable) tempTurtle;
+		
+//		AbstractNode node = test.parseAndCreateTree(string, turtle);
+//		test.traverseTree(turtle, node);
 		this.setBackground(Color.black);
 		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
 		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
 	}
 	
 	private CommandPanel setAndMakeCommandCenter(){
-		myCommandPanel = new CommandPanel(WIDTH, HEIGHT, .33);
+		myCommandPanel = new CommandPanel(WIDTH, HEIGHT, .33, myParser, myTurtle);
 		return myCommandPanel;
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
-		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67);
+		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67, myParser);
 		return myActionDisplayPanel;
 	}
 	

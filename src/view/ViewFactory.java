@@ -35,6 +35,11 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import nodes.AbstractNode;
+
+import test_nodes.ParserTest;
+import turtle.Turtle;
+
 
 public class ViewFactory {
 	   /**
@@ -64,5 +69,10 @@ public class ViewFactory {
                 createAndShowGUI();
             }
         });
+        
+        ParserTest test = new ParserTest();
+        Turtle turtle = new Turtle(0, 0, 0);
+        //AbstractNode node = test.parseAndCreateTree(string, turtle);
+        //test.traverseTree(turtle, node);
     }
 }

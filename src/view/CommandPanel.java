@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -15,8 +17,13 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import nodes.AbstractNode;
+
+import test_nodes.ParserTest;
+import turtle.Turtle;
+
 //component that takes into account the users texts - chose JPanel because this is more of a container
-public class CommandPanel extends JPanel implements ActionListener{
+public class CommandPanel extends JPanel implements ActionListener {
 	
 	private static final Integer RATIO = 12;
 	
@@ -24,11 +31,16 @@ public class CommandPanel extends JPanel implements ActionListener{
 	private UserTextPanel userTextPanel;
 	private JButton execute = new JButton("Execute!");
 	private ExecutedCodePanel executedCodePanel = new ExecutedCodePanel();
+	private ParserTest parser;
+	private Turtle turtle;
 	
 //	private JPanel userInputAndButton = new JPanel();
 //	private JPanel userOutput = new JPanel();
     	
-	public CommandPanel(Integer width, Integer height, Double ratio){
+	public CommandPanel(Integer width, Integer height, Double ratio, ParserTest myParser, Turtle t){
+		
+		parser = myParser;
+		turtle = t;
 		
 		userTextPanel = new UserTextPanel(250,200);
 		//userTextPanel.addActionListener(this);
@@ -51,6 +63,35 @@ public class CommandPanel extends JPanel implements ActionListener{
 	//the backend for parsing.
 	public void actionPerformed(ActionEvent arg0) {
 		executedCodePanel.addToCodeList(userTextPanel.getText());
+		AbstractNode node = null;
+		try {
+			node = parser.parseAndCreateTree(userTextPanel.getText(), turtle);
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		parser.traverseTree(turtle, node);
 		userTextPanel.executeText();
 	}
 }
