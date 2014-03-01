@@ -1,5 +1,6 @@
 package turtle;
 
+
 public class Turtle {
 
 	private double myX;
