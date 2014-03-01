@@ -1,8 +1,7 @@
 package turtle;
 
-
 public class Turtle {
-	
+
 	private final double PEN_DOWN = 1;
 	private final double PEN_UP = 0;
 	private final double VISIBLE = 1;
@@ -12,16 +11,13 @@ public class Turtle {
 	private double myX;
 	private double myY;
 	private double myPen;
+	private double clearToggle;
 	private double myVisibility;
 	private double myAngle = DEFAULT_HEADING;
-	
-	
-    /**
-     * 0 degrees: Right.
-     * 90 degrees: Up.
-     * 180 degrees: Left.
-     * 270 degrees: Down.
-     */
+
+	/**
+	 * 0 degrees: Right. 90 degrees: Up. 180 degrees: Left. 270 degrees: Down.
+	 */
 
 	public Turtle() {
 		// TODO: set default initial turtle position
@@ -43,9 +39,20 @@ public class Turtle {
 		myX += changeInDistance * Math.cos(myAngle * (Math.PI / 180));
 		myY += changeInDistance * Math.sin(myAngle * (Math.PI / 180));
 	}
-	
-	
-	
+
+	/**
+	 * Benson to Tara: Couldn't think of anything better than to create a toggle
+	 * for the clear.
+	 */
+
+	public void clearScreen() {
+		clearToggle = 1;
+	}
+
+	public void resetClear() {
+		clearToggle = 1;
+	}
+
 	/*
 	 * Sets
 	 */
@@ -58,24 +65,23 @@ public class Turtle {
 	public void setHeading(double angle) {
 		myAngle = angle;
 	}
-	
-	public void setPenUp(){
+
+	public void setPenUp() {
 		myPen = PEN_UP;
 	}
-	
-	public void setPenDown(){
+
+	public void setPenDown() {
 		myPen = PEN_DOWN;
 	}
-	
-	public void setInvisible(){
+
+	public void setInvisible() {
 		myVisibility = INVISIBLE;
 	}
-	
-	public void setVisible(){
+
+	public void setVisible() {
 		myVisibility = VISIBLE;
 	}
-	
-	
+
 	/*
 	 * Gets
 	 */
@@ -87,18 +93,17 @@ public class Turtle {
 	public double getYPos() {
 		return myY;
 	}
-	
-	public double getAngle(){
+
+	public double getAngle() {
 		return myAngle;
 	}
-	
-	public double getPen(){
+
+	public double getPen() {
 		return myPen;
 	}
-	
-	public double getVisibility(){
+
+	public double getVisibility() {
 		return myVisibility;
 	}
-
 
 }
