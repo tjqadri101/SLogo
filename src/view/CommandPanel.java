@@ -25,8 +25,8 @@ public class CommandPanel extends JPanel implements ActionListener{
 	private JButton execute = new JButton("Execute!");
 	private ExecutedCodePanel executedCodePanel = new ExecutedCodePanel();
 	
-	private JPanel userInputAndButton = new JPanel();
-	private JPanel userOutput = new JPanel();
+//	private JPanel userInputAndButton = new JPanel();
+//	private JPanel userOutput = new JPanel();
     	
 	public CommandPanel(Integer width, Integer height, Double ratio){
 		
@@ -47,9 +47,10 @@ public class CommandPanel extends JPanel implements ActionListener{
 		execute.addActionListener(this);
 	}
 
-	//Called when the user clicks the execute button
+	//Called when the user clicks the execute button. Will pass the text in the text area to
+	//the backend for parsing.
 	public void actionPerformed(ActionEvent arg0) {
 		executedCodePanel.addToCodeList(userTextPanel.getText());
-		userTextPanel.clearText();
+		userTextPanel.executeText();
 	}
 }
