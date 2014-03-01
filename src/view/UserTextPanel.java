@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class UserTextPanel extends JScrollPane implements ActionListener{
@@ -48,8 +49,7 @@ public class UserTextPanel extends JScrollPane implements ActionListener{
 	
 	//Clears the text area field.Called when a user pressed the "Execute!" button and sends the code
 	//to the backend for parsing
-	public void executeText(){
-
+	public void executeText(){ 
 		userInput.setText(null);
 	}
 	

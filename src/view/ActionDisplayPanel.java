@@ -10,6 +10,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import test_nodes.ParserTest;
+
 //choose JPanel because this is more of a container
 public class ActionDisplayPanel extends JPanel{
 
@@ -23,12 +25,14 @@ public class ActionDisplayPanel extends JPanel{
     private TurtleDisplayPanel turtleDisplayPanel;
     
     
-	ActionDisplayPanel(Integer width, Integer height, Double ratio){
+	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 		
 
 	
 		turtleDisplayPanel = new TurtleDisplayPanel();
+		
+		
 
 		turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
