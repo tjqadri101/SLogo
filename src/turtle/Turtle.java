@@ -26,6 +26,11 @@ public class Turtle {
         myY += changeInDistance * Math.sin(myAngle*(Math.PI/180));
     }
     
+    public void setPosition(double xCoord, double yCoord){
+    	myX = xCoord;
+    	myY = yCoord;
+    }
+    
     public double getXPos() {
         return myX;
     }
@@ -49,14 +54,6 @@ public class Turtle {
      * 
      * Need to mod360?
      */
-    
-    public void updateAngle(double changeInAngle){
-    	myAngle += changeInAngle;
-    }
-    
-    public double getAngle(){
-    	return myAngle;
-    }
-    
+
     
 }

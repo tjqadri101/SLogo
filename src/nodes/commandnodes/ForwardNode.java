@@ -19,8 +19,7 @@ public class ForwardNode extends AbstractNode {
 	@Override
 	public double evaluate() {
 	    double distance = this.getLeftNode().evaluate();
-            double angle = myTurtle.getAngle();
-            myTurtle.updatePosition(distance*Math.cos(angle*(Math.PI/180)), distance*Math.sin(angle*(Math.PI/180)));
+            myTurtle.updatePosition(0, distance);
             return distance;
 	}
 

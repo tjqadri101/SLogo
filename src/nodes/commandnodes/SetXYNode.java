@@ -17,15 +17,23 @@ public class SetXYNode extends AbstractNode {
 	}
 
 	/**
-         * Benson: action() isn't complete. Should we use getter methods from the
-         * turtle class?
-         */
-        //TODO
+	 * Benson: action() isn't complete. Should we use getter methods from the
+	 * turtle class?
+	 */
+	// TODO
 	@Override
 	public double evaluate() {
-	    double x = this.getLeftNode().evaluate();
-            double y = this.getRightNode().evaluate();
-		return 0;
+
+		double xNew = this.getLeftNode().evaluate();
+		double yNew = this.getRightNode().evaluate();
+
+		double xOld = myTurtle.getXPos();
+		double yOld = myTurtle.getYPos();
+
+		myTurtle.setPosition(xNew, yNew);
+
+		return Math.sqrt(Math.pow((xNew - xOld), 2)
+				+ Math.pow((yNew - yOld), 2));
 	}
 
 	@Override
