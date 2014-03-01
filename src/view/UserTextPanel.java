@@ -49,7 +49,7 @@ public class UserTextPanel extends JScrollPane implements ActionListener{
 	//Clears the text area field.Called when a user pressed the "Execute!" button and sends the code
 	//to the backend for parsing
 	public void executeText(){
-		
+
 		userInput.setText(null);
 	}
 	
