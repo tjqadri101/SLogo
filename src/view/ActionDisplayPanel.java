@@ -44,6 +44,7 @@ public class ActionDisplayPanel extends JPanel{
 		forButtons.add(moveTurtleDown);
 		
 		forButtons.setBackground(Color.blue);
+		forButtons.setAlignmentX(LEFT_ALIGNMENT);
 		
 		return forButtons;
 	}

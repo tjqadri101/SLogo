@@ -21,10 +21,11 @@ public class CommandPanel extends JPanel{
 	
 	//text field class for displaying and storing user input
 	private UserTextPanel userTextPanel;
+	private JButton execute = new JButton("Execute!");
     	
 	public CommandPanel(Integer width, Integer height, Double ratio){
 		
-		userTextPanel = new UserTextPanel(12);
+		userTextPanel = new UserTextPanel(250,200);
 		//userTextPanel.addActionListener(this);
 		
 		//Set the preferred size of the command and panel and add an embedded
@@ -32,5 +33,6 @@ public class CommandPanel extends JPanel{
 		this.setBackground(Color.MAGENTA);
 		this.setPreferredSize(new Dimension((int) (ratio*width), height));
 		this.add(userTextPanel, BorderLayout.NORTH);
+		this.add(execute,BorderLayout.NORTH);
 	}
 }
