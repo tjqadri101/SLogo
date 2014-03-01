@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
@@ -15,13 +16,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 //component that takes into account the users texts - chose JPanel because this is more of a container
-public class CommandPanel extends JPanel{
+public class CommandPanel extends JPanel implements ActionListener{
 	
 	private static final Integer RATIO = 12;
 	
 	//text field class for displaying and storing user input
 	private UserTextPanel userTextPanel;
 	private JButton execute = new JButton("Execute!");
+	private ExecutedCodePanel executedCodePanel = new ExecutedCodePanel();
     	
 	public CommandPanel(Integer width, Integer height, Double ratio){
 		
@@ -34,5 +36,12 @@ public class CommandPanel extends JPanel{
 		this.setPreferredSize(new Dimension((int) (ratio*width), height));
 		this.add(userTextPanel, BorderLayout.NORTH);
 		this.add(execute,BorderLayout.NORTH);
+		
+		execute.addActionListener(this);
+	}
+
+	//Called when the user clicks the execute button
+	public void actionPerformed(ActionEvent arg0) {
+		userTextPanel.clearText();
 	}
 }

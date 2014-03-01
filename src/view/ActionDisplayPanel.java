@@ -38,13 +38,14 @@ public class ActionDisplayPanel extends JPanel{
 		
 		JPanel forButtons = new JPanel();
 		
-		forButtons.add(moveTurtleLeft);
-		forButtons.add(moveTurtleRight);
-		forButtons.add(moveTurtleUp);
-		forButtons.add(moveTurtleDown);
+		forButtons.add(moveTurtleLeft,BorderLayout.WEST);
+		forButtons.add(moveTurtleRight,BorderLayout.EAST);
+		forButtons.add(moveTurtleUp,BorderLayout.NORTH);
+		forButtons.add(moveTurtleDown,BorderLayout.SOUTH);
 		
 		forButtons.setBackground(Color.blue);
-		forButtons.setAlignmentX(LEFT_ALIGNMENT);
+		forButtons.setPreferredSize(new Dimension(150,200));
+		//forButtons.setAlignmentX(LEFT_ALIGNMENT);
 		
 		return forButtons;
 	}
