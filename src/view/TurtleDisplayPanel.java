@@ -39,6 +39,7 @@ public class TurtleDisplayPanel extends JPanel {
     private MouseListener myMouseListener;
     private KeyListener myKeyListener;
     private static final int DELTA = 10;
+    private Graphics2D g2d;
     
     public TurtleDisplayPanel() {
         this.setPreferredSize(new Dimension(640, 480));
@@ -48,8 +49,9 @@ public class TurtleDisplayPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+    	
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
+        g2d = (Graphics2D) g;
         g2d.setColor(Color.green);
         g2d.setRenderingHint(
             RenderingHints.KEY_ANTIALIASING,
@@ -58,46 +60,44 @@ public class TurtleDisplayPanel extends JPanel {
             BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
         int[] xPoints = new int[] {p1.x, p2.x, p3.x};
         int[] yPoints = new int[] {p1.y, p2.y, p3.y};
-        g.drawPolygon(xPoints, yPoints, 3);
+        g2d.rotate(Math.toRadians(-90));
+        g2d.fillPolygon(xPoints, yPoints, 3);
+      
     }
 
-   /* protected void makeMouseListener(){
+    protected void makeMouseListener(){
     	myMouseListener = new MouseListener(){
 	        @Override
 	        public void mousePressed(MouseEvent e) {
-	            drawing = true;
-	            p1 = e.getPoint();
-	            p2 = p1;
-	            repaint();
+	        		return;
 	        }
-	
-<<<<<<< HEAD
+	        
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
-	            drawing = false;
-	            p2 = e.getPoint();
-	            repaint();
+	        	return;
 	        }
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				//
+				TurtleDisplayPanel.this.g2d.rotate(Math.toRadians(45));
+	        	TurtleDisplayPanel.this.repaint();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				return;
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				return;
 			}
     	};
-    }*/
+    }
     
     protected void makeKeyListener(){
     	myKeyListener = new KeyListener(){
@@ -110,13 +110,15 @@ public class TurtleDisplayPanel extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent key) {
-				// TODO Auto-generated method stub	
+			// TODO Auto-generated method stub	
+				return;
 			}
+			
 
 			@Override
 			public void keyTyped(KeyEvent key) {
 				// TODO Auto-generated method stub
-				
+				return;
 			}
     		
     	};
@@ -150,7 +152,8 @@ public class TurtleDisplayPanel extends JPanel {
     }
     protected JComponent makePanel () {
     		JPanel panel = new JPanel();
-    		panel.add(makeTextArea());
+    		panel.add(makeButtonRotateR45());
+    		//panel.add(makeTextArea());
     		return panel;
         }
     protected JTextArea makeTextArea(){
@@ -160,6 +163,12 @@ public class TurtleDisplayPanel extends JPanel {
     	return textArea;
     }
 
+    protected JButton makeButtonRotateR45(){
+    	JButton right = new JButton("Right Rotate");
+    	right.addMouseListener(myMouseListener);
+    	
+    	return right;
+    }
 /*
     protected JButton makeClear () {
         JButton result = new JButton(("ClearCommand"));
@@ -175,6 +184,7 @@ public class TurtleDisplayPanel extends JPanel {
         JFrame f = new JFrame("LinePanel");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         makeKeyListener();
+       makeMouseListener();
         f.add(this);
         f.add(makePanel(), BorderLayout.SOUTH);
         f.pack();
@@ -192,11 +202,4 @@ public class TurtleDisplayPanel extends JPanel {
         });
     }
 }
-=======
-	public TurtleDisplayPanel(Integer width, Integer height,Double ratio){
-		this.setPreferredSize(new Dimension(width, (int) (height*ratio)));
-		//this.setPreferredSize(new Dimension(1000, 1000));
-		this.setBackground(Color.white);
-	}
-}
->>>>>>> bb10d87499d8651c6d05a18df135b569f1a9d016
+
