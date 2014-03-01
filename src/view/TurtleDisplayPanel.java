@@ -34,30 +34,33 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
+import turtle.Turtle;
+
 
 public class TurtleDisplayPanel extends JPanel {
 
+	private Turtle myTurtle;
     private Point curP1 = new Point (0,0);
     private Point curP2= new Point (0,0);;
     private Point curP3= new Point (0,0);;
-    private Point prevP1;
-    private Point prevP2;
-    private Point prevP3;
-    private int centerX = 320; private int centerY = 240;
+    private int prevX;
+    private int prevY;
+    private int centerX; private int centerY;
     private int myAngle;
-    private boolean drawing;
     private MouseListener myMouseListener;
     private KeyListener myKeyListener;
-    private static final int DELTA = 10;
-    private Graphics2D g2d;
+    //private static final int DELTA = 10;
+    private Graphics2D g2d; 
     private JTextArea myTextArea;
+	
     
-    public TurtleDisplayPanel() {
-    
-    	myAngle = 0;
+    public TurtleDisplayPanel(Turtle turtle) {
+    	myTurtle = turtle;
+    	myAngle = (int) turtle.getAngle();
+    	centerX = (int) turtle.getXPos();
+    	centerY = (int) turtle.getYPos();
         this.setPreferredSize(new Dimension(640, 480));
         this.setBackground(Color.white);
-      
         //this.addMouseListener(myMouseListener);
     }
 
@@ -70,23 +73,30 @@ public class TurtleDisplayPanel extends JPanel {
         g2d.setRenderingHint(
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setStroke(new BasicStroke(4,
+        g2d.setStroke(new BasicStroke(6,
             BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
         calVertices();
         int[] xPoints = new int[] {curP1.x, curP2.x, curP3.x};
         int[] yPoints = new int[] {curP1.y, curP2.y, curP3.y};
         g2d.fillPolygon(xPoints, yPoints, 3);
+      
        // g2d.rotate(Math.toRadians(myAngle));
     }
-    
+   
     protected void calVertices(){
+  
     	curP1.x = centerX; 
     	curP1.y = centerY - 5;
     	curP2.x = centerX-5; 
     	curP2.y = centerY + 5;
     	curP3.x = centerX+5; 
     	curP3.y = centerY + 5;
-    	
+    }
+    protected void showMessage (String message) {
+        myTextArea.append(message + "\n");
+        myTextArea.setCaretPosition(myTextArea.getText().length());
+    }
+    protected void showState(){
     	Integer matchedX = centerX - 320;
     	Integer matchedY = -(centerY - 240);
     	
@@ -94,11 +104,6 @@ public class TurtleDisplayPanel extends JPanel {
     	String message = "The coordinates of turtle are (" + matchedX.toString()
     			+ "," + matchedY.toString() + ")";
     	showMessage(message);
-    	
-    }
-    protected void showMessage (String message) {
-        myTextArea.append(message + "\n");
-        myTextArea.setCaretPosition(myTextArea.getText().length());
     }
     
     protected void makeMouseListener(){
@@ -143,7 +148,7 @@ public class TurtleDisplayPanel extends JPanel {
 			public void keyPressed(KeyEvent key) {
 				// TODO Auto-generated method stub	
 				checkKeys(key);
-				//calVertices();
+				showState();
 			}
 
 			@Override
@@ -192,17 +197,10 @@ public class TurtleDisplayPanel extends JPanel {
         	repaint();
     	}
     }
-    protected JComponent makePanel () {
-    		JPanel panel = new JPanel();
-    		//panel.add(makeButtonRotateR45());
-    		panel.add(makeClear());
-    		panel.add(makeDisplay());
-    		return panel;
-        }
     protected JComponent makeDisplay(){
     	myTextArea = new JTextArea(5, 30);
     	myTextArea.addKeyListener(myKeyListener);
-    	//calVertices();
+    	showState();
     	myTextArea.setEditable(false);
     	return new JScrollPane(myTextArea);
     }
@@ -216,36 +214,50 @@ public class TurtleDisplayPanel extends JPanel {
 
     protected JButton makeClear () {
         JButton result = new JButton(("ClearCommand"));
+        result.addKeyListener(myKeyListener);
         result.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
                 myTextArea.setText("");
                 centerX = 320; centerY = 240;
                 repaint();
+                showState();
             }
         });
         return result;
     }
+    protected JComponent makePanel () {
+    	JPanel panel = new JPanel();
+    	this.add(makeDisplay(), BorderLayout.SOUTH);
+        this.add(makeClear(), BorderLayout.EAST);
+        return panel;
+           }
     protected void display() {
-        JFrame f = new JFrame("LinePanel");
+    	
+        JFrame f = new JFrame("TurtleWorld");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         makeKeyListener();
         makeMouseListener();
-        f.add(this);
+        
+     	f.add(this);
         f.add(makePanel(), BorderLayout.SOUTH);
+       
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
     }
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
+    	
         EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new TurtleDisplayPanel().display();
+            	Turtle greenGuy = new Turtle(320d, 240d, 0d);
+            	greenGuy.setPenDown();
+                new TurtleDisplayPanel(greenGuy).display();
             }
         });
-    }
+    }*/
 }
 

@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import turtle.Turtle;
 
 import test_nodes.ParserTest;
 
@@ -25,16 +26,14 @@ public class ActionDisplayPanel extends JPanel{
     private TurtleDisplayPanel turtleDisplayPanel;
     
     
-	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser){
+	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser, Turtle t){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
-		
-
 	
-		turtleDisplayPanel = new TurtleDisplayPanel();
+		turtleDisplayPanel = new TurtleDisplayPanel(t);
 		
 		
 
-		turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
+		//turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
 		this.add(makeButtonPanel(),BorderLayout.EAST);
 		this.add(turtleDisplayPanel,BorderLayout.SOUTH);
