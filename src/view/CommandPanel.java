@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -23,10 +24,12 @@ public class CommandPanel extends JPanel{
     	
 	public CommandPanel(Integer width, Integer height, Double ratio){
 		
-		userTextPanel = new UserTextPanel(width*ratio.intValue()/RATIO);
+		userTextPanel = new UserTextPanel(12);
+		//userTextPanel.addActionListener(this);
 		
 		//Set the preferred size of the command and panel and add an embedded
 		//text field panel where the user inputs are displayed
+		this.setBackground(Color.MAGENTA);
 		this.setPreferredSize(new Dimension((int) (ratio*width), height));
 		this.add(userTextPanel, BorderLayout.NORTH);
 	}
