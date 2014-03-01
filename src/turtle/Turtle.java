@@ -5,6 +5,10 @@ public class Turtle {
 
 	private double myX;
 	private double myY;
+	private int myPen;
+	private final int PEN_DOWN = 1;
+	private final int PEN_UP = 0;
+	private double myAngle = 90;
 	
     /**
      * 0 degrees: Right.
@@ -12,8 +16,6 @@ public class Turtle {
      * 180 degrees: Left.
      * 270 degrees: Down.
      */
-
-	private double myAngle = 90;
 
 	public Turtle() {
 		// TODO: set default initial turtle position
@@ -23,6 +25,7 @@ public class Turtle {
 		myX = initialX;
 		myY = initialY;
 		myAngle = initialAngle;
+		myPen = PEN_UP;
 	}
 
 	public void updatePosition(double changeInAngle, double changeInDistance) {
@@ -34,6 +37,12 @@ public class Turtle {
 		myX += changeInDistance * Math.cos(myAngle * (Math.PI / 180));
 		myY += changeInDistance * Math.sin(myAngle * (Math.PI / 180));
 	}
+	
+	
+	
+	/*
+	 * Sets
+	 */
 
 	public void setPosition(double xCoord, double yCoord) {
 		myX = xCoord;
@@ -43,6 +52,18 @@ public class Turtle {
 	public void setHeading(double angle) {
 		myAngle = angle;
 	}
+	
+	public void setPenUp(){
+		myPen = PEN_UP;
+	}
+	
+	public void setPenDown(){
+		myPen = PEN_DOWN;
+	}
+	
+	/*
+	 * Gets
+	 */
 
 	public double getXPos() {
 		return myX;
@@ -55,5 +76,10 @@ public class Turtle {
 	public double getAngle(){
 		return myAngle;
 	}
+	
+	public int getPen(){
+		return myPen;
+	}
+
 
 }

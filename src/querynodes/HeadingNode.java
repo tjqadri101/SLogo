@@ -1,13 +1,13 @@
 package querynodes;
 
-import turtle.Turtle;
 import nodes.LeafNode;
+import turtle.Turtle;
 
-public class XCor extends LeafNode {
+public class HeadingNode extends LeafNode {
 	
 	private Turtle myTurtle;
 
-	public XCor(Turtle turtle) {
+	public HeadingNode(Turtle turtle) {
 		super(turtle);
 		
         myTurtle = turtle;
@@ -15,7 +15,7 @@ public class XCor extends LeafNode {
 	
 	@Override
 	public double evaluate() {
-		return myTurtle.getXPos();
+		return myTurtle.getAngle();
 	}
 
 }

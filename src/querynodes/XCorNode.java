@@ -1,18 +1,18 @@
 package querynodes;
 
-import nodes.LeafNode;
 import turtle.Turtle;
+import nodes.LeafNode;
 
-public class YCor extends LeafNode {
-
+public class XCorNode extends LeafNode {
+	
 	private Turtle myTurtle;
 
-	public YCor(Turtle turtle) {
+	public XCorNode(Turtle turtle) {
 		super(turtle);
-
-		myTurtle = turtle;
+		
+        myTurtle = turtle;
 	}
-
+	
 	@Override
 	public double evaluate() {
 		return myTurtle.getXPos();
