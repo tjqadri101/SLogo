@@ -26,7 +26,11 @@ public class ActionDisplayPanel extends JPanel{
 	ActionDisplayPanel(Integer width, Integer height, Double ratio){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 		
+
 		turtleDisplayPanel = new TurtleDisplayPanel();
+
+		turtleDisplayPanel = new TurtleDisplayPanel();
+
 		turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
 		this.add(makeButtonPanel(),BorderLayout.EAST);
@@ -38,12 +42,14 @@ public class ActionDisplayPanel extends JPanel{
 		
 		JPanel forButtons = new JPanel();
 		
-		forButtons.add(moveTurtleLeft);
-		forButtons.add(moveTurtleRight);
-		forButtons.add(moveTurtleUp);
-		forButtons.add(moveTurtleDown);
+		forButtons.add(moveTurtleLeft,BorderLayout.WEST);
+		forButtons.add(moveTurtleRight,BorderLayout.EAST);
+		forButtons.add(moveTurtleUp,BorderLayout.NORTH);
+		forButtons.add(moveTurtleDown,BorderLayout.SOUTH);
 		
 		forButtons.setBackground(Color.blue);
+		forButtons.setPreferredSize(new Dimension(500,50));
+		//forButtons.setAlignmentX(LEFT_ALIGNMENT);
 		
 		return forButtons;
 	}

@@ -71,6 +71,7 @@ public class TurtleDisplayPanel extends JPanel {
 	            repaint();
 	        }
 	
+<<<<<<< HEAD
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
 	            drawing = false;
@@ -191,3 +192,11 @@ public class TurtleDisplayPanel extends JPanel {
         });
     }
 }
+=======
+	public TurtleDisplayPanel(Integer width, Integer height,Double ratio){
+		this.setPreferredSize(new Dimension(width, (int) (height*ratio)));
+		//this.setPreferredSize(new Dimension(1000, 1000));
+		this.setBackground(Color.white);
+	}
+}
+>>>>>>> bb10d87499d8651c6d05a18df135b569f1a9d016
