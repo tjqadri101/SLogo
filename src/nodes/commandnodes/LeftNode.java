@@ -19,7 +19,7 @@ public class LeftNode extends AbstractNode {
     @Override
     public double evaluate() {
         double deltaAngle = this.getLeftNode().evaluate();
-        myTurtle.updateAngle(deltaAngle);
+        myTurtle.updatePosition(deltaAngle, 0);
         return deltaAngle;
     }
 

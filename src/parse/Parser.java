@@ -8,9 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
+import nodes.LeafNode;
 import nodes.NodeFactory;
 import nodes.NumberNode;
 import nodes.VariableNode;
@@ -102,8 +104,10 @@ public class Parser {
         root.setLeftNode(currentNode);
 
         while (!queue.isEmpty()) {
-            if (currentNode instanceof NumberNode ||
-                    currentNode instanceof VariableNode) {
+        	/**
+        	 * Benson to Tara (3/1/14): Made change here to leafnode instead of number || variable 
+        	 */
+            if (currentNode instanceof LeafNode) {
                 // return to parent
                 currentNode = currentNode.getParent();
                 if (!currentNode.allowsTwoChildren() || 
