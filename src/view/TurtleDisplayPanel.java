@@ -21,6 +21,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -39,7 +41,7 @@ public class TurtleDisplayPanel extends JPanel {
 	private MouseListener myMouseListener;
 	private KeyListener myKeyListener;
 	private static final int DELTA = 10;
-	private static Graphics2D g2d;
+	private Graphics2D g2d;
 
 	public TurtleDisplayPanel() {
 		this.setPreferredSize(new Dimension(640, 480));
@@ -52,19 +54,37 @@ public class TurtleDisplayPanel extends JPanel {
 
 		super.paintComponent(g);
 		g2d = (Graphics2D) g;
-		//g2d.setColor(Color.green);
-		//g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-		//		RenderingHints.VALUE_ANTIALIAS_ON);
-		//g2d.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND,
-		//		BasicStroke.JOIN_BEVEL));
-		//int[] xPoints = new int[] { p1.x, p2.x, p3.x };
-		//int[] yPoints = new int[] { p1.y, p2.y, p3.y };
-		//g2d.rotate(Math.toRadians(-90));
-		//g2d.fillPolygon(xPoints, yPoints, 3);
-		
-		
-		TurtleImage test = new TurtleImage("turtle.gif");
-		test.paintCenter(g2d);
+
+		// g2d.setColor(Color.green);
+		// g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		// RenderingHints.VALUE_ANTIALIAS_ON);
+		// g2d.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND,
+		// BasicStroke.JOIN_BEVEL));
+		// int[] xPoints = new int[] { p1.x, p2.x, p3.x };
+		// int[] yPoints = new int[] { p1.y, p2.y, p3.y };
+		// g2d.rotate(Math.toRadians(-90));
+		// g2d.fillPolygon(xPoints, yPoints, 3);
+
+		/**
+		 * Benson to Talal: This is my attempt to add a turtle image instead of
+		 * using the triangle Instead of turtle.gif need to
+		 */
+
+		TurtleImage turtlePic = new TurtleImage();
+		try {
+			
+			turtlePic.setImage();
+//			int x = (this.getWidth() - turtlePic.getImage().getWidth(null)) / 2;
+//			int y = (this.getHeight() - turtlePic.getImage().getHeight(null)) / 2;
+//			g2d.drawImage(turtlePic.getImage(), x, y, null);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// System.out.println("Width: " + this.getWidth());
+		// System.out.println("Width: " + this.getHeight());
 
 	}
 
