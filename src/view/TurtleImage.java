@@ -16,12 +16,9 @@ import javax.swing.ImageIcon;
 
 public class TurtleImage {
 
-	private final double DEFAULT_HEADING = 90;
-	private final double CENTER_X = 320;
-	private final double CENTER_Y = 240;
-	private final double SIZE_X = 320;
-	private final double SIZE_Y = 240;
-	private final Dimension SIZE = new Dimension(640, 480);
+	private final double DEFAULT_HEADING = 0;
+	private final double X_CENTER = 320;
+	private final double Y_CENTER = 240;
 
 	private BufferedImage myTurtleImage;
 	private File myTurtleFile;
@@ -29,125 +26,40 @@ public class TurtleImage {
 	public TurtleImage() {
 		myTurtleFile = TurtleFileChooser.initFileChooser();
 	}
-	
-	/**
-	 * Benson to All: I created a getter method for the image.
-	 * Good code or nah?
-	 */
 
-	public BufferedImage getTurtleImage() {
-		return myTurtleImage;
-	}
-
-	/*
-	 * Creates and scales image from File Chooser Scales Image to Smaller Size
-	 */
-
-//	public void setImage() throws IOException {
-//		
-//		myTurtleImage = ImageIO.read(myTurtleFile);
-////		myTurtleImage = new BufferedImage(in.getWidth(), in.getHeight(),
-////				BufferedImage.TYPE_INT_ARGB);
-//
-//		Graphics2D g = myTurtleImage.createGraphics();
-//
-//		scale(myTurtleImage, 100, 100);
-////		paintWrapper(g);
-//
-//		 g.drawImage(myTurtleImage, 0, 0, null);
-//		g.dispose();
-//	}
-	
 	public BufferedImage setImage() throws IOException {
-		
+
 		myTurtleImage = ImageIO.read(myTurtleFile);
-		
-		//Graphics2D g = myTurtleImage.createGraphics();
-		BufferedImage scaledTurtle = scale(myTurtleImage, 100, 100);
-		
-		return scaledTurtle;
+		return myTurtleImage;
 	}
 
 	/*
 	 * Wrapper function for paint(). Draws image on screen.
 	 */
 
-	public void paintWrapper(Graphics2D pen) {
-		paint(pen, SIZE.getWidth() / 2, SIZE.getHeight() / 2, SIZE_X, SIZE_Y,
-				DEFAULT_HEADING);
+	public void paintCenter(Graphics2D pen, BufferedImage turtle) {
+		paint(pen, X_CENTER, Y_CENTER, 0, 0, DEFAULT_HEADING, turtle);
 	}
 
 	/*
-	 * Rotates image on screen. Step 1: Save state of image. Step 2: Move
-	 * graphics are to center of shape. Step 3: Rotate. Step 4: Draw rotated
-	 * image. Step 5: Restore are from Step 2 to Step 1. (Why?)
+	 * Rotates image on screen. 
+	 * Step 1: Save state of image via AffineTransform.
+	 * Step 2: Move relative to current location via translate and dX & dY. 
+	 * Step 3: Rotate about center of object. 
+	 * Step 4: Draw.
+	 * Step 5: Restore from Step 2 to Step 1. 
 	 */
 
 	public void paint(Graphics2D pen, double xCenter, double yCenter,
-			double xSize, double ySize, double angle) {
+			double deltaX, double deltaY, double angle, BufferedImage turtle) {
 
 		AffineTransform old = new AffineTransform(pen.getTransform());
-		pen.translate(xCenter, yCenter);
-		pen.rotate(Math.toRadians(angle));
-		pen.drawImage(myTurtleImage, (int) xCenter, (int) yCenter, (int) xSize,
-				(int) ySize, null);
+		
+		pen.translate(deltaX, deltaY);
+		pen.rotate(Math.toRadians(-angle), xCenter, yCenter);
+
+		
+		pen.drawImage(turtle, (int) xCenter, (int) yCenter, null);
 		pen.setTransform(old);
 	}
-
-	public BufferedImage scale(BufferedImage img, int targetWidth,
-			int targetHeight) {
-
-		int type = (img.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB
-				: BufferedImage.TYPE_INT_ARGB;
-		BufferedImage ret = img;
-		BufferedImage scratchImage = null;
-		Graphics2D g2 = null;
-
-		int w = img.getWidth();
-		int h = img.getHeight();
-
-		int prevW = w;
-		int prevH = h;
-
-		do {
-			if (w > targetWidth) {
-				w /= 2;
-				w = (w < targetWidth) ? targetWidth : w;
-			}
-
-			if (h > targetHeight) {
-				h /= 2;
-				h = (h < targetHeight) ? targetHeight : h;
-			}
-
-			if (scratchImage == null) {
-				scratchImage = new BufferedImage(w, h, type);
-				g2 = scratchImage.createGraphics();
-			}
-
-			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g2.drawImage(ret, 0, 0, w, h, 0, 0, prevW, prevH, null);
-
-			prevW = w;
-			prevH = h;
-			ret = scratchImage;
-		} while (w != targetWidth || h != targetHeight);
-
-		if (g2 != null) {
-			g2.dispose();
-		}
-
-		if (targetWidth != ret.getWidth() || targetHeight != ret.getHeight()) {
-			scratchImage = new BufferedImage(targetWidth, targetHeight, type);
-			g2 = scratchImage.createGraphics();
-			g2.drawImage(ret, 0, 0, null);
-			g2.dispose();
-			ret = scratchImage;
-		}
-
-		return ret;
-
-	}
-
 }

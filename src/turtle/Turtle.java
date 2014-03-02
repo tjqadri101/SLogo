@@ -6,7 +6,7 @@ public class Turtle {
 	private final double PEN_UP = 0;
 	private final double VISIBLE = 1;
 	private final double INVISIBLE = 0;
-	private final double DEFAULT_HEADING = 90;
+	private final double DEFAULT_HEADING = 0;
 
 	private double myX;
 	private double myY;
@@ -16,7 +16,7 @@ public class Turtle {
 	private double myAngle = DEFAULT_HEADING;
 
 	/**
-	 * 0 degrees: Right. 90 degrees: Up. 180 degrees: Left. 270 degrees: Down.
+	 * 0 degrees: Up. 90 degrees: left. 180 degrees: down. 270 degrees: right.
 	 */
 
 	public Turtle() {
