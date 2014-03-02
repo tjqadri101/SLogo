@@ -72,16 +72,7 @@ public class TurtleDisplayPanel extends JPanel {
 		 * Benson to Talal: This is my attempt to add a turtle image instead of
 		 * using the triangle Instead of turtle.gif need to
 		 */
-
-		TurtleImage turtlePic = new TurtleImage();
-
-
-		try {
-			displayTurtle = turtlePic.setImage();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		int x = (this.getWidth() - 320) / 2;
 		int y = (this.getHeight() - 240) / 2;
@@ -228,6 +219,21 @@ public class TurtleDisplayPanel extends JPanel {
 	 * myTextArea.setText(""); } }); return result; }
 	 */
 	protected void display() {
+		
+		/**
+		 * Add turtle here
+		 */
+		TurtleImage turtlePic = new TurtleImage();
+
+		try {
+			displayTurtle = turtlePic.setImage();
+        // this.add(displayTurtle, BorderLayout.CENTER);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		JFrame f = new JFrame("LinePanel");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		makeKeyListener();
