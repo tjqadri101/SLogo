@@ -55,6 +55,8 @@ public class FileChooser extends JFrame {
 		openButtonFinish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				// TODO Transfer image to view.
+				
+				
 				close();
 			}
 		});
