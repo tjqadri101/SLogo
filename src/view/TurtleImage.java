@@ -43,19 +43,29 @@ public class TurtleImage {
 	 * Creates and scales image from File Chooser Scales Image to Smaller Size
 	 */
 
-	public void setImage() throws IOException {
+//	public void setImage() throws IOException {
+//		
+//		myTurtleImage = ImageIO.read(myTurtleFile);
+////		myTurtleImage = new BufferedImage(in.getWidth(), in.getHeight(),
+////				BufferedImage.TYPE_INT_ARGB);
+//
+//		Graphics2D g = myTurtleImage.createGraphics();
+//
+//		scale(myTurtleImage, 100, 100);
+////		paintWrapper(g);
+//
+//		 g.drawImage(myTurtleImage, 0, 0, null);
+//		g.dispose();
+//	}
+	
+	public BufferedImage setImage() throws IOException {
 		
-		BufferedImage in = ImageIO.read(myTurtleFile);
-		myTurtleImage = new BufferedImage(in.getWidth(), in.getHeight(),
-				BufferedImage.TYPE_INT_ARGB);
-
-		Graphics2D g = myTurtleImage.createGraphics();
-
-		scale(myTurtleImage, 100, 100);
-		paintWrapper(g);
-
-		// g.drawImage(in, 0, 0, null);
-		// g.dispose();
+		myTurtleImage = ImageIO.read(myTurtleFile);
+		
+		//Graphics2D g = myTurtleImage.createGraphics();
+		BufferedImage scaledTurtle = scale(myTurtleImage, 100, 100);
+		
+		return scaledTurtle;
 	}
 
 	/*

@@ -22,8 +22,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -42,6 +44,7 @@ public class TurtleDisplayPanel extends JPanel {
 	private KeyListener myKeyListener;
 	private static final int DELTA = 10;
 	private Graphics2D g2d;
+	private BufferedImage displayTurtle;
 
 	public TurtleDisplayPanel() {
 		this.setPreferredSize(new Dimension(640, 480));
@@ -71,20 +74,42 @@ public class TurtleDisplayPanel extends JPanel {
 		 */
 
 		TurtleImage turtlePic = new TurtleImage();
-		try {
-			
-			turtlePic.setImage();
-//			int x = (this.getWidth() - turtlePic.getImage().getWidth(null)) / 2;
-//			int y = (this.getHeight() - turtlePic.getImage().getHeight(null)) / 2;
-//			g2d.drawImage(turtlePic.getImage(), x, y, null);
 
+
+		try {
+			displayTurtle = turtlePic.setImage();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int x = (this.getWidth() - 320) / 2;
+		int y = (this.getHeight() - 240) / 2;
+
+		g2d.drawImage(displayTurtle, x, y, null);
 
 		// System.out.println("Width: " + this.getWidth());
 		// System.out.println("Width: " + this.getHeight());
+
+		/**
+		 * Working Image below
+		 */
+//		
+//		int x = (this.getWidth() - 320) / 2;
+//		int y = (this.getHeight() - 240) / 2;
+//		
+//		BufferedImage img = null;
+//		try {
+//			img = ImageIO.read(new File("./images/turtle.gif"));
+//		} catch (IOException e) {
+//		}
+//
+//		int x = (this.getWidth() - 320) / 2;
+//		int y = (this.getHeight() - 240) / 2;
+//
+//		g2d.drawImage(img, x, y, null);
+		
+		
 
 	}
 
