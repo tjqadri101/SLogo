@@ -20,10 +20,11 @@ public class Main {
 		JFrame frame = new JFrame("SLOGO");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Container mainWindow = new WorkspacePanel();
+		Container mainWindow = new WorkspacePanel(frame);
 		frame.add(mainWindow);
 
 		frame.pack();
+	   
 		frame.setVisible(true);
 	}
 

@@ -26,17 +26,17 @@ public class ActionDisplayPanel extends JPanel{
     private TurtleDisplayPanel turtleDisplayPanel;
     
     
-	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser, Turtle t){
+	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser, JFrame f, Turtle t){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 	
-		turtleDisplayPanel = new TurtleDisplayPanel(t);
+		turtleDisplayPanel = new TurtleDisplayPanel(f, t);
 		
 		
 
 		//turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
-		this.add(makeButtonPanel(),BorderLayout.EAST);
-		this.add(turtleDisplayPanel,BorderLayout.SOUTH);
+		this.add(makeButtonPanel(),BorderLayout.SOUTH);
+		this.add(turtleDisplayPanel,BorderLayout.EAST);
 	}
 	
 	//Creates the panel for the buttons

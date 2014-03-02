@@ -52,16 +52,21 @@ public class TurtleDisplayPanel extends JPanel {
     //private static final int DELTA = 10;
     private Graphics2D g2d; 
     private JTextArea myTextArea;
+    private JPanel myPanel;
 	
     
-    public TurtleDisplayPanel(Turtle turtle) {
+    public TurtleDisplayPanel(JFrame f, Turtle turtle) {
     	myTurtle = turtle;
     	myAngle = (int) turtle.getAngle();
     	centerX = (int) turtle.getXPos();
     	centerY = (int) turtle.getYPos();
         this.setPreferredSize(new Dimension(640, 480));
         this.setBackground(Color.white);
-        //this.addMouseListener(myMouseListener);
+        makeKeyListener();
+        makeMouseListener();
+        f.getContentPane().add(this);
+        f.getContentPane().add(makeDisplay(), BorderLayout.WEST);
+        f.getContentPane().add(makePanel(), BorderLayout.EAST);
     }
 
     @Override
@@ -84,7 +89,6 @@ public class TurtleDisplayPanel extends JPanel {
     }
    
     protected void calVertices(){
-  
     	curP1.x = centerX; 
     	curP1.y = centerY - 5;
     	curP2.x = centerX-5; 
@@ -107,35 +111,26 @@ public class TurtleDisplayPanel extends JPanel {
     }
     
     protected void makeMouseListener(){
-    	myMouseListener = new MouseListener(){
-    			
+    	myMouseListener = new MouseListener(){	
 	        @Override
 	        public void mousePressed(MouseEvent e) {
 	        		return;
 	        }
-	        
 	        @Override
 	        public void mouseReleased(MouseEvent e) {
 	        	return;
 	        }
-
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				//
 				myAngle = (int) Math.toRadians(45);
 	        	repaint();
 			}
-
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				return;
 			}
-
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				return;
 			}
     	};
@@ -143,24 +138,17 @@ public class TurtleDisplayPanel extends JPanel {
     
     protected void makeKeyListener(){
     	myKeyListener = new KeyListener(){
-
 			@Override
 			public void keyPressed(KeyEvent key) {
-				// TODO Auto-generated method stub	
 				checkKeys(key);
 				showState();
 			}
-
 			@Override
 			public void keyReleased(KeyEvent key) {
-			// TODO Auto-generated method stub	
 				return;
 			}
-			
-
 			@Override
 			public void keyTyped(KeyEvent key) {
-				// TODO Auto-generated method stub
 				return;
 			}
     		
@@ -170,30 +158,18 @@ public class TurtleDisplayPanel extends JPanel {
     protected void checkKeys(KeyEvent key){
     	if(key.getKeyCode() == KeyEvent.VK_LEFT){
     		centerX = centerX-5;
-    		/*curP1.translate(-DELTA, 0);
-        	curP2.translate(-DELTA, 0);
-        	curP3.translate(-DELTA, 0);*/
         	repaint();
     	}
     	if(key.getKeyCode() == KeyEvent.VK_RIGHT){
     		centerX = centerX + 5;
-    		/*curP1.translate(DELTA, 0);
-        	curP2.translate(DELTA, 0);
-        	curP3.translate(DELTA, 0);*/
         	repaint();
     	}
     	if(key.getKeyCode() == KeyEvent.VK_DOWN){
     		centerY = centerY+5;
-    		/*curP1.translate(0,DELTA);
-        	curP2.translate(0,DELTA);
-        	curP3.translate(0,DELTA);*/
         	repaint();
     	}
     	if(key.getKeyCode() == KeyEvent.VK_UP){
     		centerY = centerY - 5;
-    		/*curP1.translate(0,-DELTA);
-        	curP2.translate(0,-DELTA);
-        	curP3.translate(0,-DELTA);*/
         	repaint();
     	}
     }
@@ -227,10 +203,9 @@ public class TurtleDisplayPanel extends JPanel {
         return result;
     }
     protected JComponent makePanel () {
-    	JPanel panel = new JPanel();
-    	this.add(makeDisplay(), BorderLayout.SOUTH);
-        this.add(makeClear(), BorderLayout.EAST);
-        return panel;
+    	myPanel = new JPanel();
+        this.add(makeClear());
+        return myPanel;
            }
     protected void display() {
     	
@@ -238,24 +213,27 @@ public class TurtleDisplayPanel extends JPanel {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         makeKeyListener();
         makeMouseListener();
-        
-     	f.add(this);
-        f.add(makePanel(), BorderLayout.SOUTH);
+        f.getContentPane().add(this);
+        f.getContentPane().add(makeDisplay(), BorderLayout.WEST);
+        f.getContentPane().add(makePanel(), BorderLayout.EAST);
+       
        
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
     }
-
   /*  public static void main(String[] args) {
-    	
         EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
             	Turtle greenGuy = new Turtle(320d, 240d, 0d);
-            	greenGuy.setPenDown();
-                new TurtleDisplayPanel(greenGuy).display();
+            	 JFrame f = new JFrame("TurtleWorld");
+                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                new TurtleDisplayPanel(f, greenGuy);
+                f.pack();
+                f.setLocationRelativeTo(null);
+                f.setVisible(true);
             }
         });
     }*/

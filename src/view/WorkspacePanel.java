@@ -24,10 +24,12 @@ public class WorkspacePanel extends JPanel{
 	private Turtle myTurtle;
 	private CommandPanel myCommandPanel;
 	private ActionDisplayPanel myActionDisplayPanel;
+	private JFrame myTopFrame;
 	
-	public WorkspacePanel(){
+	public WorkspacePanel(JFrame f){
 		myTurtle = new Turtle(320d, 240d, 0);
 		myParser = new ParserTest();
+		myTopFrame = f;
 
 		this.setBackground(Color.black);
 		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
@@ -40,7 +42,7 @@ public class WorkspacePanel extends JPanel{
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
-		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67, myParser, myTurtle);
+		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67, myParser, myTopFrame,  myTurtle);
 		return myActionDisplayPanel;
 	}
 	
