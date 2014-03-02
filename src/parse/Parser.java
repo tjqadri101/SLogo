@@ -36,7 +36,7 @@ public class Parser {
     }
 
     public List<VariableNode> getVariables() {
-        return myVariables;
+        return myVariables; // TODO put in model: myFunc, myVar, myTurtle, myPencolor, ...
     }
 
     public boolean isValid() {
@@ -141,7 +141,7 @@ public class Parser {
                 return root;
             }
             for (int i=0;i<2;i++) {
-                if (nextWord.equals("[")) {
+                if (nextWord.equals("[")) { //TODO counter for brackets
                     // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
                     if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode ||
                             currentNode.getParent().getParent() instanceof IfElseNode) {

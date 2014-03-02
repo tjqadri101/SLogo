@@ -9,6 +9,9 @@ public class Turtle {
     public Turtle() {
         //TODO: set default initial turtle position
     }
+    //TODO ONE BACKEND FOR ONE GAME
+    // keep track of what's active: parse once and apply the changes to active turtles
+    // TODO expand the backend: model; 
     
     public Turtle(double initialX, double initialY, double initialAngle) {
         myX = initialX;
