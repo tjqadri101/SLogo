@@ -26,7 +26,7 @@ public class ActionDisplayPanel extends JPanel{
     private TurtleDisplayPanel turtleDisplayPanel;
     
     
-	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser, JFrame f, Turtle t){
+	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser,JFrame f, Turtle t){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 	
 		turtleDisplayPanel = new TurtleDisplayPanel(f, t);

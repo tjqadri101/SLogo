@@ -52,7 +52,6 @@ public class TurtleDisplayPanel extends JPanel {
     //private static final int DELTA = 10;
     private Graphics2D g2d; 
     private JTextArea myTextArea;
-    private JPanel myPanel;
 	
     
     public TurtleDisplayPanel(JFrame f, Turtle turtle) {
@@ -67,6 +66,15 @@ public class TurtleDisplayPanel extends JPanel {
         f.getContentPane().add(this);
         f.getContentPane().add(makeDisplay(), BorderLayout.WEST);
         f.getContentPane().add(makePanel(), BorderLayout.EAST);
+        /*makeKeyListener();
+        makeMouseListener();
+        this.add(makeDisplay(),BorderLayout.SOUTH);
+        this.add(makePanel(), BorderLayout.WEST);*/
+       
+        //this.validate();
+      /*  f.getContentPane().add(this);
+        f.getContentPane().add(makeDisplay(), BorderLayout.WEST);
+        f.getContentPane().add(makePanel(), BorderLayout.EAST);*/
     }
 
     @Override
@@ -203,39 +211,9 @@ public class TurtleDisplayPanel extends JPanel {
         return result;
     }
     protected JComponent makePanel () {
-    	myPanel = new JPanel();
+    	JPanel panel = new JPanel();
         this.add(makeClear());
-        return myPanel;
-           }
-    protected void display() {
-    	
-        JFrame f = new JFrame("TurtleWorld");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        makeKeyListener();
-        makeMouseListener();
-        f.getContentPane().add(this);
-        f.getContentPane().add(makeDisplay(), BorderLayout.WEST);
-        f.getContentPane().add(makePanel(), BorderLayout.EAST);
-       
-       
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
+        return panel;
     }
-  /*  public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-            	Turtle greenGuy = new Turtle(320d, 240d, 0d);
-            	 JFrame f = new JFrame("TurtleWorld");
-                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                new TurtleDisplayPanel(f, greenGuy);
-                f.pack();
-                f.setLocationRelativeTo(null);
-                f.setVisible(true);
-            }
-        });
-    }*/
 }
 
