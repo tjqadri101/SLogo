@@ -42,23 +42,19 @@ public class TurtleImage {
 	}
 
 	/*
-	 * Rotates image on screen. 
-	 * Step 1: Save state of image via AffineTransform.
-	 * Step 2: Move relative to current location via translate and dX & dY. 
-	 * Step 3: Rotate about center of object. 
-	 * Step 4: Draw.
-	 * Step 5: Restore from Step 2 to Step 1. 
+	 * Rotates image on screen. Step 1: Save state of image via AffineTransform.
+	 * Step 2: Move relative to current location via translate and dX & dY. Step
+	 * 3: Rotate about center of object. Step 4: Draw. Step 5: Restore from Step
+	 * 2 to Step 1.
 	 */
 
 	public void paint(Graphics2D pen, double xCenter, double yCenter,
 			double deltaX, double deltaY, double angle, BufferedImage turtle) {
 
 		AffineTransform old = new AffineTransform(pen.getTransform());
-		
+
 		pen.translate(deltaX, deltaY);
 		pen.rotate(Math.toRadians(-angle), xCenter, yCenter);
-
-		
 		pen.drawImage(turtle, (int) xCenter, (int) yCenter, null);
 		pen.setTransform(old);
 	}

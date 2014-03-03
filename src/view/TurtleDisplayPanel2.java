@@ -15,17 +15,15 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TurtleDisplayPanel extends JPanel {
+public class TurtleDisplayPanel2 extends JPanel {
 
-	private final int X_CENTER = (this.getWidth() - 320);
-	private final int Y_CENTER = (this.getHeight() - 240);
 
 	private Graphics2D g2d;
 	private BufferedImage displayTurtle;
 
 	TurtleImage turtlePic = new TurtleImage();
 
-	public TurtleDisplayPanel() {
+	public TurtleDisplayPanel2() {
 		this.setPreferredSize(new Dimension(640, 480));
 		this.setBackground(Color.white);
 	}
@@ -71,7 +69,7 @@ public class TurtleDisplayPanel extends JPanel {
 			@Override
 			public void run() {
 
-				new TurtleDisplayPanel().display();
+				new TurtleDisplayPanel2().display();
 			}
 		});
 	}

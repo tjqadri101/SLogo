@@ -20,16 +20,16 @@ public class ActionDisplayPanel extends JPanel{
     private JButton moveTurtleDown = new JButton("Down");
     
     //Turtle display panel for displaying turtle and its movements
-    private TurtleDisplayPanel turtleDisplayPanel;
+    private TurtleDisplayPanel2 turtleDisplayPanel;
     
     
 	ActionDisplayPanel(Integer width, Integer height, Double ratio){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 		
 
-		turtleDisplayPanel = new TurtleDisplayPanel();
+		turtleDisplayPanel = new TurtleDisplayPanel2();
 
-		turtleDisplayPanel = new TurtleDisplayPanel();
+		turtleDisplayPanel = new TurtleDisplayPanel2();
 
 		turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
