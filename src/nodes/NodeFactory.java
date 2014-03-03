@@ -5,30 +5,39 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
+import parse.CommandFinder;
 import parse.CommandReader;
 import turtle.Turtle;
 
 public class NodeFactory {
 
 	private Turtle myTurtle;
-	private final String COMMAND_LIST = "Commands.Properties";
+	private String myLanguage;
+	
 	private final String[] PACKAGES = { "nodes.booleannodes.",
 			"nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
 			"nodes.booleannodes", "nodes." };
 
-	public NodeFactory(Turtle turtle) {
+
+	public NodeFactory(Turtle turtle, String language) {
 		myTurtle = turtle;
+		myLanguage = language;
 	}
+	
+	/*
+	 * Step 1: Populates map of aliases depending on Language
+	 * 
+	 */
 
 	public AbstractNode createNode(String word) throws ClassNotFoundException,
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException, IOException {
+			InvocationTargetException, IOException, NoSuchFieldException {
 
 		AbstractNode genericNode = null;
 
 		Map<String, String> commandsMap = CommandReader
-				.readCommands(COMMAND_LIST);
+				.readCommands(CommandFinder.aliasLookup(myLanguage));
 
 		if (!isNumeric(word)) {
 
@@ -47,6 +56,7 @@ public class NodeFactory {
 		return genericNode;
 
 	}
+
 
 	private String findClass(String command) {
 		for (String s : PACKAGES) {

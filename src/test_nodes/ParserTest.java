@@ -11,12 +11,12 @@ import nodes.BlockNode;
 
 public class ParserTest {
 
-	private Parser myParser = new Parser(new Turtle(0, 0, 0));
+	private Parser myParser = new Parser(new Turtle(0, 0, 0), "English");
 
 	public AbstractNode parseAndCreateTree(String string, Turtle turtle)
 			throws ClassNotFoundException, NoSuchMethodException,
 			SecurityException, InstantiationException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException, IOException {
+			IllegalArgumentException, InvocationTargetException, IOException, NoSuchFieldException {
 
 		// create functions
 		myParser.createFunctionsAndVariables(string);
@@ -39,7 +39,7 @@ public class ParserTest {
 //	public static void main(String[] args) throws ClassNotFoundException,
 //			NoSuchMethodException, SecurityException, InstantiationException,
 //			IllegalAccessException, IllegalArgumentException,
-//			InvocationTargetException, IOException {
+//			InvocationTargetException, IOException, NoSuchFieldException {
 //		ParserTest test = new ParserTest();
 //		// test repeat
 ////		 String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";

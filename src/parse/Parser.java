@@ -25,12 +25,15 @@ public class Parser {
 
     private Turtle myTurtle;
     private boolean myValidBoolean = true;
+    
+    private String myLanguage;
 
     private List<VariableNode> myVariables = new ArrayList<VariableNode>();
     private List<Function> myFunctions = new ArrayList<Function>();
 
-    public Parser(Turtle turtle) {
+    public Parser(Turtle turtle, String language) {
         myTurtle = turtle;
+        myLanguage = language;
     }
 
     public List<Function> getFunctions () {
@@ -88,9 +91,9 @@ public class Parser {
 
     public AbstractNode createTree(Function function, Turtle turtle) throws ClassNotFoundException, 
     NoSuchMethodException, SecurityException, InstantiationException, 
-    IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+    IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException, NoSuchFieldException {
         myTurtle = turtle;
-        NodeFactory nodeFactory = new NodeFactory(myTurtle);
+        NodeFactory nodeFactory = new NodeFactory(myTurtle, myLanguage);
         AbstractNode root = new BlockNode(myTurtle);
         processFunction(function);
 
