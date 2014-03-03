@@ -55,6 +55,7 @@ public class CommandPanel extends JPanel implements ActionListener {
 		this.add(execute,BorderLayout.CENTER);
 		this.add(executedCodePanel,BorderLayout.SOUTH);
 		
+		setFocusable(false);
 		
 		execute.addActionListener(this);
 	}
@@ -63,9 +64,13 @@ public class CommandPanel extends JPanel implements ActionListener {
 	//the backend for parsing.
 	public void actionPerformed(ActionEvent arg0) {
 		executedCodePanel.addToCodeList(userTextPanel.getText());
+		String input = userTextPanel.getText();
+		userTextPanel.clearText();
 		AbstractNode node = null;
 		try {
-			node = parser.parseAndCreateTree(userTextPanel.getText(), turtle);
+			System.out.println(userTextPanel.getText());
+			node = parser.parseAndCreateTree(input, turtle);
+			
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,6 +97,5 @@ public class CommandPanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		parser.traverseTree(turtle, node);
-		userTextPanel.executeText();
 	}
 }

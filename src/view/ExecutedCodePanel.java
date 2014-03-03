@@ -24,7 +24,7 @@ public class ExecutedCodePanel extends JScrollPane implements MouseListener{
 		executedCode.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setViewportView(executedCode);
 		//getContentPane().add(executedCode);
-		
+		setFocusable(false);
 		executedCode.addMouseListener(this);
 	}
 	
