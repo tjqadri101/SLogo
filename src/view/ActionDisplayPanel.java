@@ -99,23 +99,6 @@ public class ActionDisplayPanel extends JPanel implements KeyListener{
 	  }
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		if(arg0.getKeyCode() == KeyEvent.VK_LEFT){
-    		turtleDisplayPanel.goLeft();
-    	}
-    	if(arg0.getKeyCode() == KeyEvent.VK_RIGHT){
-    		turtleDisplayPanel.goRight();
-    	}
-    	if(arg0.getKeyCode() == KeyEvent.VK_DOWN){
-    		turtleDisplayPanel.goDown();
-    	}
-    	if(arg0.getKeyCode() == KeyEvent.VK_UP){
-    		turtleDisplayPanel.goUp();
-    	}
-	}
-
-	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
