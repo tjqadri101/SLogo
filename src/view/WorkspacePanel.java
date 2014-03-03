@@ -35,6 +35,7 @@ public class WorkspacePanel extends JPanel {
 		this.setBackground(Color.black);
 		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
 		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
+		setFocusable(false);
 	}
 
 	private CommandPanel setAndMakeCommandCenter() {

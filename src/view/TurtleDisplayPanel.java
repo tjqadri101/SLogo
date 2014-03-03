@@ -26,6 +26,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -35,7 +36,7 @@ import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
 
-public class TurtleDisplayPanel extends JPanel {
+public class TurtleDisplayPanel extends JPanel{
 
     private Point curP1 = new Point (0,0);
     private Point curP2= new Point (0,0);;
@@ -57,11 +58,112 @@ public class TurtleDisplayPanel extends JPanel {
     	myAngle = 0;
         this.setPreferredSize(new Dimension(640, 480));
         this.setBackground(Color.white);
+        
+		this.add(makeClear());
+		this.add(makeDisplay());
+        this.setFocusable(true);
+
+        makeMouseListener();
+        
+        display();
+        
+        bindArrowKeys();
       
         //this.addMouseListener(myMouseListener);
     }
+    
+    private void bindArrowKeys() {
+		// TODO Auto-generated method stub
+    	KeyStroke keyLeft = KeyStroke.getKeyStroke("LEFT");
+    	String name = "Left";
+    	LeftAction leftAction = new LeftAction(name);
+        this.getInputMap().put(keyLeft,
+                name);
+        this.getActionMap().put(name,
+                 leftAction);
+        
+        KeyStroke keyRight = KeyStroke.getKeyStroke("RIGHT");
+    	String name2 = "Right";
+    	RightAction rightAction = new RightAction(name2);
+        this.getInputMap().put(keyRight,
+                name2);
+        this.getActionMap().put(name2,
+                 rightAction);
+        
+        KeyStroke keyDown = KeyStroke.getKeyStroke("DOWN");
+    	String name3 = "Down";
+    	DownAction downAction = new DownAction(name3);
+        this.getInputMap().put(keyDown,
+                name3);
+        this.getActionMap().put(name3,
+                 downAction);
+        
+        KeyStroke keyUp = KeyStroke.getKeyStroke("UP");
+    	String name4 = "Up";
+    	UpAction upAction = new UpAction(name4);
+        this.getInputMap().put(keyUp,
+                name4);
+        this.getActionMap().put(name4,
+                 upAction);
+	}
 
-    @Override
+	private class LeftAction extends AbstractAction{
+
+    	public LeftAction(String name){
+    		putValue(Action.NAME,name);
+    	}
+    	
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			centerX = centerX-5;
+			repaint();
+		}
+    }
+	
+	private class RightAction extends AbstractAction{
+
+    	public RightAction(String name){
+    		putValue(Action.NAME,name);
+    	}
+    	
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			centerX = centerX+5;
+			repaint();
+		}
+    }
+	
+	private class UpAction extends AbstractAction{
+
+    	public UpAction(String name){
+    		putValue(Action.NAME,name);
+    	}
+    	
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			centerY = centerY+5;
+			repaint();
+		}
+    }
+	
+	private class DownAction extends AbstractAction{
+
+    	public DownAction(String name){
+    		putValue(Action.NAME,name);
+    	}
+    	
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			centerY = centerY-5;
+			repaint();
+		}
+    }
+
+	@Override
     protected void paintComponent(Graphics g) {
     
         super.paintComponent(g);
@@ -91,9 +193,9 @@ public class TurtleDisplayPanel extends JPanel {
     	Integer matchedY = -(centerY - 240);
     	
     	
-    	String message = "The coordinates of turtle are (" + matchedX.toString()
-    			+ "," + matchedY.toString() + ")";
-    	showMessage(message);
+//    	String message = "The coordinates of turtle are (" + matchedX.toString()
+//    			+ "," + matchedY.toString() + ")";
+//    	showMessage(message);
     	
     }
     protected void showMessage (String message) {
@@ -136,72 +238,17 @@ public class TurtleDisplayPanel extends JPanel {
     	};
     }
     
-    protected void makeKeyListener(){
-    	myKeyListener = new KeyListener(){
-
-			@Override
-			public void keyPressed(KeyEvent key) {
-				// TODO Auto-generated method stub	
-				checkKeys(key);
-				//calVertices();
-			}
-
-			@Override
-			public void keyReleased(KeyEvent key) {
-			// TODO Auto-generated method stub	
-				return;
-			}
-			
-
-			@Override
-			public void keyTyped(KeyEvent key) {
-				// TODO Auto-generated method stub
-				return;
-			}
-    		
-    	};
-    }
-    
-    protected void checkKeys(KeyEvent key){
-    	if(key.getKeyCode() == KeyEvent.VK_LEFT){
-    		centerX = centerX-5;
-    		/*curP1.translate(-DELTA, 0);
-        	curP2.translate(-DELTA, 0);
-        	curP3.translate(-DELTA, 0);*/
-        	repaint();
-    	}
-    	if(key.getKeyCode() == KeyEvent.VK_RIGHT){
-    		centerX = centerX + 5;
-    		/*curP1.translate(DELTA, 0);
-        	curP2.translate(DELTA, 0);
-        	curP3.translate(DELTA, 0);*/
-        	repaint();
-    	}
-    	if(key.getKeyCode() == KeyEvent.VK_DOWN){
-    		centerY = centerY+5;
-    		/*curP1.translate(0,DELTA);
-        	curP2.translate(0,DELTA);
-        	curP3.translate(0,DELTA);*/
-        	repaint();
-    	}
-    	if(key.getKeyCode() == KeyEvent.VK_UP){
-    		centerY = centerY - 5;
-    		/*curP1.translate(0,-DELTA);
-        	curP2.translate(0,-DELTA);
-        	curP3.translate(0,-DELTA);*/
-        	repaint();
-    	}
-    }
+   
     protected JComponent makePanel () {
     		JPanel panel = new JPanel();
     		//panel.add(makeButtonRotateR45());
-    		panel.add(makeClear());
-    		panel.add(makeDisplay());
+    		this.add(makeClear());
+    		this.add(makeDisplay());
     		return panel;
         }
     protected JComponent makeDisplay(){
     	myTextArea = new JTextArea(5, 30);
-    	myTextArea.addKeyListener(myKeyListener);
+    	//myTextArea.addKeyListener(myKeyListener);
     	//calVertices();
     	myTextArea.setEditable(false);
     	return new JScrollPane(myTextArea);
@@ -227,25 +274,47 @@ public class TurtleDisplayPanel extends JPanel {
         return result;
     }
     protected void display() {
-        JFrame f = new JFrame("LinePanel");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        makeKeyListener();
-        makeMouseListener();
-        f.add(this);
-        f.add(makePanel(), BorderLayout.SOUTH);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
+        //JFrame f = new JFrame("LinePanel");
+        //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //f.add(this);
+        //f.add(makePanel(), BorderLayout.SOUTH);
+        //f.pack();
+        //f.setLocationRelativeTo(null);
+        //f.setVisible(true);
+        //this.add(makePanel());
+        //this.requestFocus();
     }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new TurtleDisplayPanel().display();
-            }
-        });
+    
+    public void goLeft(){
+    	centerX = centerX-5;
+    	repaint();
     }
+    
+    public void goRight(){
+    	centerX = centerX+5;
+    	repaint();
+    }
+    
+    public void goUp(){
+    	centerY = centerY-5;
+    	repaint();
+    }
+    
+    public void goDown(){
+    	centerY = centerY-5;
+    	repaint();
+    }
+    
+
+
+//    public static void main(String[] args) {
+//        EventQueue.invokeLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                new TurtleDisplayPanel().display();
+//            }
+//        });
+//    }
 }
 
