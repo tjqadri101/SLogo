@@ -195,6 +195,7 @@ public class TurtleDisplayPanel extends JPanel {
 
     protected JButton makeButtonRotateR45(){
     	JButton right = new JButton("Right Rotate");
+    	right.addKeyListener(myKeyListener);
     	right.addMouseListener(myMouseListener);
     	
     	return right;
