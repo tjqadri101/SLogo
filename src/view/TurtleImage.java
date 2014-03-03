@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 public class TurtleImage {
 
 	private final double DEFAULT_HEADING = 0;
-	private final double X_CENTER = 320;
+	private final double X_CENTER = 320; //JPanel dimensions make this the central location for x and y
 	private final double Y_CENTER = 240;
 
 	private BufferedImage myTurtleImage;
@@ -50,7 +50,7 @@ public class TurtleImage {
 
 	public void paint(Graphics2D pen, double xCenter, double yCenter,
 			double deltaX, double deltaY, double angle, BufferedImage turtle) {
-
+		
 		AffineTransform old = new AffineTransform(pen.getTransform());
 
 		pen.translate(deltaX, deltaY);
