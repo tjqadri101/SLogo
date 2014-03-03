@@ -31,9 +31,8 @@ public class ActionDisplayPanel extends JPanel{
 	
 		turtleDisplayPanel = new TurtleDisplayPanel(f, t);
 		
-		
-
 		//turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
+
 		
 		this.add(makeButtonPanel(),BorderLayout.SOUTH);
 		this.add(turtleDisplayPanel,BorderLayout.EAST);
