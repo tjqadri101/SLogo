@@ -51,7 +51,7 @@ import javax.swing.KeyStroke;
 
 import turtle.Turtle;
 
-public class TurtleDisplayPanel extends JPanel {
+public class TurtleDisplayPanel extends JPanel{
 
 	private Turtle myTurtle;
 	private Graphics2D g2d;
@@ -196,11 +196,13 @@ public class TurtleDisplayPanel extends JPanel {
 	        	repaint();
 	    	}
 	    }
+	    
 	protected JComponent makeDisplay(){
     	myTextArea = new JTextArea(5, 30);
     	//myTextArea.addKeyListener(myKeyListener);
     	//calVertices();
-    	myTextArea.setEditable(false);
+    	myTextArea.addKeyListener(myKeyListener);
+    	showState();
     	return new JScrollPane(myTextArea);
     }
 
@@ -214,6 +216,7 @@ public class TurtleDisplayPanel extends JPanel {
 
     protected JButton makeClear () {
         JButton result = new JButton(("ClearCommand"));
+        result.addKeyListener(myKeyListener);
         result.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
@@ -221,6 +224,7 @@ public class TurtleDisplayPanel extends JPanel {
                 center = true;
                 curX = 320; curY = 240; myAngle = 0;
                 repaint();
+                showState();
             }
         });
         return result;
