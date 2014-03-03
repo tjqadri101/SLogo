@@ -23,7 +23,7 @@ import test_nodes.ParserTest;
 import turtle.Turtle;
 
 //choose JPanel because this is more of a container
-public class ActionDisplayPanel extends JPanel implements KeyListener{
+public class ActionDisplayPanel extends JPanel{
 
 	//Buttons for controlling the turtle and other miscelleneous actions
     private JButton moveTurtleLeft = new JButton("Left");
@@ -46,7 +46,7 @@ public class ActionDisplayPanel extends JPanel implements KeyListener{
 	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser,JFrame f, Turtle t){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 	
-		turtleDisplayPanel = new TurtleDisplayPanel();
+		turtleDisplayPanel = new TurtleDisplayPanel(f,t);
 
 		
 		//turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
@@ -97,16 +97,4 @@ public class ActionDisplayPanel extends JPanel implements KeyListener{
 	      return l;
 	      
 	  }
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
