@@ -105,6 +105,20 @@ public class TestBackend {
     }
     
     @org.junit.Test
+    public void testFor_FdFd50() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+        String string = "fd fd 50";
+        Turtle turtle = new Turtle(0, 0, 0);
+        Parser parser = new Parser(turtle);
+        parser.createFunctionsAndVariables(string);
+        for (Function function : parser.getFunctions()) {
+            AbstractNode root = parser.createTree(function, turtle);
+            parser.traverseTree(turtle, root);
+            assert turtle.getYPos()==100;
+        }
+    }
+    
+    
+    @org.junit.Test
     public void testForTraverseTree_Repeat() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
         String string = "repeat 20 [ fd 50 ]";
         Turtle turtle = new Turtle(0, 0, 0);

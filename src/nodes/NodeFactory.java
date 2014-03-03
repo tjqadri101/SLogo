@@ -56,6 +56,9 @@ public class NodeFactory {
 			}
 		}
 		return null;
+		/**
+		 * Need to throw exception up to View
+		 */
 	}
 
 	private boolean classExists(String className) {
