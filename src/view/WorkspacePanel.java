@@ -27,11 +27,21 @@ public class WorkspacePanel extends JPanel {
 	private Turtle myTurtle = new Turtle(0, 0, 0);
 	private CommandPanel myCommandPanel;
 	private ActionDisplayPanel myActionDisplayPanel;
+<<<<<<< HEAD
 
 	public WorkspacePanel() {
 		// Turtle tempTurtle = new Turtle();
 		// myParser = new Parser(tempTurtle, "");
 		// myTurtle = (Moveable) tempTurtle;
+=======
+	private JFrame myTopFrame;
+	
+	public WorkspacePanel(JFrame f){
+		myTurtle = new Turtle(320d, 240d, 0);
+		myParser = new ParserTest();
+		myTopFrame = f;
+
+>>>>>>> FETCH_HEAD
 		this.setBackground(Color.black);
 		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
 		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
@@ -43,10 +53,16 @@ public class WorkspacePanel extends JPanel {
 				myTurtle);
 		return myCommandPanel;
 	}
+<<<<<<< HEAD
 
 	private ActionDisplayPanel setAndMakeActionDisplay() {
 		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67,
 				myParser, myTurtle);
+=======
+	
+	private ActionDisplayPanel setAndMakeActionDisplay(){
+		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67, myParser, myTopFrame,myTurtle);
+>>>>>>> FETCH_HEAD
 		return myActionDisplayPanel;
 	}
 

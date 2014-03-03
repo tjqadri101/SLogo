@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import turtle.Turtle;
 
 import test_nodes.ParserTest;
 import turtle.Turtle;
@@ -28,6 +29,7 @@ public class ActionDisplayPanel extends JPanel implements KeyListener{
     private TurtleDisplayPanel turtleDisplayPanel;
     
     
+<<<<<<< HEAD
 	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser,Turtle t){
 		this.setPreferredSize(new Dimension((int) (width*ratio), height));
 		
@@ -35,12 +37,18 @@ public class ActionDisplayPanel extends JPanel implements KeyListener{
     	turtleDisplayPanel.setFocusable(true);
     	turtleDisplayPanel.requestFocusInWindow();
         this.addKeyListener(this);
+=======
+	ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser,JFrame f, Turtle t){
+		this.setPreferredSize(new Dimension((int) (width*ratio), height));
+	
+		turtleDisplayPanel = new TurtleDisplayPanel(f, t);
+>>>>>>> FETCH_HEAD
 		
+		//turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 
-		turtleDisplayPanel.setAlignmentX(LEFT_ALIGNMENT);
 		
-		this.add(makeButtonPanel(),BorderLayout.EAST);
-		this.add(turtleDisplayPanel,BorderLayout.SOUTH);
+		this.add(makeButtonPanel(),BorderLayout.SOUTH);
+		this.add(turtleDisplayPanel,BorderLayout.EAST);
 	}
 	
 	//Creates the panel for the buttons
