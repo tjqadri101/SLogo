@@ -85,9 +85,7 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(makeButtonRotateR45());
 
 		
-		this.add(makeHyperLink("Go to basic commands page",
-				"http://www.cs.duke.edu/courses/cps108/current/assign/03_slogo/commands.php",
-				0,0),BorderLayout.SOUTH);
+		
 		//this.add(turtleDisplayPanel,BorderLayout.EAST);
 
 	}
@@ -110,6 +108,7 @@ public class ActionDisplayPanel extends JPanel{
 	protected void showMessage (String message) {
 		myTextArea.append(message + "\n");
 		myTextArea.setCaretPosition(myTextArea.getText().length());
+
 	}
 	protected void showState(){
 		double matchedX = curX - 320d;
@@ -215,5 +214,6 @@ public class ActionDisplayPanel extends JPanel{
 		JScrollPane toReturn = new JScrollPane(myTextArea);
 		return toReturn;
 	}
+	
 
 }
