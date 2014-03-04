@@ -1,12 +1,5 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,6 +41,7 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(makeClear());
 		this.add(makeButtonRotateR45());
 		this.add(turtleDisplayPanel);
+		this.add(makeTurtleMovementButtons());
 		revalidate();
 		repaint();
 	}
@@ -89,5 +83,49 @@ public class ActionDisplayPanel extends JPanel{
 			}
 		});
 		return result;
+	}
+	
+	protected JComponent makeTurtleMovementButtons(){
+		JPanel buttons = new JPanel(new BorderLayout());
+		
+		moveTurtleLeft.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				turtleDisplayPanel.moveTurtleLeft();
+				showState();
+			}
+		});
+		
+		moveTurtleRight.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				turtleDisplayPanel.moveTurtleRight();
+				showState();
+			}
+		});
+		
+		moveTurtleForward.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				turtleDisplayPanel.moveTurtleForward();
+				showState();
+			}
+		});
+		
+		moveTurtleBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				turtleDisplayPanel.moveTurtleBack();
+				showState();
+			}
+		});
+		
+		buttons.add(moveTurtleForward,BorderLayout.NORTH);
+		buttons.add(moveTurtleBack,BorderLayout.SOUTH);
+		buttons.add(moveTurtleLeft,BorderLayout.WEST);
+		buttons.add(moveTurtleRight,BorderLayout.EAST);
+		
+		return buttons;
+		
 	}
 }
