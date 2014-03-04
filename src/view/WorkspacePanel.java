@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,12 +33,13 @@ public class WorkspacePanel extends JPanel {
 	public WorkspacePanel(JFrame f){
 		myTurtle = new Turtle(320d, 240d, 0);
 		myParser = new ParserTest();
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.add(makeHyperLink("Go to basic commands page",
 				"http://www.cs.duke.edu/courses/cps108/current/assign/03_slogo/commands.php",
-				0,0),BorderLayout.NORTH);
+				0,0));
 
-		this.add(setAndMakeActionDisplay(), BorderLayout.WEST);
-		this.add(setAndMakeCommandCenter(), BorderLayout.EAST);
+		this.add(setAndMakeActionDisplay());
+		this.add(setAndMakeCommandCenter());
 		
 		setFocusable(false);
 	}
