@@ -50,7 +50,7 @@ public class ActionDisplayPanel extends JPanel{
 		addBorderedComponent(1,0,0,.2,1,1,makeClear(),"Reset turtle and state:");
 		addBorderedComponent(2,0,0,.2,1,1,makeButtonRotateR45(),"Rotate turtle:");
 		addBorderedComponent(3,0,1,.2,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
-		addBorderedComponent(0,1,1,1,4,3,turtleDisplayPanel,"Turtle dispaly:");
+		addBorderedComponent(0,1,1,1,4,3,turtleDisplayPanel,"Turtle display:");
 		revalidate();
 		repaint();
 	}

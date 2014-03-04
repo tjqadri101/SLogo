@@ -14,20 +14,30 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import view.WorkspacePanel;
 
 public class Main {
 
+	private static JTabbedPane workspaces;
+	private static int workspaceCount;
+	private static JFrame frame;
+	
 	private static void createAndShowMainWindow() {
-		JMenuBar menuBar = buildMenuBar();
-		JFrame frame = new JFrame("SLOGO");
+		frame = new JFrame("SLOGO");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(1024, 800));
-
+		
+		JMenuBar menuBar = buildMenuBar();
 		frame.setJMenuBar(menuBar);
-		Container mainWindow = new WorkspacePanel(frame);
-		frame.add(mainWindow);
+		
+		workspaceCount=1;
+		workspaces = new JTabbedPane();
+		Container initialWorkspace = new WorkspacePanel(frame);
+		workspaces.add("workspace 1",initialWorkspace);
+		workspaceCount++;
+		frame.add(workspaces);
 
 		frame.validate();
 		frame.pack();
@@ -40,24 +50,21 @@ public class Main {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		JMenuItem newMenu = new JMenuItem("New  (Ctrl+N)");
+		JMenuItem newMenu = new JMenuItem("New Workspace");
         JMenuItem openMenu = new JMenuItem("Open  (Ctrl+O)");
         JMenuItem saveMenu = new JMenuItem("Save  (Ctrl+S)");
         saveMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
 
             }
         });
         newMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
+                addNewWorkspace();
             }
         });
         openMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
 
             }
         });
@@ -70,4 +77,9 @@ public class Main {
 	public static void main(String[] args) {
 		createAndShowMainWindow();
     }
+	
+	public static void addNewWorkspace(){
+		workspaces.add("workspace "+workspaceCount,new WorkspacePanel(frame));
+		workspaceCount++;
+	}
 }
