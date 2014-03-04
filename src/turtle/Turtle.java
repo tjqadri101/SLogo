@@ -4,22 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Turtle {
-    
-//    public Turtle() {
-        //TODO: set default initial turtle position
-//    }
-    //TODO ONE BACKEND FOR ONE GAME
-    // keep track of what's active: parse once and apply the changes to active turtles
-    // TODO expand the backend: model; 
 
-   
+	// public Turtle() {
+	// TODO: set default initial turtle position
+	// }
+	// TODO ONE BACKEND FOR ONE GAME
+	// keep track of what's active: parse once and apply the changes to active
+	// turtles
+	// TODO expand the backend: model;
 
 	private final double PEN_DOWN = 1;
 	private final double PEN_UP = 0;
 	private final double VISIBLE = 1;
 	private final double INVISIBLE = 0;
 	private final double DEFAULT_HEADING = 0;
-	
+
 	private final String ORANGE = "ORANGE";
 	private final String PURPLE = "PURPLE";
 	private final String YELLOW = "YELLOW";
@@ -29,7 +28,14 @@ public class Turtle {
 	private final String PINK = "PINK";
 	private final String BLUE = "BLUE";
 	private final String RED = "RED";
-	
+
+	private final String TRIANGLE = "TRIANGLE";
+	private final String RECTANGLE = "RECTANGLE";
+	private final String SQUARE = "SQUARE";
+	private final String PENTAGON = "PENTAGON";
+	private final String HEXAGON = "HEXAGON";
+
+	Map<Double, String> shapeMapping = new HashMap<Double, String>();
 	Map<Double, String> colorMapping = new HashMap<Double, String>();
 
 	private double myX;
@@ -37,12 +43,13 @@ public class Turtle {
 	private double myPen;
 	private String myPenColor;
 	private String myLanguage;
+	private String myTurtleShape;
 	private double clearToggle;
 	private double myVisibility;
 	private double myAngle = DEFAULT_HEADING;
 
-	private String myID; //TODO assign ID to turtles (done in class Model)
-	
+	private String myID; // TODO assign ID to turtles (done in class Model)
+
 	/**
 	 * 0 degrees: Up. 90 degrees: left. 180 degrees: down. 270 degrees: right.
 	 */
@@ -50,6 +57,10 @@ public class Turtle {
 	public Turtle() {
 		// TODO: set default initial turtle position
 	}
+
+	/*
+	 * myShape left uninitialized because default is image.
+	 */
 
 	public Turtle(double initialX, double initialY, String language) {
 		myX = initialX;
@@ -62,11 +73,11 @@ public class Turtle {
 	}
 
 	/*
-	 * Display Mappings
+	 * Display Mappings below.
 	 */
-	
-	private void mapColors(){
-		
+
+	private void mapColors() {
+
 		colorMapping.put((double) 1, PINK);
 		colorMapping.put((double) 2, RED);
 		colorMapping.put((double) 3, ORANGE);
@@ -77,21 +88,34 @@ public class Turtle {
 		colorMapping.put((double) 8, BROWN);
 		colorMapping.put((double) 9, BLACK);
 	}
-	
-	public void setPenColor(double colorIndex){
+
+	private void mapShapes() {
+		
+		shapeMapping.put((double) 1, TRIANGLE);
+		shapeMapping.put((double) 2, RECTANGLE);
+		shapeMapping.put((double) 3, SQUARE);
+		shapeMapping.put((double) 4, PENTAGON);
+		shapeMapping.put((double) 5, HEXAGON);
+	}
+
+	public void setPenColor(double colorIndex) {
 		myPenColor = colorMapping.get(colorIndex);
 
 	}
 	
+	public void setTurtleShape(double shapeIndex) {
+		myTurtleShape = shapeMapping.get(shapeIndex);
+
+	}
+
 	public void setID(String id) {
-	    myID = id;
+		myID = id;
 	}
-	
+
 	public String getID() {
-	    return myID;
+		return myID;
 	}
-	
-	
+
 	public void updatePosition(double changeInAngle, double changeInDistance) {
 		myAngle += changeInAngle;
 		if (myAngle >= 360) {
@@ -167,8 +191,8 @@ public class Turtle {
 	public double getVisibility() {
 		return myVisibility;
 	}
-	
-	public String getLangauge(){
+
+	public String getLangauge() {
 		return myLanguage;
 	}
 }
