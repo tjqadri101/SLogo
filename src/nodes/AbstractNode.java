@@ -64,6 +64,7 @@ public abstract class AbstractNode {
      */
     public abstract double evaluate();
 
+
     public List<AbstractNode> getChildren () {
         return myChildren;
     }

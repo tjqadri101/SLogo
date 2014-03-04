@@ -16,6 +16,17 @@ public class Turtle {
 	private final double VISIBLE = 1;
 	private final double INVISIBLE = 0;
 	private final double DEFAULT_HEADING = 0;
+	
+	private final String ORANGE = "ORANGE";
+	private final String PURPLE = "PURPLE";
+	private final String YELLOW = "YELLOW";
+	private final String BROWN = "BROWN";
+	private final String BLACK = "BLACK";
+	private final String GREEN = "GREEN";
+	private final String PINK = "PINK";
+	private final String BLUE = "BLUE";
+	private final String RED = "RED";
+	
 
 	private double myX;
 	private double myY;

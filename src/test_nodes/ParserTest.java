@@ -10,7 +10,7 @@ import nodes.BlockNode;
 
 public class ParserTest {
 
-	private Parser myParser = new Parser(new Turtle(0, 0, "English"));
+	private Parser myParser = new Parser(new Turtle(0, 0, "English"), null);
 
 	public AbstractNode parseAndCreateTree(String string, Turtle turtle)
 			throws ClassNotFoundException, NoSuchMethodException,
