@@ -138,6 +138,7 @@ public class TurtleDisplayPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					myAngle += -90d;
+					showState();
 		        	repaint();
 				}
 				@Override
@@ -208,7 +209,6 @@ public class TurtleDisplayPanel extends JPanel {
     	JButton right = new JButton("Right Rotate");
     	right.addKeyListener(myKeyListener);
     	right.addMouseListener(myMouseListener);
-    	
     	return right;
     }
 

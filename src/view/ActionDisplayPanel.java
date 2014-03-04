@@ -55,7 +55,7 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(makeHyperLink("Go to basic commands page",
 				"http://www.cs.duke.edu/courses/cps108/current/assign/03_slogo/commands.php",
 				0,0),BorderLayout.SOUTH);
-		this.add(turtleDisplayPanel,BorderLayout.EAST);
+		//this.add(turtleDisplayPanel,BorderLayout.EAST);
 	}
 	
 	  public static JLabel makeHyperLink(final String s, final String link, int x, int y)
