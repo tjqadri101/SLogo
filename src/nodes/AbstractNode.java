@@ -96,6 +96,7 @@ public abstract class AbstractNode {
      */
     public abstract double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException;
 
+
     public List<AbstractNode> getChildren () {
         return myChildren;
     }

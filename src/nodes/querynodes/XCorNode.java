@@ -1,4 +1,4 @@
-package querynodes;
+package nodes.querynodes;
 
 import turtle.Turtle;
 import nodes.leafnodes.LeafNode;
