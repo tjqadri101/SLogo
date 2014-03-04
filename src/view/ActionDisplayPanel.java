@@ -41,12 +41,6 @@ public class ActionDisplayPanel extends JPanel{
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(5,30,null);
 
-	/*ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser, Turtle t){
-		this.setPreferredSize(new Dimension((int) (width*ratio), height));
-
-		turtleDisplayPanel = new TurtleDisplayPanel(t);		
-	}*/
-
 	public ActionDisplayPanel(Turtle t) {
 		turtleDisplayPanel = new TurtleDisplayPanel(t);
 
@@ -57,7 +51,6 @@ public class ActionDisplayPanel extends JPanel{
 		revalidate();
 		repaint();
 		
-		//this.add(turtleDisplayPanel,BorderLayout.EAST);
 
 	}
 
@@ -66,6 +59,7 @@ public class ActionDisplayPanel extends JPanel{
 		myScrollableTextArea.setCaretPosition(myScrollableTextArea.getTextLength());
 
 	}
+	
 	protected void showState(){
 		double matchedX = turtleDisplayPanel.getCurX() - 320d;
 		double matchedY = -(turtleDisplayPanel.getCurY() - 240d);
