@@ -71,7 +71,7 @@ public class ViewFactory {
         });
         
         ParserTest test = new ParserTest();
-        Turtle turtle = new Turtle(0, 0, 0);
+        Turtle turtle = new Turtle(0, 0, "English");
         //AbstractNode node = test.parseAndCreateTree(string, turtle);
         //test.traverseTree(turtle, node);
     }

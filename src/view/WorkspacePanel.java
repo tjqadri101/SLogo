@@ -24,13 +24,13 @@ public class WorkspacePanel extends JPanel {
 	 * Interfacing from Frontend to Backend
 	 */
 	private ParserTest myParser = new ParserTest();
-	private Turtle myTurtle = new Turtle(0, 0, 0);
+	private Turtle myTurtle = new Turtle(0, 0, "English");
 	private CommandPanel myCommandPanel;
 	private ActionDisplayPanel myActionDisplayPanel;
 	private JFrame myTopFrame;
 	
 	public WorkspacePanel(JFrame f){
-		myTurtle = new Turtle(320d, 240d, 0);
+		myTurtle = new Turtle(320d, 240d, "English");
 		myParser = new ParserTest();
 		myTopFrame = f;
 

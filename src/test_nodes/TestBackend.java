@@ -125,8 +125,8 @@ public class TestBackend {
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
-		String string = "fd fd 50";
-		Turtle turtle = new Turtle(0, 0, "English");
+		String string = "qianjin qianjin 50";
+		Turtle turtle = new Turtle(0, 0, "Chinese");
 		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
