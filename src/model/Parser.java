@@ -8,18 +8,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
-
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
-import nodes.LeafNode;
 import nodes.NodeFactory;
-import nodes.NumberNode;
-import nodes.VariableNode;
 import nodes.controlnodes.ConditionNode;
 import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
+import nodes.leafnodes.LeafNode;
+import nodes.leafnodes.NumberNode;
+import nodes.leafnodes.VariableNode;
 
 public class Parser {
 
@@ -38,6 +37,8 @@ public class Parser {
         myLanguage = turtle.getLangauge();
         myAllTurtles = allTurtles;
     }
+    
+    
 
     public List<Function> getFunctions () {
         return myFunctions;
@@ -86,7 +87,7 @@ public class Parser {
         for (int i=0;i<words.length;i++) {
             if (words[i].charAt(0) == ':') {
                 //create a variable node
-                VariableNode vn = new VariableNode(myTurtle, Double.parseDouble(words[i+1]));
+//                VariableNode vn = new VariableNode(myTurtle, Double.parseDouble(words[i+1])); //TODO
             }
         }
 
@@ -207,13 +208,14 @@ public class Parser {
         function.setContent(function.getContent().substring(beginIndex, endIndex + 1));
     }
 
-    public void traverseTree(Turtle turtle, AbstractNode root) {  
+    public double traverseTree(Turtle turtle, AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
         myTurtle = turtle;
         if (root!=null) {
             for (AbstractNode childNode : root.getChildren()) {
                 traverseTree(myTurtle, childNode);
             }
-            root.evaluate();
+            return root.evaluate();
         }
+        return 1; //TODO
     }
 }

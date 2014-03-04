@@ -1,6 +1,6 @@
 package nodes.displaynodes;
 
-import nodes.LeafNode;
+import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class PenColorNode extends LeafNode {
