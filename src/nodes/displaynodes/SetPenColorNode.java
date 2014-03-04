@@ -14,7 +14,11 @@ public class SetPenColorNode extends AbstractNode {
 
 	@Override
 	public double evaluate() {
-		return 0;
+		AbstractNode child = this.getLeftNode();
+		double colorIndex = child.evaluate();
+		
+		myTurtle.setPenColor(colorIndex);
+		return colorIndex;
 	}
 
 	/**

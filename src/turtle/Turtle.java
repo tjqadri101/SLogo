@@ -1,5 +1,8 @@
 package turtle;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Turtle {
     
 //    public Turtle() {
@@ -27,10 +30,12 @@ public class Turtle {
 	private final String BLUE = "BLUE";
 	private final String RED = "RED";
 	
+	Map<Double, String> colorMapping = new HashMap<Double, String>();
 
 	private double myX;
 	private double myY;
 	private double myPen;
+	private String myPenColor;
 	private String myLanguage;
 	private double clearToggle;
 	private double myVisibility;
@@ -52,9 +57,31 @@ public class Turtle {
 		myLanguage = language;
 		myAngle = DEFAULT_HEADING;
 		myPen = PEN_UP;
+		myPenColor = BLACK;
+		mapColors();
 	}
 
+	/*
+	 * Display Mappings
+	 */
 	
+	private void mapColors(){
+		
+		colorMapping.put((double) 1, PINK);
+		colorMapping.put((double) 2, RED);
+		colorMapping.put((double) 3, ORANGE);
+		colorMapping.put((double) 4, YELLOW);
+		colorMapping.put((double) 5, GREEN);
+		colorMapping.put((double) 6, BLUE);
+		colorMapping.put((double) 7, PURPLE);
+		colorMapping.put((double) 8, BROWN);
+		colorMapping.put((double) 9, BLACK);
+	}
+	
+	public void setPenColor(double colorIndex){
+		myPenColor = colorMapping.get(colorIndex);
+
+	}
 	
 	public void setID(String id) {
 	    myID = id;
