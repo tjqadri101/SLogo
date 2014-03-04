@@ -25,6 +25,8 @@ public class Turtle {
 	private double myVisibility;
 	private double myAngle = DEFAULT_HEADING;
 
+	private String myID; //TODO assign ID to turtles (done in class Model)
+	
 	/**
 	 * 0 degrees: Up. 90 degrees: left. 180 degrees: down. 270 degrees: right.
 	 */
@@ -41,6 +43,17 @@ public class Turtle {
 		myPen = PEN_UP;
 	}
 
+	
+	
+	public void setID(String id) {
+	    myID = id;
+	}
+	
+	public String getID() {
+	    return myID;
+	}
+	
+	
 	public void updatePosition(double changeInAngle, double changeInDistance) {
 		myAngle += changeInAngle;
 		if (myAngle >= 360) {
