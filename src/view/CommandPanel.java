@@ -46,8 +46,8 @@ public class CommandPanel extends JPanel implements ActionListener {
 		
 		userTextPanel = new ScrollableTextArea(250,200,null);
 		//userTextPanel.addActionListener(this);
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
+//		this.setLayout(new GridBagLayout());
+//		GridBagConstraints gbc = new GridBagConstraints();
 		//Set the preferred size of the command and panel and add an embedded
 		//text field panel where the user inputs are displayed
 		this.setBackground(Color.MAGENTA);
