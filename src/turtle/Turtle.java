@@ -45,6 +45,7 @@ public class Turtle {
 	private String myLanguage;
 	private String myTurtleShape;
 	private double clearToggle;
+	private double myPenColorIndex;
 	private double myVisibility;
 	private double myAngle = DEFAULT_HEADING;
 
@@ -69,6 +70,7 @@ public class Turtle {
 		myAngle = DEFAULT_HEADING;
 		myPen = PEN_UP;
 		myPenColor = BLACK;
+		myPenColorIndex = 9;
 		mapColors();
 	}
 
@@ -194,5 +196,9 @@ public class Turtle {
 
 	public String getLangauge() {
 		return myLanguage;
+	}
+	
+	public double getPenColorIndex(){
+		return myPenColorIndex;
 	}
 }

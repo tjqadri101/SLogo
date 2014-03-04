@@ -1,13 +1,13 @@
-package querynodes;
+package nodes.displaynodes;
 
 import nodes.LeafNode;
 import turtle.Turtle;
 
-public class HeadingNode extends LeafNode {
+public class PenColorNode extends LeafNode {
 	
 	private Turtle myTurtle;
 
-	public HeadingNode(Turtle turtle) {
+	public PenColorNode(Turtle turtle) {
 		super(turtle);
 		
         myTurtle = turtle;
@@ -15,7 +15,7 @@ public class HeadingNode extends LeafNode {
 	
 	@Override
 	public double evaluate() {
-		return myTurtle.getAngle();
+		return myTurtle.getPenColorIndex();
 	}
 
 }
