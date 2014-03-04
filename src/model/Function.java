@@ -1,4 +1,4 @@
-package parse;
+package model;
 public class Function {
 
 	private String myFunctionName;

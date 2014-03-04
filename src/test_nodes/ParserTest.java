@@ -2,10 +2,9 @@ package test_nodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-
-import parse.Function;
-import parse.Parser;
 import turtle.Turtle;
+import model.Function;
+import model.Parser;
 import nodes.AbstractNode;
 import nodes.BlockNode;
 

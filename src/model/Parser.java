@@ -1,4 +1,4 @@
-package parse;
+package model;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -30,10 +30,13 @@ public class Parser {
 
     private List<VariableNode> myVariables = new ArrayList<VariableNode>();
     private List<Function> myFunctions = new ArrayList<Function>();
+    
+    private List<Turtle> myAllTurtles = new ArrayList<Turtle>();
 
-    public Parser(Turtle turtle) {
+    public Parser(Turtle turtle, List<Turtle> allTurtles) {
         myTurtle = turtle;
         myLanguage = turtle.getLangauge();
+        myAllTurtles = allTurtles;
     }
 
     public List<Function> getFunctions () {

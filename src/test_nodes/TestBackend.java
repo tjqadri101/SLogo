@@ -2,9 +2,10 @@ package test_nodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-
-import parse.Function;
-import parse.Parser;
+import java.util.ArrayList;
+import java.util.List;
+import model.Function;
+import model.Parser;
 import nodes.AbstractNode;
 import nodes.BlockNode;
 import nodes.NumberNode;
@@ -25,7 +26,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
 		Turtle turtle = new Turtle(0, 0, "English");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+		allTurtles.add(turtle);
+		Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -49,7 +52,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "if equalp 2 2 [ fd 50 fd 100 fd 80 ]";
 		Turtle turtle = new Turtle(0, 0, "English");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+                allTurtles.add(turtle);
+                Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -79,7 +84,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
 		Turtle turtle = new Turtle(0, 0, "English");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+                allTurtles.add(turtle);
+                Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -111,7 +118,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
 		Turtle turtle = new Turtle(0, 0, "English");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+                allTurtles.add(turtle);
+                Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -127,7 +136,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "qianjin qianjin 50";
 		Turtle turtle = new Turtle(0, 0, "Chinese");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+                allTurtles.add(turtle);
+                Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -143,7 +154,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "repeat 20 [ fd 50 ]";
 		Turtle turtle = new Turtle(0, 0, "English");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+                allTurtles.add(turtle);
+                Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -159,7 +172,9 @@ public class TestBackend {
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "if and equalp 1 1 greaterp 3 2 [ fd 50 ]";
 		Turtle turtle = new Turtle(0, 0, "English");
-		Parser parser = new Parser(turtle);
+		List<Turtle> allTurtles = new ArrayList<Turtle>();
+                allTurtles.add(turtle);
+                Parser parser = new Parser(turtle, allTurtles);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);

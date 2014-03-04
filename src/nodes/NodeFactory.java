@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-
-import parse.CommandFinder;
-import parse.CommandReader;
+import model.CommandFinder;
+import model.CommandReader;
 import turtle.Turtle;
 
 public class NodeFactory {

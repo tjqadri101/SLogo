@@ -3,13 +3,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import parse.Parser;
+import model.Parser;
 import test_nodes.ParserTest;
 import turtle.Moveable;
 import turtle.Turtle;

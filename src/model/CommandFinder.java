@@ -1,4 +1,4 @@
-package parse;
+package model;
 
 import java.lang.reflect.Field;
 
@@ -28,7 +28,7 @@ public class CommandFinder {
 		String myLanguage = language.toUpperCase() + "_LIST";
 		String aliasDirectory = null;
 
-		Class<?> Languages = Class.forName("parse.CommandFinder");
+		Class<?> Languages = Class.forName("model.CommandFinder");
 
 		Field[] fields = Languages.getDeclaredFields();
 		for (Field f : fields) {
