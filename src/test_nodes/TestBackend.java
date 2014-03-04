@@ -24,8 +24,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -48,8 +48,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "if equalp 2 2 [ fd 50 fd 100 fd 80 ]";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -78,8 +78,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -110,8 +110,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "ifelse equalp 2 2 [ fd 50 fd 100 fd 80 ] [rt 20]";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -126,8 +126,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "fd fd 50";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -142,8 +142,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "repeat 20 [ fd 50 ]";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);
@@ -158,8 +158,8 @@ public class TestBackend {
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, IOException, NoSuchFieldException {
 		String string = "if and equalp 1 1 greaterp 3 2 [ fd 50 ]";
-		Turtle turtle = new Turtle(0, 0, 0);
-		Parser parser = new Parser(turtle, "English");
+		Turtle turtle = new Turtle(0, 0, "English");
+		Parser parser = new Parser(turtle);
 		parser.createFunctionsAndVariables(string);
 		for (Function function : parser.getFunctions()) {
 			AbstractNode root = parser.createTree(function, turtle);

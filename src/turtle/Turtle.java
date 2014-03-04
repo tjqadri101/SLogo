@@ -20,6 +20,7 @@ public class Turtle {
 	private double myX;
 	private double myY;
 	private double myPen;
+	private String myLanguage;
 	private double clearToggle;
 	private double myVisibility;
 	private double myAngle = DEFAULT_HEADING;
@@ -32,9 +33,10 @@ public class Turtle {
 		// TODO: set default initial turtle position
 	}
 
-	public Turtle(double initialX, double initialY, double initialAngle) {
+	public Turtle(double initialX, double initialY, String language) {
 		myX = initialX;
 		myY = initialY;
+		myLanguage = language;
 		myAngle = DEFAULT_HEADING;
 		myPen = PEN_UP;
 	}
@@ -113,5 +115,9 @@ public class Turtle {
 
 	public double getVisibility() {
 		return myVisibility;
+	}
+	
+	public String getLangauge(){
+		return myLanguage;
 	}
 }

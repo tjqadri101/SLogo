@@ -24,10 +24,6 @@ public class NodeFactory {
 		myLanguage = language;
 	}
 	
-	/*
-	 * Step 1: Populates map of aliases depending on Language
-	 * 
-	 */
 
 	public AbstractNode createNode(String word) throws ClassNotFoundException,
 			NoSuchMethodException, SecurityException, InstantiationException,

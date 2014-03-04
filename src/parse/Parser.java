@@ -31,9 +31,9 @@ public class Parser {
     private List<VariableNode> myVariables = new ArrayList<VariableNode>();
     private List<Function> myFunctions = new ArrayList<Function>();
 
-    public Parser(Turtle turtle, String language) {
+    public Parser(Turtle turtle) {
         myTurtle = turtle;
-        myLanguage = language;
+        myLanguage = turtle.getLangauge();
     }
 
     public List<Function> getFunctions () {
