@@ -72,6 +72,7 @@ public class ActionDisplayPanel extends JPanel{
 		curX = 320; curY = 240;
 		center = true;
 
+
 		try {
 			displayTurtle = turtlePic.setImage();
 		} catch (IOException e) {
@@ -82,6 +83,13 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(makeInfoDisplay());
 		this.add(makeClear());
 		this.add(makeButtonRotateR45());
+
+		
+		this.add(makeHyperLink("Go to basic commands page",
+				"http://www.cs.duke.edu/courses/cps108/current/assign/03_slogo/commands.php",
+				0,0),BorderLayout.SOUTH);
+		//this.add(turtleDisplayPanel,BorderLayout.EAST);
+
 	}
 
 	@Override
