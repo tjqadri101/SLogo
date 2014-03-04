@@ -59,19 +59,12 @@ public class ActionDisplayPanel extends JPanel{
 	private KeyListener myKeyListener;
 	private JTextArea myTextArea;
 
-	/*ActionDisplayPanel(Integer width, Integer height, Double ratio, ParserTest myParser, Turtle t){
-		this.setPreferredSize(new Dimension((int) (width*ratio), height));
-
-		turtleDisplayPanel = new TurtleDisplayPanel(t);		
-	}*/
-
-	public ActionDisplayPanel(Turtle t) {
-		this.setPreferredSize(new Dimension(640, 550));
+	public ActionDisplayPanel(Integer width, Integer height, Double ratio, Turtle t) {
+		this.setPreferredSize(new Dimension((int) (ratio*width), height));
 		this.setBackground(Color.white);
 		myTurtle = t;
 		curX = 320; curY = 240;
 		center = true;
-
 
 		try {
 			displayTurtle = turtlePic.setImage();
@@ -83,11 +76,6 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(makeInfoDisplay());
 		this.add(makeClear());
 		this.add(makeButtonRotateR45());
-
-		
-		
-		//this.add(turtleDisplayPanel,BorderLayout.EAST);
-
 	}
 
 	@Override
@@ -207,7 +195,6 @@ public class ActionDisplayPanel extends JPanel{
 		});
 		return result;
 	}
-
 	protected JComponent makeInfoDisplay(){
 		myTextArea = new JTextArea(5, 30);
 		myTextArea.setEditable(false);
