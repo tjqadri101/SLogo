@@ -1,6 +1,6 @@
 package querynodes;
 
-import nodes.LeafNode;
+import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class ShowingNode extends LeafNode {

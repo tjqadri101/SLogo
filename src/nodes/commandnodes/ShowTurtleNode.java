@@ -1,6 +1,6 @@
 package nodes.commandnodes;
 
-import nodes.LeafNode;
+import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class ShowTurtleNode extends LeafNode {

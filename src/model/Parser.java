@@ -8,18 +8,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
-
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
-import nodes.LeafNode;
 import nodes.NodeFactory;
-import nodes.NumberNode;
-import nodes.VariableNode;
 import nodes.controlnodes.ConditionNode;
 import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
+import nodes.leafnodes.LeafNode;
+import nodes.leafnodes.NumberNode;
+import nodes.leafnodes.VariableNode;
 
 public class Parser {
 

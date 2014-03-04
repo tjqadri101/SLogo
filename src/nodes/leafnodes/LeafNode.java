@@ -1,5 +1,6 @@
-package nodes;
+package nodes.leafnodes;
 
+import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class LeafNode extends AbstractNode {

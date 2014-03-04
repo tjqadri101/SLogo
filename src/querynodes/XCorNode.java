@@ -1,7 +1,7 @@
 package querynodes;
 
 import turtle.Turtle;
-import nodes.LeafNode;
+import nodes.leafnodes.LeafNode;
 
 public class XCorNode extends LeafNode {
 	
