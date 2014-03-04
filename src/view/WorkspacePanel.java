@@ -50,7 +50,7 @@ public class WorkspacePanel extends JPanel {
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
-		myActionDisplayPanel = new ActionDisplayPanel(WIDTH, HEIGHT, .67, myTurtle);
+		myActionDisplayPanel = new ActionDisplayPanel(myTurtle);
 		return myActionDisplayPanel;
 	}
 	

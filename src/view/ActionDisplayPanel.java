@@ -50,8 +50,6 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(turtleDisplayPanel);
 		revalidate();
 		repaint();
-		
-
 	}
 
 	protected void showMessage (String message) {
