@@ -1,5 +1,7 @@
 package nodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import turtle.Turtle;
@@ -7,6 +9,7 @@ import turtle.Turtle;
 public abstract class AbstractNode {
     
     private Turtle myTurtle;
+    private List<Turtle> myActiveTurtles;
     
     private double myValue;
     private AbstractNode myParent;
@@ -17,6 +20,26 @@ public abstract class AbstractNode {
     public AbstractNode(Turtle turtle) {
         myTurtle = turtle;
     }
+    
+    
+    public void setTurtle(Turtle turtle) {
+        myTurtle = turtle;
+    }
+    
+    public void setActiveTurtles(List<Turtle> activeTurtles) {
+        myActiveTurtles = activeTurtles;
+    }
+    
+    public Turtle getTurtle() {
+        return myTurtle;
+    }
+    
+    public List<Turtle> getActiveTurtles() {
+        return myActiveTurtles;
+    }
+    
+    
+    
     
     public String toString() {
         return this.getClass().getName();
@@ -61,8 +84,17 @@ public abstract class AbstractNode {
     /**
      * perform calculation changes the position of the turtle for all sub nodes and return the final value
      * @return
+     * @throws IOException 
+     * @throws NoSuchFieldException 
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
+     * @throws ClassNotFoundException 
      */
-    public abstract double evaluate();
+    public abstract double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException;
 
     public List<AbstractNode> getChildren () {
         return myChildren;

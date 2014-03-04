@@ -1,5 +1,7 @@
 package nodes.controlnodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import turtle.Turtle;
 import nodes.AbstractNode;
 
@@ -12,7 +14,7 @@ public class RepeatNode extends AbstractNode {
         myTurtle = turtle;
     }
 
-    private double traverseSubtree() {
+    private double traverseSubtree() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         // check left (condition node)
         AbstractNode conditionNode = this.getLeftNode();
         double count = conditionNode.evaluate();
@@ -24,7 +26,7 @@ public class RepeatNode extends AbstractNode {
     }
 
     @Override
-    public double evaluate () {
+    public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         return traverseSubtree();
     }
 

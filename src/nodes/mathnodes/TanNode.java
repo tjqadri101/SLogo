@@ -1,5 +1,7 @@
 package nodes.mathnodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
@@ -13,7 +15,7 @@ public class TanNode extends AbstractNode{
 	}
 	
 	@Override
-	    public double evaluate () {
+	    public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
 	    	
 	    	AbstractNode child = this.getLeftNode();
 	    	double degrees = child.evaluate();
