@@ -36,10 +36,11 @@ public class TurtleDisplayPanel extends JPanel{
 
 
 	public TurtleDisplayPanel(Turtle t) {
-		this.setPreferredSize(new Dimension(640, 550));
+		//this.setPreferredSize(new Dimension(640, 550));
 		this.setBackground(Color.white);
 		myTurtle = t;
-		curX = 320; curY = 240;
+		//curX = 320; curY = 240;
+		curX = 80; curY = 120;
 		center = true;
 
 

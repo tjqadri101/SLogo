@@ -20,6 +20,13 @@ public class ScrollableTextArea extends JScrollPane{
 		this.setViewportView(myTextArea);
 	}
 	
+	public ScrollableTextArea(KeyListener listener){
+		myKeyListener = listener;
+    	myTextArea = new JTextArea();
+    	myTextArea.addKeyListener(myKeyListener);
+		this.setViewportView(myTextArea);
+	}
+	
 	public void setCaretPosition(int pos){
 		myTextArea.setCaretPosition(pos);
 	}
@@ -40,8 +47,8 @@ public class ScrollableTextArea extends JScrollPane{
 		return myTextArea.getText().length();
 	}
 	
-	public void setEditable(){
-		myTextArea.setEditable(false);
+	public void setEditable(boolean b){
+		myTextArea.setEditable(b);
 	}
 
 }

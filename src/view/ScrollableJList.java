@@ -27,6 +27,14 @@ public class ScrollableJList extends JScrollPane{
 		myJList.addMouseListener(myMouseListener);
 	}
 	
+	public ScrollableJList(MouseListener listener){
+		myMouseListener = listener;
+		myJList = new JList();
+		myJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setViewportView(myJList);
+		myJList.addMouseListener(myMouseListener);
+	}
+	
 	public void setModel(ListModel model){
 		myJList.setModel(model);
 	}

@@ -23,6 +23,7 @@ public class Main {
 		JMenuBar menuBar = buildMenuBar();
 		JFrame frame = new JFrame("SLOGO");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(new Dimension(1024, 800));
 
 		frame.setJMenuBar(menuBar);
 		Container mainWindow = new WorkspacePanel(frame);
