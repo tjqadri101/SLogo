@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -28,7 +30,7 @@ public class CommandPanel extends JPanel implements ActionListener {
 	private static final Integer RATIO = 12;
 	
 	//text field class for displaying and storing user input
-	private UserTextPanel userTextPanel;
+	private ScrollableTextArea userTextPanel;
 	private JButton execute = new JButton("Execute!");
 	private ExecutedCodePanel executedCodePanel = new ExecutedCodePanel();
 	private ParserTest parser;
@@ -42,9 +44,10 @@ public class CommandPanel extends JPanel implements ActionListener {
 		parser = myParser;
 		turtle = t;
 		
-		userTextPanel = new UserTextPanel(250,200);
+		userTextPanel = new ScrollableTextArea(250,200,null);
 		//userTextPanel.addActionListener(this);
-		
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		//Set the preferred size of the command and panel and add an embedded
 		//text field panel where the user inputs are displayed
 		this.setBackground(Color.MAGENTA);
@@ -65,7 +68,7 @@ public class CommandPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		executedCodePanel.addToCodeList(userTextPanel.getText());
 		String input = userTextPanel.getText();
-		userTextPanel.clearText();
+		userTextPanel.setText("");
 		AbstractNode node = null;
 		try {
 			System.out.println(userTextPanel.getText());

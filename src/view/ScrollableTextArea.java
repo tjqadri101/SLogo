@@ -32,6 +32,10 @@ public class ScrollableTextArea extends JScrollPane{
 		myTextArea.setText(s);
 	}
 	
+	public String getText(){
+		return myTextArea.getText();
+	}
+	
 	public int getTextLength(){
 		return myTextArea.getText().length();
 	}
