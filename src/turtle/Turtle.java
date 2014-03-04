@@ -46,6 +46,7 @@ public class Turtle {
 	private String myTurtleShape;
 	private double clearToggle;
 	private double myPenColorIndex;
+	private double myShapeIndex;
 	private double myVisibility;
 	private double myAngle = DEFAULT_HEADING;
 
@@ -71,6 +72,7 @@ public class Turtle {
 		myPen = PEN_UP;
 		myPenColor = BLACK;
 		myPenColorIndex = 9;
+		myShapeIndex = 0;
 		mapColors();
 	}
 
@@ -201,4 +203,9 @@ public class Turtle {
 	public double getPenColorIndex(){
 		return myPenColorIndex;
 	}
+	
+	public double getMyShapeIndex(){
+		return myShapeIndex;
+	}
 }
+
