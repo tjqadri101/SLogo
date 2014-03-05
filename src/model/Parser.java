@@ -12,8 +12,10 @@ import turtle.ITurtle;
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
+import nodes.FunctionNode;
 import nodes.MakeNode;
 import nodes.NodeFactory;
+import nodes.VariableNode;
 import nodes.controlnodes.ConditionNode;
 import nodes.controlnodes.DoTimesNode;
 import nodes.controlnodes.ForNode;
@@ -21,10 +23,8 @@ import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 import nodes.controlnodes.ToNode;
-import nodes.leafnodes.FunctionNode;
 import nodes.leafnodes.LeafNode;
 import nodes.leafnodes.NumberNode;
-import nodes.leafnodes.VariableNode;
 
 public class Parser {
     private List<Turtle> myTurtles;
@@ -108,13 +108,16 @@ public class Parser {
             if (currentNode instanceof ToNode) {
                 //TODO
             }
-            if (currentNode instanceof VariableNode) {
-                if (currentNode.isAlreadyDeclared()) {
-                    currentNode = goToParent(currentNode);
-                }
-            }
             if (currentNode instanceof LeafNode) {
+                if ((currentNode instanceof VariableNode || currentNode instanceof FunctionNode) && currentNode.isAlreadyDeclared()) {
+                    
+                }
                 currentNode = goToParent(currentNode);
+            }
+            if (currentNode instanceof NumberNode) {
+                if (currentNode.getParent() instanceof MakeNode) {
+                    currentNode.getParent().getLeftNode().setCurrentValue(currentNode.evaluate());
+                }
             }
             if (currentNode instanceof IfElseNode) {
                 AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
@@ -165,7 +168,7 @@ public class Parser {
                 }
             }
             
-            AbstractNode nextNode = nodeFactory.createNode(nextWord); // TODO create variable node in node factory
+            AbstractNode nextNode = nodeFactory.createNode(nextWord); 
             if (currentNode.getLeftNode()== null) {
                 currentNode.setLeftNode(nextNode);
             } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {

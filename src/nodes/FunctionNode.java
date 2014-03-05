@@ -1,10 +1,9 @@
-package nodes.leafnodes;
+package nodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class FunctionNode extends AbstractNode{

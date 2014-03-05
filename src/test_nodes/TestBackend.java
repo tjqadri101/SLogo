@@ -9,6 +9,7 @@ import model.Parser;
 import nodes.AbstractNode;
 import nodes.BlockNode;
 import nodes.MakeNode;
+import nodes.VariableNode;
 import nodes.booleannodes.EqualNode;
 import nodes.commandnodes.ForwardNode;
 import nodes.controlnodes.ConditionNode;
@@ -16,7 +17,6 @@ import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 import nodes.leafnodes.NumberNode;
-import nodes.leafnodes.VariableNode;
 import turtle.Turtle;
 
 public class TestBackend {

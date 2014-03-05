@@ -112,5 +112,14 @@ public abstract class AbstractNode {
     public boolean isAlreadyDeclared () {
         return false;
     }
+
+    /**
+     * Override in VaraibleNode
+     * @param evaluate
+     */
+    public void setCurrentValue (double evaluate) {
+        // TODO Auto-generated method stub
+        
+    }
     
 }

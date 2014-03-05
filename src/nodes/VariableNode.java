@@ -1,13 +1,12 @@
-package nodes.leafnodes;
+package nodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import nodes.AbstractNode;
 import model.Parser;
 import turtle.Turtle;
 
-public class VariableNode extends LeafNode{ 
+public class VariableNode extends AbstractNode{ 
 
     private double myCurrentValue;
     private List<Turtle> myTurtles;
@@ -51,7 +50,8 @@ public class VariableNode extends LeafNode{
     public double getIncrement() {
         return myIncrement;
     }
-
+    
+    @Override
     public void setCurrentValue(double value) {
         myCurrentValue = value;
     }
@@ -80,6 +80,20 @@ public class VariableNode extends LeafNode{
     
     public void setIsAlreadyDeclaredBoolean(boolean boo) {
         myIsAlreadyDeclaredBoolean = boo;
+    }
+
+
+    @Override
+    public boolean allowsTwoChildren () {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+
+    @Override
+    public boolean allowsMoreThanTwoChildren () {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }
