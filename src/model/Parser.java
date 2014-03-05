@@ -39,7 +39,6 @@ public class Parser {
         myTurtles = turtles;
         myCommands = commands;
         myLanguage = language;
-                
     }
     
     public void inactivateTurtle(Turtle turtle) {
@@ -97,34 +96,40 @@ public class Parser {
 
         while (!queue.isEmpty()) {
             
-            if (currentNode instanceof LeafNode) {
-                // return to parent
-                currentNode = currentNode.getParent();
-                if (!currentNode.allowsTwoChildren() || 
-                        (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
-                    currentNode = currentNode.getParent();
+            if (currentNode instanceof FunctionNode) {
+                if (!currentNode.isAlreadyDeclared()) {
+                    AbstractNode blockNode = new BlockNode(myTurtles);
+                    currentNode.setLeftNode(blockNode);
+                    currentNode = currentNode.getLeftNode();
+                } else {
+                    currentNode = goToParent(currentNode);
                 }
             }
-
+            if (currentNode instanceof ToNode) {
+                //TODO
+            }
+            if (currentNode instanceof VariableNode) {
+                if (currentNode.isAlreadyDeclared()) {
+                    currentNode = goToParent(currentNode);
+                }
+            }
+            if (currentNode instanceof LeafNode) {
+                currentNode = goToParent(currentNode);
+            }
             if (currentNode instanceof IfElseNode) {
-                // create two block nodes
-                AbstractNode bnLeft = new BlockNode(myTurtles);
+                AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
                 AbstractNode bnRight = new BlockNode(myTurtles);
                 currentNode.setLeftNode(bnLeft);
                 currentNode.setRightNode(bnRight);
-                // create a condition node for left block
-                AbstractNode conditionLeft = new ConditionNode(myTurtles);
+                AbstractNode conditionLeft = new ConditionNode(myTurtles); // create a condition node for left block
                 bnLeft.setLeftNode(conditionLeft);
                 bnLeft.setRightNode(new BlockNode(myTurtles));
-
-                // create condition for condition left; condition right is the opposite of condition left
                 currentNode = bnLeft.getLeftNode();
             }
-            if ((currentNode instanceof IfNode || currentNode instanceof RepeatNode) && currentNode.getLeftNode() == null) {
-                // create 1 block node
-                AbstractNode bn = new BlockNode(myTurtles);
-                // create 1 condition node
-                AbstractNode conditionNode = new ConditionNode(myTurtles);
+            if ((currentNode instanceof IfNode || currentNode instanceof RepeatNode 
+                    || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) && currentNode.getLeftNode() == null) {
+                AbstractNode bn = new BlockNode(myTurtles);// create 1 block node
+                AbstractNode conditionNode = new ConditionNode(myTurtles);// create 1 condition node
                 currentNode.setLeftNode(conditionNode);
                 currentNode.setRightNode(bn);
                 currentNode = conditionNode;
@@ -145,7 +150,6 @@ public class Parser {
                     }
                     nextWord = queue.poll();
                 }
-
                 if (nextWord.equals("]")) {    
                     if (currentNode == null) {
                         return root;
@@ -160,8 +164,8 @@ public class Parser {
                     }
                 }
             }
-            AbstractNode nextNode = nodeFactory.createNode(nextWord);
-
+            
+            AbstractNode nextNode = nodeFactory.createNode(nextWord); // TODO create variable node in node factory
             if (currentNode.getLeftNode()== null) {
                 currentNode.setLeftNode(nextNode);
             } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {
@@ -169,85 +173,19 @@ public class Parser {
             } else if (currentNode.getRightNode() != null && currentNode.allowsMoreThanTwoChildren()){
                 currentNode.addChild(nextNode);
             }
-
             currentNode = nextNode;
             currentWord = nextWord;
-
-        
-            
-            
-//            if (currentNode == null) {
-//                return root;
-//            }
-//            if (currentWord.equals("[")) {
-//                bracketStack.push(currentWord);
-//                if (currentNode instanceof RepeatNode || currentNode instanceof IfNode 
-//                            || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) {
-//                    AbstractNode leftNode = new ConditionNode(myTurtles);
-//                    AbstractNode rightNode = new BlockNode(myTurtles);
-//                    currentNode.setLeftNode(leftNode);
-//                    currentNode.setRightNode(rightNode);
-//                    currentNode = currentNode.getLeftNode();
-//                }
-//                if (currentNode instanceof FunctionNode) {
-//                    AbstractNode blockNode = new BlockNode(myTurtles);
-//                    currentNode.setLeftNode(blockNode);
-//                    currentNode = currentNode.getLeftNode();
-//                }
-//                if (currentNode instanceof IfElseNode) {
-//                    // create two block nodes
-//                    AbstractNode bnLeft = new BlockNode(myTurtles);
-//                    AbstractNode bnRight = new BlockNode(myTurtles);
-//                    currentNode.setLeftNode(bnLeft);
-//                    currentNode.setRightNode(bnRight);
-//                    // create a condition node for left block
-//                    AbstractNode conditionLeft = new ConditionNode(myTurtles);
-//                    bnLeft.setLeftNode(conditionLeft);
-//                    bnLeft.setRightNode(new BlockNode(myTurtles));
-//
-//                    currentNode = bnLeft.getLeftNode();
-//                }
-//                if (currentNode instanceof ToNode) {
-//                    // create two block nodes
-//                    AbstractNode bnLeft = new BlockNode(myTurtles);
-//                    AbstractNode bnRight = new BlockNode(myTurtles);
-//                    currentNode.setLeftNode(bnLeft);
-//                    currentNode.setRightNode(bnRight);
-//                    currentNode = bnLeft.getLeftNode();
-//                }
-//                currentWord = queue.poll();
-//            }
-//            if (currentWord.equals("]") && !bracketStack.isEmpty()) {
-//                bracketStack.push(currentWord);
-//                // go up until it finds an available right node
-//                while (!isAvailable(currentNode)) {
-//                    // go to its block node if there is one
-//                    currentNode = currentNode.getParent();
-//                }
-//                currentNode = currentNode.getRightNode();
-//                currentWord = queue.poll();
-//            }
-//            if (currentWord == null && bracketStack.isEmpty()) {
-//                return root;
-//            }
-//            if (currentWord == null && !bracketStack.isEmpty()) {
-//                //ERROR: bracket mismatch
-//                return null;
-//            }
-//            // poll next word and make next node
-//            String nextWord = queue.poll();
-//            AbstractNode nextNode = nodeFactory.createNode(nextWord);
-//            if (currentNode.getLeftNode()== null) {
-//                currentNode.setLeftNode(nextNode);
-//            } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {
-//                currentNode.setRightNode(nextNode);
-//            } else if (currentNode.getRightNode() != null && currentNode.allowsMoreThanTwoChildren()){
-//                currentNode.addChild(nextNode);
-//            }
-//            currentNode = nextNode;
-//            currentWord = nextWord;
         }
         return root;
+    }
+
+    private AbstractNode goToParent (AbstractNode currentNode) {
+        currentNode = currentNode.getParent();
+        if (!currentNode.allowsTwoChildren() || 
+                (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
+            currentNode = currentNode.getParent();
+        }
+        return currentNode;
     }
 
     private boolean isAvailable (AbstractNode currentNode) {
@@ -255,7 +193,6 @@ public class Parser {
     }
 
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
-
         if (root!=null) {
             for (AbstractNode childNode : root.getChildren()) {
                 traverseTree(childNode);

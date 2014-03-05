@@ -24,13 +24,11 @@ public class MakeNode extends AbstractNode {
 
     @Override
     public boolean allowsTwoChildren () {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean allowsMoreThanTwoChildren () {
-        // TODO Auto-generated method stub
         return false;
     }
 

@@ -8,6 +8,7 @@ import model.Model;
 import model.Parser;
 import nodes.AbstractNode;
 import nodes.BlockNode;
+import nodes.MakeNode;
 import nodes.booleannodes.EqualNode;
 import nodes.commandnodes.ForwardNode;
 import nodes.controlnodes.ConditionNode;
@@ -15,16 +16,41 @@ import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 import nodes.leafnodes.NumberNode;
+import nodes.leafnodes.VariableNode;
 import turtle.Turtle;
 
 public class TestBackend {
 
+//    @org.junit.Test
+//    public void testForCreateTree_Repeat() throws ClassNotFoundException,
+//    NoSuchMethodException, SecurityException, InstantiationException,
+//    IllegalAccessException, IllegalArgumentException,
+//    InvocationTargetException, IOException, NoSuchFieldException {
+//        String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
+//        Turtle turtle = new Turtle(0, 0, "English");
+//        List<Turtle> allTurtles = new ArrayList<Turtle>();
+//        allTurtles.add(turtle);
+//
+//        Parser parser = new Parser(allTurtles, string, "English");
+//        AbstractNode root = parser.createTree();
+//        assert root instanceof BlockNode;
+//        AbstractNode node = root.getLeftNode();
+//        assert node instanceof RepeatNode;
+//        assert node.getLeftNode() instanceof ConditionNode;
+//        assert node.getRightNode() instanceof BlockNode;
+//        assert node.getLeftNode().getLeftNode() instanceof NumberNode;
+//        for (AbstractNode thisNode : node.getRightNode().getChildren()) {
+//            assert thisNode instanceof ForwardNode;
+//            assert thisNode.getLeftNode() instanceof NumberNode;
+//        }
+//    }
+    
     @org.junit.Test
-    public void testForCreateTree_Repeat() throws ClassNotFoundException,
+    public void testForCreateTree_Make() throws ClassNotFoundException,
     NoSuchMethodException, SecurityException, InstantiationException,
     IllegalAccessException, IllegalArgumentException,
     InvocationTargetException, IOException, NoSuchFieldException {
-        String string = "repeat 2 [ fd 50 fd 100 fd 80 ]";
+        String string = "make :distance 100 repeat 2 [ fd :distance ]";
         Turtle turtle = new Turtle(0, 0, "English");
         List<Turtle> allTurtles = new ArrayList<Turtle>();
         allTurtles.add(turtle);
@@ -32,15 +58,14 @@ public class TestBackend {
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
         assert root instanceof BlockNode;
-        AbstractNode node = root.getLeftNode();
-        assert node instanceof RepeatNode;
-        assert node.getLeftNode() instanceof ConditionNode;
-        assert node.getRightNode() instanceof BlockNode;
-        assert node.getLeftNode().getLeftNode() instanceof NumberNode;
-        for (AbstractNode thisNode : node.getRightNode().getChildren()) {
-            assert thisNode instanceof ForwardNode;
-            assert thisNode.getLeftNode() instanceof NumberNode;
-        }
+        AbstractNode leftNode = root.getLeftNode();
+        AbstractNode rightNode = root.getRightNode();
+        assert leftNode instanceof MakeNode;
+        assert leftNode.getLeftNode() instanceof VariableNode; //TODO in create tree and the node class
+        assert rightNode instanceof RepeatNode;
+        assert rightNode.getLeftNode() instanceof ConditionNode;
+        
+        
     }
 //
 //    @org.junit.Test

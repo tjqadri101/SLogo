@@ -4,35 +4,36 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import nodes.AbstractNode;
-import model.Function;
 import model.Parser;
 import turtle.Turtle;
 
-public class VariableNode extends LeafNode{ //TODO a function can be a variable node
+public class VariableNode extends LeafNode{ 
 
     private double myCurrentValue;
-    private Turtle myTurtle; 
+    private List<Turtle> myTurtles;
 
     private double myStartingValue;
     private double myEndingValue;
     private double myIncrement;
 
     private String myVariableName;
+    
+    private boolean myIsAlreadyDeclaredBoolean;
 
-    public VariableNode (Turtle turtle, String variableName) {
-        super(turtle);
-        myTurtle = turtle;
+    public VariableNode (List<Turtle> turtles, String variableName) {
+        super(turtles);
+        myTurtles = turtles;
         myVariableName = variableName;
     }
 
 
-    public VariableNode (Turtle turtle, String variableName, double value) {
-        this(turtle, variableName);
+    public VariableNode (List<Turtle> turtles, String variableName, double value) {
+        this(turtles, variableName);
         myCurrentValue = value;
     }
 
-    public VariableNode (Turtle turtle, String variableName, double startingValue, double endingValue, double increment) {
-        this(turtle, variableName);
+    public VariableNode (List<Turtle> turtles, String variableName, double startingValue, double endingValue, double increment) {
+        this(turtles, variableName);
         myStartingValue = startingValue;
         myEndingValue = endingValue;
         myIncrement = increment;
@@ -70,6 +71,15 @@ public class VariableNode extends LeafNode{ //TODO a function can be a variable 
     public String getName () {
         return myVariableName;
     }
-
+    
+    @Override
+    public boolean isAlreadyDeclared() {
+        return myIsAlreadyDeclaredBoolean;
+        
+    }
+    
+    public void setIsAlreadyDeclaredBoolean(boolean boo) {
+        myIsAlreadyDeclaredBoolean = boo;
+    }
 
 }
