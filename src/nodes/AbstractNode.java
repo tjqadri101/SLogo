@@ -8,7 +8,7 @@ import turtle.Turtle;
 
 public abstract class AbstractNode {
     
-    private Turtle myTurtle;
+    private List<Turtle> myTurtles;
     private List<Turtle> myActiveTurtles;
     
     private double myValue;
@@ -17,21 +17,12 @@ public abstract class AbstractNode {
     private AbstractNode myLeftNode;
     private AbstractNode myRightNode;
     
-    public AbstractNode(Turtle turtle) {
-        myTurtle = turtle;
+    public AbstractNode(List<Turtle> turtles) {
+        myTurtles = turtles;
     }
-    
-    
-    public void setTurtle(Turtle turtle) {
-        myTurtle = turtle;
-    }
-    
+
     public void setActiveTurtles(List<Turtle> activeTurtles) {
         myActiveTurtles = activeTurtles;
-    }
-    
-    public Turtle getTurtle() {
-        return myTurtle;
     }
     
     public List<Turtle> getActiveTurtles() {

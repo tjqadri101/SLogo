@@ -26,43 +26,46 @@ import nodes.leafnodes.VariableNode;
 public class Parser {
 
     /**
-     * One parser for one turtle
+     * active turtles
      */
-    private Turtle myTurtle;
+    private List<Turtle> myTurtles;
+    
+    /**
+     * inactive turtles
+     */
+    private List<Turtle> myInactiveTurtles;
+    
     private boolean myValidBoolean = true;
     
-    private boolean myActiveBoolean = true;
-    
+    private String myCommands;
     private String myLanguage;
 
     private List<VariableNode> myVariableNodes = new ArrayList<VariableNode>();
     private List<FunctionNode> myFunctionNodes = new ArrayList<FunctionNode>();
-    
 
-    public Parser(Turtle turtle) {
-        myTurtle = turtle;
-        myLanguage = turtle.getLangauge();
-        
-//        ITurtle iTurtle = new Turtle();
-        ITurtle newITurtle = (ITurtle) myTurtle;
+    public Parser (List<Turtle> turtles, String commands, String language) {
+        myTurtles = turtles;
+        myCommands = commands;
+        myLanguage = language;
+                
     }
     
-    public Parser(Turtle turtle, boolean onOffBoolean) {
-        this(turtle);
-        myActiveBoolean = onOffBoolean;
+    public void inactivateTurtle(Turtle turtle) {
+        for (int i=0;i<myTurtles.size();i++) {
+            if (myTurtles.get(i).equals(turtle)) {
+                myTurtles.remove(i);
+                myInactiveTurtles.add(turtle);
+            }
+        }
     }
     
-
-    public void setOnOffBoolean (boolean onOrOff) {
-        myActiveBoolean = onOrOff;
-    }
-    
-    public boolean getOnOffBoolean() {
-        return myActiveBoolean;
-    }
-    
-    public void toggleOnOffBoolean() {
-        myActiveBoolean = !myActiveBoolean;
+    public void activeTurtle(Turtle turtle) {
+        for (int i=0;i<myInactiveTurtles.size();i++) {
+            if (myInactiveTurtles.get(i).equals(turtle)) {
+                myInactiveTurtles.remove(i);
+                myTurtles.add(turtle);
+            }
+        }
     }
     
     public List<FunctionNode> getFunctionNodes () {
@@ -76,76 +79,98 @@ public class Parser {
     public boolean isValid() {
         return myValidBoolean;
     }
-
-    public void createFunctionsAndVariables(String s) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-        String[] words = s.split(" ");
-        // if does not have the word "to" (only has one function)
-        boolean hasTo = false;
-        for (String word : words){
-            if (word.equals("to")) {
-                hasTo = true;
-            }
-        }
-        if (hasTo) {
-            String[] functionString = s.split("to");
-
-            for (String thisFunction : functionString) {
-                if (!thisFunction.equals("")) {
-
-                    String[] wordsInFunction = thisFunction.split(" ");
-                    int functionNameIndex = 0;
-                    int functionContentStartIndex = 0;
-                    while (wordsInFunction[functionNameIndex].equals("") ||
-                            wordsInFunction[functionNameIndex].equals(" ")) {
-                        functionNameIndex ++;
-                        functionContentStartIndex += wordsInFunction[functionNameIndex].length() + 1;
-                    }
-                    String functionName = wordsInFunction[functionNameIndex];
-                    String content = thisFunction.substring(functionContentStartIndex);
-                    
-                    FunctionNode root = createTree(s, myTurtle); 
-                    root.setName(functionName);
-                    root.setContent(content);
-                    myFunctionNodes.add(root);
-                }
-            }
-            
-        } else { //hasTo = false
-            FunctionNode root = createTree(s, myTurtle);
-            root.setName("NoName");
-            root.setContent(s);
-            myFunctionNodes.add(root);
-        }
-
-        for (int i=0;i<words.length;i++) {
-            if (words[i].equals("make")) {
-                VariableNode vn = new VariableNode(myTurtle, words[i+1].substring(1), Double.parseDouble(words[i+2]));
-            }
-            if (words[i].equals("set")) {
-                // find variable node
-                for (VariableNode thisNode : myVariableNodes) {
-                    if (thisNode.getName().equals(words[i+1])) {
-//                        thisNode.setValue() //TODO
-                    }
-                }
-            }
-        }
-
+    
+    
+    /** 
+     * call this method in Model; 
+     * creates abstract syntax tree and traverse the tree
+     * @return value to display in the view
+     */
+    public double doParse() {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return -1;
     }
+    
 
-    public FunctionNode createTree(String content, Turtle turtle) throws ClassNotFoundException, 
+//    public void createFunctionsAndVariables(String s) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+//        String[] words = s.split(" ");
+//        // if does not have the word "to" (only has one function)
+//        boolean hasTo = false;
+//        for (String word : words){
+//            if (word.equals("to")) {
+//                hasTo = true;
+//            }
+//        }
+//        if (hasTo) {
+//            String[] functionString = s.split("to");
+//
+//            for (String thisFunction : functionString) {
+//                if (!thisFunction.equals("")) {
+//
+//                    String[] wordsInFunction = thisFunction.split(" ");
+//                    int functionNameIndex = 0;
+//                    int functionContentStartIndex = 0;
+//                    while (wordsInFunction[functionNameIndex].equals("") ||
+//                            wordsInFunction[functionNameIndex].equals(" ")) {
+//                        functionNameIndex ++;
+//                        functionContentStartIndex += wordsInFunction[functionNameIndex].length() + 1;
+//                    }
+//                    String functionName = wordsInFunction[functionNameIndex];
+//                    String content = thisFunction.substring(functionContentStartIndex);
+//                    
+//                    FunctionNode root = createTree(s, myTurtle); 
+//                    root.setName(functionName);
+//                    root.setContent(content);
+//                    myFunctionNodes.add(root);
+//                }
+//            }
+//            
+//        } else { //hasTo = false
+//            FunctionNode root = createTree(s, myTurtle);
+//            root.setName("NoName");
+//            root.setContent(s);
+//            myFunctionNodes.add(root);
+//        }
+//
+//        for (int i=0;i<words.length;i++) {
+//            if (words[i].equals("make")) {
+//                VariableNode vn = new VariableNode(myTurtle, words[i+1].substring(1), Double.parseDouble(words[i+2]));
+//            }
+//            if (words[i].equals("set")) {
+//                // find variable node
+//                for (VariableNode thisNode : myVariableNodes) {
+//                    if (thisNode.getName().equals(words[i+1])) {
+////                        thisNode.setValue() //TODO
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
+
+    public AbstractNode createTree() throws ClassNotFoundException, 
     NoSuchMethodException, SecurityException, InstantiationException, 
     IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException, NoSuchFieldException {
-        myTurtle = turtle;
-        NodeFactory nodeFactory = new NodeFactory(myTurtle, myLanguage);
         
-        FunctionNode root = new FunctionNode(turtle, content);
-        AbstractNode blockNode = new BlockNode(myTurtle);
+        NodeFactory nodeFactory = new NodeFactory(myTurtles, myLanguage);
+        
+        FunctionNode root = new FunctionNode(myTurtles, myCommands);
+        AbstractNode blockNode = new BlockNode(myTurtles);
         root.setLeftNode(blockNode);
         
 //        processFunction(function); TODO brackets
 
-        String[] words = content.split(" ");
+        String[] words = myCommands.split(" ");
         Queue<String> queue = new LinkedList<String>();
         
         Stack<String> bracketStack = new Stack<String>(); //TODO
@@ -178,23 +203,23 @@ public class Parser {
 
             if (currentNode instanceof IfElseNode) {
                 // create two block nodes
-                AbstractNode bnLeft = new BlockNode(myTurtle);
-                AbstractNode bnRight = new BlockNode(myTurtle);
+                AbstractNode bnLeft = new BlockNode(myTurtles);
+                AbstractNode bnRight = new BlockNode(myTurtles);
                 currentNode.setLeftNode(bnLeft);
                 currentNode.setRightNode(bnRight);
                 // create a condition node for left block
-                AbstractNode conditionLeft = new ConditionNode(myTurtle);
+                AbstractNode conditionLeft = new ConditionNode(myTurtles);
                 bnLeft.setLeftNode(conditionLeft);
-                bnLeft.setRightNode(new BlockNode(myTurtle));
+                bnLeft.setRightNode(new BlockNode(myTurtles));
 
                 // create condition for condition left; condition right is the opposite of condition left
                 currentNode = bnLeft.getLeftNode();
             }
             if ((currentNode instanceof IfNode || currentNode instanceof RepeatNode) && currentNode.getLeftNode() == null) {
                 // create 1 block node
-                AbstractNode bn = new BlockNode(myTurtle);
+                AbstractNode bn = new BlockNode(myTurtles);
                 // create 1 condition node
-                AbstractNode conditionNode = new ConditionNode(myTurtle);
+                AbstractNode conditionNode = new ConditionNode(myTurtles);
                 currentNode.setLeftNode(conditionNode);
                 currentNode.setRightNode(bn);
                 currentNode = conditionNode;
@@ -261,11 +286,11 @@ public class Parser {
 //        function.setContent(function.getContent().substring(beginIndex, endIndex + 1));
 //    }
 
-    public double traverseTree(Turtle turtle, AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
-        myTurtle = turtle;
+    public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
+
         if (root!=null) {
             for (AbstractNode childNode : root.getChildren()) {
-                traverseTree(myTurtle, childNode);
+                traverseTree(childNode);
             }
             return root.evaluate();
         }

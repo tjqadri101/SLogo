@@ -3,6 +3,7 @@ package nodes;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 import nodes.leafnodes.NumberNode;
 import model.CommandFinder;
@@ -11,7 +12,7 @@ import turtle.Turtle;
 
 public class NodeFactory {
 
-	private Turtle myTurtle;
+	private List<Turtle> myTurtles;
 	private String myLanguage;
 	
 	private final String[] PACKAGES = { "nodes.booleannodes.",
@@ -19,8 +20,8 @@ public class NodeFactory {
 			"nodes.booleannodes", "nodes." };
 
 
-	public NodeFactory(Turtle turtle, String language) {
-		myTurtle = turtle;
+	public NodeFactory(List<Turtle> turtles, String language) {
+		myTurtles = turtles;
 		myLanguage = language;
 	}
 	
@@ -41,12 +42,12 @@ public class NodeFactory {
 			Class<?> c = Class.forName(findClass(command));
 
 			Constructor<?> constructor = c.getConstructor(Turtle.class);
-			genericNode = (AbstractNode) constructor.newInstance(myTurtle);
+			genericNode = (AbstractNode) constructor.newInstance(myTurtles);
 
 		}
 
 		else if (isNumeric(word)) {
-			return new NumberNode(myTurtle, Double.parseDouble(word));
+			return new NumberNode(myTurtles, Double.parseDouble(word));
 		}
 
 		return genericNode;

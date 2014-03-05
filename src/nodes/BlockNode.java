@@ -1,14 +1,15 @@
 package nodes;
 
+import java.util.List;
 import turtle.Turtle;
 
 public class BlockNode extends AbstractNode {
 
-    private Turtle myTurtle; 
+    private List<Turtle> myTurtles; 
     
-    public BlockNode (Turtle turtle) {
-        super(turtle);
-        myTurtle = turtle;
+    public BlockNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
     }
 
     @Override

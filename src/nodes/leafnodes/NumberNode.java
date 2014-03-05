@@ -1,16 +1,17 @@
 package nodes.leafnodes;
 
+import java.util.List;
 import turtle.Turtle;
 
 public class NumberNode extends LeafNode{
 
     private double myValue;
-    private Turtle myTurtle; 
+    private List<Turtle> myTurtles; 
     
-    public NumberNode (Turtle turtle, double value) {
-        super(turtle);
+    public NumberNode (List<Turtle> turtles, double value) {
+        super(turtles);
         myValue = value;
-        myTurtle = turtle;
+        myTurtles = turtles;
     }
 
     @Override

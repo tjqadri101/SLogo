@@ -13,26 +13,20 @@ public class Model {
     private List<Turtle> myInactiveTurtles = new ArrayList<Turtle>();
     private Map<Parser, Turtle> myParserTurtleMap = new HashMap<Parser,Turtle>();
     
-    public Model(List<Turtle> turtles) {
-        myAllTurtles = turtles;
-        initialize();
+    public Model() {
+        
     }
     
     /**
      * Call this method to process commands, update turtle position, and change workspace display
+     * @return 
      */
-    public void updateWorkspace() {
-        //TODO
-    }
-    
-    /**
-     * Create parser objects for each turtle, put them in myParserTurtleMap
-     */
-    public void initialize() {
-        for (Turtle thisTurtle : myAllTurtles) {
-            Parser parser = new Parser(thisTurtle, myAllTurtles);
-            myParserTurtleMap.put(parser, thisTurtle);
-        }
+    public double processCommands(String string, String language, List<Turtle> turtles) {
+        myAllTurtles = turtles;
+        myActiveTurtles = turtles;
+        
+        Parser parser = new Parser(turtles, string, language);
+        return parser.doParse();
     }
     
     

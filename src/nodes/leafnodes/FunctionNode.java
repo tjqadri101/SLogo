@@ -13,18 +13,18 @@ public class FunctionNode extends AbstractNode{
     private String myContent;
     private String myName;
     
-    private Turtle myTurtle;
+    private List<Turtle> myTurtles;
     
     private boolean myAlreadyDeclaredBoolean;
     
-    public FunctionNode(Turtle turtle, String content) {
-        super(turtle);
-        myTurtle = turtle;
+    public FunctionNode(List<Turtle> turtles, String content) {
+        super(turtles);
+        myTurtles = turtles;
         myContent = content;
     }
     
-    public FunctionNode (Turtle turtle, String name,String content) {
-        this(turtle, content);
+    public FunctionNode (List<Turtle> turtles, String name,String content) {
+        this(turtles, content);
         myName = name;
     }
 
