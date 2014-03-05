@@ -19,11 +19,6 @@ public class VariableNode extends LeafNode{ //TODO a function can be a variable 
 
     private String myVariableName;
 
-    /**
-     * A function can be a varible node too
-     */
-    private Function myFunction = null;
-
     public VariableNode (Turtle turtle, String variableName) {
         super(turtle);
         myTurtle = turtle;
@@ -42,11 +37,6 @@ public class VariableNode extends LeafNode{ //TODO a function can be a variable 
         myEndingValue = endingValue;
         myIncrement = increment;
 
-    }
-
-    public VariableNode(Turtle turtle, String variableName, Function function) {
-        this(turtle, variableName);
-        myFunction = function;
     }
 
     public double getEndingValue() {
@@ -71,15 +61,14 @@ public class VariableNode extends LeafNode{ //TODO a function can be a variable 
 
     @Override
     public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-        if (myFunction == null) {
+
             return myCurrentValue;
-        } else {
-            Turtle turtle = this.myTurtle;
-            List<Turtle> activeTurtles = this.getActiveTurtles(); 
-            Parser parser = new Parser(turtle, activeTurtles);
-            AbstractNode root = parser.createTree(myFunction, turtle);
-            return parser.traverseTree(turtle, root);
-        }
+        
+    }
+
+
+    public String getName () {
+        return myVariableName;
     }
 
 

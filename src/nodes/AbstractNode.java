@@ -112,5 +112,14 @@ public abstract class AbstractNode {
      * @return
      */
     public abstract boolean allowsMoreThanTwoChildren() ;
+
+
+    /**
+     * ONLY IMPLEMENTED IN FUNCTIONODE
+     * @return
+     */
+    public boolean isAlreadyDeclared () {
+        return false;
+    }
     
 }
