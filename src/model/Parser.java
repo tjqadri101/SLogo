@@ -15,31 +15,23 @@ import nodes.BlockNode;
 import nodes.MakeNode;
 import nodes.NodeFactory;
 import nodes.controlnodes.ConditionNode;
+import nodes.controlnodes.DoTimesNode;
+import nodes.controlnodes.ForNode;
 import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
+import nodes.controlnodes.ToNode;
 import nodes.leafnodes.FunctionNode;
 import nodes.leafnodes.LeafNode;
 import nodes.leafnodes.NumberNode;
 import nodes.leafnodes.VariableNode;
 
 public class Parser {
-
-    /**
-     * active turtles
-     */
     private List<Turtle> myTurtles;
-    
-    /**
-     * inactive turtles
-     */
     private List<Turtle> myInactiveTurtles;
-    
     private boolean myValidBoolean = true;
-    
     private String myCommands;
     private String myLanguage;
-
     private List<VariableNode> myVariableNodes = new ArrayList<VariableNode>();
     private List<FunctionNode> myFunctionNodes = new ArrayList<FunctionNode>();
 
@@ -79,120 +71,33 @@ public class Parser {
     public boolean isValid() {
         return myValidBoolean;
     }
-    
-    
     /** 
-     * call this method in Model; 
-     * creates abstract syntax tree and traverse the tree
+     * call this method in Model; creates abstract syntax tree and traverse the tree
      * @return value to display in the view
      */
-    public double doParse() {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        return -1;
+    public double doParse() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+        AbstractNode node = createTree();
+        return traverseTree(node);
     }
-    
-
-//    public void createFunctionsAndVariables(String s) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-//        String[] words = s.split(" ");
-//        // if does not have the word "to" (only has one function)
-//        boolean hasTo = false;
-//        for (String word : words){
-//            if (word.equals("to")) {
-//                hasTo = true;
-//            }
-//        }
-//        if (hasTo) {
-//            String[] functionString = s.split("to");
-//
-//            for (String thisFunction : functionString) {
-//                if (!thisFunction.equals("")) {
-//
-//                    String[] wordsInFunction = thisFunction.split(" ");
-//                    int functionNameIndex = 0;
-//                    int functionContentStartIndex = 0;
-//                    while (wordsInFunction[functionNameIndex].equals("") ||
-//                            wordsInFunction[functionNameIndex].equals(" ")) {
-//                        functionNameIndex ++;
-//                        functionContentStartIndex += wordsInFunction[functionNameIndex].length() + 1;
-//                    }
-//                    String functionName = wordsInFunction[functionNameIndex];
-//                    String content = thisFunction.substring(functionContentStartIndex);
-//                    
-//                    FunctionNode root = createTree(s, myTurtle); 
-//                    root.setName(functionName);
-//                    root.setContent(content);
-//                    myFunctionNodes.add(root);
-//                }
-//            }
-//            
-//        } else { //hasTo = false
-//            FunctionNode root = createTree(s, myTurtle);
-//            root.setName("NoName");
-//            root.setContent(s);
-//            myFunctionNodes.add(root);
-//        }
-//
-//        for (int i=0;i<words.length;i++) {
-//            if (words[i].equals("make")) {
-//                VariableNode vn = new VariableNode(myTurtle, words[i+1].substring(1), Double.parseDouble(words[i+2]));
-//            }
-//            if (words[i].equals("set")) {
-//                // find variable node
-//                for (VariableNode thisNode : myVariableNodes) {
-//                    if (thisNode.getName().equals(words[i+1])) {
-////                        thisNode.setValue() //TODO
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
 
     public AbstractNode createTree() throws ClassNotFoundException, 
     NoSuchMethodException, SecurityException, InstantiationException, 
     IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException, NoSuchFieldException {
-        
         NodeFactory nodeFactory = new NodeFactory(myTurtles, myLanguage);
-        
-        FunctionNode root = new FunctionNode(myTurtles, myCommands);
-        AbstractNode blockNode = new BlockNode(myTurtles);
-        root.setLeftNode(blockNode);
-        
-//        processFunction(function); TODO brackets
-
+        AbstractNode root = new BlockNode(myTurtles);
         String[] words = myCommands.split(" ");
         Queue<String> queue = new LinkedList<String>();
-        
-        Stack<String> bracketStack = new Stack<String>(); //TODO
-        
+        Stack<String> bracketStack = new Stack<String>(); 
         for (String word : words) {
             queue.add(word);
         }
         String currentWord = queue.poll();
-        
         AbstractNode currentNode = nodeFactory.createNode(currentWord);
-        blockNode.setLeftNode(currentNode);
+        root.setLeftNode(currentNode);
 
         while (!queue.isEmpty()) {
             
-            if (currentNode instanceof MakeNode) {
-                //TODO
-                
-            }
-            
-
-            if (currentNode instanceof LeafNode || 
-                                    (currentNode instanceof FunctionNode && !currentNode.isAlreadyDeclared())) {
+            if (currentNode instanceof LeafNode) {
                 // return to parent
                 currentNode = currentNode.getParent();
                 if (!currentNode.allowsTwoChildren() || 
@@ -268,23 +173,86 @@ public class Parser {
             currentNode = nextNode;
             currentWord = nextWord;
 
+        
+            
+            
+//            if (currentNode == null) {
+//                return root;
+//            }
+//            if (currentWord.equals("[")) {
+//                bracketStack.push(currentWord);
+//                if (currentNode instanceof RepeatNode || currentNode instanceof IfNode 
+//                            || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) {
+//                    AbstractNode leftNode = new ConditionNode(myTurtles);
+//                    AbstractNode rightNode = new BlockNode(myTurtles);
+//                    currentNode.setLeftNode(leftNode);
+//                    currentNode.setRightNode(rightNode);
+//                    currentNode = currentNode.getLeftNode();
+//                }
+//                if (currentNode instanceof FunctionNode) {
+//                    AbstractNode blockNode = new BlockNode(myTurtles);
+//                    currentNode.setLeftNode(blockNode);
+//                    currentNode = currentNode.getLeftNode();
+//                }
+//                if (currentNode instanceof IfElseNode) {
+//                    // create two block nodes
+//                    AbstractNode bnLeft = new BlockNode(myTurtles);
+//                    AbstractNode bnRight = new BlockNode(myTurtles);
+//                    currentNode.setLeftNode(bnLeft);
+//                    currentNode.setRightNode(bnRight);
+//                    // create a condition node for left block
+//                    AbstractNode conditionLeft = new ConditionNode(myTurtles);
+//                    bnLeft.setLeftNode(conditionLeft);
+//                    bnLeft.setRightNode(new BlockNode(myTurtles));
+//
+//                    currentNode = bnLeft.getLeftNode();
+//                }
+//                if (currentNode instanceof ToNode) {
+//                    // create two block nodes
+//                    AbstractNode bnLeft = new BlockNode(myTurtles);
+//                    AbstractNode bnRight = new BlockNode(myTurtles);
+//                    currentNode.setLeftNode(bnLeft);
+//                    currentNode.setRightNode(bnRight);
+//                    currentNode = bnLeft.getLeftNode();
+//                }
+//                currentWord = queue.poll();
+//            }
+//            if (currentWord.equals("]") && !bracketStack.isEmpty()) {
+//                bracketStack.push(currentWord);
+//                // go up until it finds an available right node
+//                while (!isAvailable(currentNode)) {
+//                    // go to its block node if there is one
+//                    currentNode = currentNode.getParent();
+//                }
+//                currentNode = currentNode.getRightNode();
+//                currentWord = queue.poll();
+//            }
+//            if (currentWord == null && bracketStack.isEmpty()) {
+//                return root;
+//            }
+//            if (currentWord == null && !bracketStack.isEmpty()) {
+//                //ERROR: bracket mismatch
+//                return null;
+//            }
+//            // poll next word and make next node
+//            String nextWord = queue.poll();
+//            AbstractNode nextNode = nodeFactory.createNode(nextWord);
+//            if (currentNode.getLeftNode()== null) {
+//                currentNode.setLeftNode(nextNode);
+//            } else if (currentNode.getRightNode() == null && currentNode.allowsTwoChildren()) {
+//                currentNode.setRightNode(nextNode);
+//            } else if (currentNode.getRightNode() != null && currentNode.allowsMoreThanTwoChildren()){
+//                currentNode.addChild(nextNode);
+//            }
+//            currentNode = nextNode;
+//            currentWord = nextWord;
         }
         return root;
-
     }
 
-//    private void processFunction (FunctionNode function) {
-//        // getting rid of initial spaces and outside brackets
-//        int beginIndex = 0;
-//        while (function.getContent().charAt(beginIndex)==' ' || function.getContent().charAt(beginIndex)=='[') {
-//            beginIndex ++;
-//        }
-//        int endIndex = function.getContent().length() - 1;
-//        while(function.getContent().charAt(endIndex) == ' ' ||  function.getContent().charAt(endIndex)=='[') {
-//            endIndex --;
-//        }
-//        function.setContent(function.getContent().substring(beginIndex, endIndex + 1));
-//    }
+    private boolean isAvailable (AbstractNode currentNode) {
+        return currentNode.getRightNode() instanceof BlockNode && currentNode.getRightNode().getLeftNode()==null; //TODO: TEST
+    }
 
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
 

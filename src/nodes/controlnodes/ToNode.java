@@ -1,16 +1,16 @@
-package nodes;
+package nodes.controlnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import turtle.Turtle;
+import nodes.AbstractNode;
 
-public class MakeNode extends AbstractNode {
+public class ToNode extends AbstractNode {
 
-    private List<Turtle> myTurtles;
-    
-    public MakeNode (List<Turtle> turtles) {
+    public ToNode (List<Turtle> turtles) {
         super(turtles);
+        // TODO Auto-generated constructor stub
     }
 
     @Override

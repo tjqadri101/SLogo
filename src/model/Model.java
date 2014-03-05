@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +22,17 @@ public class Model {
     /**
      * Call this method to process commands, update turtle position, and change workspace display
      * @return 
+     * @throws IOException 
+     * @throws NoSuchFieldException 
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
+     * @throws ClassNotFoundException 
      */
-    public double processCommands(String string, String language, List<Turtle> turtles) {
+    public double processCommands(String string, String language, List<Turtle> turtles) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         myAllTurtles = turtles;
         myActiveTurtles = turtles;
         

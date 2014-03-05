@@ -41,7 +41,7 @@ public class NodeFactory {
 			String command = commandsMap.get(word.toUpperCase());
 			Class<?> c = Class.forName(findClass(command));
 
-			Constructor<?> constructor = c.getConstructor(Turtle.class);
+			Constructor<?> constructor = c.getConstructor(List.class);
 			genericNode = (AbstractNode) constructor.newInstance(myTurtles);
 
 		}
