@@ -141,9 +141,11 @@ public class Parser {
             for (int i=0;i<2;i++) {
                 if (nextWord.equals("[")) { 
                     // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
-                    if (currentNode instanceof RepeatNode || currentNode instanceof IfNode) {
+                    if (currentNode instanceof RepeatNode || currentNode instanceof IfNode 
+                            || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) {
                         currentNode = currentNode.getRightNode(); // go to block
-                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode ||
+                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode || 
+                            currentNode.getParent() instanceof DoTimesNode || currentNode.getParent() instanceof ForNode ||
                             currentNode.getParent().getParent() instanceof IfElseNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
                     } 

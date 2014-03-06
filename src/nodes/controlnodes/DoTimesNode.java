@@ -24,13 +24,11 @@ public class DoTimesNode extends AbstractNode {
 
     @Override
     public boolean allowsTwoChildren () {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean allowsMoreThanTwoChildren () {
-        // TODO Auto-generated method stub
         return false;
     }
 

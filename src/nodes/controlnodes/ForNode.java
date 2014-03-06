@@ -10,7 +10,6 @@ public class ForNode extends AbstractNode {
 
     public ForNode (List<Turtle> turtles) {
         super(turtles);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -24,13 +23,11 @@ public class ForNode extends AbstractNode {
 
     @Override
     public boolean allowsTwoChildren () {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean allowsMoreThanTwoChildren () {
-        // TODO Auto-generated method stub
         return false;
     }
 
