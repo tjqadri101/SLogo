@@ -59,29 +59,29 @@ public class TestBackend_VariableNode {
         
     }
 
-//    @org.junit.Test
-//    public void testForCreateTree_To() throws ClassNotFoundException,
-//    NoSuchMethodException, SecurityException, InstantiationException,
-//    IllegalAccessException, IllegalArgumentException,
-//    InvocationTargetException, IOException, NoSuchFieldException {
-//        String string = "make :distance 100 to function [ fd :distance ]";
-//        Turtle turtle = new Turtle(0, 0, "English");
-//        List<Turtle> allTurtles = new ArrayList<Turtle>();
-//        allTurtles.add(turtle);
-//
-//        Parser parser = new Parser(allTurtles, string, "English");
-//        AbstractNode root = parser.createTree();
-//        assert root instanceof BlockNode;
-//        AbstractNode leftNode = root.getLeftNode();
-//        AbstractNode rightNode = root.getRightNode();
-//        assert leftNode instanceof MakeNode;
-//        assert leftNode.getLeftNode() instanceof VariableNode; 
-//        assert leftNode.getLeftNode().getLeftNode() instanceof NumberNode;
-//        assert rightNode instanceof FunctionNode;
-//        assert rightNode.getLeftNode() instanceof BlockNode;
-//        assert rightNode.getLeftNode().getLeftNode() instanceof ForwardNode;
-//        assert rightNode.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode;
-//    }
+    @org.junit.Test
+    public void testForCreateTree_MakeTo() throws ClassNotFoundException,
+    NoSuchMethodException, SecurityException, InstantiationException,
+    IllegalAccessException, IllegalArgumentException,
+    InvocationTargetException, IOException, NoSuchFieldException {
+        String string = "make :distance 100 to function [ fd :distance ]";
+        Turtle turtle = new Turtle(0, 0, "English");
+        List<Turtle> allTurtles = new ArrayList<Turtle>();
+        allTurtles.add(turtle);
+
+        Parser parser = new Parser(allTurtles, string, "English");
+        AbstractNode root = parser.createTree();
+        assert root instanceof BlockNode;
+        AbstractNode leftNode = root.getLeftNode();
+        AbstractNode rightNode = root.getRightNode();
+        assert leftNode instanceof MakeNode;
+        assert leftNode.getLeftNode() instanceof VariableNode; 
+        assert leftNode.getLeftNode().getLeftNode() instanceof NumberNode;
+        assert rightNode instanceof FunctionNode;
+        assert rightNode.getLeftNode() instanceof BlockNode;
+        assert rightNode.getLeftNode().getLeftNode() instanceof ForwardNode;
+        assert rightNode.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode;
+    }
 
     @org.junit.Test
     public void testForModel_VariableNode() throws ClassNotFoundException,
