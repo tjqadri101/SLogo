@@ -146,10 +146,12 @@ public class TestBackend_VariableNode {
         assert root instanceof BlockNode;
         assert root.getLeftNode() instanceof DoTimesNode;
         assert root.getLeftNode().getLeftNode() instanceof VariableNode;
-        assert root.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode;
+        for (AbstractNode thisNode : root.getLeftNode().getLeftNode().getChildren()) {
+            assert thisNode instanceof NumberNode;
+        }
         assert root.getLeftNode().getRightNode() instanceof BlockNode;
         assert root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode;
-        assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof NumberNode;
+        assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof VariableNode;
     }
     
     @org.junit.Test

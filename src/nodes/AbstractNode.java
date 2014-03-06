@@ -65,6 +65,7 @@ public abstract class AbstractNode {
     
     public void addChild(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
     }
     
     public boolean hasChild() {
