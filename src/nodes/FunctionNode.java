@@ -60,14 +60,12 @@ public class FunctionNode extends AbstractNode{
     }
 
     @Override
-    public boolean allowsTwoChildren () {
-        // TODO Auto-generated method stub
+    public boolean allowsTwoChildren () { // allows only one child
         return false;
     }
 
     @Override
     public boolean allowsMoreThanTwoChildren () {
-        // TODO Auto-generated method stub
         return false;
     }
     

@@ -121,5 +121,10 @@ public abstract class AbstractNode {
         // TODO Auto-generated method stub
         
     }
+
+    public void setIsAlreadyDeclaredBoolean (boolean boo) {
+        // TODO Auto-generated method stub
+        
+    }
     
 }

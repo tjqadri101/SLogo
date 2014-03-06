@@ -32,8 +32,6 @@ public class Parser {
     private boolean myValidBoolean = true;
     private String myCommands;
     private String myLanguage;
-    private List<VariableNode> myVariableNodes = new ArrayList<VariableNode>();
-    private List<FunctionNode> myFunctionNodes = new ArrayList<FunctionNode>();
 
     public Parser (List<Turtle> turtles, String commands, String language) {
         myTurtles = turtles;
@@ -57,14 +55,6 @@ public class Parser {
                 myTurtles.add(turtle);
             }
         }
-    }
-    
-    public List<FunctionNode> getFunctionNodes () {
-        return myFunctionNodes;
-    }
-
-    public List<VariableNode> getVariables() {
-        return myVariableNodes; // TODO put in model: myFunc, myVar, myTurtle, myPencolor, ...
     }
 
     public boolean isValid() {
@@ -95,29 +85,26 @@ public class Parser {
         root.setLeftNode(currentNode);
 
         while (!queue.isEmpty()) {
-            
+            if (currentNode instanceof LeafNode || (currentNode instanceof VariableNode && currentNode.getLeftNode()!=null) 
+                    || (currentNode instanceof FunctionNode && currentNode.getLeftNode()!=null)) {
+                // return to parent
+                currentNode = currentNode.getParent();
+                if (!currentNode.allowsTwoChildren() || 
+                        (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
+                    currentNode = currentNode.getParent();
+                }
+            }
             if (currentNode instanceof FunctionNode) {
                 if (!currentNode.isAlreadyDeclared()) {
                     AbstractNode blockNode = new BlockNode(myTurtles);
                     currentNode.setLeftNode(blockNode);
                     currentNode = currentNode.getLeftNode();
-                } else {
-                    currentNode = goToParent(currentNode);
-                }
+                } 
             }
-            if (currentNode instanceof ToNode) {
+            if (currentNode instanceof FunctionNode) { // user defined function/command
                 //TODO
-            }
-            if (currentNode instanceof LeafNode) {
-                if ((currentNode instanceof VariableNode || currentNode instanceof FunctionNode) && currentNode.isAlreadyDeclared()) {
-                    
-                }
-                currentNode = goToParent(currentNode);
-            }
-            if (currentNode instanceof NumberNode) {
-                if (currentNode.getParent() instanceof MakeNode) {
-                    currentNode.getParent().getLeftNode().setCurrentValue(currentNode.evaluate());
-                }
+                // check the next word (not including brackets): if it's a variable --> allows two children for ToNode
+                // if it's not a variable --> only allow one child for ToNode
             }
             if (currentNode instanceof IfElseNode) {
                 AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
@@ -143,14 +130,14 @@ public class Parser {
                 return root;
             }
             for (int i=0;i<2;i++) {
-                if (nextWord.equals("[")) { //TODO counter for brackets
+                if (nextWord.equals("[")) { 
                     // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
-                    if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode ||
+                    if (currentNode instanceof RepeatNode || currentNode instanceof IfNode) {
+                        currentNode = currentNode.getRightNode(); // go to block
+                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode ||
                             currentNode.getParent().getParent() instanceof IfElseNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
-                    } else if (currentNode instanceof RepeatNode || currentNode instanceof IfNode) {
-                        currentNode = currentNode.getRightNode(); // go to block
-                    }
+                    } 
                     nextWord = queue.poll();
                 }
                 if (nextWord.equals("]")) {    
@@ -180,19 +167,6 @@ public class Parser {
             currentWord = nextWord;
         }
         return root;
-    }
-
-    private AbstractNode goToParent (AbstractNode currentNode) {
-        currentNode = currentNode.getParent();
-        if (!currentNode.allowsTwoChildren() || 
-                (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
-            currentNode = currentNode.getParent();
-        }
-        return currentNode;
-    }
-
-    private boolean isAvailable (AbstractNode currentNode) {
-        return currentNode.getRightNode() instanceof BlockNode && currentNode.getRightNode().getLeftNode()==null; //TODO: TEST
     }
 
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  

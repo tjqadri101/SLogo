@@ -78,21 +78,20 @@ public class VariableNode extends AbstractNode{
         
     }
     
+    @Override
     public void setIsAlreadyDeclaredBoolean(boolean boo) {
         myIsAlreadyDeclaredBoolean = boo;
     }
 
 
     @Override
-    public boolean allowsTwoChildren () {
-        // TODO Auto-generated method stub
+    public boolean allowsTwoChildren () { // can allow only one child
         return false;
     }
 
 
     @Override
     public boolean allowsMoreThanTwoChildren () {
-        // TODO Auto-generated method stub
         return false;
     }
 

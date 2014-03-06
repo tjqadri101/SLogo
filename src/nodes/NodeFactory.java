@@ -9,6 +9,7 @@ import nodes.leafnodes.NumberNode;
 import model.CommandFinder;
 import model.CommandReader;
 import turtle.Turtle;
+import nodes.*;
 
 public class NodeFactory {
 
@@ -17,7 +18,7 @@ public class NodeFactory {
 
     private final String[] PACKAGES = { "nodes.booleannodes.",
                                         "nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
-                                        "nodes.booleannodes", "nodes." };
+                                        "nodes.displaynodes", "nodes.leafnodes", "nodes.querynodes", "nodes." };
 
 
     public NodeFactory(List<Turtle> turtles, String language) {
