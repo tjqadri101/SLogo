@@ -21,6 +21,11 @@ public class FunctionNode extends AbstractNode{
     public void setName (String string) {
         myName = string;
     }
+    
+    @Override
+    public String getName() {
+        return myName;
+    }
 
     @Override
     public double evaluate () throws ClassNotFoundException, NoSuchMethodException,
@@ -32,7 +37,7 @@ public class FunctionNode extends AbstractNode{
     }
 
     @Override
-    public boolean allowsTwoChildren () { // allows only one child
+    public boolean allowsTwoChildren () { // can allow one child
         return false;
     }
 
@@ -40,9 +45,4 @@ public class FunctionNode extends AbstractNode{
     public boolean allowsMoreThanTwoChildren () {
         return false;
     }
-    
-    
-    
-    
-
 }

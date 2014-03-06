@@ -9,7 +9,6 @@ import turtle.Turtle;
 public abstract class AbstractNode {
     
     private List<Turtle> myTurtles;
-    private List<Turtle> myActiveTurtles;
     
     private double myValue;
     private AbstractNode myParent;
@@ -21,12 +20,12 @@ public abstract class AbstractNode {
         myTurtles = turtles;
     }
 
-    public void setActiveTurtles(List<Turtle> activeTurtles) {
-        myActiveTurtles = activeTurtles;
+    public void setTurtles(List<Turtle> activeTurtles) {
+        myTurtles = activeTurtles;
     }
     
-    public List<Turtle> getActiveTurtles() {
-        return myActiveTurtles;
+    public List<Turtle> getTurtles() {
+        return myTurtles;
     }
     
     
@@ -125,6 +124,15 @@ public abstract class AbstractNode {
     public void setIsAlreadyDeclaredBoolean (boolean boo) {
         // TODO Auto-generated method stub
         
+    }
+
+    /**
+     * for variable nodes and function nodes
+     * @return
+     */
+    public String getName () {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }

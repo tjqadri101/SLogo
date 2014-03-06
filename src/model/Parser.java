@@ -31,13 +31,15 @@ public class Parser {
     private boolean myValidBoolean = true;
     private String myCommands;
     private String myLanguage;
-
+    private List<AbstractNode> myVariableNodes = new ArrayList<AbstractNode>();
+    private List<AbstractNode> myFunctionNodes = new ArrayList<AbstractNode>();
+    
     public Parser (List<Turtle> turtles, String commands, String language) {
         myTurtles = turtles;
         myCommands = commands;
         myLanguage = language;
     }
-    
+
     public void inactivateTurtle(Turtle turtle) {
         for (int i=0;i<myTurtles.size();i++) {
             if (myTurtles.get(i).equals(turtle)) {
@@ -46,7 +48,7 @@ public class Parser {
             }
         }
     }
-    
+
     public void activeTurtle(Turtle turtle) {
         for (int i=0;i<myInactiveTurtles.size();i++) {
             if (myInactiveTurtles.get(i).equals(turtle)) {
@@ -84,13 +86,33 @@ public class Parser {
         root.setLeftNode(currentNode);
 
         while (!queue.isEmpty()) {
-            if (currentNode instanceof LeafNode || (currentNode instanceof VariableNode && currentNode.getLeftNode()!=null) 
-                    || (currentNode instanceof FunctionNode && currentNode.getLeftNode()!=null)) {
-                // return to parent
-                currentNode = currentNode.getParent();
-                if (!currentNode.allowsTwoChildren() || 
-                        (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2)) {
+            boolean skipLeafCheck = false;
+            if (currentNode instanceof VariableNode) {
+                if (findPreviouslyCreatedNodes(currentNode)!=null) {
+                currentNode = findPreviouslyCreatedNodes(currentNode);
+                } else {
+                    skipLeafCheck=true;
+                }
+            } else if (currentNode instanceof FunctionNode) {
+                if (findPreviouslyCreatedNodes(currentNode)!=null) {
+                    currentNode = findPreviouslyCreatedNodes(currentNode);
+                    } else {
+                        skipLeafCheck=true;
+                    }
+            }
+            if (!skipLeafCheck) {
+                if (currentNode instanceof LeafNode || currentNode instanceof VariableNode || currentNode instanceof FunctionNode) {
+                    // return to parent
                     currentNode = currentNode.getParent();
+
+                    if (!currentNode.allowsTwoChildren() || 
+                            (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2) ||
+                            (currentNode instanceof VariableNode && (currentNode.getChildren().size() == 3) 
+                                    || (currentNode.getChildren().size()==1 && !nodeFactory.isNumeric(queue.peek())))) {
+                        if (currentNode instanceof VariableNode) myVariableNodes.add(currentNode);
+                        if (currentNode instanceof FunctionNode) myFunctionNodes.add(currentNode);
+                        currentNode = currentNode.getParent();
+                    }
                 }
             }
             if (currentNode instanceof IfElseNode) {
@@ -115,11 +137,12 @@ public class Parser {
                 String functionName = queue.poll();
                 ((FunctionNode) currentNode).setName(functionName);
                 boolean hasTwoChildren=false;
-                while(queue.peek().equals("[")){
-                    String word = queue.poll();
-                    if (word.charAt(0)==':') {
-                        hasTwoChildren=true;
-                    }
+                String word="";
+                while(queue.poll().equals("[")){
+                    word = queue.poll();
+                }
+                if (word.charAt(0)==':') {
+                    hasTwoChildren=true;
                 }
                 if (hasTwoChildren) {
                     AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
@@ -165,7 +188,7 @@ public class Parser {
                     }
                 }
             }
-            
+
             AbstractNode nextNode = nodeFactory.createNode(nextWord); 
             if (currentNode.getLeftNode()== null) {
                 currentNode.setLeftNode(nextNode);
@@ -178,6 +201,15 @@ public class Parser {
             currentWord = nextWord;
         }
         return root;
+    }
+
+    private AbstractNode findPreviouslyCreatedNodes (AbstractNode currentNode) {
+        for (AbstractNode thisNode : myVariableNodes) {
+            if (thisNode.getName().equals(currentNode.getName())) {
+                currentNode = thisNode; // TODO test
+            }
+        }
+        return null;
     }
 
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  

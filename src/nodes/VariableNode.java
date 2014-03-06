@@ -16,8 +16,6 @@ public class VariableNode extends AbstractNode{
     private double myIncrement;
 
     private String myVariableName;
-    
-    private boolean myIsAlreadyDeclaredBoolean;
 
     public VariableNode (List<Turtle> turtles, String variableName) {
         super(turtles);
@@ -67,32 +65,21 @@ public class VariableNode extends AbstractNode{
         
     }
 
-
+    @Override
     public String getName () {
         return myVariableName;
     }
-    
-    @Override
-    public boolean isAlreadyDeclared() {
-        return myIsAlreadyDeclaredBoolean;
-        
-    }
-    
-    @Override
-    public void setIsAlreadyDeclaredBoolean(boolean boo) {
-        myIsAlreadyDeclaredBoolean = boo;
-    }
 
 
     @Override
-    public boolean allowsTwoChildren () { // can allow only one child
+    public boolean allowsTwoChildren () { // can allow one child OR three children
         return false;
     }
 
 
     @Override
     public boolean allowsMoreThanTwoChildren () {
-        return false;
+        return true;
     }
 
 }

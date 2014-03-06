@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 import nodes.controlnodes.DoTimesNode;
+import nodes.controlnodes.ForNode;
 import nodes.leafnodes.NumberNode;
 import model.CommandFinder;
 import model.CommandReader;
@@ -45,6 +46,8 @@ public class NodeFactory {
             genericNode = new FunctionNode(myTurtles);
         } else if (word.equals("dotimes")) {
             genericNode = new DoTimesNode(myTurtles);
+        } else if (word.equals("for")) {
+            genericNode = new ForNode(myTurtles);
         } else if (!isNumeric(word)) {
 
             String command = commandsMap.get(word.toUpperCase());
@@ -88,7 +91,7 @@ public class NodeFactory {
         }
     }
 
-    private boolean isNumeric(String str) {
+    public boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
         } catch (NumberFormatException nfe) {

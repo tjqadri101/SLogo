@@ -46,7 +46,7 @@ public class TestBackend_VariableNode {
     NoSuchMethodException, SecurityException, InstantiationException,
     IllegalAccessException, IllegalArgumentException,
     InvocationTargetException, IOException, NoSuchFieldException {
-        String string = "to function [ fd :distance ]";
+        String string = "to function [ fd 100 ]";
         Turtle turtle = new Turtle(0, 0, "English");
         List<Turtle> allTurtles = new ArrayList<Turtle>();
         allTurtles.add(turtle);
@@ -129,7 +129,27 @@ public class TestBackend_VariableNode {
         assert root.getLeftNode().getRightNode() instanceof BlockNode;
         assert root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode;
         assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof NumberNode;
-        
+    }
+    
+    @org.junit.Test
+    public void testForCreateTree_For() throws ClassNotFoundException,
+    NoSuchMethodException, SecurityException, InstantiationException,
+    IllegalAccessException, IllegalArgumentException,
+    InvocationTargetException, IOException, NoSuchFieldException {
+        String string = "for [ :distance 0 3 1 ] [ fd :distance ]";
+        Turtle turtle = new Turtle(0, 0, "English");
+        List<Turtle> allTurtles = new ArrayList<Turtle>();
+        allTurtles.add(turtle);
+
+        Parser parser = new Parser(allTurtles, string, "English");
+        AbstractNode root = parser.createTree();
+        assert root instanceof BlockNode;
+        assert root.getLeftNode() instanceof DoTimesNode;
+        assert root.getLeftNode().getLeftNode() instanceof VariableNode;
+        assert root.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode;
+        assert root.getLeftNode().getRightNode() instanceof BlockNode;
+        assert root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode;
+        assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof NumberNode;
     }
     
     @org.junit.Test
