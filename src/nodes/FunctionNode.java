@@ -8,41 +8,13 @@ import turtle.Turtle;
 
 public class FunctionNode extends AbstractNode{
 
-    private List<VariableNode> myVariableNodes = new ArrayList<VariableNode>();
-    private String myContent;
     private String myName;
     
     private List<Turtle> myTurtles;
     
-    private boolean myAlreadyDeclaredBoolean;
-    
-    public FunctionNode(List<Turtle> turtles, String content) {
+    public FunctionNode(List<Turtle> turtles) {
         super(turtles);
         myTurtles = turtles;
-        myContent = content;
-    }
-    
-    public FunctionNode (List<Turtle> turtles, String name,String content) {
-        this(turtles, content);
-        myName = name;
-    }
-
-
-    public String getContent () {
-        return myContent;
-    }
-
-
-    public void setContent (String string) {
-        myContent = string;
-    }
-    
-    /**
-     * if a function node is the root of a tree, it can have one child (a block node);
-     * if a function node is not the root of a tree, it cannot have any child
-     */
-    public boolean isAlreadyDeclared() {
-        return myAlreadyDeclaredBoolean;
     }
 
 

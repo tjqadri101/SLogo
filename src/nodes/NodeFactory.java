@@ -40,22 +40,22 @@ public class NodeFactory {
         //TODO replace with reflection code; this is just hardcoding VariableNode
         if (word.charAt(0)==':') {
             genericNode = new VariableNode(myTurtles, word.substring(1));
-        } else {
+        } else if (word.equals("to")) {
+            genericNode = new FunctionNode(myTurtles);
+        } else if (!isNumeric(word)) {
 
-            if (!isNumeric(word)) {
+            String command = commandsMap.get(word.toUpperCase());
+            Class<?> c = Class.forName(findClass(command));
 
-                String command = commandsMap.get(word.toUpperCase());
-                Class<?> c = Class.forName(findClass(command));
+            Constructor<?> constructor = c.getConstructor(List.class);
+            genericNode = (AbstractNode) constructor.newInstance(myTurtles);
 
-                Constructor<?> constructor = c.getConstructor(List.class);
-                genericNode = (AbstractNode) constructor.newInstance(myTurtles);
-
-            }
-
-            else if (isNumeric(word)) {
-                return new NumberNode(myTurtles, Double.parseDouble(word));
-            }
         }
+
+        else if (isNumeric(word)) {
+            return new NumberNode(myTurtles, Double.parseDouble(word));
+        }
+
 
         return genericNode;
 

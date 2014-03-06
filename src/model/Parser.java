@@ -22,7 +22,6 @@ import nodes.controlnodes.ForNode;
 import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
-import nodes.controlnodes.ToNode;
 import nodes.leafnodes.LeafNode;
 import nodes.leafnodes.NumberNode;
 
@@ -94,18 +93,6 @@ public class Parser {
                     currentNode = currentNode.getParent();
                 }
             }
-            if (currentNode instanceof FunctionNode) {
-                if (!currentNode.isAlreadyDeclared()) {
-                    AbstractNode blockNode = new BlockNode(myTurtles);
-                    currentNode.setLeftNode(blockNode);
-                    currentNode = currentNode.getLeftNode();
-                } 
-            }
-            if (currentNode instanceof FunctionNode) { // user defined function/command
-                //TODO
-                // check the next word (not including brackets): if it's a variable --> allows two children for ToNode
-                // if it's not a variable --> only allow one child for ToNode
-            }
             if (currentNode instanceof IfElseNode) {
                 AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
                 AbstractNode bnRight = new BlockNode(myTurtles);
@@ -123,6 +110,28 @@ public class Parser {
                 currentNode.setLeftNode(conditionNode);
                 currentNode.setRightNode(bn);
                 currentNode = conditionNode;
+            }
+            if (currentNode instanceof FunctionNode) {
+                String functionName = queue.poll();
+                ((FunctionNode) currentNode).setName(functionName);
+                boolean hasTwoChildren=false;
+                while(queue.peek().equals("[")){
+                    String word = queue.poll();
+                    if (word.charAt(0)==':') {
+                        hasTwoChildren=true;
+                    }
+                }
+                if (hasTwoChildren) {
+                    AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
+                    AbstractNode bnRight = new BlockNode(myTurtles);
+                    currentNode.setLeftNode(bnLeft);
+                    currentNode.setRightNode(bnRight);
+                    currentNode = bnLeft;
+                } else {// if it's a normal declare of function without variables --> only one child
+                    AbstractNode bn = new BlockNode(myTurtles);
+                    currentNode.setLeftNode(bn);
+                    currentNode = bn;
+                }
             }
 
             String nextWord = queue.poll();
