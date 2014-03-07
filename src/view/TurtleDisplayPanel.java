@@ -54,7 +54,7 @@ public class TurtleDisplayPanel extends JPanel{
 		penColor = Default_Pen_Color;
 		lineList = new LinkedList<Line2D>();
 		lineColorMap = new HashMap<Line2D, Color>();
-		
+
 		try {
 			displayTurtle = turtlePic.setImage();
 		} catch (IOException e) {
@@ -62,7 +62,7 @@ public class TurtleDisplayPanel extends JPanel{
 		}
 
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 
@@ -70,7 +70,7 @@ public class TurtleDisplayPanel extends JPanel{
 		g2d = (Graphics2D) g;
 		if(initialize){
 			setCenter();
-		
+
 			turtlePic.paint(g2d, prevX, prevY, deltaX, deltaY, myAngle, displayTurtle);
 		}	
 		else{
@@ -83,67 +83,67 @@ public class TurtleDisplayPanel extends JPanel{
 		}
 		initialize = false;
 	}
-	
+
 	private void checkLineAddition() {
 		if(myPen == 1){
 			Line2D newLine = new Line2D.Double(prevX, prevY, curX, curY);
 			lineColorMap.put(newLine, penColor);
 			lineList.add(newLine);
 		}
-		
+
 	}
 
 
-	
+
 	public void moveTurtleLeft(){
 		prevX = curX; prevY = curY;
 		deltaX = -5; deltaY = 0;
 		curX = curX+deltaX;  
-	
+
 		repaint();
 	}
-	
+
 	public void moveTurtleRight(){
 		prevX = curX; prevY = curY;
 		deltaX = 5; deltaY = 0;
 		curX = curX+deltaX; 
-	
+
 		repaint();
 	}
-	
+
 	public void moveTurtleBack(){
 		prevX = curX; prevY = curY;
 		deltaX = 0; deltaY = 5;
 		curY = curY+deltaY; 
-		
+
 		repaint();
 	}
-	
+
 	public void moveTurtleForward(){
 		prevX = curX; prevY = curY;
 		deltaX = 0; deltaY = -5;
 		curY = curY+deltaY; 
-		
+
 		repaint();
 	}
-	
+
 	public void rotateTurtleRight(){
 		myAngle -= 90;
 		if(myAngle <= -360){
 			myAngle = myAngle + 360d;
 		}
-		
+
 		repaint();
 	}
-	
+
 	public double getCurX(){
 		return curX;
 	}
-	
+
 	public double getCurY(){
 		return curY;
 	}
-	
+
 	public double getAngle(){
 		return myAngle;
 	}
@@ -152,26 +152,26 @@ public class TurtleDisplayPanel extends JPanel{
 		double matchedY;
 		matchedX =  curX - (double) this.getWidth()/2;
 		matchedY = -(curY - (double) this.getHeight()/2);
-		
+
 		String positionInfo = "The coordinates of turtle are (" + matchedX + "," + matchedY + ")";
 		return positionInfo;
 	}
 	public Color getColor(){
 		return penColor;
 	}
-	
-	
+
+
 	public void setPenToggle(){
 		if(myPen == 0)
 			myPen = 1;
 		else
 			myPen = 0;
 	}
-	
+
 	public void setColor(Color c){
 		penColor = c;
 	}
-	
+
 	// set it to private as it is never called by external methods
 	private void setCenter(){
 		curX = (double) (this.getWidth()/2); 
@@ -182,9 +182,9 @@ public class TurtleDisplayPanel extends JPanel{
 		myAngle = 0;
 		lineList.clear();
 	}
-	
-	
-	
+
+
+
 	public void resetTurtle(){
 		setCenter();
 		repaint();

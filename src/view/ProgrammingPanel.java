@@ -41,16 +41,16 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 	private ScrollableJList instanceVars,functions;
 	private JButton execute;
 	private ExecutedCodePanel executedCode;
-	private ParserTest parser;
+	//private ParserTest parser;
 	private Turtle turtle;
 	
 //	private JPanel userInputAndButton = new JPanel();
 //	private JPanel userOutput = new JPanel();
     	
-	public ProgrammingPanel(ParserTest myParser, Turtle t){
+	public ProgrammingPanel(Turtle t){
 		instanceVars = new ScrollableJList(null);
 		functions = new ScrollableJList(null);
-		parser = myParser;
+		//parser = myParser;
 		turtle = t;
 		//this.setLayout(new BorderLayout());
 
@@ -140,13 +140,13 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 	//Called when the user clicks the execute button. Will pass the text in the text area to
 	//the backend for parsing.
 	public void actionPerformed(ActionEvent arg0) {
-		executedCode.addToCodeList(userTextArea.getText());
+/*		executedCode.addToCodeList(userTextArea.getText());
 		String input = userTextArea.getText();
 		userTextArea.setText("");
 		AbstractNode node = null;
 		try {
 			System.out.println(userTextArea.getText());
-			node = parser.parseAndCreateTree(input, turtle);
+			//node = parser.parseAndCreateTree(input, turtle);
 			
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
@@ -173,6 +173,6 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		parser.traverseTree(turtle, node);
+		parser.traverseTree(turtle, node);*/
 	}
 }
