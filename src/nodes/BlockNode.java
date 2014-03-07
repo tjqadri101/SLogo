@@ -16,7 +16,15 @@ public class BlockNode extends AbstractNode {
 
     @Override
     public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-        return (this.getLeftNode().evaluate() + this.getRightNode().evaluate());
+        if (this.getLeftNode()!=null && this.getRightNode()==null) {
+            return this.getLeftNode().evaluate();
+        } else if (this.getLeftNode()==null && this.getRightNode()!=null) {
+            return this.getRightNode().evaluate();
+        } else if (this.getLeftNode()!=null && this.getRightNode()!=null) {
+            return (this.getLeftNode().evaluate() + this.getRightNode().evaluate());
+        }
+        return -1; //TEST: RETURN -1
+        
     }
 
     @Override

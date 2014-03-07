@@ -150,7 +150,7 @@ public class Parser {
                 boolean hasTwoChildren=false;
                 String word="";
                 while(queue.poll().equals("[")){
-                    word = queue.poll();
+                    word = queue.peek(); //TODO TEST: before: poll()
                 }
                 if (word.charAt(0)==':') {
                     hasTwoChildren=true;

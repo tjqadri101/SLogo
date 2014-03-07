@@ -33,27 +33,26 @@ public class TestBackend_TraverseVariableNode {
         AbstractNode root = parser.createTree();
         double result = parser.traverseTree(root);
         System.out.println("TestBackend_TraverseVariableNode: result = "+result);
-//        assert (result==200);
+        assert (result==100);
     }
 
-//    @org.junit.Test
-//    public void testForTraverseTree_To() throws ClassNotFoundException,
-//    NoSuchMethodException, SecurityException, InstantiationException,
-//    IllegalAccessException, IllegalArgumentException,
-//    InvocationTargetException, IOException, NoSuchFieldException {
-//        String string = "to function [ fd 100 ]";
-//        Turtle turtle = new Turtle(0, 0, "English");
-//        List<Turtle> allTurtles = new ArrayList<Turtle>();
-//        allTurtles.add(turtle);
-//
-//        Parser parser = new Parser(allTurtles, string, "English");
-//        AbstractNode root = parser.createTree();
-//        assert root instanceof BlockNode;
-//        assert root.getLeftNode() instanceof FunctionNode;
-//        assert root.getLeftNode().getLeftNode() instanceof BlockNode;
-//        
-//        
-//    }
+    @org.junit.Test
+    public void testForTraverseTree_To() throws ClassNotFoundException,
+    NoSuchMethodException, SecurityException, InstantiationException,
+    IllegalAccessException, IllegalArgumentException,
+    InvocationTargetException, IOException, NoSuchFieldException {
+        String string = "to function [ fd 100 ]";
+        Turtle turtle = new Turtle(0, 0, "English");
+        List<Turtle> allTurtles = new ArrayList<Turtle>();
+        allTurtles.add(turtle);
+
+        Parser parser = new Parser(allTurtles, string, "English");
+        AbstractNode root = parser.createTree();
+        double result = parser.traverseTree(root);
+        System.out.println("TestBackend_TraverseVariableNode: result = "+result);
+        assert (result==100);
+        
+    }
 //
 //    @org.junit.Test
 //    public void testForTraverseTree_MakeTo() throws ClassNotFoundException,
