@@ -42,23 +42,24 @@ public class ActionDisplayPanel extends JPanel{
 
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);
+	private ActionDisplayPanel colorDialogPointer; //pointer reference for the chooser dialog
 	private JColorChooser colorSelector;
 
-	public ActionDisplayPanel(Turtle t) {
+	public ActionDisplayPanel() {
 		turtleDisplayPanel = new TurtleDisplayPanel();
 		myScrollableTextArea.setEditable(false);
 		colorSelector = new JColorChooser(Color.black);
-
+		colorDialogPointer = this;
 		this.setLayout(new GridBagLayout());
 
-		addBorderedComponent(0,2,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
-		addBorderedComponent(0,0,1,.2,3,1,myScrollableTextArea,"Turtle state:");
-		addBorderedComponent(3,0,0,.2,1,1,makeClear(),"Reset turtle and state:");
-		addBorderedComponent(0,1,1,.2,1,1,makePenColorChooser(),"Modify Pen Options");
-		addBorderedComponent(1,1,0,.2,1,1,makeButtonRotateR45(),"Rotate turtle:");
-		addBorderedComponent(2,1,1,.2,2,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		addBorderedComponent(0,0,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
+		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
+		addBorderedComponent(1,2,0,0,1,1,makeButtonRotateR45(),"Rotate turtle:");
+		addBorderedComponent(2,2,0,0,2,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		addBorderedComponent(0,3,0,.1,3,2,myScrollableTextArea,"Turtle state:");
+		addBorderedComponent(3,3,0,0,1,2,makeClear(),"Reset turtle and state:");
 		
-		//revalidate();
+		revalidate();
 		repaint();
 	}
 
@@ -97,13 +98,13 @@ public class ActionDisplayPanel extends JPanel{
 		return result;
 	}
 
-	private JComponent makePenColorChooser(){
+	private JComponent makePenColorChooser_Toggle(){
 		JPanel colorButtons = new JPanel(new BorderLayout());
 		colorChooser.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				Color newColor = JColorChooser.showDialog(
-						colorChooser,
+						colorDialogPointer,
 						"Choose Pen Color",
 						turtleDisplayPanel.getColor());
 				if (newColor != null) {
