@@ -172,42 +172,6 @@ public class ActionDisplayPanel extends JPanel{
 
 	}
 
-	private static JLabel makeHyperLink(final String s, final String link, int x, int y)
-	{
-		final JLabel l = new JLabel(s);
-		l.addMouseListener(new MouseAdapter()
-		{
-			@Override
-			public void mouseExited(MouseEvent arg0)
-			{
-				l.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				l.setText(s);
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0)
-			{
-				l.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				l.setText(String.format("<HTML><FONT color = \"#000099\"><U>%s</U></FONT></HTML>", s));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent arg0)
-			{
-				try
-				{
-					URI uri = new URI(link);
-					if (Desktop.isDesktopSupported())
-						Desktop.getDesktop().browse(uri);
-				} catch (Exception e){}
-			}
-		});
-
-		l.setBounds(x, y, s.length()*5, 20);
-		l.setToolTipText(String.format("go to %s", link));
-		return l;
-	}
-
 	/*Used to add titled and bordered components in a grid LayoutManager
 	to this panel*/
 	private void addBorderedComponent(int gridX,int gridY,double weightX,
