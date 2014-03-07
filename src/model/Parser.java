@@ -30,7 +30,7 @@ public class Parser {
     private String myLanguage;
     private List<AbstractNode> myVariableNodes = new ArrayList<AbstractNode>();
     private List<AbstractNode> myFunctionNodes = new ArrayList<AbstractNode>();
-    
+
     public Parser (List<Turtle> turtles, String commands, String language) {
         myTurtles = turtles;
         myCommands = commands;
@@ -85,16 +85,16 @@ public class Parser {
             boolean skipLeafCheck = false;
             if (currentNode instanceof VariableNode) {
                 if (findPreviouslyCreatedNodes(currentNode)!=null) {
-                currentNode = findPreviouslyCreatedNodes(currentNode);
+                    currentNode = findPreviouslyCreatedNodes(currentNode);
                 } else {
                     skipLeafCheck=true;
                 }
             } else if (currentNode instanceof FunctionNode) {
                 if (findPreviouslyCreatedNodes(currentNode)!=null) {
                     currentNode = findPreviouslyCreatedNodes(currentNode);
-                    } else {
-                        skipLeafCheck=true;
-                    }
+                } else {
+                    skipLeafCheck=true;
+                }
             }
             if (!skipLeafCheck) {
                 if (currentNode instanceof LeafNode || currentNode instanceof VariableNode || currentNode instanceof FunctionNode) {
@@ -182,16 +182,18 @@ public class Parser {
                     }
                     nextWord = queue.poll();
                 }
-                if (nextWord.equals("]")) {    
+                if (nextWord.equals("]")) {  
                     if (currentNode == null) {
                         return root;
                     }
-                    currentNode = currentNode.getParent();
-                    if (currentNode == null) {
-                        return root;
-                    }
-                    if (currentNode.getParent() instanceof IfElseNode) {
+                    if (!(currentNode instanceof DoTimesNode)) {
                         currentNode = currentNode.getParent();
+                        if (currentNode == null) {
+                            return root;
+                        }
+                        if (currentNode.getParent() instanceof IfElseNode) {
+                            currentNode = currentNode.getParent();
+                        }
                     }
                     nextWord = queue.poll();
                     if (nextWord == null) {
@@ -229,10 +231,10 @@ public class Parser {
         if (root!=null) {
             System.out.println("**Parser traverseTree: root "+root+"'s children are" + root.getChildren());
             for (AbstractNode childNode : root.getChildren()) {
-                
+
                 System.out.println("**Parser traverseTree: child node"+childNode+ " is being traversed");
                 traverseTree(childNode);
-                
+
             }
             System.out.println("**Parser traverseTree: evaluated "+ root+" = "+root.evaluate());
             return root.evaluate();

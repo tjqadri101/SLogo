@@ -25,8 +25,7 @@ public class DoTimesNode extends AbstractNode {
         AbstractNode conditionNode = this.getLeftNode();
         double maxVal = conditionNode.evaluate();
         for (int i=0;i<maxVal;i++) {
-            AbstractNode variableNode = conditionNode.getLeftNode();
-            variableNode.setCurrentValue(i);
+            conditionNode.getLeftNode().setCurrentValue(i);
             return this.getRightNode().evaluate();
         }
         return 0;
