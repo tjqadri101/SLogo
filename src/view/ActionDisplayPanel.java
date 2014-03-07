@@ -53,7 +53,7 @@ public class ActionDisplayPanel extends JPanel{
 		this.setLayout(new GridBagLayout());
 
 		addBorderedComponent(0,0,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
-		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser(),"Modify Pen Options");
+		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
 		addBorderedComponent(1,2,0,0,1,1,makeButtonRotateR45(),"Rotate turtle:");
 		addBorderedComponent(2,2,0,0,2,1,makeTurtleMovementButtons(),"Press to move turtle!");
 		addBorderedComponent(0,3,0,.1,3,2,myScrollableTextArea,"Turtle state:");
@@ -98,7 +98,7 @@ public class ActionDisplayPanel extends JPanel{
 		return result;
 	}
 
-	private JComponent makePenColorChooser(){
+	private JComponent makePenColorChooser_Toggle(){
 		JPanel colorButtons = new JPanel(new BorderLayout());
 		colorChooser.addActionListener(new ActionListener(){
 			@Override
