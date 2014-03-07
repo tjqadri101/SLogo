@@ -68,10 +68,10 @@ public class Turtle implements ITurtle {
 	 * myShape left uninitialized because default is image.
 	 */
 
-	public Turtle(double initialX, double initialY, String language) {
+	public Turtle(double initialX, double initialY, double angle) {
 		myX = initialX;
 		myY = initialY;
-		myLanguage = language;
+		//myLanguage = language;
 		myAngle = DEFAULT_HEADING;
 		myPen = PEN_UP;
 		myPenColor = BLACK;
@@ -269,5 +269,6 @@ public class Turtle implements ITurtle {
 		// TODO Auto-generated method stub
 		return myY;
 	}
+
 }
 

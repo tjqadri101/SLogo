@@ -19,7 +19,7 @@ public class ExecutedCodePanel extends JScrollPane implements MouseListener{
 	private DefaultListModel codeSnippets = new DefaultListModel();
 	
 	public ExecutedCodePanel(){
-		this.setPreferredSize(new Dimension(250,250));
+		//this.setPreferredSize(new Dimension(250,250));
 		executedCode = new JList(codeSnippets);
 		executedCode.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setViewportView(executedCode);
