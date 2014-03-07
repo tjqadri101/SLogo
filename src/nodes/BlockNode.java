@@ -1,5 +1,7 @@
 package nodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import turtle.Turtle;
 
@@ -13,9 +15,8 @@ public class BlockNode extends AbstractNode {
     }
 
     @Override
-    public double evaluate () {
-        // TODO Auto-generated method stub
-        return 0;
+    public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+        return (this.getLeftNode().evaluate() + this.getRightNode().evaluate());
     }
 
     @Override

@@ -18,8 +18,7 @@ public class MakeNode extends AbstractNode {
                              SecurityException, InstantiationException, IllegalAccessException,
                              IllegalArgumentException, InvocationTargetException,
                              NoSuchFieldException, IOException {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.getLeftNode().evaluate();
     }
 
     @Override

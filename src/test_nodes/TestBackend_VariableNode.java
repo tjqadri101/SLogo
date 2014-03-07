@@ -32,13 +32,16 @@ public class TestBackend_VariableNode {
 
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
-        assert root instanceof BlockNode;
+        System.out.println("**TestBackend_VariableNode: createTree for Make: root is "+root);
+        System.out.println("**TestBackend_VariableNode: createTree for Make: root's children are "+root.getChildren());
+        System.out.println("**TestBackend_VariableNode: createTree for Make: root is right node is "+root.getRightNode());
+        assert (root instanceof BlockNode);
         AbstractNode leftNode = root.getLeftNode();
         AbstractNode rightNode = root.getRightNode();
-        assert leftNode instanceof MakeNode;
-        assert leftNode.getLeftNode() instanceof VariableNode; 
-        assert rightNode instanceof RepeatNode;
-        assert rightNode.getLeftNode() instanceof ConditionNode;
+        assert (leftNode instanceof MakeNode);
+        assert (leftNode.getLeftNode() instanceof VariableNode); 
+        assert (rightNode instanceof RepeatNode);
+        assert (rightNode.getLeftNode() instanceof ConditionNode);
     }
 
     @org.junit.Test
@@ -53,9 +56,11 @@ public class TestBackend_VariableNode {
 
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
-        assert root instanceof BlockNode;
-        assert root.getLeftNode() instanceof FunctionNode;
-        assert root.getLeftNode().getLeftNode() instanceof BlockNode;
+//        System.out.println("**TestBackend_VariableNode: createTree for Make: root is "+root);
+//        System.out.println("**TestBackend_VariableNode: createTree for Make: root's children are "+root.getChildren());
+        assert (root instanceof BlockNode);
+        assert (root.getLeftNode() instanceof FunctionNode);
+        assert (root.getLeftNode().getLeftNode() instanceof BlockNode);
         
         
     }
@@ -72,16 +77,16 @@ public class TestBackend_VariableNode {
 
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
-        assert root instanceof BlockNode;
+        assert (root instanceof BlockNode);
         AbstractNode leftNode = root.getLeftNode();
         AbstractNode rightNode = root.getRightNode();
-        assert leftNode instanceof MakeNode;
-        assert leftNode.getLeftNode() instanceof VariableNode; 
-        assert leftNode.getLeftNode().getLeftNode() instanceof NumberNode;
-        assert rightNode instanceof FunctionNode;
-        assert rightNode.getLeftNode() instanceof BlockNode;
-        assert rightNode.getLeftNode().getLeftNode() instanceof ForwardNode;
-        assert rightNode.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode;
+        assert (leftNode instanceof MakeNode);
+        assert (leftNode.getLeftNode() instanceof VariableNode); 
+        assert (leftNode.getLeftNode().getLeftNode() instanceof NumberNode);
+        assert (rightNode instanceof FunctionNode);
+        assert (rightNode.getLeftNode() instanceof BlockNode);
+        assert (rightNode.getLeftNode().getLeftNode() instanceof ForwardNode);
+        assert (rightNode.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode);
     }
 
     @org.junit.Test
@@ -96,18 +101,18 @@ public class TestBackend_VariableNode {
 
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
-        assert root instanceof BlockNode;
+        assert (root instanceof BlockNode);
         AbstractNode leftNode = root.getLeftNode();
         AbstractNode rightNode = root.getRightNode();
-        assert leftNode instanceof MakeNode;
-        assert leftNode.getLeftNode() instanceof VariableNode; 
-        assert leftNode.getLeftNode().getLeftNode() instanceof NumberNode;
-        assert rightNode instanceof FunctionNode;
-        assert rightNode.getLeftNode() instanceof BlockNode;
-        assert rightNode.getRightNode() instanceof BlockNode;
-        assert rightNode.getLeftNode().getLeftNode() instanceof VariableNode;
-        assert rightNode.getRightNode().getLeftNode() instanceof ForwardNode; 
-        assert rightNode.getRightNode().getLeftNode().getLeftNode() instanceof NumberNode;
+        assert (leftNode instanceof MakeNode);
+        assert (leftNode.getLeftNode() instanceof VariableNode); 
+        assert (leftNode.getLeftNode().getLeftNode() instanceof NumberNode);
+        assert (rightNode instanceof FunctionNode);
+        assert (rightNode.getLeftNode() instanceof BlockNode);
+        assert (rightNode.getRightNode() instanceof BlockNode);
+        assert (rightNode.getLeftNode().getLeftNode() instanceof VariableNode);
+        assert (rightNode.getRightNode().getLeftNode() instanceof ForwardNode); 
+        assert (rightNode.getRightNode().getLeftNode().getLeftNode() instanceof NumberNode);
     }
     
     @org.junit.Test
@@ -122,13 +127,13 @@ public class TestBackend_VariableNode {
 
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
-        assert root instanceof BlockNode;
-        assert root.getLeftNode() instanceof DoTimesNode;
-        assert root.getLeftNode().getLeftNode() instanceof VariableNode;
-        assert root.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode;
-        assert root.getLeftNode().getRightNode() instanceof BlockNode;
-        assert root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode;
-        assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof NumberNode;
+        assert (root instanceof BlockNode);
+        assert (root.getLeftNode() instanceof DoTimesNode);
+        assert (root.getLeftNode().getLeftNode() instanceof VariableNode);
+        assert (root.getLeftNode().getLeftNode().getLeftNode() instanceof NumberNode);
+        assert (root.getLeftNode().getRightNode() instanceof BlockNode);
+        assert (root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode);
+        assert (root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof NumberNode);
     }
     
     @org.junit.Test
@@ -143,15 +148,15 @@ public class TestBackend_VariableNode {
 
         Parser parser = new Parser(allTurtles, string, "English");
         AbstractNode root = parser.createTree();
-        assert root instanceof BlockNode;
-        assert root.getLeftNode() instanceof DoTimesNode;
-        assert root.getLeftNode().getLeftNode() instanceof VariableNode;
+        assert (root instanceof BlockNode);
+        assert (root.getLeftNode() instanceof DoTimesNode);
+        assert (root.getLeftNode().getLeftNode() instanceof VariableNode);
         for (AbstractNode thisNode : root.getLeftNode().getLeftNode().getChildren()) {
-            assert thisNode instanceof NumberNode;
+            assert (thisNode instanceof NumberNode);
         }
-        assert root.getLeftNode().getRightNode() instanceof BlockNode;
-        assert root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode;
-        assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof VariableNode;
+        assert (root.getLeftNode().getRightNode() instanceof BlockNode);
+        assert (root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode);
+        assert (root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof VariableNode);
     }
     
     @org.junit.Test

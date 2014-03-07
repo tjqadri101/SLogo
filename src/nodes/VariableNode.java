@@ -60,7 +60,7 @@ public class VariableNode extends AbstractNode{
 
     @Override
     public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-
+            setCurrentValue(this.getLeftNode().evaluate());
             return myCurrentValue;
         
     }
