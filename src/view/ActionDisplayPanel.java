@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.BorderFactory;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,39 +38,42 @@ public class ActionDisplayPanel extends JPanel{
 	private JButton moveTurtleForward = new JButton("Forward");
 	private JButton moveTurtleBack = new JButton("Downwards");
 	private JButton togglePen = new JButton("Pen Toggle");
-	
+	private JButton colorChooser = new JButton("Choose a Pen color");
+
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);
+	private JColorChooser colorSelector;
 
 	public ActionDisplayPanel(Turtle t) {
 		turtleDisplayPanel = new TurtleDisplayPanel();
 		myScrollableTextArea.setEditable(false);
-		
+		colorSelector = new JColorChooser(Color.black);
+
 		this.setLayout(new GridBagLayout());
-		
+
 		addBorderedComponent(0,2,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
 		addBorderedComponent(0,0,1,.2,4,1,myScrollableTextArea,"Turtle state:");
 		addBorderedComponent(0,1,0,.2,1,1,makeClear(),"Reset turtle and state:");
 		addBorderedComponent(1,1,0,.2,1,1,makeButtonRotateR45(),"Rotate turtle:");
 		addBorderedComponent(2,1,1,.2,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
-		
-		
+		addBorderedComponent(3,1,1,.2,1,1,makePenColorChooser(),"Choose Pen Color");
+
 		revalidate();
 		repaint();
 	}
 
-	protected void showMessage (String message) {
+	private void showMessage (String message) {
 		myScrollableTextArea.append(message + "\n");
 		myScrollableTextArea.setCaretPosition(myScrollableTextArea.getTextLength());
 	}
-	
-	protected void showState(){
-		String messagePos = turtleDisplayPanel.getLocationInfo();
+
+	private void showState(){
+		String messagePos = turtleDisplayPanel.getPositionInfo();
 		String messageAngle = "The turtle's heading is (" + turtleDisplayPanel.getAngle() + ")";
 		showMessage(messagePos + "\n" + messageAngle);
 	}
-	
-	protected JButton makeButtonRotateR45(){
+
+	private JButton makeButtonRotateR45(){
 		JButton right = new JButton("Right Rotate");
 		right.addActionListener(new ActionListener(){
 			@Override
@@ -80,7 +84,7 @@ public class ActionDisplayPanel extends JPanel{
 		});
 		return right;
 	}
-	protected JButton makeClear () {
+	private JButton makeClear () {
 		JButton result = new JButton(("ClearCommand"));
 		result.addActionListener(new ActionListener() {
 			@Override
@@ -92,10 +96,27 @@ public class ActionDisplayPanel extends JPanel{
 		});
 		return result;
 	}
-	
-	protected JComponent makeTurtleMovementButtons(){
+
+	private JComponent makePenColorChooser(){
+		colorChooser.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				Color newColor = JColorChooser.showDialog(
+						colorChooser,
+						"Choose Background Color",
+						turtleDisplayPanel.getColor());
+				if (newColor != null) {
+					turtleDisplayPanel.setColor(newColor);
+				}
+			}
+		});
+		return colorChooser;
+
+	}
+
+	private JComponent makeTurtleMovementButtons(){
 		JPanel buttons = new JPanel(new BorderLayout());
-		
+
 		moveTurtleLeft.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -103,7 +124,7 @@ public class ActionDisplayPanel extends JPanel{
 				showState();
 			}
 		});
-		
+
 		moveTurtleRight.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -111,7 +132,7 @@ public class ActionDisplayPanel extends JPanel{
 				showState();
 			}
 		});
-		
+
 		moveTurtleForward.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -119,7 +140,7 @@ public class ActionDisplayPanel extends JPanel{
 				showState();
 			}
 		});
-		
+
 		moveTurtleBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -127,7 +148,7 @@ public class ActionDisplayPanel extends JPanel{
 				showState();
 			}
 		});
-		
+
 		togglePen.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e){
@@ -135,17 +156,17 @@ public class ActionDisplayPanel extends JPanel{
 				showState();
 			}
 		});
-		
+
 		buttons.add(moveTurtleForward,BorderLayout.NORTH);
 		buttons.add(moveTurtleBack,BorderLayout.SOUTH);
 		buttons.add(moveTurtleLeft,BorderLayout.WEST);
 		buttons.add(moveTurtleRight,BorderLayout.EAST);
 		buttons.add(togglePen, BorderLayout.CENTER);
-		
+
 		return buttons;
-		
+
 	}
-	
+
 	private static JLabel makeHyperLink(final String s, final String link, int x, int y)
 	{
 		final JLabel l = new JLabel(s);
@@ -181,27 +202,27 @@ public class ActionDisplayPanel extends JPanel{
 		l.setToolTipText(String.format("go to %s", link));
 		return l;
 	}
-	
-    /*Used to add titled and bordered components in a grid LayoutManager
+
+	/*Used to add titled and bordered components in a grid LayoutManager
 	to this panel*/
-	public void addBorderedComponent(int gridX,int gridY,double weightX,
+	private void addBorderedComponent(int gridX,int gridY,double weightX,
 			double weightY,int gridWidth,int gridHeight,JComponent jComponent,
 			String title){
-			JPanel jp = new JPanel(new BorderLayout());
-			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.fill = GridBagConstraints.BOTH;
-			gbc.gridx=gridX;
-			gbc.gridy=gridY;
-			gbc.weightx=weightX;
-			gbc.weighty=weightY;
-			gbc.gridwidth=gridWidth;
-			gbc.gridheight=gridHeight;
-			jp.setBorder(
-		            BorderFactory.createTitledBorder(
-		                    BorderFactory.createEtchedBorder(
-		                            EtchedBorder.RAISED, Color.GRAY
-		                            , Color.BLUE), title));
-			jp.add(jComponent,BorderLayout.CENTER);
-			this.add(jp,gbc);
+		JPanel jp = new JPanel(new BorderLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.gridx=gridX;
+		gbc.gridy=gridY;
+		gbc.weightx=weightX;
+		gbc.weighty=weightY;
+		gbc.gridwidth=gridWidth;
+		gbc.gridheight=gridHeight;
+		jp.setBorder(
+				BorderFactory.createTitledBorder(
+						BorderFactory.createEtchedBorder(
+								EtchedBorder.RAISED, Color.GRAY
+								, Color.BLUE), title));
+		jp.add(jComponent,BorderLayout.CENTER);
+		this.add(jp,gbc);
 	}
 }
