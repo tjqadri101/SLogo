@@ -173,7 +173,7 @@ public class ActionDisplayPanel extends JPanel{
 		return l;
 	}
 	
-    /*Used to add titled and bordered components in a grid LayoutManager
+    /*Used to add titled and bordered components in a gridbag LayoutManager
 	to this panel*/
 	public void addBorderedComponent(int gridX,int gridY,double weightX,
 			double weightY,int gridWidth,int gridHeight,JComponent jComponent,
