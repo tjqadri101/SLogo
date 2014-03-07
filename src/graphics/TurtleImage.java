@@ -1,24 +1,22 @@
-package view;
+package graphics;
 
-import java.awt.Dimension;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.Transparency;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+
 
 public class TurtleImage {
 
-	private final double DEFAULT_HEADING = 0;
-	private final double X_CENTER = 320; //JPanel dimensions make this the central location for x and y
-	private final double Y_CENTER = 240;
+	private int myWidth;
+	private int myHeight;
+	private int myTopLeftX;
+	private int myTopLeftY;
 
 	private BufferedImage myTurtleImage;
 	private File myTurtleFile;
@@ -30,16 +28,11 @@ public class TurtleImage {
 	public BufferedImage setImage() throws IOException {
 
 		myTurtleImage = ImageIO.read(myTurtleFile);
+		myWidth = myTurtleImage.getWidth();
+		myHeight = myTurtleImage.getHeight();
 		return myTurtleImage;
 	}
 
-	/*
-	 * Wrapper function for paint(). Draws image on screen.
-	 */
-
-	public void paintCenter(Graphics2D pen, BufferedImage turtle) {
-		paint(pen, X_CENTER, Y_CENTER, 0, 0, DEFAULT_HEADING, turtle);
-	}
 
 	/*
 	 * Rotates image on screen. Step 1: Save state of image via AffineTransform.
@@ -51,11 +44,21 @@ public class TurtleImage {
 	public void paint(Graphics2D pen, double xCenter, double yCenter,
 			double deltaX, double deltaY, double angle, BufferedImage turtle) {
 		
-		AffineTransform old = new AffineTransform(pen.getTransform());
 
+		initializeTopLeftCorner(xCenter, yCenter);
+		
+		AffineTransform old = new AffineTransform(pen.getTransform());	
 		pen.translate(deltaX, deltaY);
 		pen.rotate(Math.toRadians(-angle), xCenter, yCenter);
-		pen.drawImage(turtle, (int) xCenter, (int) yCenter, null);
+		//image drawn at top left corner
+		//taking rotation into account
+		pen.drawImage(turtle, myTopLeftX, myTopLeftY, null);
 		pen.setTransform(old);
+	}
+
+	private void initializeTopLeftCorner(double xCenter, double yCenter) {
+		// TODO Auto-generated method stub
+		myTopLeftX = ((int) xCenter) - myWidth/2;
+		myTopLeftY = ((int) yCenter) - myHeight/2;
 	}
 }

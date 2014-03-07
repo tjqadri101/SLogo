@@ -1,21 +1,28 @@
 package nodes.displaynodes;
 
+import java.util.List;
+
 import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class PenColorNode extends LeafNode {
 	
-	private Turtle myTurtle;
+	List<Turtle> myTurtles;
 
-	public PenColorNode(Turtle turtle) {
-		super(turtle);
+	public PenColorNode(List<Turtle> turtles) {
+		super(turtles);
 		
-        myTurtle = turtle;
+        myTurtles = turtles;
 	}
 	
 	@Override
 	public double evaluate() {
-		return myTurtle.getPenColorIndex();
+		double temp = 0;
+		for (Turtle thisTurtle : myTurtles) {
+			temp = thisTurtle.getPenColorIndex();
+            return thisTurtle.getPenColorIndex();
+        }
+		return temp;
 	}
 
 }

@@ -2,16 +2,17 @@ package nodes.controlnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import turtle.Turtle;
 import nodes.AbstractNode;
 
 public class IfNode extends AbstractNode {
 
-    private Turtle myTurtle; 
-    
-    public IfNode (Turtle turtle) {
-        super(turtle);
-        myTurtle = turtle;
+    private List<Turtle> myTurtles;
+
+    public IfNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
     }
 
     private double traverseSubtree() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {

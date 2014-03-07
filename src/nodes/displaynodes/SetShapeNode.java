@@ -2,16 +2,18 @@ package nodes.displaynodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class SetShapeNode extends AbstractNode {
 
-	private Turtle myTurtle;
+    private List<Turtle> myTurtles;
 
-	public SetShapeNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
+	public SetShapeNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
 	}
 
 	@Override
@@ -20,7 +22,10 @@ public class SetShapeNode extends AbstractNode {
 		AbstractNode child = this.getLeftNode();
 		double shapeIndex = child.evaluate();
 		
-		myTurtle.setTurtleShape(shapeIndex);
+		 for (Turtle thisTurtle : myTurtles) {
+	            thisTurtle.setTurtleShape(shapeIndex);
+	        }
+		
 		return shapeIndex;
 	}
 

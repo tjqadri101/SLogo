@@ -2,16 +2,17 @@ package nodes.booleannodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class GreaterNode extends CompareNode {
 
-	private Turtle myTurtle;
+	private List<Turtle> myTurtles;
 
-	public GreaterNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
+	public GreaterNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
 	}
 
 	@Override

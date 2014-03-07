@@ -1,21 +1,29 @@
 package nodes.querynodes;
 
+import java.util.List;
+
 import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class YCorNode extends LeafNode {
 
-	private Turtle myTurtle;
+	private List<Turtle> myTurtles;
 
-	public YCorNode(Turtle turtle) {
-		super(turtle);
+	public YCorNode(List<Turtle> turtles) {
+		super(turtles);
 
-		myTurtle = turtle;
+		myTurtles = turtles;
 	}
 
 	@Override
 	public double evaluate() {
-		return myTurtle.getYPos();
+		double temp = 0;
+
+		for (Turtle thisTurtle : myTurtles) {
+			temp = thisTurtle.getYPos();
+			return thisTurtle.getYPos();
+		}
+		return temp;
 	}
 
 }
