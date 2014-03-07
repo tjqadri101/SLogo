@@ -1,17 +1,18 @@
 package view;
 
 import graphics.TurtleImage;
+import graphics.Line;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
 
 import turtle.Turtle;
 
@@ -37,12 +38,17 @@ public class TurtleDisplayPanel extends JPanel{
 	private boolean center;
 	private int myPanelHeight;
 	private int myPanelWidth;
+	private LinkedList<Line2D> lineList;
+	private Color lineColor;
+	private int myPen;
 
 	public TurtleDisplayPanel() {
 
 		this.setBackground(Color.white);
 		center = true; 
 		myAngle = 0;
+		lineColor = Color.black;
+		lineList = new LinkedList<Line2D>();
 		
 		try {
 			displayTurtle = turtlePic.setImage();
@@ -66,9 +72,23 @@ public class TurtleDisplayPanel extends JPanel{
 		else{
 			turtlePic.paint(g2d, prevX, prevY, deltaX, deltaY, myAngle, displayTurtle);
 		}
+		checkLineAddition();
+		for(Line2D line:lineList){
+			g2d.setColor(lineColor);
+			g2d.draw((Shape) line);
+			
+		}
 		center = false;
 	}
 	
+	private void checkLineAddition() {
+		boolean changedPos = curX!=prevX | curY != prevY;
+		if(myPen == 1 && changedPos){
+			lineList.add(new Line2D.Double(prevX, prevY, curX, curY));
+		}
+		
+	}
+
 	public double getCurX(){
 		return curX;
 	}
@@ -130,9 +150,21 @@ public class TurtleDisplayPanel extends JPanel{
 		return messagePos;
 	}
 	
+	public void setPenToggle(){
+		if(myPen == 0)
+			myPen = 1;
+		else
+			myPen = 0;
+	}
+	
+	public void setColor(Color c){
+		lineColor = c;
+	}
+	
 	public void resetTurtle(){
 		center = true;
 		setCenter();
+		lineList.clear();
 		repaint();
 	}
 }

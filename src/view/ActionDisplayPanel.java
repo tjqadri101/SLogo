@@ -35,7 +35,8 @@ public class ActionDisplayPanel extends JPanel{
 	private JButton moveTurtleLeft = new JButton("Left");
 	private JButton moveTurtleRight = new JButton("Right");
 	private JButton moveTurtleForward = new JButton("Forward");
-	private JButton moveTurtleBack = new JButton("Back");
+	private JButton moveTurtleBack = new JButton("Downwards");
+	private JButton togglePen = new JButton("Pen Toggle");
 	
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);
@@ -46,11 +47,11 @@ public class ActionDisplayPanel extends JPanel{
 		
 		this.setLayout(new GridBagLayout());
 		
-		addBorderedComponent(0,1,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
-		addBorderedComponent(0,0,1,.2,1,1,myScrollableTextArea,"Turtle state:");
-		addBorderedComponent(1,0,0,.2,1,1,makeClear(),"Reset turtle and state:");
-		addBorderedComponent(2,0,0,.2,1,1,makeButtonRotateR45(),"Rotate turtle:");
-		addBorderedComponent(3,0,1,.2,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		addBorderedComponent(0,2,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
+		addBorderedComponent(0,0,1,.2,4,1,myScrollableTextArea,"Turtle state:");
+		addBorderedComponent(0,1,0,.2,1,1,makeClear(),"Reset turtle and state:");
+		addBorderedComponent(1,1,0,.2,1,1,makeButtonRotateR45(),"Rotate turtle:");
+		addBorderedComponent(2,1,1,.2,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
 		
 		
 		revalidate();
@@ -127,10 +128,19 @@ public class ActionDisplayPanel extends JPanel{
 			}
 		});
 		
+		togglePen.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				turtleDisplayPanel.setPenToggle();
+				showState();
+			}
+		});
+		
 		buttons.add(moveTurtleForward,BorderLayout.NORTH);
 		buttons.add(moveTurtleBack,BorderLayout.SOUTH);
 		buttons.add(moveTurtleLeft,BorderLayout.WEST);
 		buttons.add(moveTurtleRight,BorderLayout.EAST);
+		buttons.add(togglePen, BorderLayout.CENTER);
 		
 		return buttons;
 		
