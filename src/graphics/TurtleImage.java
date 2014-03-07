@@ -1,4 +1,4 @@
-package view;
+package graphics;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 
 public class TurtleImage {
 
-	private final double DEFAULT_HEADING = 0;
 	private int myWidth;
 	private int myHeight;
 	private int myTopLeftX;
