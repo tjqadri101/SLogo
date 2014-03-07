@@ -23,7 +23,7 @@ public class BlockNode extends AbstractNode {
         } else if (this.getLeftNode()!=null && this.getRightNode()!=null) {
             return (this.getLeftNode().evaluate() + this.getRightNode().evaluate());
         }
-        return -1; //TEST: RETURN -1
+        return 0; //TEST: RETURN 0
         
     }
 

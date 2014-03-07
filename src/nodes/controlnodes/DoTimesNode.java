@@ -10,7 +10,6 @@ public class DoTimesNode extends AbstractNode {
 
     public DoTimesNode (List<Turtle> turtles) {
         super(turtles);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -18,7 +17,18 @@ public class DoTimesNode extends AbstractNode {
                              SecurityException, InstantiationException, IllegalAccessException,
                              IllegalArgumentException, InvocationTargetException,
                              NoSuchFieldException, IOException {
-        // TODO Auto-generated method stub
+        return traverseSubtree();
+    }
+    
+    private double traverseSubtree() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+        // check left (condition node)
+        AbstractNode conditionNode = this.getLeftNode();
+        double maxVal = conditionNode.evaluate();
+        for (int i=0;i<maxVal;i++) {
+            AbstractNode variableNode = conditionNode.getLeftNode();
+            variableNode.setCurrentValue(i);
+            return this.getRightNode().evaluate();
+        }
         return 0;
     }
 

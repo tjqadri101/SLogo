@@ -108,7 +108,7 @@ public class Parser {
                         }
                         if (currentNode instanceof FunctionNode) myFunctionNodes.add(currentNode);
                         currentNode = currentNode.getParent();
-                        if (currentNode instanceof MakeNode) currentNode = currentNode.getParent();
+                        if (currentNode instanceof MakeNode || currentNode instanceof ConditionNode) currentNode = currentNode.getParent();
                     } else if (!(currentNode instanceof VariableNode) && (!currentNode.allowsTwoChildren() || 
                             (currentNode.allowsTwoChildren() && currentNode.getChildren().size()==2))) {
                         currentNode = currentNode.getParent();
@@ -173,11 +173,13 @@ public class Parser {
                     if (currentNode instanceof RepeatNode || currentNode instanceof IfNode 
                             || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) {
                         currentNode = currentNode.getRightNode(); // go to block
-                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode || 
-                            currentNode.getParent() instanceof DoTimesNode || currentNode.getParent() instanceof ForNode ||
-                            currentNode.getParent().getParent() instanceof IfElseNode) {
+                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
-                    } 
+                    } else if (currentNode.getParent()!=null) {
+                        if (currentNode.getParent().getParent() instanceof IfElseNode) {
+                            currentNode = currentNode.getParent().getRightNode(); // go to block
+                        }
+                    }
                     nextWord = queue.poll();
                 }
                 if (nextWord.equals("]")) {    
