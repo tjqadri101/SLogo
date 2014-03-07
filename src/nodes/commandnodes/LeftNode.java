@@ -2,26 +2,27 @@ package nodes.commandnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class LeftNode extends AbstractNode {
 
-    private Turtle myTurtle;
+    
+    private List<Turtle> myTurtles;
 
-    public LeftNode(Turtle turtle) {
-        super(turtle);
-        myTurtle = turtle;
-    }
-
-    public void setTurtle(Turtle turtle) {
-        myTurtle = turtle;
+    public LeftNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
     }
 
     @Override
     public double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         double deltaAngle = this.getLeftNode().evaluate();
-        myTurtle.updatePosition(deltaAngle, 0);
+        for (Turtle turtle : myTurtles) {
+            turtle.updatePosition(deltaAngle, 0);
+        }
+        
         return deltaAngle;
     }
 

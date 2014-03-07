@@ -2,13 +2,14 @@ package nodes.leafnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class LeafNode extends AbstractNode {
 
-	public LeafNode(Turtle turtle) {
-		super(turtle);
+	public LeafNode(List<Turtle> turtles) {
+		super(turtles);
 		// TODO Auto-generated constructor stub
 	}
 
