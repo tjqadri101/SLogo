@@ -229,16 +229,11 @@ public class Parser {
 
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
         if (root!=null) {
-            System.out.println("**Parser traverseTree: root "+root+"'s children are" + root.getChildren());
             for (AbstractNode childNode : root.getChildren()) {
-
-                System.out.println("**Parser traverseTree: child node"+childNode+ " is being traversed");
                 traverseTree(childNode);
-
             }
-            System.out.println("**Parser traverseTree: evaluated "+ root+" = "+root.evaluate());
             return root.evaluate();
         }
-        return 1; //TODO
+        return 1; 
     }
 }
