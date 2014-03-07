@@ -3,6 +3,7 @@ package view;
 import graphics.TurtleImage;
 
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,6 +11,7 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -39,7 +41,9 @@ public class TurtleDisplayPanel extends JPanel{
 	private int myPanelHeight;
 	private int myPanelWidth;
 	private LinkedList<Line2D> lineList;
-	private Color lineColor;
+	private HashMap<Line2D, Color> lineColorMap;
+	private Color penColor;
+	private static final Color Default_Pen_Color = Color.black;
 	private int myPen;
 
 	public TurtleDisplayPanel() {
@@ -47,8 +51,9 @@ public class TurtleDisplayPanel extends JPanel{
 		this.setBackground(Color.white);
 		initialize = true; 
 		myAngle = 0;
-		lineColor = Color.black;
+		penColor = Default_Pen_Color;
 		lineList = new LinkedList<Line2D>();
+		lineColorMap = new HashMap<Line2D, Color>();
 		
 		try {
 			displayTurtle = turtlePic.setImage();
@@ -72,7 +77,7 @@ public class TurtleDisplayPanel extends JPanel{
 			turtlePic.paint(g2d, prevX, prevY, deltaX, deltaY, myAngle, displayTurtle);
 			checkLineAddition();
 			for(Line2D line:lineList){
-				g2d.setColor(lineColor);
+				g2d.setColor(lineColorMap.get(line));
 				g2d.draw((Shape) line);
 			}
 		}
@@ -81,7 +86,9 @@ public class TurtleDisplayPanel extends JPanel{
 	
 	private void checkLineAddition() {
 		if(myPen == 1){
-			lineList.add(new Line2D.Double(prevX, prevY, curX, curY));
+			Line2D newLine = new Line2D.Double(prevX, prevY, curX, curY);
+			lineColorMap.put(newLine, penColor);
+			lineList.add(newLine);
 		}
 		
 	}
@@ -150,7 +157,7 @@ public class TurtleDisplayPanel extends JPanel{
 		return positionInfo;
 	}
 	public Color getColor(){
-		return lineColor;
+		return penColor;
 	}
 	
 	
@@ -162,7 +169,7 @@ public class TurtleDisplayPanel extends JPanel{
 	}
 	
 	public void setColor(Color c){
-		lineColor = c;
+		penColor = c;
 	}
 	
 	// set it to private as it is never called by external methods

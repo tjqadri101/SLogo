@@ -52,13 +52,13 @@ public class ActionDisplayPanel extends JPanel{
 		this.setLayout(new GridBagLayout());
 
 		addBorderedComponent(0,2,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
-		addBorderedComponent(0,0,1,.2,4,1,myScrollableTextArea,"Turtle state:");
-		addBorderedComponent(0,1,0,.2,1,1,makeClear(),"Reset turtle and state:");
+		addBorderedComponent(0,0,1,.2,3,1,myScrollableTextArea,"Turtle state:");
+		addBorderedComponent(3,0,0,.2,1,1,makeClear(),"Reset turtle and state:");
+		addBorderedComponent(0,1,1,.2,1,1,makePenColorChooser(),"Modify Pen Options");
 		addBorderedComponent(1,1,0,.2,1,1,makeButtonRotateR45(),"Rotate turtle:");
-		addBorderedComponent(2,1,1,.2,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
-		addBorderedComponent(3,1,1,.2,1,1,makePenColorChooser(),"Choose Pen Color");
-
-		revalidate();
+		addBorderedComponent(2,1,1,.2,2,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		
+		//revalidate();
 		repaint();
 	}
 
@@ -98,19 +98,31 @@ public class ActionDisplayPanel extends JPanel{
 	}
 
 	private JComponent makePenColorChooser(){
+		JPanel colorButtons = new JPanel(new BorderLayout());
 		colorChooser.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				Color newColor = JColorChooser.showDialog(
 						colorChooser,
-						"Choose Background Color",
+						"Choose Pen Color",
 						turtleDisplayPanel.getColor());
 				if (newColor != null) {
 					turtleDisplayPanel.setColor(newColor);
 				}
 			}
 		});
-		return colorChooser;
+		
+		togglePen.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				turtleDisplayPanel.setPenToggle();
+				showState();
+			}
+		});
+		
+		colorButtons.add(togglePen,BorderLayout.WEST);
+		colorButtons.add(colorChooser,BorderLayout.EAST);
+		return colorButtons;
 
 	}
 
@@ -149,19 +161,11 @@ public class ActionDisplayPanel extends JPanel{
 			}
 		});
 
-		togglePen.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed (ActionEvent e){
-				turtleDisplayPanel.setPenToggle();
-				showState();
-			}
-		});
 
 		buttons.add(moveTurtleForward,BorderLayout.NORTH);
 		buttons.add(moveTurtleBack,BorderLayout.SOUTH);
 		buttons.add(moveTurtleLeft,BorderLayout.WEST);
 		buttons.add(moveTurtleRight,BorderLayout.EAST);
-		buttons.add(togglePen, BorderLayout.CENTER);
 
 		return buttons;
 
