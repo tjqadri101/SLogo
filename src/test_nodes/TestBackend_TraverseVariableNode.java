@@ -93,36 +93,23 @@ public class TestBackend_TraverseVariableNode {
         AbstractNode root = parser.createTree();
         double result = parser.traverseTree(root);
         System.out.println("TestBackend_TraverseVariableNode: result = "+result);
-        assert (result==200);
+        assert (result==3);
     }
-//    
-//    @org.junit.Test
-//    public void testForTraverseTree_For() throws ClassNotFoundException,
-//    NoSuchMethodException, SecurityException, InstantiationException,
-//    IllegalAccessException, IllegalArgumentException,
-//    InvocationTargetException, IOException, NoSuchFieldException {
-//        String string = "for [ :distance 0 3 1 ] [ fd :distance ]";
-//        Turtle turtle = new Turtle(0, 0, "English");
-//        List<Turtle> allTurtles = new ArrayList<Turtle>();
-//        allTurtles.add(turtle);
-//
-//        Parser parser = new Parser(allTurtles, string, "English");
-//        AbstractNode root = parser.createTree();
-//        assert root instanceof BlockNode;
-//        assert root.getLeftNode() instanceof DoTimesNode;
-//        assert root.getLeftNode().getLeftNode() instanceof VariableNode;
-//        for (AbstractNode thisNode : root.getLeftNode().getLeftNode().getChildren()) {
-//            assert thisNode instanceof NumberNode;
-//        }
-//        assert root.getLeftNode().getRightNode() instanceof BlockNode;
-//        assert root.getLeftNode().getRightNode().getLeftNode() instanceof ForwardNode;
-//        assert root.getLeftNode().getRightNode().getLeftNode().getLeftNode() instanceof VariableNode;
-//    }
     
-    
-    
-    
-    
-    
-    
+    @org.junit.Test
+    public void testForTraverseTree_For() throws ClassNotFoundException,
+    NoSuchMethodException, SecurityException, InstantiationException,
+    IllegalAccessException, IllegalArgumentException,
+    InvocationTargetException, IOException, NoSuchFieldException {
+        String string = "for [ :distance 0 3 1 ] [ fd :distance ]";
+        Turtle turtle = new Turtle(0, 0, "English");
+        List<Turtle> allTurtles = new ArrayList<Turtle>();
+        allTurtles.add(turtle);
+
+        Parser parser = new Parser(allTurtles, string, "English");
+        AbstractNode root = parser.createTree();
+        double result = parser.traverseTree(root);
+        System.out.println("TestBackend_TraverseVariableNode: result = "+result);
+        assert (result==3);
+    }
 }

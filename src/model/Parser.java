@@ -230,7 +230,9 @@ public class Parser {
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
         if (root!=null) {
             for (AbstractNode childNode : root.getChildren()) {
-                traverseTree(childNode);
+                if (childNode instanceof DoTimesNode) {
+                    childNode.evaluate();
+                } else { traverseTree(childNode); }
             }
             return root.evaluate();
         }

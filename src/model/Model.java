@@ -14,7 +14,8 @@ public class Model {
     private List<Turtle> myActiveTurtles = new ArrayList<Turtle>();
     private List<Turtle> myInactiveTurtles = new ArrayList<Turtle>();
     private Map<String, Parser> myWorkspaceParserMap = new HashMap<String,Parser>();
-    private List<String> myWorkspaces = new ArrayList<String>();
+//    private Map<String, List<Turtle>> myWorkspaceTurtleMap = new HashMap<String, List<Turtle>>();
+//    private Map<String, String> myWorkspaceCommandMap = new HashMap<String, String>();
     
     public Model() {
         
@@ -33,33 +34,20 @@ public class Model {
      * @throws NoSuchMethodException 
      * @throws ClassNotFoundException 
      */
-    public double processCommands(List<String> workspaces, String string, String language, List<Turtle> turtles) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-        myAllTurtles = turtles;
-        myActiveTurtles = turtles;
+    public Map<String, Double> processCommands(Map<String, List<Turtle>> turtleMap, Map<String, String> commandMap, 
+                                  Map<String, String> languageMap) throws ClassNotFoundException, NoSuchMethodException, 
+                                  SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, 
+                                  InvocationTargetException, NoSuchFieldException, IOException {
+        Map<String, Double> returnedValueMap = new HashMap<String, Double>();
+        for (String thisWorkspace : turtleMap.keySet()) {
+            List<Turtle> turtles = turtleMap.get(thisWorkspace);
+            String commands = commandMap.get(thisWorkspace);
+            String languageChoice = languageMap.get(thisWorkspace);
+            Parser parser = new Parser(turtles, commands, languageChoice);
+            returnedValueMap.put(thisWorkspace, parser.doParse());
+        }
         
-        Parser parser = new Parser(turtles, string, language);
-        return parser.doParse();
-    }
-    
-    
-    public void setActiveTurtles(List<Turtle> activeTurtles) {
-        myActiveTurtles = activeTurtles;
-    }
-    
-    public void addActiveTurtles(List<Turtle> activeTurtles) {
-        myActiveTurtles.addAll(activeTurtles);
-    }
-    
-    public List<Turtle> getActiveTurtles() {
-        return myActiveTurtles;
-    }
-    
-    public void setInactiveTurtles(List<Turtle> inactiveTurtles) {
-        myInactiveTurtles = inactiveTurtles;
-    }
-    
-    public void addInactiveTurtles(List<Turtle> inactiveTurtles) {
-        myInactiveTurtles.addAll(inactiveTurtles);
+        return returnedValueMap;
     }
     
     
