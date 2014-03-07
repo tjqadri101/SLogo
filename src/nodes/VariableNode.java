@@ -48,7 +48,7 @@ public class VariableNode extends AbstractNode{
     public double getIncrement() {
         return myIncrement;
     }
-    
+
     @Override
     public void setCurrentValue(double value) {
         myCurrentValue = value;
@@ -60,9 +60,12 @@ public class VariableNode extends AbstractNode{
 
     @Override
     public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+        if (this.getLeftNode()!=null) {    
             setCurrentValue(this.getLeftNode().evaluate());
-            return myCurrentValue;
-        
+        }
+        //            System.out.println("******VariableNode: evaluate called; current value is " + myCurrentValue);
+        return myCurrentValue;
+
     }
 
     @Override

@@ -106,7 +106,10 @@ public class Parser {
                     currentNode = currentNode.getParent();
                     if (currentNode instanceof VariableNode && (currentNode.getChildren().size() == 3 
                             || (currentNode.getChildren().size()==1 && !nodeFactory.isNumeric(queue.peek())))) {
-                        if (currentNode instanceof VariableNode) myVariableNodes.add(currentNode);
+                        if (currentNode instanceof VariableNode) { 
+                            currentNode.setCurrentValue(currentNode.getLeftNode().evaluate());
+                            myVariableNodes.add(currentNode);
+                        }
                         if (currentNode instanceof FunctionNode) myFunctionNodes.add(currentNode);
                         currentNode = currentNode.getParent();
                         if (currentNode instanceof MakeNode) currentNode = currentNode.getParent();

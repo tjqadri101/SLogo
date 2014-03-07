@@ -28,23 +28,23 @@ public abstract class AbstractNode {
         return myTurtles;
     }
     
-    public AbstractNode getSubtree() {
-        AbstractNode newNode = new BlockNode(myTurtles);
-        AbstractNode thisNode = this;
-        //TODO
-        
-        
-        return null;
-    }
-    
-    private AbstractNode recurseToCopy(AbstractNode newRoot, AbstractNode oldNode, AbstractNode newNode) {
-        if (oldNode==null) {
-            return newRoot;
-        }
-        
-        
-        return null;
-    }
+//    public AbstractNode getSubtree() {
+//        AbstractNode newNode = new BlockNode(myTurtles);
+//        AbstractNode thisNode = this;
+//        //TODO
+//        
+//        
+//        return null;
+//    }
+//    
+//    private AbstractNode recurseToCopy(AbstractNode newRoot, AbstractNode oldNode, AbstractNode newNode) {
+//        if (oldNode==null) {
+//            return newRoot;
+//        }
+//        
+//        
+//        return null;
+//    }
     
     
     public String toString() {
