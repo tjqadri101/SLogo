@@ -6,13 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.prefs.Preferences;
+import java.util.prefs.*;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import view.WorkspacePanel;
@@ -24,6 +25,7 @@ public class SLogo extends JFrame {
 	private JTabbedPane workspaces;
 	private int workspaceCount=1;
 	private List<Preferences> preferences;
+	private List<Preferences> savedPreferences;
 
 	public SLogo(){
 		super("SLogo");
@@ -38,11 +40,17 @@ public class SLogo extends JFrame {
 		addNewWorkspace();
 		add(workspaces);
 		
+		setDefaultPreference();
+		
 		validate();
 		pack();
 		repaint();
 
 		setVisible(true);
+	}
+
+	private void setDefaultPreference() {
+		//Preferences defaultPref = = Preferences.userRoot().node(GENERAL_LOOK_NODE);
 	}
 
 	private JMenuBar buildMenuBar() {
@@ -51,10 +59,10 @@ public class SLogo extends JFrame {
 		menuBar.add(fileMenu);
 		JMenuItem newMenu = new JMenuItem("New Workspace");
         JMenuItem openMenu = new JMenuItem("Open  (Ctrl+O)");
-        JMenuItem saveMenu = new JMenuItem("Save  (Ctrl+S)");
+        JMenuItem saveMenu = new JMenuItem("Save  Preferences");
         saveMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+            	savePreferences();
             }
         });
         newMenu.addActionListener(new ActionListener() {
@@ -70,6 +78,7 @@ public class SLogo extends JFrame {
         fileMenu.add(newMenu);
         fileMenu.add(openMenu);
         fileMenu.add(saveMenu);
+        fileMenu.add(createColorsMenu());
 		return menuBar;
 	}
 	
@@ -122,6 +131,14 @@ public class SLogo extends JFrame {
 		workspaces.add("workspace "+workspaceCount,temp);
 		workspaceCount++;
 		workspacePanels.add(temp);
+	}
+	
+	@SuppressWarnings("static-access")
+	private void savePreferences(){
+		JOptionPane askForPreferenceName = new JOptionPane();
+		askForPreferenceName.showInputDialog("Enter preference name");
+		
+		//savedPreferences.add()
 	}
 	
 	public static void main(String[] args) {
