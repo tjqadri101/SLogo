@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import view.MenuColor;
 import view.WorkspacePanel;
 
 public class SLogo extends JFrame {
@@ -84,46 +85,19 @@ public class SLogo extends JFrame {
 	
 	private JComponent createColorsMenu(){
         
-        JMenu colors = new JMenu("Choose background Color");
-        JMenuItem black = new JMenuItem("black");
-        JMenuItem green = new JMenuItem("green");
-        JMenuItem yellow = new JMenuItem("yellow");
-        JMenuItem blue = new JMenuItem("blue");
-        JMenuItem red = new JMenuItem("red");
-        
-        black.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	workspaces.getSelectedComponent().setBackground(Color.BLACK);
-            }
-        });
-        green.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	workspaces.getSelectedComponent().setBackground(Color.GREEN);
-            }
-        });
-        yellow.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	workspaces.getSelectedComponent().setBackground(Color.YELLOW);
-            }
-        });
-        blue.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	workspaces.getSelectedComponent().setBackground(Color.BLUE);
-            }
-        });
-        red.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	workspaces.getSelectedComponent().setBackground(Color.RED);
-            }
-        });
-        
-        colors.add(black);
-        colors.add(yellow);
-        colors.add(blue);
-        colors.add(green);
-        colors.add(red);
-        
-        return colors;
+		JMenu colors = new JMenu("Choose background Color");
+		
+		for (final MenuColor color : MenuColor.values()){
+			JMenuItem temp = new JMenuItem(color.name());
+			temp.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					workspaces.getSelectedComponent().setBackground(color.getColor());	
+				}
+			});
+			colors.add(temp);
+		}
+		return colors;
 	}
 	
 	private void addNewWorkspace(){
