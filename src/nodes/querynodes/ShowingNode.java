@@ -1,30 +1,36 @@
 package nodes.querynodes;
 
+import java.util.List;
+
 import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class ShowingNode extends LeafNode {
-	
-	private Turtle myTurtle;
+
+	private List<Turtle> myTurtles;
 	private final double VISIBLE = 1;
 	private final double INVISIBLE = 0;
 
-	public ShowingNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
+	public ShowingNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
 	}
 
 	@Override
 	public double evaluate() {
-		
-		if (myTurtle.getVisibility() == VISIBLE) {
-			return VISIBLE;
+		double temp = 0;
+		for (Turtle thisTurtle : myTurtles) {
+			if (thisTurtle.getVisibility() == VISIBLE) {
+				temp = thisTurtle.getVisibility();
+				return VISIBLE;
+			} else {
+				temp = thisTurtle.getVisibility();
+				return INVISIBLE;
+			}
 		}
-		else{
-			return INVISIBLE;
-		}
+
+		return temp;
+
 	}
-
-
 
 }

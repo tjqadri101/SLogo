@@ -2,16 +2,18 @@ package nodes.mathnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class RemainderNode extends AbstractNode {
 
-	private Turtle myTurtle;
+	private List<Turtle> myTurtles;
 
-	public RemainderNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
+	public RemainderNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
 	}
 
 	@Override

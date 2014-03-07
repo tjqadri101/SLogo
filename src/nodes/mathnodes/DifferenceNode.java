@@ -2,15 +2,17 @@ package nodes.mathnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class DifferenceNode extends AbstractNode {
-	 private Turtle myTurtle; 
+	private List<Turtle> myTurtles;
 	    
-	    public DifferenceNode (Turtle turtle) {
-	        super(turtle);
-	        myTurtle = turtle;
+	    public DifferenceNode (List<Turtle> turtles) {
+	        super(turtles);
+	        myTurtles = turtles;
 	    }
 
 	    @Override

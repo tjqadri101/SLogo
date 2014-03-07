@@ -1,28 +1,36 @@
 package nodes.querynodes;
 
+import java.util.List;
+
 import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class PenDownPNode extends LeafNode {
 
-	private Turtle myTurtle;
+	private List<Turtle> myTurtles;
 	private final double PEN_DOWN = 1;
 	private final double PEN_UP = 0;
 
-	public PenDownPNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
+	public PenDownPNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
 	}
 
 	@Override
 	public double evaluate() {
 		
-		if (myTurtle.getPen() == PEN_DOWN) {
-			return PEN_DOWN;
+		double temp = 0;
+
+		for (Turtle thisTurtle : myTurtles) {
+			if (thisTurtle.getPen() == PEN_DOWN) {
+				temp = PEN_DOWN;
+				return PEN_DOWN;
+			} else {
+				temp = PEN_UP;
+				return PEN_UP;
+			}
 		}
-		else{
-			return PEN_UP;
-		}
+		return temp;
 	}
 
 }

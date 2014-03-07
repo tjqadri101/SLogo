@@ -2,35 +2,39 @@ package nodes.mathnodes;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class SumNode extends AbstractNode {
-	 private Turtle myTurtle; 
-	    
-	    public SumNode (Turtle turtle) {
-	        super(turtle);
-	        myTurtle = turtle;
-	    }
+	private List<Turtle> myTurtles;
 
-	    @Override
+	public SumNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
+	}
 
-	    public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-	        AbstractNode leftNode = this.getLeftNode();
-	        AbstractNode rightNode = this.getRightNode();
-	        
-	        return leftNode.evaluate() + rightNode.evaluate();
+	@Override
+	public double evaluate() throws ClassNotFoundException,
+			NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, NoSuchFieldException, IOException {
+		AbstractNode leftNode = this.getLeftNode();
+		AbstractNode rightNode = this.getRightNode();
 
-	    }
+		return leftNode.evaluate() + rightNode.evaluate();
 
-	    @Override
-	    public boolean allowsTwoChildren () {
-	        return true;
-	    }
+	}
 
-	    @Override
-	    public boolean allowsMoreThanTwoChildren () {
-	        return false;
-	    }
+	@Override
+	public boolean allowsTwoChildren() {
+		return true;
+	}
+
+	@Override
+	public boolean allowsMoreThanTwoChildren() {
+		return false;
+	}
 
 }
