@@ -3,12 +3,10 @@ package model;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
-import turtle.ITurtle;
 import turtle.Turtle;
 import nodes.AbstractNode;
 import nodes.BlockNode;
@@ -23,7 +21,6 @@ import nodes.controlnodes.IfElseNode;
 import nodes.controlnodes.IfNode;
 import nodes.controlnodes.RepeatNode;
 import nodes.leafnodes.LeafNode;
-import nodes.leafnodes.NumberNode;
 
 public class Parser {
     private List<Turtle> myTurtles;
@@ -84,7 +81,6 @@ public class Parser {
         String currentWord = queue.poll();
         AbstractNode currentNode = nodeFactory.createNode(currentWord);
         root.setLeftNode(currentNode);
-
         while (!queue.isEmpty()) {
             boolean skipLeafCheck = false;
             if (currentNode instanceof VariableNode) {
@@ -167,7 +163,6 @@ public class Parser {
                     currentNode = bn;
                 }
             }
-
             String nextWord = queue.poll();
             if (nextWord == null) {
                 return root;
@@ -190,6 +185,9 @@ public class Parser {
                         return root;
                     }
                     currentNode = currentNode.getParent();
+                    if (currentNode == null) {
+                        return root;
+                    }
                     if (currentNode.getParent() instanceof IfElseNode) {
                         currentNode = currentNode.getParent();
                     }
@@ -214,10 +212,12 @@ public class Parser {
         return root;
     }
 
-    private AbstractNode findPreviouslyCreatedNodes (AbstractNode currentNode) {
+    private AbstractNode findPreviouslyCreatedNodes (AbstractNode currentNode) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         for (AbstractNode thisNode : myVariableNodes) {
             if (thisNode.getName().equals(currentNode.getName())) {
-                currentNode = thisNode; // TODO test
+                currentNode.setLeftNode(thisNode.getLeftNode()); 
+                currentNode.setCurrentValue(thisNode.evaluate());
+                return currentNode;
             }
         }
         return null;
