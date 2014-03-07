@@ -13,7 +13,8 @@ public class Model {
     private List<Turtle> myAllTurtles = new ArrayList<Turtle>();
     private List<Turtle> myActiveTurtles = new ArrayList<Turtle>();
     private List<Turtle> myInactiveTurtles = new ArrayList<Turtle>();
-    private Map<Parser, Turtle> myParserTurtleMap = new HashMap<Parser,Turtle>();
+    private Map<String, Parser> myWorkspaceParserMap = new HashMap<String,Parser>();
+    private List<String> myWorkspaces = new ArrayList<String>();
     
     public Model() {
         
@@ -32,7 +33,7 @@ public class Model {
      * @throws NoSuchMethodException 
      * @throws ClassNotFoundException 
      */
-    public double processCommands(String string, String language, List<Turtle> turtles) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+    public double processCommands(List<String> workspaces, String string, String language, List<Turtle> turtles) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         myAllTurtles = turtles;
         myActiveTurtles = turtles;
         
