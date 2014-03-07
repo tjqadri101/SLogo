@@ -93,7 +93,7 @@ public class TestBackend_TraverseVariableNode {
         AbstractNode root = parser.createTree();
         double result = parser.traverseTree(root);
         System.out.println("TestBackend_TraverseVariableNode: result = "+result);
-        assert (result==3);
+        assert (result==1);
     }
     
     @org.junit.Test
@@ -110,6 +110,6 @@ public class TestBackend_TraverseVariableNode {
         AbstractNode root = parser.createTree();
         double result = parser.traverseTree(root);
         System.out.println("TestBackend_TraverseVariableNode: result = "+result);
-        assert (result==3);
+        assert (result==1);
     }
 }

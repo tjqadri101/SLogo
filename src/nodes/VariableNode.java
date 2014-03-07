@@ -14,6 +14,8 @@ public class VariableNode extends AbstractNode{
     private double myStartingValue;
     private double myEndingValue;
     private double myIncrement;
+    
+    private int myIndex = 0;
 
     private String myVariableName;
 
@@ -35,18 +37,6 @@ public class VariableNode extends AbstractNode{
         myEndingValue = endingValue;
         myIncrement = increment;
 
-    }
-
-    public double getEndingValue() {
-        return myEndingValue;
-    }
-
-    public double getStartingValue() {
-        return myStartingValue;
-    }
-
-    public double getIncrement() {
-        return myIncrement;
     }
 
     @Override

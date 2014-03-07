@@ -1,21 +1,24 @@
 package nodes.displaynodes;
 
+import java.util.List;
 import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class ShapeNode extends LeafNode {
 
-	private Turtle myTurtle;
+    private List<Turtle> myTurtles;
 
-	public ShapeNode(Turtle turtle) {
-		super(turtle);
-		
-        myTurtle = turtle;
-	}
-	
-	@Override
-	public double evaluate() {
-		return myTurtle.getMyShapeIndex();
-	}
+    public ShapeNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
+    }
+
+    @Override
+    public double evaluate() {
+        for (Turtle thisTurtle : myTurtles) {
+            return thisTurtle.getMyShapeIndex();
+        }
+        return 1;
+    }
 
 }
