@@ -22,8 +22,8 @@ import turtle.Turtle;
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel {
 
-	public static final Integer WIDTH = 1000;
-	public static final Integer HEIGHT = 800;
+	//public static final Integer WIDTH = 1000;
+	//public static final Integer HEIGHT = 800;
 
 	/**
 	 * Interfacing from Frontend to Backend

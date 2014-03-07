@@ -33,35 +33,33 @@ public class TurtleDisplayPanel extends JPanel{
 	private double deltaY;
 	private double myAngle;
 	private boolean center;
+	private int myPanelHeight;
+	private int myPanelWidth;
 
+	public TurtleDisplayPanel() {
 
-	public TurtleDisplayPanel(Turtle t) {
-		//this.setPreferredSize(new Dimension(640, 550));
 		this.setBackground(Color.white);
-		myTurtle = t;
-		//curX = 320; curY = 240;
-		curX = 80; curY = 120;
-		center = true;
-
-
+		center = true; 
+		myAngle = 0;
+		
 		try {
 			displayTurtle = turtlePic.setImage();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//this.add(turtleDisplayPanel,BorderLayout.EAST);
 
 	}
-
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
 		g2d = (Graphics2D) g;
 		if(center){
-			turtlePic.paintCenter(g2d, displayTurtle);
-			prevX = curX; prevY = curY; myAngle = 0;
+			setCenter();
+			prevX = curX;
+			prevY = curY;
+			turtlePic.paint(g2d, prevX, prevY, deltaX, deltaY, myAngle, displayTurtle);
 		}	
 		else{
 			turtlePic.paint(g2d, prevX, prevY, deltaX, deltaY, myAngle, displayTurtle);
@@ -110,13 +108,29 @@ public class TurtleDisplayPanel extends JPanel{
 	}
 	
 	public void rotateTurtleRight(){
-		myAngle += 90;
+		myAngle -= 90;
+		if(myAngle <= -360){
+			myAngle = myAngle + 360d;
+		}
 		repaint();
+	}
+	private void setCenter(){
+		curX = (double) (this.getWidth()/2); 
+		curY = (double) (this.getHeight()/2); 
+		myAngle = 0;
+	}
+	
+	public String getLocationInfo(){
+		double matchedX = curX - (double) this.getWidth()/2;
+		double matchedY = -(curY - (double) this.getHeight()/2);
+
+		String messagePos = "The coordinates of turtle are (" + matchedX + "," + matchedY + ")";
+		return messagePos;
 	}
 	
 	public void resetTurtle(){
 		center = true;
-		curX = 320; curY = 240; myAngle = 0;
+		setCenter();
 		repaint();
 	}
 }
