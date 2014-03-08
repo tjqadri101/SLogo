@@ -118,6 +118,7 @@ public class ActionDisplayPanel extends GridBagPanel{
 						onClickMethod.setAccessible(true);
 						onClickMethod.invoke(getInstance());
 						onClickMethod.setAccessible(false);
+						showState();
 					}
 					
 					catch (Exception e1) {} 
