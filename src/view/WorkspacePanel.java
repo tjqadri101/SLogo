@@ -72,8 +72,8 @@ public class WorkspacePanel extends JPanel {
 			@Override
 			public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 				// TODO Auto-generated method stub
-				myProgrammingPanel.getTextArea().append("Change happened");
-				String toController = myProgrammingPanel.getCommand();
+				//myProgrammingPanel.getTextArea().append("Change happened");
+				String commandToController = myProgrammingPanel.getCommand();
 				List<TurtleImage> listToController = getTurtleDisplayPanel().getTurtleList();
 			}
 		});
