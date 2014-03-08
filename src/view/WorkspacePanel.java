@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -17,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
+import controller.ModelController;
 import turtle.Turtle;
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
@@ -32,8 +31,10 @@ public class WorkspacePanel extends JPanel {
 	//private 
 
 	/**
-	 * Interfacing from Frontend to Backend
+	 * Interfacing from Frontend to Backend via Controller
 	 */
+	
+	private ModelController controller = null;
 
 	//private ParserTest myParser = new ParserTest();
 
@@ -55,6 +56,12 @@ public class WorkspacePanel extends JPanel {
 		this.add(setAndMakeActionDisplay());
 		this.add(setAndMakeCommandCenter());
 		this.revalidate();
+		
+		/*
+		 * Controller added below
+		 */
+		
+		this.controller = (ModelController) controller;
 	}
 
 	private ProgrammingPanel setAndMakeCommandCenter() {

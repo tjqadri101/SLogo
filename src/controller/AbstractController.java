@@ -20,6 +20,14 @@ public abstract class AbstractController implements PropertyChangeListener {
 		registeredViews = new ArrayList<IView>();
 		registeredModels = new ArrayList<Model>();
 	}
+	
+	public void addModel(Model model){
+		registeredModels.add(model);
+	}
+	
+	public void addViews(IView view){
+		registeredViews.add(view);
+	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
 
@@ -28,8 +36,8 @@ public abstract class AbstractController implements PropertyChangeListener {
 		}
 	}
 
-	public void setModelProperty(Map<String, List<Turtle>> newValue1,
-			Map<String, String> newValue2, Map<String, String> newValue3) {
+	public void setModelProperty(List<Turtle> newValue1,
+			String newValue2, String newValue3) {
 
 		Object[] parameters = { newValue1, newValue2, newValue3 };
 

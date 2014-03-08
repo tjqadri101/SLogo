@@ -6,6 +6,9 @@ import graphics.TurtleImage;
 
 
 
+
+
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,17 +17,20 @@ import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
+import turtle.ITurtle;
 import turtle.Turtle;
 
 import javax.swing.JLabel;
 
 //choose JPanel because this is more of a container
-public class TurtleDisplayPanel extends JPanel implements IView{
+public class TurtleDisplayPanel extends JPanel{
 
 	private Turtle myTurtle;
 	private Graphics2D g2d;
@@ -41,19 +47,25 @@ public class TurtleDisplayPanel extends JPanel implements IView{
 	private boolean initialize;
 	private int myPanelHeight;
 	private int myPanelWidth;
-	private LinkedList<Line2D> lineList;
+	private List<Line2D> lineList;
 	private HashMap<Line2D, Color> lineColorMap;
 	private Color penColor;
 	private static final Color Default_Pen_Color = Color.black;
 	private int myPen;
 
+	/*
+	 * Pass in ITurtle from backend into TurtleDisplayPanel
+	 */
+	
+//	private List<ITurtle> myFrontEndTurtles = ;
+	
 	public TurtleDisplayPanel() {
 
 		this.setBackground(Color.white);
 		initialize = true; 
 		myAngle = 0;
 		penColor = Default_Pen_Color;
-		lineList = new LinkedList<Line2D>();
+		lineList = new ArrayList<Line2D>();
 		lineColorMap = new HashMap<Line2D, Color>();
 
 		try {
@@ -191,10 +203,6 @@ public class TurtleDisplayPanel extends JPanel implements IView{
 		repaint();
 	}
 
-	@Override
-	public void modelPropertyChange(PropertyChangeEvent evt) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

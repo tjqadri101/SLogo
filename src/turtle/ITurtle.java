@@ -1,6 +1,6 @@
 package turtle;
 
-public interface ITurtleFrontend {
+public interface ITurtle {
 	
 
 	/*

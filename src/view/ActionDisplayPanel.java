@@ -28,8 +28,12 @@ import java.net.URI;
 import javax.swing.JLabel;
 import javax.swing.border.EtchedBorder;
 
+import controller.AbstractController;
+import controller.ModelController;
+
 //choose JPanel because this is more of a container
-public class ActionDisplayPanel extends JPanel implements IView{
+public class ActionDisplayPanel extends JPanel{
+
 
 	//Buttons for controlling the turtle and other miscelleneous actions
 	private JButton moveTurtleLeft = new JButton("Left");
@@ -45,6 +49,7 @@ public class ActionDisplayPanel extends JPanel implements IView{
 	private JColorChooser colorSelector;
 
 	public ActionDisplayPanel() {
+		
 		turtleDisplayPanel = new TurtleDisplayPanel();
 		myScrollableTextArea.setEditable(false);
 		colorSelector = new JColorChooser(Color.black);
@@ -60,6 +65,7 @@ public class ActionDisplayPanel extends JPanel implements IView{
 		
 		revalidate();
 		repaint();
+		
 	}
 
 	private void showMessage (String message) {
@@ -193,9 +199,5 @@ public class ActionDisplayPanel extends JPanel implements IView{
 		this.add(jp,gbc);
 	}
 
-	@Override
-	public void modelPropertyChange(PropertyChangeEvent evt) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

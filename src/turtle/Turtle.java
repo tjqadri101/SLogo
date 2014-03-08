@@ -3,7 +3,7 @@ package turtle;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Turtle extends AbstractModel{
+public class Turtle extends AbstractModel implements ITurtle{
 
 	// public Turtle() {
 	// TODO: set default initial turtle position
@@ -218,57 +218,57 @@ public class Turtle extends AbstractModel{
 		return myShapeIndex;
 	}
 	
-//	/**
-//	 * ITurtle Methods Below
-//	 */
-//
-//	@Override
-//	public double getPrevX() {
-//		// TODO Auto-generated method stub
-//		return myPrevX;
-//	}
-//
-//	@Override
-//	public double getPrevY() {
-//		// TODO Auto-generated method stub
-//		return myPrevY;
-//	}
-//
-//	@Override
-//	public double getDeltaX() {
-//		// TODO Auto-generated method stub
-//		return myDeltaX;
-//	}
-//
-//	@Override
-//	public double getDeltaY() {
-//		// TODO Auto-generated method stub
-//		return myDeltaY;
-//	}
-//
-//	@Override
-//	public double getPenToggle() {
-//		// TODO Auto-generated method stub
-//		return myPen;
-//	}
-//
-//	@Override
-//	public String getPenColor() {
-//		// TODO Auto-generated method stub
-//		return myPenColor;
-//	}
-//
-//	@Override
-//	public double getCurX() {
-//		// TODO Auto-generated method stub
-//		return myX;
-//	}
-//
-//	@Override
-//	public double getCurY() {
-//		// TODO Auto-generated method stub
-//		return myY;
-//	}
+	/**
+	 * ITurtle Methods Below
+	 */
+
+	@Override
+	public double getPrevX() {
+		// TODO Auto-generated method stub
+		return myPrevX;
+	}
+
+	@Override
+	public double getPrevY() {
+		// TODO Auto-generated method stub
+		return myPrevY;
+	}
+
+	@Override
+	public double getDeltaX() {
+		// TODO Auto-generated method stub
+		return myDeltaX;
+	}
+
+	@Override
+	public double getDeltaY() {
+		// TODO Auto-generated method stub
+		return myDeltaY;
+	}
+
+	@Override
+	public double getPenToggle() {
+		// TODO Auto-generated method stub
+		return myPen;
+	}
+
+	@Override
+	public String getPenColor() {
+		// TODO Auto-generated method stub
+		return myPenColor;
+	}
+
+	@Override
+	public double getCurX() {
+		// TODO Auto-generated method stub
+		return myX;
+	}
+
+	@Override
+	public double getCurY() {
+		// TODO Auto-generated method stub
+		return myY;
+	}
 
 }
 
