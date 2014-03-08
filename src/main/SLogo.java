@@ -17,6 +17,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import controller.AbstractController;
+import controller.ModelController;
 import functionStorage.FunctionMenu;
 import view.WorkspacePanel;
 import view.menuComponents.ColorMenuComponent;
@@ -92,7 +94,8 @@ public class SLogo extends JFrame {
 	}
 
 	private void addNewWorkspace(){
-		WorkspacePanel temp = new WorkspacePanel();
+		AbstractController currentController = new ModelController();
+		WorkspacePanel temp = new WorkspacePanel(currentController);
 		workspaces.add("workspace "+workspaceCount,temp);
 		workspaceCount++;
 		workspacePanels.add(temp);

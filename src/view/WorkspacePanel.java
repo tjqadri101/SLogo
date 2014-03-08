@@ -5,11 +5,14 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import controller.AbstractController;
 import controller.ModelController;
 import turtle.ITurtle;
 import turtle.Turtle;
@@ -39,7 +42,7 @@ public class WorkspacePanel extends JPanel implements IView{
 	private ProgrammingPanel myProgrammingPanel;
 	private ActionDisplayPanel myActionDisplayPanel;
 	
-	public WorkspacePanel(){
+	public WorkspacePanel(AbstractController controller){
 		//myTurtle = new Turtle(320d, 240d, 0);
 		//myParser = new ParserTest();
 		this.setBackground(Color.GRAY);
@@ -78,6 +81,9 @@ public class WorkspacePanel extends JPanel implements IView{
 	private TurtleDisplayPanel getTurtleDisplayPanel(){
 		return myActionDisplayPanel.getInstance();
 	}
+	private void setTurtleDisplayPanelList(List<TurtleImage> list){
+		myActionDisplayPanel.getInstance().setList(list);
+	}
 	
 	private void addPropertyListener(){
 		myProgrammingPanel.getTextArea().addPropertyChangeListener("command", new PropertyChangeListener() {
@@ -88,7 +94,36 @@ public class WorkspacePanel extends JPanel implements IView{
 				String commandToController = myProgrammingPanel.getCommand();
 				List<TurtleImage> listToController = getTurtleDisplayPanel().getTurtleList();
 				
-				controller.passToEnglishModel(listToController, commandToController);
+				try {
+					setTurtleDisplayPanelList(controller.passToEnglishModel(listToController, commandToController));
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchMethodException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		});

@@ -155,4 +155,10 @@ public class TurtleDisplayPanel extends JPanel {
 		repaint();
 	}
 
+	public void setList(List<TurtleImage> list) {
+		// TODO Auto-generated method stub
+		frontTurtleList = list;
+		repaint();
+	}
+
 }
