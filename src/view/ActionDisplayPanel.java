@@ -16,19 +16,19 @@ import java.awt.GridBagLayout;
 
 import javax.swing.border.EtchedBorder;
 
-public class ActionDisplayPanel extends JPanel{
+public class ActionDisplayPanel extends GridBagPanel{
 
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);	
 
 	public ActionDisplayPanel() {
+		super();
 		turtleDisplayPanel = new TurtleDisplayPanel();
 		myScrollableTextArea.setEditable(false);
-		this.setLayout(new GridBagLayout());
 
 		addBorderedComponent(0,0,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
 		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
-		addBorderedComponent(1,2,0,0,1,1,makeButtonRotateR45(),"Rotate turtle:");
+		addBorderedComponent(1,2,0,0,1,1,makeButtonRotateR45(),"Rotate turtle90");
 		addBorderedComponent(2,2,0,0,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
 		addBorderedComponent(3,2,0.1,0,1,1,makeClear(),"Reset");
 		addBorderedComponent(0,3,0,0.1,3,2,myScrollableTextArea,"Turtle state:");
@@ -162,26 +162,4 @@ public class ActionDisplayPanel extends JPanel{
 
 	}
 
-	/*Used to add titled and bordered components in a grid LayoutManager
-	to this panel*/
-	private void addBorderedComponent(int gridX,int gridY,double weightX,
-			double weightY,int gridWidth,int gridHeight,JComponent jComponent,
-			String title){
-		JPanel jp = new JPanel(new BorderLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.gridx=gridX;
-		gbc.gridy=gridY;
-		gbc.weightx=weightX;
-		gbc.weighty=weightY;
-		gbc.gridwidth=gridWidth;
-		gbc.gridheight=gridHeight;
-		jp.setBorder(
-				BorderFactory.createTitledBorder(
-						BorderFactory.createEtchedBorder(
-								EtchedBorder.RAISED, Color.GRAY
-								, Color.BLUE), title));
-		jp.add(jComponent,BorderLayout.CENTER);
-		this.add(jp,gbc);
-	}
 }

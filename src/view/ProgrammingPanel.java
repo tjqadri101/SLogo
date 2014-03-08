@@ -33,7 +33,7 @@ import nodes.AbstractNode;
 import turtle.Turtle;
 
 //component that takes into account the users texts - chose JPanel because this is more of a container
-public class ProgrammingPanel extends JPanel implements ActionListener {
+public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	
 	private static final Integer RATIO = 12;
 	
@@ -43,20 +43,20 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 	private JButton execute;
 	private ExecutedCodePanel executedCode;
 	//private ParserTest parser;
-	private Turtle turtle;
+	//private Turtle turtle;
 	
 //	private JPanel userInputAndButton = new JPanel();
 //	private JPanel userOutput = new JPanel();
     	
-	public ProgrammingPanel(Turtle t){
+	public ProgrammingPanel(){
+		super();
 		instanceVars = new ScrollableJList(null);
 		functions = new ScrollableJList(null);
 		//parser = myParser;
-		turtle = t;
+		//turtle = t;
 		//this.setLayout(new BorderLayout());
 
 		//userTextPanel.addActionListener(this);
-		this.setLayout(new GridBagLayout());
 		//GridBagConstraints gbc = new GridBagConstraints();
 		//Set the preferred size of the command and panel and add an embedded
 		//text field panel where the user inputs are displayed
@@ -79,27 +79,6 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 		setFocusable(false);
 		
 		execute.addActionListener(this);
-	}
-	
-	public void addBorderedComponent(int gridX,int gridY,double weightX,
-			double weightY,int gridWidth,int gridHeight,JComponent jComponent,
-			String title){
-			JPanel jp = new JPanel(new BorderLayout());
-			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.fill = GridBagConstraints.BOTH;
-			gbc.gridx=gridX;
-			gbc.gridy=gridY;
-			gbc.weightx=weightX;
-			gbc.weighty=weightY;
-			gbc.gridwidth=gridWidth;
-			gbc.gridheight=gridHeight;
-			jp.setBorder(
-		            BorderFactory.createTitledBorder(
-		                    BorderFactory.createEtchedBorder(
-		                            EtchedBorder.RAISED, Color.GRAY
-		                            , Color.DARK_GRAY), title));
-			jp.add(jComponent,BorderLayout.CENTER);
-			this.add(jp,gbc);
 	}
 	
 	private static JLabel makeHyperLink(final String s, final String link, int x, int y)

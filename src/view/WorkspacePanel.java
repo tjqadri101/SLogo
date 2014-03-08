@@ -51,7 +51,7 @@ public class WorkspacePanel extends JPanel {
 		this.setBorder(
 	            BorderFactory.createTitledBorder("Workspace"));
 		this.setLayout(gl);
-		this.setPreferredSize(new Dimension(1100, 640));
+		this.setPreferredSize(new Dimension(1024, 800));
 		this.add(setAndMakeActionDisplay());
 		this.add(setAndMakeCommandCenter());
 		this.revalidate();
@@ -59,15 +59,13 @@ public class WorkspacePanel extends JPanel {
 
 	private ProgrammingPanel setAndMakeCommandCenter() {
 
-		myProgrammingPanel = new ProgrammingPanel(null);
+		myProgrammingPanel = new ProgrammingPanel();
 		return myProgrammingPanel;
 	}
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
 
 		myActionDisplayPanel = new ActionDisplayPanel();
-
-
 		return myActionDisplayPanel;
 	}
 	
