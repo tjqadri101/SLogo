@@ -30,6 +30,12 @@ public class Parser {
     private String myLanguage;
     private List<AbstractNode> myVariableNodes = new ArrayList<AbstractNode>();
     private List<AbstractNode> myFunctionNodes = new ArrayList<AbstractNode>();
+    
+    private List<String> myVariables = new ArrayList<String>();
+    
+    public List<String> getVariables(){
+    	return myVariables;
+    }
 
     public Parser (List<Turtle> turtles, String commands, String language) {
         myTurtles = turtles;
@@ -233,6 +239,9 @@ public class Parser {
                 if (childNode instanceof DoTimesNode || childNode instanceof ForNode) {
                     childNode.evaluate();
                 } else { traverseTree(childNode); }
+            }
+            if(root instanceof VariableNode){
+            	myVariables.add(root.getName());
             }
             return root.evaluate();
         }

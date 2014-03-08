@@ -54,6 +54,7 @@ public class VariableNode extends AbstractNode{
             setCurrentValue(this.getLeftNode().evaluate());
         }
         System.out.println("******VariableNode: evaluate called; current value is " + myCurrentValue+" and the parent is "+this.getParent());
+        
         return myCurrentValue;
 
     }

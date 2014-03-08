@@ -26,9 +26,14 @@ public class Model {
 	List<Turtle> postTurtles;
 	String myLanguage;
 	String myCommands;
+	List<String> myVariables;
 	
 	public List<Turtle> getTurtles(){
 		return myTurtles;
+	}
+	
+	public List<String> getVariables(){
+		return myVariables;
 	}
 	
 
@@ -68,7 +73,8 @@ public class Model {
 		myLanguage = language;
 		Parser parser = new Parser(myTurtles, myCommands, myLanguage);
 		double result = parser.doParse();
-
+		myVariables = parser.getVariables();
+		
 		return result;
 	}
 
