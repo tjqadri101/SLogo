@@ -79,6 +79,16 @@ public class Turtle extends AbstractModel implements ITurtle{
 		myShapeIndex = 0;
 		mapColors();
 	}
+	
+	public Turtle(ITurtle iturtle){
+		myAngle = iturtle.getAngle();
+		myX = iturtle.getCurX();
+		myY = iturtle.getCurY();
+		myDeltaX = iturtle.getDeltaX();
+		myDeltaY = iturtle.getDeltaY();
+		myPenColor = iturtle.getPenColor();
+		myPen = iturtle.getPenToggle();
+	}
 
 	/*
 	 * Display Mappings below.
