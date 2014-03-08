@@ -15,18 +15,16 @@ public class FunctionMenu extends JMenu{
 		load.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new LoadFunctions();	
+				new LoadFunctions(FunctionMenu.this);	
 			}
 		});
 		
 		JMenuItem save = new JMenuItem("Save");
 		save.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SaveFunctions();	
+				new SaveFunctions(FunctionMenu.this);	
 			}
-			
 		});
 		
 		this.add(load);
