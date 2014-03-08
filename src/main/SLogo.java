@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import view.ColorMenuComponent;
+import view.FileMenuComponent;
 import view.WorkspacePanel;
 
 public class SLogo extends JFrame {
@@ -60,10 +61,10 @@ public class SLogo extends JFrame {
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
 		
-		fileMenu.add(makeMenuItem("New Workspace", "addNewWorkspace"));
-		fileMenu.add(makeMenuItem("Open", null));
-		fileMenu.add(makeMenuItem("Save Preferences", "savePreferences"));
-		
+		for (FileMenuComponent component : FileMenuComponent.values()){
+			fileMenu.add(makeMenuItem(component.getLabel(), component.getCommand()));
+		}
+
 		JMenu editMenu = new JMenu("Display");
 		editMenu.add(createColorsMenu());
 		menuBar.add(editMenu);
