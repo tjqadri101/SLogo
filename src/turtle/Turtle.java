@@ -3,7 +3,7 @@ package turtle;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Turtle implements ITurtle {
+public class Turtle extends AbstractModel implements ITurtle {
 
 	// public Turtle() {
 	// TODO: set default initial turtle position

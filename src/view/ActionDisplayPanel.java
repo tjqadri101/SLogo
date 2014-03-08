@@ -22,13 +22,14 @@ import java.awt.Desktop;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
+import java.beans.PropertyChangeEvent;
 import java.net.URI;
 
 import javax.swing.JLabel;
 import javax.swing.border.EtchedBorder;
 
 //choose JPanel because this is more of a container
-public class ActionDisplayPanel extends JPanel{
+public class ActionDisplayPanel extends JPanel implements IView{
 
 	//Buttons for controlling the turtle and other miscelleneous actions
 	private JButton moveTurtleLeft = new JButton("Left");
@@ -191,5 +192,11 @@ public class ActionDisplayPanel extends JPanel{
 								, Color.BLUE), title));
 		jp.add(jComponent,BorderLayout.CENTER);
 		this.add(jp,gbc);
+	}
+
+	@Override
+	public void modelPropertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
 	}
 }

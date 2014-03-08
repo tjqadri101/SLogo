@@ -1,5 +1,10 @@
 package controller;
 
+/**
+ * Probably not going to be implemented
+ * Kept just in case.
+ */
+
 import model.Model;
 import turtle.ITurtle;
 
@@ -11,9 +16,17 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Fetch from Backend
+	 */
+	
 	public ITurtle getBackendTurtle(){
 		return null;
 		
 	}
+	
+	/**
+	 * Pass to front end
+	 */
 
 }

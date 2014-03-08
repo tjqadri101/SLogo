@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import turtle.AbstractModel;
 import turtle.Turtle;
 
-public class Model {
+public class Model{
     
     private List<Turtle> myAllTurtles = new ArrayList<Turtle>();
     private List<Turtle> myActiveTurtles = new ArrayList<Turtle>();

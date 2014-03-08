@@ -5,12 +5,14 @@ import graphics.TurtleImage;
 
 
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,7 +24,7 @@ import turtle.Turtle;
 import javax.swing.JLabel;
 
 //choose JPanel because this is more of a container
-public class TurtleDisplayPanel extends JPanel{
+public class TurtleDisplayPanel extends JPanel implements IView{
 
 	private Turtle myTurtle;
 	private Graphics2D g2d;
@@ -187,6 +189,12 @@ public class TurtleDisplayPanel extends JPanel{
 	public void resetTurtle(){
 		setCenter();
 		repaint();
+	}
+
+	@Override
+	public void modelPropertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
