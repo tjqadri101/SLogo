@@ -22,6 +22,7 @@ public class CosNode extends AbstractNode {
         AbstractNode child = this.getLeftNode();
         double degrees = child.evaluate();
         double result = Math.cos(degrees * Math.PI/180);
+        MathResults.addToMathResultsList(String.valueOf(result));
 
         return result;
 

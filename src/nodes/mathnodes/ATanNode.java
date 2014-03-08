@@ -21,6 +21,7 @@ public class ATanNode extends AbstractNode {
         AbstractNode child = this.getLeftNode();
         double degrees = child.evaluate();
         double result = Math.atan(degrees * Math.PI/180);
+        MathResults.addToMathResultsList(String.valueOf(result));
 
         return result;
 

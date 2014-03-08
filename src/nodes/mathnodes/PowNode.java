@@ -23,7 +23,7 @@ public class PowNode extends AbstractNode {
 		
 		double base = leftNode.evaluate();
 		double exp = rightNode.evaluate();
-		
+		 MathResults.addToMathResultsList(String.valueOf(Math.pow(base, exp)));
 		return Math.pow(base, exp);
 
 	}

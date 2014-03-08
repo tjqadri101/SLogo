@@ -23,6 +23,9 @@ public class SumNode extends AbstractNode {
 		AbstractNode leftNode = this.getLeftNode();
 		AbstractNode rightNode = this.getRightNode();
 
+		MathResults.addToMathResultsList(String.valueOf(leftNode.evaluate()
+				+ rightNode.evaluate()));
+
 		return leftNode.evaluate() + rightNode.evaluate();
 
 	}

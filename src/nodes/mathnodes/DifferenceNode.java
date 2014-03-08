@@ -21,6 +21,9 @@ public class DifferenceNode extends AbstractNode {
 	        AbstractNode leftNode = this.getLeftNode();
 	        AbstractNode rightNode = this.getRightNode();
 	        
+	        double result = leftNode.evaluate() - rightNode.evaluate();
+	        MathResults.addToMathResultsList(String.valueOf(result));
+	        
 	        return leftNode.evaluate() - rightNode.evaluate();
 
 	    }

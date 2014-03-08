@@ -23,6 +23,8 @@ public class SinNode extends AbstractNode {
 	    	double degrees = child.evaluate();
 	    	double result = Math.sin(degrees * Math.PI/180);
 	    	
+	    	MathResults.addToMathResultsList(String.valueOf(result));
+	    	
 	    	return result;
 
 	    }

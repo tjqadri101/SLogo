@@ -17,7 +17,7 @@ public class ModelController extends AbstractController {
 	 * Setting up Communication between Controller and Model
 	 */
 
-	private final String DEFAULT_LANGUAGE = "Chinese";
+	private final String DEFAULT_LANGUAGE = "English";
 	public static final String MODEL = "Model";
 
 	public ModelController() {

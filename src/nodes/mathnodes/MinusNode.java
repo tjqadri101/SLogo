@@ -19,6 +19,7 @@ public class MinusNode extends AbstractNode {
     public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
 
         AbstractNode child = this.getLeftNode();
+        MathResults.addToMathResultsList(String.valueOf(child.evaluate() * -1));
         return child.evaluate() * -1;
     }
 
