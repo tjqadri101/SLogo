@@ -1,40 +1,25 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Desktop;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URI;
-import java.util.ResourceBundle;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EtchedBorder;
-
-import nodes.AbstractNode;
-
-import nodes.AbstractNode;
-
-import turtle.Turtle;
 
 //component that takes into account the users texts - chose JPanel because this is more of a container
-public class ProgrammingPanel extends JPanel implements ActionListener {
+public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	
+	/**
+	 * 
+	 */
+
 	private static final Integer RATIO = 12;
 	
 	//text field class for displaying and storing user input
@@ -42,27 +27,18 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 	private ScrollableJList instanceVars,functions;
 	private JButton execute;
 	private ExecutedCodePanel executedCode;
+	private String command;
 	//private ParserTest parser;
-	private Turtle turtle;
+	//private Turtle turtle;
 	
 //	private JPanel userInputAndButton = new JPanel();
 //	private JPanel userOutput = new JPanel();
     	
-	public ProgrammingPanel(Turtle t){
+	public ProgrammingPanel(){
+		super();
 		instanceVars = new ScrollableJList(null);
 		functions = new ScrollableJList(null);
-		//parser = myParser;
-		turtle = t;
-		//this.setLayout(new BorderLayout());
-
-		//userTextPanel.addActionListener(this);
-		this.setLayout(new GridBagLayout());
-		//GridBagConstraints gbc = new GridBagConstraints();
-		//Set the preferred size of the command and panel and add an embedded
-		//text field panel where the user inputs are displayed
-		//this.setBackground(Color.MAGENTA);
-		//this.setPreferredSize(new Dimension((int) (ratio*width), height));
-		userTextArea = new ScrollableTextArea(null);
+		userTextArea = new ScrollableTextArea();
 		addBorderedComponent(0,0,1,1,1,1,userTextArea,"Code here!");		
 		execute = new JButton("Execute!");
 		addBorderedComponent(0,1,1,0,1,1,execute,"Click to run!");
@@ -79,27 +55,6 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 		setFocusable(false);
 		
 		execute.addActionListener(this);
-	}
-	
-	public void addBorderedComponent(int gridX,int gridY,double weightX,
-			double weightY,int gridWidth,int gridHeight,JComponent jComponent,
-			String title){
-			JPanel jp = new JPanel(new BorderLayout());
-			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.fill = GridBagConstraints.BOTH;
-			gbc.gridx=gridX;
-			gbc.gridy=gridY;
-			gbc.weightx=weightX;
-			gbc.weighty=weightY;
-			gbc.gridwidth=gridWidth;
-			gbc.gridheight=gridHeight;
-			jp.setBorder(
-		            BorderFactory.createTitledBorder(
-		                    BorderFactory.createEtchedBorder(
-		                            EtchedBorder.RAISED, Color.GRAY
-		                            , Color.DARK_GRAY), title));
-			jp.add(jComponent,BorderLayout.CENTER);
-			this.add(jp,gbc);
 	}
 	
 	private static JLabel makeHyperLink(final String s, final String link, int x, int y)
@@ -141,9 +96,19 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		command = userTextArea.getText();
+		executedCode.addToCodeList(command);
+		userTextArea.setText("");
 		
 	}
 
+	public ScrollableTextArea getTextArea(){
+		return userTextArea;
+	}
+	
+	public String getCommand(){
+		return command;
+	}
 	//Called when the user clicks the execute button. Will pass the text in the text area to
 	//the backend for parsing.
 

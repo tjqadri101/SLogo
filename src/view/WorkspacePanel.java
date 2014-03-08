@@ -1,23 +1,20 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.net.URI;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.ModelController;
+import turtle.ITurtle;
 import turtle.Turtle;
+import turtle_graphics.TurtleImage;
+
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel {
@@ -52,9 +49,10 @@ public class WorkspacePanel extends JPanel {
 		this.setBorder(
 	            BorderFactory.createTitledBorder("Workspace"));
 		this.setLayout(gl);
-		this.setPreferredSize(new Dimension(1100, 640));
+		this.setPreferredSize(new Dimension(1360, 768));
 		this.add(setAndMakeActionDisplay());
 		this.add(setAndMakeCommandCenter());
+		addPropertyListener();
 		this.revalidate();
 		
 		/*
@@ -66,16 +64,31 @@ public class WorkspacePanel extends JPanel {
 
 	private ProgrammingPanel setAndMakeCommandCenter() {
 
-		myProgrammingPanel = new ProgrammingPanel(null);
+		myProgrammingPanel = new ProgrammingPanel();
 		return myProgrammingPanel;
 	}
+	
+	
 	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
 
 		myActionDisplayPanel = new ActionDisplayPanel();
-
-
 		return myActionDisplayPanel;
+	}
+	private TurtleDisplayPanel getTurtleDisplayPanel(){
+		return myActionDisplayPanel.getInstance();
+	}
+	
+	private void addPropertyListener(){
+		myProgrammingPanel.getTextArea().addPropertyChangeListener("command", new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+				// TODO Auto-generated method stub
+				myProgrammingPanel.getTextArea().append("Change happened");
+				String toController = myProgrammingPanel.getCommand();
+				List<TurtleImage> listToController = getTurtleDisplayPanel().getTurtleList();
+			}
+		});
 	}
 	
 	public Color getWorkspaceColor(){

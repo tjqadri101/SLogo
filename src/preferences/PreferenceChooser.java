@@ -1,32 +1,33 @@
-package graphics;
+package preferences;
 
-import java.io.*;
+import java.io.File;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class TurtleFileChooser extends JFrame {
+public class PreferenceChooser extends JFrame {
 
 	public static File initFileChooser() {
 
-		File turtleFile = null;
+		File preferenceFile = null;
 
 		JFileChooser chooser = new JFileChooser();
 		/*
 		 * Sets current directory with respect to workspace
 		 */
-		chooser.setCurrentDirectory(new File("./images/"));
+		chooser.setCurrentDirectory(new File("./preferences/"));
 		
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-				"JPG & GIF Images", "jpg", "gif");
+				"XML files", "xml");
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			turtleFile = chooser.getSelectedFile();
+			preferenceFile = chooser.getSelectedFile();
 			System.out.println("You chose to open this file: "
 					+ chooser.getSelectedFile().getName());
 
 		}
-		return turtleFile;
+		return preferenceFile;
 	}
 }

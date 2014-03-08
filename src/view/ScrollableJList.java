@@ -11,6 +11,10 @@ import javax.swing.ListSelectionModel;
 
 public class ScrollableJList extends JScrollPane{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
 	private JList myJList;
 	//private DefaultListModel myListModel = new DefaultListModel();
 	private int myWidth,myHeight;
