@@ -2,14 +2,15 @@ package view;
 
 import java.awt.Color;
 
-public enum MenuColor {
+public enum ColorMenuComponent {
+	Gray(Color.GRAY),
 	Red(Color.RED),
 	Black(Color.BLACK),
 	Green(Color.GREEN),
 	Yellow(Color.YELLOW);
 	
 	private final Color myColor;
-	MenuColor(Color color){
+	ColorMenuComponent(Color color){
 		myColor = color;
 	}
 	
