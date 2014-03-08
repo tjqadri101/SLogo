@@ -23,6 +23,7 @@ public class Model {
 	// String>();
 	
 	List<Turtle> myTurtles;
+	List<Turtle> postTurtles;
 	String myLanguage;
 	String myCommands;
 	

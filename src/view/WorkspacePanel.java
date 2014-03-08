@@ -17,7 +17,7 @@ import turtle_graphics.TurtleImage;
 
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
-public class WorkspacePanel extends JPanel {
+public class WorkspacePanel extends JPanel implements IView{
 
 //	public static final Integer WIDTH = 1000;
 //	public static final Integer HEIGHT = 800;
@@ -31,7 +31,7 @@ public class WorkspacePanel extends JPanel {
 	 * Interfacing from Frontend to Backend via Controller
 	 */
 	
-	private ModelController controller = null;
+	private ModelController controller;
 
 	//private ParserTest myParser = new ParserTest();
 
@@ -87,7 +87,10 @@ public class WorkspacePanel extends JPanel {
 				//myProgrammingPanel.getTextArea().append("Change happened");
 				String commandToController = myProgrammingPanel.getCommand();
 				List<TurtleImage> listToController = getTurtleDisplayPanel().getTurtleList();
+				
+				controller.passToEnglishModel(listToController, commandToController);
 			}
+			
 		});
 	}
 	
@@ -110,5 +113,11 @@ public class WorkspacePanel extends JPanel {
 	
 	public void setBackgroundColor(Color c){
 		this.setBackground(c);
+	}
+
+	@Override
+	public void modelPropertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
 	}
 }
