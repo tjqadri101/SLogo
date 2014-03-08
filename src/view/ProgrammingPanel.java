@@ -27,6 +27,7 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	private ScrollableJList instanceVars,functions;
 	private JButton execute;
 	private ExecutedCodePanel executedCode;
+	private String command;
 	//private ParserTest parser;
 	//private Turtle turtle;
 	
@@ -38,7 +39,6 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 		instanceVars = new ScrollableJList(null);
 		functions = new ScrollableJList(null);
 		userTextArea = new ScrollableTextArea();
-		
 		addBorderedComponent(0,0,1,1,1,1,userTextArea,"Code here!");		
 		execute = new JButton("Execute!");
 		addBorderedComponent(0,1,1,0,1,1,execute,"Click to run!");
@@ -96,7 +96,7 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String command = userTextArea.getText();
+		command = userTextArea.getText();
 		executedCode.addToCodeList(command);
 		userTextArea.setText("");
 		
@@ -104,6 +104,10 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 
 	public ScrollableTextArea getTextArea(){
 		return userTextArea;
+	}
+	
+	public String getCommand(){
+		return command;
 	}
 	//Called when the user clicks the execute button. Will pass the text in the text area to
 	//the backend for parsing.

@@ -5,9 +5,12 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import turtle_graphics.TurtleImage;
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel {
@@ -70,7 +73,8 @@ public class WorkspacePanel extends JPanel {
 			public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 				// TODO Auto-generated method stub
 				myProgrammingPanel.getTextArea().append("Change happened");
-				
+				String toController = myProgrammingPanel.getCommand();
+				List<TurtleImage> listToController = getTurtleDisplayPanel().getTurtleList();
 			}
 		});
 	}
