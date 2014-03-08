@@ -3,6 +3,8 @@ package main;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.*;
@@ -58,28 +60,10 @@ public class SLogo extends JFrame {
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
 		
-		fileMenu.add(makeMenuItem("New Workspace", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addNewWorkspace();
-			}
-		}));
+		fileMenu.add(makeMenuItem("New Workspace", "addNewWorkspace"));
+		fileMenu.add(makeMenuItem("Open", null));
+		fileMenu.add(makeMenuItem("Save Preferences", "savePreferences"));
 		
-		fileMenu.add(makeMenuItem("Open  (Ctrl+O)", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-						
-			}
-		}));
-		
-		fileMenu.add(makeMenuItem("Save  Preferences", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				savePreferences();
-			}
-			
-		}));
-
 		fileMenu.add(createColorsMenu());
 		return menuBar;
 	}
@@ -89,7 +73,7 @@ public class SLogo extends JFrame {
 		JMenu colors = new JMenu("Choose background Color");
 		for (final ColorMenuComponent color : ColorMenuComponent.values()){
 			
-			JMenuItem menuItemToAdd = makeMenuItem(color.name(), new ActionListener(){	
+			JMenuItem menuItemToAdd = makeColorMenuItem(color.name(), new ActionListener(){	
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					workspaces.getSelectedComponent().setBackground(color.getColor());	
@@ -101,7 +85,7 @@ public class SLogo extends JFrame {
 		return colors;
 	}
 
-	private void addNewWorkspace(){
+	public void addNewWorkspace(){
 		WorkspacePanel temp = new WorkspacePanel();
 		workspaces.add("workspace "+workspaceCount,temp);
 		workspaceCount++;
@@ -120,9 +104,32 @@ public class SLogo extends JFrame {
 		//createAndShowMainWindow();
 	}
 	
-	public static JMenuItem makeMenuItem(String label, ActionListener listener){
-		JMenuItem result = null;
-		result = new JMenuItem(label);
+	public JMenuItem makeMenuItem(String label, String method){
+		JMenuItem result = new JMenuItem(label);
+		try {		
+			final Method add = SLogo.class.getDeclaredMethod(method);
+			result.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						add.invoke(getInstance());
+					} 	
+					catch (Exception e1) {e1.printStackTrace();} 
+				}
+			});
+	
+		} catch (Exception e1) {e1.printStackTrace();}
+				
+		return result;
+	}
+	
+	private SLogo getInstance(){
+		return this;
+	}
+	
+	public JMenuItem makeColorMenuItem(String label, ActionListener listener){
+		JMenuItem result = new JMenuItem(label);
 		result.addActionListener(listener);
 		return result;
 		
