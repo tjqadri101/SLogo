@@ -1,4 +1,4 @@
-package view;
+package view.menuComponents;
 
 import java.awt.Color;
 

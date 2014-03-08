@@ -17,9 +17,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
-import view.ColorMenuComponent;
-import view.FileMenuComponent;
 import view.WorkspacePanel;
+import view.menuComponents.ColorMenuComponent;
+import view.menuComponents.FileMenuComponent;
 
 public class SLogo extends JFrame {
 
