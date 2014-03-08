@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
-import view.MenuColor;
+import view.ColorMenuComponent;
 import view.WorkspacePanel;
 
 public class SLogo extends JFrame {
@@ -32,17 +31,17 @@ public class SLogo extends JFrame {
 		super("SLogo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(new Dimension(1024, 800));
-		
+
 		JMenuBar menuBar = buildMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		workspacePanels = new ArrayList<WorkspacePanel>();
 		workspaces = new JTabbedPane();
 		addNewWorkspace();
 		add(workspaces);
-		
+
 		setDefaultPreference();
-		
+
 		validate();
 		pack();
 		repaint();
@@ -58,65 +57,75 @@ public class SLogo extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		JMenuItem newMenu = new JMenuItem("New Workspace");
-        JMenuItem openMenu = new JMenuItem("Open  (Ctrl+O)");
-        JMenuItem saveMenu = new JMenuItem("Save  Preferences");
-        saveMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	savePreferences();
-            }
-        });
-        newMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                addNewWorkspace();
-            }
-        });
-        openMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+		
+		fileMenu.add(makeMenuItem("New Workspace", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addNewWorkspace();
+			}
+		}));
+		
+		fileMenu.add(makeMenuItem("Open  (Ctrl+O)", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+						
+			}
+		}));
+		
+		fileMenu.add(makeMenuItem("Save  Preferences", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				savePreferences();
+			}
+			
+		}));
 
-            }
-        });
-        fileMenu.add(newMenu);
-        fileMenu.add(openMenu);
-        fileMenu.add(saveMenu);
-        fileMenu.add(createColorsMenu());
+		fileMenu.add(createColorsMenu());
 		return menuBar;
 	}
 	
 	private JComponent createColorsMenu(){
-        
+
 		JMenu colors = new JMenu("Choose background Color");
-		
-		for (final MenuColor color : MenuColor.values()){
-			JMenuItem temp = new JMenuItem(color.name());
-			temp.addActionListener(new ActionListener(){
+		for (final ColorMenuComponent color : ColorMenuComponent.values()){
+			
+			JMenuItem menuItemToAdd = makeMenuItem(color.name(), new ActionListener(){	
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					workspaces.getSelectedComponent().setBackground(color.getColor());	
 				}
 			});
-			colors.add(temp);
+			
+			colors.add(menuItemToAdd);
 		}
 		return colors;
 	}
-	
+
 	private void addNewWorkspace(){
 		WorkspacePanel temp = new WorkspacePanel();
 		workspaces.add("workspace "+workspaceCount,temp);
 		workspaceCount++;
 		workspacePanels.add(temp);
 	}
-	
+
 	@SuppressWarnings("static-access")
 	private void savePreferences(){
 		JOptionPane askForPreferenceName = new JOptionPane();
 		askForPreferenceName.showInputDialog("Enter preference name");
-		
 		//savedPreferences.add()
 	}
-	
+
 	public static void main(String[] args) {
 		SLogo mySLogo = new SLogo();
 		//createAndShowMainWindow();
-    }
+	}
+	
+	public static JMenuItem makeMenuItem(String label, ActionListener listener){
+		JMenuItem result = null;
+		result = new JMenuItem(label);
+		result.addActionListener(listener);
+		return result;
+		
+	}
+	
 }
