@@ -115,11 +115,11 @@ public class SLogo extends JFrame {
 					try {
 						add.invoke(getInstance());
 					} 	
-					catch (Exception e1) {e1.printStackTrace();} 
+					catch (Exception e1) {} 
 				}
 			});
 	
-		} catch (Exception e1) {e1.printStackTrace();}
+		} catch (Exception e1) {}
 				
 		return result;
 	}
