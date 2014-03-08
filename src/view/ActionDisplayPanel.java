@@ -2,53 +2,28 @@ package view;
 
 import javax.swing.BorderFactory;
 import javax.swing.JColorChooser;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-
-import turtle.Turtle;
 
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.MouseAdapter;
-import java.net.URI;
 
-import javax.swing.JLabel;
 import javax.swing.border.EtchedBorder;
 
-//choose JPanel because this is more of a container
 public class ActionDisplayPanel extends JPanel{
 
-	//Buttons for controlling the turtle and other miscelleneous actions
-	/*private JButton moveTurtleLeft = new JButton("Left");
-	private JButton moveTurtleRight = new JButton("Right");
-	private JButton moveTurtleForward = new JButton("Forward");
-	private JButton moveTurtleBack = new JButton("Downwards");
-	private JButton togglePen = new JButton("Pen Toggle");*/
-	private JButton colorChooser = new JButton("Choose a Pen color");
-	private JButton turtleGenerator = new JButton("Create Turtle");
-
 	private TurtleDisplayPanel turtleDisplayPanel;
-	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);
-	private ActionDisplayPanel colorDialogPointer; //pointer reference for the chooser dialog
-	private JColorChooser colorSelector;
+	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);	
 
 	public ActionDisplayPanel() {
 		turtleDisplayPanel = new TurtleDisplayPanel();
 		myScrollableTextArea.setEditable(false);
-		colorSelector = new JColorChooser(Color.black);
-		colorDialogPointer = this;
 		this.setLayout(new GridBagLayout());
 
 		addBorderedComponent(0,0,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
@@ -111,11 +86,12 @@ public class ActionDisplayPanel extends JPanel{
 	}
 	private JComponent makePenColorChooser_Toggle(){
 		JPanel colorButtons = new JPanel(new BorderLayout());
+		JButton colorChooser = new JButton("Choose a Pen color");
 		colorChooser.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				Color newColor = JColorChooser.showDialog(
-						colorDialogPointer,
+						ActionDisplayPanel.this,
 						"Choose Pen Color",
 						turtleDisplayPanel.getColor());
 				if (newColor != null) {
