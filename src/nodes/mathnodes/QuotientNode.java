@@ -16,10 +16,15 @@ public class QuotientNode extends AbstractNode {
 	}
 
 	@Override
-	public double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+	public double evaluate() throws ClassNotFoundException,
+			NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, NoSuchFieldException, IOException {
 		AbstractNode leftNode = this.getLeftNode();
 		AbstractNode rightNode = this.getRightNode();
 
+		MathResults.addToMathResultsList(String.valueOf(leftNode.evaluate()
+				/ rightNode.evaluate()));
 		return leftNode.evaluate() / rightNode.evaluate();
 
 	}

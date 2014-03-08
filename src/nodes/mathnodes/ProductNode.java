@@ -9,30 +9,34 @@ import turtle.Turtle;
 
 public class ProductNode extends AbstractNode {
 	private List<Turtle> myTurtles;
-	    
-	    public ProductNode (List<Turtle> turtles) {
-	        super(turtles);
-	        myTurtles = turtles;
-	    }
 
-	    @Override
+	public ProductNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
+	}
 
-	    public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-	        AbstractNode leftNode = this.getLeftNode();
-	        AbstractNode rightNode = this.getRightNode();
-	        
-	        return leftNode.evaluate() * rightNode.evaluate();
+	@Override
+	public double evaluate() throws ClassNotFoundException,
+			NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, NoSuchFieldException, IOException {
+		AbstractNode leftNode = this.getLeftNode();
+		AbstractNode rightNode = this.getRightNode();
 
-	    }
+		MathResults.addToMathResultsList(String.valueOf(leftNode.evaluate()
+				* rightNode.evaluate()));
+		return leftNode.evaluate() * rightNode.evaluate();
 
-	    @Override
-	    public boolean allowsTwoChildren () {
-	        return true;
-	    }
+	}
 
-	    @Override
-	    public boolean allowsMoreThanTwoChildren () {
-	        return false;
-	    }
+	@Override
+	public boolean allowsTwoChildren() {
+		return true;
+	}
+
+	@Override
+	public boolean allowsMoreThanTwoChildren() {
+		return false;
+	}
 
 }
