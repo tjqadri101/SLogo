@@ -1,14 +1,16 @@
 package view;
 
 
-import graphics.TurtleImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+
 import javax.swing.JPanel;
+
 import turtle.Turtle;
+import turtle_graphics.TurtleImage;
 
 //choose JPanel because this is more of a container
 public class TurtleDisplayPanel extends JPanel{

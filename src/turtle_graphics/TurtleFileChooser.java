@@ -1,4 +1,4 @@
-package graphics;
+package turtle_graphics;
 
 import java.io.*;
 
