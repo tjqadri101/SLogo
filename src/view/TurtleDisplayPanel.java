@@ -4,6 +4,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.List;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
@@ -21,7 +22,7 @@ public class TurtleDisplayPanel extends JPanel{
 	private static final long serialVersionUID = 4L;
 	private Graphics2D g2d;
 	private boolean initialize;
-	private LinkedList<TurtleImage> frontTurtleList;
+	private List<TurtleImage> frontTurtleList;
 	private Color penColor;
 	private static final Color Default_Pen_Color = Color.black;
 	private int myPen;
@@ -31,7 +32,7 @@ public class TurtleDisplayPanel extends JPanel{
 		this.setBackground(Color.white);
 		initialize = true; 
 		penColor = Default_Pen_Color;
-		frontTurtleList = new LinkedList<TurtleImage>();
+		frontTurtleList = new ArrayList<TurtleImage>();
 		createNewTurtleImage();
 	}
 
@@ -108,7 +109,7 @@ public class TurtleDisplayPanel extends JPanel{
 		return penColor;
 	}
 
-	public LinkedList<TurtleImage> getTurtleList(){
+	public List<TurtleImage> getTurtleList(){
 		return frontTurtleList;
 	}
 

@@ -11,8 +11,11 @@ import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -31,15 +34,15 @@ public class TurtleImage {
 	private double deltaX;
 	private double deltaY;
 	private double myAngle;
-	private LinkedList<Line2D> lineList;
-	private HashMap<Line2D, Color> lineColorMap;
+	private List<Line2D> lineList;
+	private Map<Line2D, Color> lineColorMap;
 	private BufferedImage myTurtleImage;
 	private File myTurtleFile;
 
 	public TurtleImage(int x, int y) {
 		curX = (double) x/2; curY = (double) y/2; prevX = x; prevY = y;
 		myAngle = 0;
-		lineList = new LinkedList<Line2D>();
+		lineList = new ArrayList<Line2D>();
 		lineColorMap = new HashMap<Line2D, Color>();
 		myTurtleFile = TurtleFileChooser.initFileChooser();
 		try {
