@@ -6,5 +6,4 @@ public interface IView {
 	
 public void modelPropertyChange(PropertyChangeEvent evt);
 
-
 }

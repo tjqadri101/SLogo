@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import turtle.Turtle;
 import view.TurtleView;
