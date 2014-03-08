@@ -14,6 +14,10 @@ import javax.swing.JLabel;
 //component that takes into account the users texts - chose JPanel because this is more of a container
 public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	
+	/**
+	 * 
+	 */
+
 	private static final Integer RATIO = 12;
 	
 	//text field class for displaying and storing user input

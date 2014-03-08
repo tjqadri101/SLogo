@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
+ <object class="view.TurtleDisplayPanel"> 
+  <void property="color"> 
+   <object class="java.awt.Color"> 
+    <int>204</int> 
+    <int>0</int> 
+    <int>204</int> 
+    <int>255</int> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

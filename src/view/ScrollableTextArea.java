@@ -7,6 +7,10 @@ import javax.swing.JTextArea;
 
 //Sets up a JScrollPane surrounding a text area
 public class ScrollableTextArea extends JScrollPane{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 	private JTextArea myTextArea;
 	private int myWidth,myHeight;
 	private KeyListener myKeyListener;

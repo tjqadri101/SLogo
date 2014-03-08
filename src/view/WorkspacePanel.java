@@ -55,6 +55,9 @@ public class WorkspacePanel extends JPanel {
 		myActionDisplayPanel = new ActionDisplayPanel();
 		return myActionDisplayPanel;
 	}
+	private TurtleDisplayPanel getTurtleDisplayPanel(){
+		return myActionDisplayPanel.getInstance();
+	}
 	
 	public Color getWorkspaceColor(){
 		return this.getBackground();

@@ -15,9 +15,11 @@ import turtle_graphics.TurtleImage;
 //choose JPanel because this is more of a container
 public class TurtleDisplayPanel extends JPanel{
 
-	private Turtle myTurtle;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4L;
 	private Graphics2D g2d;
-	private BufferedImage displayTurtle;
 	private boolean initialize;
 	private LinkedList<TurtleImage> frontTurtleList;
 	private Color penColor;
@@ -106,6 +108,9 @@ public class TurtleDisplayPanel extends JPanel{
 		return penColor;
 	}
 
+	public LinkedList<TurtleImage> getTurtleList(){
+		return frontTurtleList;
+	}
 
 	public void setPenToggle(){
 		if(myPen == 0)

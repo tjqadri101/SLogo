@@ -17,6 +17,13 @@ import java.lang.reflect.InvocationTargetException;
 
 public class GridBagPanel extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	public GridBagPanel(){
 		this.setLayout(new GridBagLayout());
 	}

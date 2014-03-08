@@ -1,8 +1,11 @@
 package view;
 
 import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+
+import preferences.PreferenceHelper;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +18,8 @@ public class ActionDisplayPanel extends GridBagPanel{
 
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);	
+	private static final String prefix = "Preferences";
+	private int preferenceFileCounter = 1;
 
 	public ActionDisplayPanel() {
 		super();
@@ -22,13 +27,15 @@ public class ActionDisplayPanel extends GridBagPanel{
 		myScrollableTextArea.setEditable(false);
 
 		addBorderedComponent(0,0,1,1,4,2,turtleDisplayPanel,"Turtle display:");
-		addBorderedComponent(0,3,0,0.1,3,2,myScrollableTextArea,"Turtle state:");
+		addBorderedComponent(0,4,0,0.1,4,2,myScrollableTextArea,"Turtle state:");
 		
 		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
 
-		addBorderedComponent(2,2,0,0,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		addBorderedComponent(2,2,0,0,2,1,makeTurtleMovementButtons(),"Press to move turtle!");
 		
-		addBorderedComponent(3,2,0.1,0,1,1,makeButton("Clear", new ActionListener(){
+		addBorderedComponent(2,3,0,0,2,1, makePreferenceButtons(), "Save and Load Preferences");
+		
+		addBorderedComponent(0,3,0,0,1,1,makeButton("Clear", new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myScrollableTextArea.setText("");
@@ -37,7 +44,7 @@ public class ActionDisplayPanel extends GridBagPanel{
 			}
 		}),"Reset");
 		
-		addBorderedComponent(3,3,0.1,0,1,2,makeButton("Create Turtle", new ActionListener(){
+		addBorderedComponent(1,3,0,0,1,1,makeButton("Create Turtle", new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				turtleDisplayPanel.createNewTurtleImage();	
@@ -93,7 +100,37 @@ public class ActionDisplayPanel extends GridBagPanel{
 		return colorButtons;
 	}
 
-	private JPanel makeTurtleMovementButtons(){
+	private JComponent makePreferenceButtons(){
+		JPanel preferenceButtons = new JPanel(new BorderLayout());
+		preferenceButtons.add(makeButton("Load Preferences",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					turtleDisplayPanel = PreferenceHelper.read();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+
+			}
+		}),BorderLayout.EAST);
+		
+		preferenceButtons.add(makeButton("Save Preferences", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try{
+					PreferenceHelper.write(turtleDisplayPanel, prefix + preferenceFileCounter);
+					preferenceFileCounter += 1;
+				}	
+				catch(Exception e2)	{
+					e2.printStackTrace();
+				}
+			}
+		}),BorderLayout.WEST);
+		
+		return preferenceButtons;
+	}
+	private JComponent makeTurtleMovementButtons(){
 		JPanel buttons = new JPanel(new BorderLayout());
 
 		buttons.add(makeMovementButton("Right", "moveTurtleRight"), BorderLayout.EAST);
@@ -105,7 +142,7 @@ public class ActionDisplayPanel extends GridBagPanel{
 	}
 
 
-	private JButton makeMovementButton(String label, String method){
+	private JComponent makeMovementButton(String label, String method){
 		JButton b = new JButton(label);
 		
 		try {		
@@ -129,13 +166,14 @@ public class ActionDisplayPanel extends GridBagPanel{
 		return b;
 	}
 	
-	private TurtleDisplayPanel getInstance(){
+	public TurtleDisplayPanel getInstance(){
 		return turtleDisplayPanel;
 	}
 	
-	private JButton makeButton(String label, ActionListener l){
+	private JComponent makeButton(String label, ActionListener l){
 		JButton b = new JButton(label);
 		b.addActionListener(l);
 		return b;
 	}
+
 }

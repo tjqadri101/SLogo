@@ -70,7 +70,7 @@ public class SLogo extends JFrame {
 		editMenu.add(createColorsMenu());
 		menuBar.add(editMenu);
 		
-		menuBar.add(new FunctionMenu("Functions"));
+		menuBar.add(new FunctionMenu("Functions"));	
 		return menuBar;
 	}
 	
