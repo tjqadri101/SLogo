@@ -64,7 +64,10 @@ public class SLogo extends JFrame {
 		fileMenu.add(makeMenuItem("Open", null));
 		fileMenu.add(makeMenuItem("Save Preferences", "savePreferences"));
 		
-		fileMenu.add(createColorsMenu());
+		JMenu editMenu = new JMenu("Display");
+		editMenu.add(createColorsMenu());
+		menuBar.add(editMenu);
+		
 		return menuBar;
 	}
 	
@@ -85,7 +88,7 @@ public class SLogo extends JFrame {
 		return colors;
 	}
 
-	public void addNewWorkspace(){
+	private void addNewWorkspace(){
 		WorkspacePanel temp = new WorkspacePanel();
 		workspaces.add("workspace "+workspaceCount,temp);
 		workspaceCount++;
@@ -105,15 +108,17 @@ public class SLogo extends JFrame {
 	}
 	
 	public JMenuItem makeMenuItem(String label, String method){
-		JMenuItem result = new JMenuItem(label);
+		JMenuItem menuItemToAdd = new JMenuItem(label);
 		try {		
-			final Method add = SLogo.class.getDeclaredMethod(method);
-			result.addActionListener(new ActionListener(){
+			final Method onClickMethod = SLogo.class.getDeclaredMethod(method);
+			menuItemToAdd.addActionListener(new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					try {
-						add.invoke(getInstance());
+						onClickMethod.setAccessible(true);
+						onClickMethod.invoke(getInstance());
+						onClickMethod.setAccessible(false);
 					} 	
 					catch (Exception e1) {} 
 				}
@@ -121,7 +126,7 @@ public class SLogo extends JFrame {
 	
 		} catch (Exception e1) {}
 				
-		return result;
+		return menuItemToAdd;
 	}
 	
 	private SLogo getInstance(){
