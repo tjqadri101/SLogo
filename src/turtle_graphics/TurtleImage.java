@@ -1,6 +1,5 @@
 package turtle_graphics;
 
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,8 +18,9 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import turtle.ITurtle;
 
-public class TurtleImage {
+public class TurtleImage implements ITurtle {
 
 	private int myWidth;
 	private int myHeight;
@@ -40,7 +40,10 @@ public class TurtleImage {
 	private File myTurtleFile;
 
 	public TurtleImage(int x, int y) {
-		curX = (double) x/2; curY = (double) y/2; prevX = x; prevY = y;
+		curX = (double) x / 2;
+		curY = (double) y / 2;
+		prevX = x;
+		prevY = y;
 		myAngle = 0;
 		lineList = new ArrayList<Line2D>();
 		lineColorMap = new HashMap<Line2D, Color>();
@@ -60,7 +63,6 @@ public class TurtleImage {
 		return myTurtleImage;
 	}
 
-
 	/*
 	 * Rotates image on screen. Step 1: Save state of image via AffineTransform.
 	 * Step 2: Move relative to current location via translate and dX & dY. Step
@@ -69,37 +71,36 @@ public class TurtleImage {
 	 */
 
 	public void paintTurtle(Graphics2D pen) {
-		
 
 		initializeTopLeftCorner(prevX, prevY);
-		
-		AffineTransform old = new AffineTransform(pen.getTransform());	
+
+		AffineTransform old = new AffineTransform(pen.getTransform());
 		pen.translate(deltaX, deltaY);
 		pen.rotate(Math.toRadians(-myAngle), prevX, prevY);
-		//image drawn at top left corner
-		//taking rotation into account
+		// image drawn at top left corner
+		// taking rotation into account
 		pen.drawImage(displayTurtle, myTopLeftX, myTopLeftY, null);
 		pen.setTransform(old);
 	}
-	
-	public void paintLines(Graphics2D pen, Color penColor, int myPen){
-		if(myPen == 1){
+
+	public void paintLines(Graphics2D pen, Color penColor, int myPen) {
+		if (myPen == 1) {
 			checkLineAddition(penColor);
-			for(Line2D line:lineList){
+			for (Line2D line : lineList) {
 				pen.setColor(lineColorMap.get(line));
 				pen.draw((Shape) line);
 			}
-		}	
+		}
 	}
 
 	private void initializeTopLeftCorner(double xCenter, double yCenter) {
 		// TODO Auto-generated method stub
-		myTopLeftX = ((int) xCenter) - myWidth/2;
-		myTopLeftY = ((int) yCenter) - myHeight/2;
+		myTopLeftX = ((int) xCenter) - myWidth / 2;
+		myTopLeftY = ((int) yCenter) - myHeight / 2;
 	}
-	
+
 	private void checkLineAddition(Color penColor) {
-		if( prevX != curX | prevY != curY){
+		if (prevX != curX | prevY != curY) {
 			Line2D newLine = new Line2D.Double(prevX, prevY, curX, curY);
 			lineColorMap.put(newLine, penColor);
 			lineList.add(newLine);
@@ -107,13 +108,15 @@ public class TurtleImage {
 
 	}
 
-	public void reinitialTurtle(){
-		updateTurtleState(0,0, this.myAngle);
+	public void reinitialTurtle() {
+		updateTurtleState(0, 0, this.myAngle);
 	}
-	public void moveTurtleStandardButtons(double deltaX, double deltaY){
+
+	public void moveTurtleStandardButtons(double deltaX, double deltaY) {
 		updateTurtleState(deltaX, deltaY, this.myAngle);
 	}
-	public void updateTurtleState(double deltaX, double deltaY, double heading ){
+
+	public void updateTurtleState(double deltaX, double deltaY, double heading) {
 		this.prevX = this.curX;
 		this.prevY = this.curY;
 		this.deltaX = deltaX;
@@ -123,32 +126,79 @@ public class TurtleImage {
 		this.myAngle = heading;
 	}
 
-
-	public void rotateTurtleRight90(){
+	public void rotateTurtleRight90() {
 		myAngle -= 90;
-		if(myAngle <= -360){
+		if (myAngle <= -360) {
 			myAngle = myAngle + 360d;
 		}
 	}
 
-	public String getCanvasStateInfo(int panelWidth, int panelHeight){
+	public String getCanvasStateInfo(int panelWidth, int panelHeight) {
 		double matchedX;
 		double matchedY;
-		matchedX =  curX - (double) panelWidth/2;
-		matchedY = -(curY - (double) panelHeight/2);
+		matchedX = curX - (double) panelWidth / 2;
+		matchedY = -(curY - (double) panelHeight / 2);
 
-		String positionInfo = "The coordinates of turtle are (" + matchedX + "," + matchedY + ") \n";
+		String positionInfo = "The coordinates of turtle are (" + matchedX
+				+ "," + matchedY + ") \n";
 		String angleInfo = "The turtle's heading is (" + myAngle + ") \n";
-		return positionInfo +  angleInfo;
+		return positionInfo + angleInfo;
 	}
-	
-	public void setTurtleCenter(int panelWidth, int panelHeight){
-		curX = (double) (panelWidth/2); 
-		curY = (double) (panelHeight/2); 
+
+	public void setTurtleCenter(int panelWidth, int panelHeight) {
+		curX = (double) (panelWidth / 2);
+		curY = (double) (panelHeight / 2);
 		prevX = curX;
 		prevY = curY;
-		deltaX = 0; deltaY = 0;
+		deltaX = 0;
+		deltaY = 0;
 		myAngle = 0;
 		lineList.clear();
+	}
+
+	@Override
+	public double getPrevX() {
+		return prevX;
+	}
+
+	@Override
+	public double getPrevY() {
+		return prevY;
+	}
+
+	@Override
+	public double getDeltaX() {
+		return deltaX;
+	}
+
+	@Override
+	public double getDeltaY() {
+		return deltaY;
+	}
+
+	@Override
+	public double getAngle() {
+		return myAngle;
+	}
+
+	@Override
+	public double getPenToggle() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getCurX() {
+		return curX;
+	}
+
+	@Override
+	public double getCurY() {
+		return curY;
+	}
+
+	@Override
+	public String getPenColor() {
+		return null;
 	}
 }

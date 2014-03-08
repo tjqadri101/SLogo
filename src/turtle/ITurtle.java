@@ -1,17 +1,10 @@
 package turtle;
 
 public interface ITurtle {
-
-	/**
-	 * The purpose of this interface is to provide the front end with some
-	 * properties of the turtle class that is instantiated in the back end.
-	 * 
-	 * This provides a level of abstraction and protection from the front end to
-	 * the back end.
-	 */
+	
 
 	/*
-	 * Coordinate Parameters for TurtleImage from Turtle in Model
+	 * Coordinate Parameters for get from Turtle in Model
 	 */
 
 	double getPrevX();
@@ -31,6 +24,4 @@ public interface ITurtle {
 	double getCurY();
 
 	String getPenColor();
-
-	
 }

@@ -10,7 +10,11 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import controller.ModelController;
+import turtle.ITurtle;
+import turtle.Turtle;
 import turtle_graphics.TurtleImage;
+
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel {
@@ -24,8 +28,10 @@ public class WorkspacePanel extends JPanel {
 	//private 
 
 	/**
-	 * Interfacing from Frontend to Backend
+	 * Interfacing from Frontend to Backend via Controller
 	 */
+	
+	private ModelController controller = null;
 
 	//private ParserTest myParser = new ParserTest();
 
@@ -48,6 +54,12 @@ public class WorkspacePanel extends JPanel {
 		this.add(setAndMakeCommandCenter());
 		addPropertyListener();
 		this.revalidate();
+		
+		/*
+		 * Controller added below
+		 */
+		
+		this.controller = (ModelController) controller;
 	}
 
 	private ProgrammingPanel setAndMakeCommandCenter() {
