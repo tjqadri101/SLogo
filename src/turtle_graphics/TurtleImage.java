@@ -34,6 +34,8 @@ public class TurtleImage implements ITurtle {
 	private double deltaX;
 	private double deltaY;
 	private double myAngle;
+	private double penToggle;
+	private Color myColor;
 	private List<Line2D> lineList;
 	private Map<Line2D, Color> lineColorMap;
 	private BufferedImage myTurtleImage;
@@ -84,6 +86,8 @@ public class TurtleImage implements ITurtle {
 	}
 
 	public void paintLines(Graphics2D pen, Color penColor, int myPen) {
+		penToggle = (double) myPen;
+		myColor = penColor;
 		if (myPen == 1) {
 			checkLineAddition(penColor);
 			for (Line2D line : lineList) {
@@ -184,7 +188,7 @@ public class TurtleImage implements ITurtle {
 	@Override
 	public double getPenToggle() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0;//penToggle;
 	}
 
 	@Override
@@ -199,6 +203,6 @@ public class TurtleImage implements ITurtle {
 
 	@Override
 	public String getPenColor() {
-		return null;
+		return null; //myColor.toString();
 	}
 }

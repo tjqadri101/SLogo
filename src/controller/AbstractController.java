@@ -53,6 +53,10 @@ public abstract class AbstractController implements PropertyChangeListener {
 	public List<Turtle> getTurtleList(){
 		return myModel.getTurtles();
 	}
+	
+	public List<String> getVariables(){
+		return myModel.getVariables();
+	}
 	/*
 	 * Object[] parameters = { newValue1, newValue2, newValue3 };
 	 * 

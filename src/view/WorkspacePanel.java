@@ -7,6 +7,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -22,13 +23,9 @@ import turtle_graphics.TurtleImage;
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel implements IView{
 
-//	public static final Integer WIDTH = 1000;
-//	public static final Integer HEIGHT = 800;
-	
+	private List<String> variables;
 	private String curFile;
 	private int numTurtles;
-	//private WorkspacePreference defaultPreference = new WorkspacePreference(Color.GRAY,1,null);
-	//private 
 
 	/**
 	 * Interfacing from Frontend to Backend via Controller
@@ -43,12 +40,10 @@ public class WorkspacePanel extends JPanel implements IView{
 	private ActionDisplayPanel myActionDisplayPanel;
 	
 	public WorkspacePanel(AbstractController controller){
-		//myTurtle = new Turtle(320d, 240d, 0);
-		//myParser = new ParserTest();
+		variables = new ArrayList<String>();
 		this.setBackground(Color.GRAY);
-		
 		GridLayout gl = new GridLayout(1,2);
-		//this.setWorkspacePreference(defaultPreference);
+
 		this.setBorder(
 	            BorderFactory.createTitledBorder("Workspace"));
 		this.setLayout(gl);
@@ -57,10 +52,6 @@ public class WorkspacePanel extends JPanel implements IView{
 		this.add(setAndMakeCommandCenter());
 		addPropertyListener();
 		this.revalidate();
-		
-		/*
-		 * Controller added below
-		 */
 		
 		this.controller = (ModelController) controller;
 	}
@@ -93,9 +84,12 @@ public class WorkspacePanel extends JPanel implements IView{
 				//myProgrammingPanel.getTextArea().append("Change happened");
 				String commandToController = myProgrammingPanel.getCommand();
 				List<TurtleImage> listToController = getTurtleDisplayPanel().getTurtleList();
-				
+				myActionDisplayPanel.showState();
 				try {
 					setTurtleDisplayPanelList(controller.passToEnglishModel(listToController, commandToController));
+					myActionDisplayPanel.showState();
+					variables.addAll(controller.getVariables());
+					myProgrammingPanel.addInstanceVariables(variables);
 				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

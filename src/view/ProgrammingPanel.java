@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.net.URI;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,7 +25,8 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	
 	//text field class for displaying and storing user input
 	private ScrollableTextArea userTextArea;
-	private ScrollableJList instanceVars,functions;
+	private ScrollableJList functions;
+	private ScrollableTextArea instanceVars;
 	private JButton execute;
 	private ExecutedCodePanel executedCode;
 	private String command;
@@ -36,7 +38,7 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
     	
 	public ProgrammingPanel(){
 		super();
-		instanceVars = new ScrollableJList(null);
+		instanceVars = new ScrollableTextArea();
 		functions = new ScrollableJList(null);
 		userTextArea = new ScrollableTextArea();
 		addBorderedComponent(0,0,1,1,1,1,userTextArea,"Code here!");		
@@ -108,6 +110,13 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	
 	public String getCommand(){
 		return command;
+	}
+	
+	public void addInstanceVariables(List<String> variables){
+		instanceVars.setText("");
+		for(String s: variables){
+			instanceVars.append(s + "\n");
+		}
 	}
 	//Called when the user clicks the execute button. Will pass the text in the text area to
 	//the backend for parsing.

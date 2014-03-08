@@ -78,7 +78,7 @@ public class ActionDisplayPanel extends GridBagPanel {
 				.getTextLength());
 	}
 
-	private void showState() {
+	public void showState() {
 		String messagePos = turtleDisplayPanel.getAllPositionInfos();
 		showMessage(messagePos);
 	}
