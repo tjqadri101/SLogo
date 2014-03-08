@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.BorderFactory;
 import javax.swing.JColorChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -9,14 +10,15 @@ import javax.swing.JComponent;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.lang.reflect.Method;
 
 import javax.swing.border.EtchedBorder;
 
 public class ActionDisplayPanel extends GridBagPanel{
+
 
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);	
@@ -26,13 +28,36 @@ public class ActionDisplayPanel extends GridBagPanel{
 		turtleDisplayPanel = new TurtleDisplayPanel();
 		myScrollableTextArea.setEditable(false);
 
-		addBorderedComponent(0,0,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
-		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
-		addBorderedComponent(1,2,0,0,1,1,makeButtonRotateR45(),"Rotate turtle90");
-		addBorderedComponent(2,2,0,0,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
-		addBorderedComponent(3,2,0.1,0,1,1,makeClear(),"Reset");
+		addBorderedComponent(0,0,1,1,4,2,turtleDisplayPanel,"Turtle display:");
 		addBorderedComponent(0,3,0,0.1,3,2,myScrollableTextArea,"Turtle state:");
-		addBorderedComponent(3,3,0.1,0,1,2,makeTurtle(),"Create");
+		
+		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
+
+		addBorderedComponent(2,2,0,0,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		
+		addBorderedComponent(3,2,0.1,0,1,1,makeButton("Clear", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myScrollableTextArea.setText("");
+				turtleDisplayPanel.resetTurtle();
+				showState();
+			}
+		}),"Reset");
+		
+		addBorderedComponent(3,3,0.1,0,1,2,makeButton("Create Turtle", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				turtleDisplayPanel.createNewTurtleImage();	
+			}
+		}),"Create");
+		
+		addBorderedComponent(1,2,0,0,1,1,makeButton("Right Rotate", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				turtleDisplayPanel.rotateTurtlesRight();
+				showState();
+			}
+		}),"Rotate turtle90");
 		
 		revalidate();
 		repaint();
@@ -45,51 +70,15 @@ public class ActionDisplayPanel extends GridBagPanel{
 
 	private void showState(){
 		String messagePos = turtleDisplayPanel.getAllPositionInfos();
-		//String messageAngle = "The turtle's heading is (" + turtleDisplayPanel.getAngle() + ")";
 		showMessage(messagePos);
 	}
 
-	private JComponent makeButtonRotateR45(){
-		JButton right = new JButton("Right Rotate");
-		right.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				turtleDisplayPanel.rotateTurtlesRight();
-				showState();
-			}
-		});
-		return right;
-	}
-	private JComponent makeClear () {
-		JButton clear = new JButton(("ClearCommand"));
-		clear.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				myScrollableTextArea.setText("");
-				turtleDisplayPanel.resetTurtle();
-				showState();
-			}
-		});
-		return clear;
-	}
-
-	private JComponent makeTurtle(){
-		JButton create = new JButton("CreateTurtle");
-		create.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				turtleDisplayPanel.createNewTurtleImage();
-
-			}
-		});
-		return create;
-	}
-	private JComponent makePenColorChooser_Toggle(){
+	private JPanel makePenColorChooser_Toggle(){
+		
 		JPanel colorButtons = new JPanel(new BorderLayout());
-		JButton colorChooser = new JButton("Choose a Pen color");
-		colorChooser.addActionListener(new ActionListener(){
+		colorButtons.add(makeButton("Choose a Pen Color",new ActionListener(){
 			@Override
-			public void actionPerformed (ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				Color newColor = JColorChooser.showDialog(
 						ActionDisplayPanel.this,
 						"Choose Pen Color",
@@ -98,68 +87,62 @@ public class ActionDisplayPanel extends GridBagPanel{
 					turtleDisplayPanel.setColor(newColor);
 				}
 			}
-		});
-		JButton togglePen = new JButton("Pen Toggle");
-		togglePen.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed (ActionEvent e){
-				turtleDisplayPanel.setPenToggle();
-				showState();
-			}
-		});
-		
-		colorButtons.add(togglePen,BorderLayout.WEST);
-		colorButtons.add(colorChooser,BorderLayout.EAST);
-		return colorButtons;
+		}),BorderLayout.EAST);
 
+		colorButtons.add(makeButton("Pen Toggle", new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				turtleDisplayPanel.setPenToggle();
+				showState();	
+			}
+		}),BorderLayout.WEST);
+		
+		return colorButtons;
 	}
 
-	private JComponent makeTurtleMovementButtons(){
+	private JPanel makeTurtleMovementButtons(){
 		JPanel buttons = new JPanel(new BorderLayout());
-		JButton moveTurtleLeft = new JButton("Left");
-		JButton moveTurtleRight = new JButton("Right");
-		JButton moveTurtleForward = new JButton("Forward");
-		JButton moveTurtleBack = new JButton("Downwards");
-		moveTurtleLeft.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				turtleDisplayPanel.moveTurtleLeft();
-				showState();
-			}
-		});
 
-		moveTurtleRight.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				turtleDisplayPanel.moveTurtleRight();
-				showState();
-			}
-		});
-
-		moveTurtleForward.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				turtleDisplayPanel.moveTurtleForward();
-				showState();
-			}
-		});
-
-		moveTurtleBack.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				turtleDisplayPanel.moveTurtleDown();
-				showState();
-			}
-		});
-
-
-		buttons.add(moveTurtleForward,BorderLayout.NORTH);
-		buttons.add(moveTurtleBack,BorderLayout.SOUTH);
-		buttons.add(moveTurtleLeft,BorderLayout.WEST);
-		buttons.add(moveTurtleRight,BorderLayout.EAST);
+		buttons.add(makeMovementButton("Right", "moveTurtleRight"), BorderLayout.EAST);
+		buttons.add(makeMovementButton("Forward", "moveTurtleForward"), BorderLayout.NORTH);
+		buttons.add(makeMovementButton("Left", "moveTurtleLeft"), BorderLayout.WEST);
+		buttons.add(makeMovementButton("Downward", "moveTurtleDown"), BorderLayout.SOUTH);
 
 		return buttons;
+	}
 
+
+	private JButton makeMovementButton(String label, String method){
+		JButton b = new JButton(label);
+		
+		try {		
+			final Method onClickMethod = TurtleDisplayPanel.class.getDeclaredMethod(method);
+			b.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					try {
+						onClickMethod.setAccessible(true);
+						onClickMethod.invoke(getInstance());
+						onClickMethod.setAccessible(false);
+					}
+					
+					catch (Exception e1) {} 
+				}
+			});
+			
+		} catch (Exception e1) {}
+		return b;
+	}
+	
+	private TurtleDisplayPanel getInstance(){
+		return turtleDisplayPanel;
+	}
+	
+	private JButton makeButton(String label, ActionListener l){
+		JButton b = new JButton(label);
+		b.addActionListener(l);
+		return b;
 	}
 
 }
