@@ -17,7 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
-import functionMemory.FunctionMenu;
+import functionStorage.FunctionMenu;
 import view.WorkspacePanel;
 import view.menuComponents.ColorMenuComponent;
 import view.menuComponents.FileMenuComponent;

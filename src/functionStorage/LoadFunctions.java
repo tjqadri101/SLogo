@@ -1,23 +1,24 @@
-package functionMemory;
+package functionStorage;
 
 import java.io.File;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 
-public class SaveFunctions {
+public class LoadFunctions {
 
-	public SaveFunctions(JComponent component){
+	public LoadFunctions(JComponent component){
 		JFileChooser chooser = new JFileChooser();
 
-		int returnVal = chooser.showSaveDialog(component);
+		int returnVal = chooser.showOpenDialog(component);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			File chosen = chooser.getSelectedFile();
-			downloadFunctions(chosen);
+			uploadFunctions(chosen);
 		}
-	}	 
+	}
 	
-	private void downloadFunctions(File file){
+	private void uploadFunctions(File file){
 		
 	}
+	
 }
