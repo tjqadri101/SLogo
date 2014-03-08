@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.BorderFactory;
 import javax.swing.JColorChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -9,12 +10,14 @@ import javax.swing.JComponent;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.lang.reflect.Method;
 
 import javax.swing.border.EtchedBorder;
+
+import main.SLogo;
 
 public class ActionDisplayPanel extends JPanel{
 
@@ -100,37 +103,10 @@ public class ActionDisplayPanel extends JPanel{
 	private JPanel makeTurtleMovementButtons(){
 		JPanel buttons = new JPanel(new BorderLayout());
 
-		buttons.add(makeButton("Right", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				turtleDisplayPanel.moveTurtleRight();
-				showState();				
-			}
-		}),BorderLayout.EAST);
-
-		buttons.add(makeButton("Forward", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				turtleDisplayPanel.moveTurtleForward();
-				showState();
-			}
-		}),BorderLayout.NORTH);
-
-		buttons.add(makeButton("Left", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				turtleDisplayPanel.moveTurtleLeft();
-				showState();
-			}
-		}),BorderLayout.WEST);
-
-		buttons.add(makeButton("Downward", new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				turtleDisplayPanel.moveTurtleDown();
-				showState();
-			}
-		}),BorderLayout.SOUTH);
+		buttons.add(makeMovementButton("Right", "moveTurtleRight"), BorderLayout.EAST);
+		buttons.add(makeMovementButton("Forward", "moveTurtleForward"), BorderLayout.NORTH);
+		buttons.add(makeMovementButton("Left", "moveTurtleLeft"), BorderLayout.WEST);
+		buttons.add(makeMovementButton("Downward", "moveTurtleDown"), BorderLayout.SOUTH);
 
 		return buttons;
 	}
@@ -158,6 +134,33 @@ public class ActionDisplayPanel extends JPanel{
 		this.add(jp,gbc);
 	}
 
+	private JButton makeMovementButton(String label, String method){
+		JButton b = new JButton(label);
+		
+		try {		
+			final Method onClickMethod = TurtleDisplayPanel.class.getDeclaredMethod(method);
+			b.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					try {
+						onClickMethod.setAccessible(true);
+						onClickMethod.invoke(getInstance());
+						onClickMethod.setAccessible(false);
+					}
+					
+					catch (Exception e1) {} 
+				}
+			});
+			
+		} catch (Exception e1) {}
+		return b;
+	}
+	
+	private TurtleDisplayPanel getInstance(){
+		return turtleDisplayPanel;
+	}
+	
 	private JButton makeButton(String label, ActionListener l){
 		JButton b = new JButton(label);
 		b.addActionListener(l);
