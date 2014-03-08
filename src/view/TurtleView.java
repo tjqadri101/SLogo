@@ -2,7 +2,6 @@ package view;
 
 import java.beans.PropertyChangeEvent;
 import javax.swing.JFrame;
-import mvcutils.IView;
 
 public class TurtleView extends JFrame implements IView {
 
