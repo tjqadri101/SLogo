@@ -33,7 +33,7 @@ public class SLogo extends JFrame {
 	public SLogo(){
 		super("SLogo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(1024, 800));
+		setSize(new Dimension(1600, 900));
 
 		JMenuBar menuBar = buildMenuBar();
 		setJMenuBar(menuBar);
