@@ -1,6 +1,6 @@
 package turtle;
 
-public interface ITurtle {
+public interface ITurtleBackend {
 
 	/**
 	 * The purpose of this interface is to provide the front end with some
@@ -9,28 +9,27 @@ public interface ITurtle {
 	 * This provides a level of abstraction and protection from the front end to
 	 * the back end.
 	 */
-
+	
 	/*
-	 * Coordinate Parameters for TurtleImage from Turtle in Model
+	 * Coordinate Parameters to set in TurtleViewPanel
 	 */
-
-	double getPrevX();
-
-	double getPrevY();
-
-	double getDeltaX();
-
-	double getDeltaY();
-
-	double getAngle();
-
-	double getPenToggle();
 	
-	double getCurX();
+	void setPrevX();
+
+	void setPrevY();
+
+	void setDeltaX();
+
+	void setDeltaY();
+
+	void setAngle();
+
+	void setPenToggle();
 	
-	double getCurY();
+	void setCurX();
+	
+	void setCurY();
 
-	String getPenColor();
-
+	void setPenColor();
 	
 }

@@ -26,13 +26,13 @@ public class AbstractController implements PropertyChangeListener {
 	       }
 	   }
 
-   protected void setModelProperty(String propertyName, Object newValue) {
+   protected void setModelProperty(Object dfsa, Object newValue) {
 
        for (AbstractModel model: registeredModels) {
            try {
 
                Method method = model.getClass().
-                   getMethod("set"+propertyName, new Class[] {
+                   getMethod("set"+dfsa, new Class[] {
                                                      newValue.getClass()
                                                  }
 
