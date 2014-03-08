@@ -123,7 +123,7 @@ public class TurtleImage implements ITurtle {
 		this.deltaY = deltaY;
 		this.curX = this.prevX + this.deltaX;
 		this.curY = this.prevY + this.deltaY;
-		this.myAngle = heading;
+		this.myAngle += heading;
 	}
 
 	public void rotateTurtleRight90() {

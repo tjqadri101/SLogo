@@ -140,8 +140,8 @@ public class Turtle extends AbstractModel implements ITurtle{
 			myAngle -= 360;
 		}
 
-		myDeltaX = changeInDistance * Math.cos(myAngle * (Math.PI / 180));
-		myDeltaY = changeInDistance * Math.sin(myAngle * (Math.PI / 180));
+		myDeltaX = -changeInDistance * Math.sin(myAngle * (Math.PI / 180));
+		myDeltaY = -changeInDistance * Math.cos(myAngle * (Math.PI / 180));
 		
 		myPrevX = myX;
 		myPrevY = myY;
