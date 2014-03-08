@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URI;
 
 import javax.swing.JButton;
@@ -35,17 +37,8 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 		super();
 		instanceVars = new ScrollableJList(null);
 		functions = new ScrollableJList(null);
-		//parser = myParser;
-		//turtle = t;
-		//this.setLayout(new BorderLayout());
-
-		//userTextPanel.addActionListener(this);
-		//GridBagConstraints gbc = new GridBagConstraints();
-		//Set the preferred size of the command and panel and add an embedded
-		//text field panel where the user inputs are displayed
-		//this.setBackground(Color.MAGENTA);
-		//this.setPreferredSize(new Dimension((int) (ratio*width), height));
-		userTextArea = new ScrollableTextArea(null);
+		userTextArea = new ScrollableTextArea();
+		
 		addBorderedComponent(0,0,1,1,1,1,userTextArea,"Code here!");		
 		execute = new JButton("Execute!");
 		addBorderedComponent(0,1,1,0,1,1,execute,"Click to run!");
@@ -103,9 +96,15 @@ public class ProgrammingPanel extends GridBagPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		String command = userTextArea.getText();
+		executedCode.addToCodeList(command);
+		userTextArea.setText("");
 		
 	}
 
+	public ScrollableTextArea getTextArea(){
+		return userTextArea;
+	}
 	//Called when the user clicks the execute button. Will pass the text in the text area to
 	//the backend for parsing.
 

@@ -17,7 +17,7 @@ public class ActionDisplayPanel extends GridBagPanel{
 
 
 	private TurtleDisplayPanel turtleDisplayPanel;
-	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);	
+	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea();	
 	private static final String prefix = "Preferences";
 	private int preferenceFileCounter = 1;
 

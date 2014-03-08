@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -41,6 +43,7 @@ public class WorkspacePanel extends JPanel {
 		this.setPreferredSize(new Dimension(1360, 768));
 		this.add(setAndMakeActionDisplay());
 		this.add(setAndMakeCommandCenter());
+		addPropertyListener();
 		this.revalidate();
 	}
 
@@ -50,6 +53,8 @@ public class WorkspacePanel extends JPanel {
 		return myProgrammingPanel;
 	}
 	
+	
+	
 	private ActionDisplayPanel setAndMakeActionDisplay(){
 
 		myActionDisplayPanel = new ActionDisplayPanel();
@@ -57,6 +62,17 @@ public class WorkspacePanel extends JPanel {
 	}
 	private TurtleDisplayPanel getTurtleDisplayPanel(){
 		return myActionDisplayPanel.getInstance();
+	}
+	
+	private void addPropertyListener(){
+		myProgrammingPanel.getTextArea().addPropertyChangeListener("command", new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+				// TODO Auto-generated method stub
+				myProgrammingPanel.getTextArea().append("Change happened");
+				
+			}
+		});
 	}
 	
 	public Color getWorkspaceColor(){

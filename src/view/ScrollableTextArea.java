@@ -13,21 +13,17 @@ public class ScrollableTextArea extends JScrollPane{
 	private static final long serialVersionUID = 3L;
 	private JTextArea myTextArea;
 	private int myWidth,myHeight;
-	private KeyListener myKeyListener;
+
 	
-	public ScrollableTextArea(int width,int height,KeyListener listener){
+	public ScrollableTextArea(int width,int height){
 		myWidth = width;
 		myHeight = height;
-		myKeyListener = listener;
     	myTextArea = new JTextArea(myWidth, myHeight);
-    	myTextArea.addKeyListener(myKeyListener);
 		this.setViewportView(myTextArea);
 	}
 	
-	public ScrollableTextArea(KeyListener listener){
-		myKeyListener = listener;
+	public ScrollableTextArea(){
     	myTextArea = new JTextArea();
-    	myTextArea.addKeyListener(myKeyListener);
 		this.setViewportView(myTextArea);
 	}
 	
@@ -41,6 +37,7 @@ public class ScrollableTextArea extends JScrollPane{
 	
 	public void setText(String s){
 		myTextArea.setText(s);
+		 firePropertyChange("command",false,true);
 	}
 	
 	public String getText(){
