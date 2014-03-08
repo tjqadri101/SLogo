@@ -17,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import functionMemory.FunctionMenu;
 import view.WorkspacePanel;
 import view.menuComponents.ColorMenuComponent;
 import view.menuComponents.FileMenuComponent;
@@ -69,6 +70,7 @@ public class SLogo extends JFrame {
 		editMenu.add(createColorsMenu());
 		menuBar.add(editMenu);
 		
+		menuBar.add(new FunctionMenu("Functions"));
 		return menuBar;
 	}
 	
@@ -118,7 +120,7 @@ public class SLogo extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						onClickMethod.setAccessible(true);
-						onClickMethod.invoke(getInstance());
+						onClickMethod.invoke(SLogo.this);
 						onClickMethod.setAccessible(false);
 					} 	
 					catch (Exception e1) {} 
@@ -128,10 +130,6 @@ public class SLogo extends JFrame {
 		} catch (Exception e1) {}
 				
 		return menuItemToAdd;
-	}
-	
-	private SLogo getInstance(){
-		return this;
 	}
 	
 	public JMenuItem makeColorMenuItem(String label, ActionListener listener){
