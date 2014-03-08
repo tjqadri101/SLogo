@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//import test_nodes.ParserTest;
+
 import turtle.Turtle;
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
@@ -34,7 +34,9 @@ public class WorkspacePanel extends JPanel {
 	/**
 	 * Interfacing from Frontend to Backend
 	 */
+
 	//private ParserTest myParser = new ParserTest();
+
 	//private Turtle myTurtle = new Turtle(0, 0, 0);
 	private ProgrammingPanel myProgrammingPanel;
 	private ActionDisplayPanel myActionDisplayPanel;
@@ -56,6 +58,7 @@ public class WorkspacePanel extends JPanel {
 	}
 
 	private ProgrammingPanel setAndMakeCommandCenter() {
+
 		myProgrammingPanel = new ProgrammingPanel(null);
 		return myProgrammingPanel;
 	}

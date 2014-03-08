@@ -1,10 +1,9 @@
 package turtle;
 
 import java.util.HashMap;
-
 import java.util.Map;
 
-public class Turtle {
+public class Turtle implements ITurtle {
 
 	// public Turtle() {
 	// TODO: set default initial turtle position
@@ -41,6 +40,10 @@ public class Turtle {
 
 	private double myX;
 	private double myY;
+	private double myDeltaX;
+	private double myDeltaY;
+	private double myPrevX;
+	private double myPrevY;
 	private double myPen;
 	private String myPenColor;
 	private String myLanguage;
@@ -127,6 +130,12 @@ public class Turtle {
 			myAngle -= 360;
 		}
 
+		myDeltaX = changeInDistance * Math.cos(myAngle * (Math.PI / 180));
+		myDeltaY = changeInDistance * Math.sin(myAngle * (Math.PI / 180));
+		
+		myPrevX = myX;
+		myPrevY = myY;
+		
 		myX += changeInDistance * Math.cos(myAngle * (Math.PI / 180));
 		myY += changeInDistance * Math.sin(myAngle * (Math.PI / 180));
 	}
@@ -208,5 +217,58 @@ public class Turtle {
 	public double getMyShapeIndex(){
 		return myShapeIndex;
 	}
+	
+	/**
+	 * ITurtle Methods Below
+	 */
+
+	@Override
+	public double getPrevX() {
+		// TODO Auto-generated method stub
+		return myPrevX;
+	}
+
+	@Override
+	public double getPrevY() {
+		// TODO Auto-generated method stub
+		return myPrevY;
+	}
+
+	@Override
+	public double getDeltaX() {
+		// TODO Auto-generated method stub
+		return myDeltaX;
+	}
+
+	@Override
+	public double getDeltaY() {
+		// TODO Auto-generated method stub
+		return myDeltaY;
+	}
+
+	@Override
+	public double getPenToggle() {
+		// TODO Auto-generated method stub
+		return myPen;
+	}
+
+	@Override
+	public String getPenColor() {
+		// TODO Auto-generated method stub
+		return myPenColor;
+	}
+
+	@Override
+	public double getCurX() {
+		// TODO Auto-generated method stub
+		return myX;
+	}
+
+	@Override
+	public double getCurY() {
+		// TODO Auto-generated method stub
+		return myY;
+	}
+
 }
 

@@ -1,21 +1,25 @@
 package nodes.commandnodes;
 
+import java.util.List;
 import turtle.Turtle;
-import nodes.LeafNode;
+import nodes.leafnodes.LeafNode;
 
 public class PenDownNode extends LeafNode {
 
-	private Turtle myTurtle;
+    private List<Turtle> myTurtles;
 
-	public PenDownNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
-	}
+    public PenDownNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
+    }
 
-	@Override
-	public double evaluate() {
-		myTurtle.setPenDown();
-		return 1;
-	}
+    @Override
+    public double evaluate() {
+        for (Turtle turtle : myTurtles) {
+            turtle.setPenDown();
+        }
+        
+        return 1;
+    }
 
 }

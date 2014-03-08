@@ -1,15 +1,18 @@
 package nodes.booleannodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import turtle.Turtle;
 import nodes.AbstractNode;
 
 public class CompareNode extends AbstractNode {
 
-	private Turtle myTurtle;
+	private List<Turtle> myTurtles;
 	
-	public CompareNode(Turtle turtle) {
-		super(turtle);
-		// TODO Auto-generated constructor stub
+	public CompareNode(List<Turtle> turtles) {
+		super(turtles);
+		myTurtles = turtles;
 	}
 	
 	@Override
@@ -23,7 +26,7 @@ public class CompareNode extends AbstractNode {
 	}
 
 	@Override
-	public double evaluate() {
+	public double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
 	        //evaluated in sub classes
 		return 0;
 	}

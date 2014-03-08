@@ -1,21 +1,25 @@
 package nodes.commandnodes;
 
-import nodes.LeafNode;
+import java.util.List;
+import nodes.leafnodes.LeafNode;
 import turtle.Turtle;
 
 public class HideTurtleNode extends LeafNode {
 
-	private Turtle myTurtle;
+    private List<Turtle> myTurtles;
 
-	public HideTurtleNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
-	}
+    public HideTurtleNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
+    }
 
-	@Override
-	public double evaluate() {
-		myTurtle.setInvisible();
-		return 0;
-	}
+    @Override
+    public double evaluate() {
+        for (Turtle thisTurtle : myTurtles) {
+            thisTurtle.setInvisible();
+
+        }
+        return 0;
+    }
 
 }

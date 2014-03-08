@@ -28,7 +28,8 @@ import javax.swing.border.EtchedBorder;
 
 import nodes.AbstractNode;
 
-import test_nodes.ParserTest;
+import nodes.AbstractNode;
+
 import turtle.Turtle;
 
 //component that takes into account the users texts - chose JPanel because this is more of a container
@@ -137,42 +138,13 @@ public class ProgrammingPanel extends JPanel implements ActionListener {
 		return l;
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	//Called when the user clicks the execute button. Will pass the text in the text area to
 	//the backend for parsing.
-	public void actionPerformed(ActionEvent arg0) {
-/*		executedCode.addToCodeList(userTextArea.getText());
-		String input = userTextArea.getText();
-		userTextArea.setText("");
-		AbstractNode node = null;
-		try {
-			System.out.println(userTextArea.getText());
-			//node = parser.parseAndCreateTree(input, turtle);
-			
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		parser.traverseTree(turtle, node);*/
-	}
+
 }

@@ -1,44 +1,47 @@
 package nodes.commandnodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import nodes.AbstractNode;
 import turtle.Turtle;
 
 public class SetXYNode extends AbstractNode {
 
-	private Turtle myTurtle;
+    private List<Turtle> myTurtles;
 
-	public SetXYNode(Turtle turtle) {
-		super(turtle);
-		myTurtle = turtle;
-	}
+    public SetXYNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
+    }
 
-	public void setTurtle(Turtle turtle) {
-		myTurtle = turtle;
-	}
+    @Override
+    public double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
 
-	@Override
-	public double evaluate() {
+        double xNew = this.getLeftNode().evaluate();
+        double yNew = this.getRightNode().evaluate();
+        double xOld = 0;
+        double yOld = 0;
+        for (Turtle turtle : myTurtles) {
+            xOld = turtle.getXPos();
+            yOld = turtle.getYPos();
 
-		double xNew = this.getLeftNode().evaluate();
-		double yNew = this.getRightNode().evaluate();
+            turtle.setPosition(xNew, yNew);
+        }
+        
 
-		double xOld = myTurtle.getXPos();
-		double yOld = myTurtle.getYPos();
+        return Math.sqrt(Math.pow((xNew - xOld), 2)
+                         + Math.pow((yNew - yOld), 2));
+    }
 
-		myTurtle.setPosition(xNew, yNew);
+    @Override
+    public boolean allowsTwoChildren() {
+        return true;
+    }
 
-		return Math.sqrt(Math.pow((xNew - xOld), 2)
-				+ Math.pow((yNew - yOld), 2));
-	}
-
-	@Override
-	public boolean allowsTwoChildren() {
-		return true;
-	}
-
-	@Override
-	public boolean allowsMoreThanTwoChildren() {
-		return false;
-	}
+    @Override
+    public boolean allowsMoreThanTwoChildren() {
+        return false;
+    }
 
 }

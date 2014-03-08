@@ -3,80 +3,100 @@ package nodes;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
-
-import parse.CommandReader;
+import nodes.controlnodes.DoTimesNode;
+import nodes.controlnodes.ForNode;
+import nodes.leafnodes.NumberNode;
+import model.CommandFinder;
+import model.CommandReader;
 import turtle.Turtle;
+import nodes.*;
 
 public class NodeFactory {
 
-	private Turtle myTurtle;
-	private final String COMMAND_LIST = "Commands.Properties";
-	private final String[] PACKAGES = { "nodes.booleannodes.",
-			"nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
-			"nodes.booleannodes", "nodes." };
+    private List<Turtle> myTurtles;
+    private String myLanguage;
 
-	public NodeFactory(Turtle turtle) {
-		myTurtle = turtle;
-	}
+    private final String[] PACKAGES = { "nodes.booleannodes.",
+                                        "nodes.commandnodes.", "nodes.controlnodes.", "nodes.mathnodes",
+                                        "nodes.displaynodes", "nodes.leafnodes", "nodes.querynodes", "nodes." };
 
-	public AbstractNode createNode(String word) throws ClassNotFoundException,
-			NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException, IOException {
 
-		AbstractNode genericNode = null;
+    public NodeFactory(List<Turtle> turtles, String language) {
+        myTurtles = turtles;
+        myLanguage = language;
+    }
 
-		Map<String, String> commandsMap = CommandReader
-				.readCommands(COMMAND_LIST);
 
-		if (!isNumeric(word)) {
+    public AbstractNode createNode(String word) throws ClassNotFoundException,
+    NoSuchMethodException, SecurityException, InstantiationException,
+    IllegalAccessException, IllegalArgumentException,
+    InvocationTargetException, IOException, NoSuchFieldException {
 
-			String command = commandsMap.get(word.toUpperCase());
-			Class<?> c = Class.forName(findClass(command));
+        AbstractNode genericNode = null;
 
-			Constructor<?> constructor = c.getConstructor(Turtle.class);
-			genericNode = (AbstractNode) constructor.newInstance(myTurtle);
+        Map<String, String> commandsMap = CommandReader
+                .readCommands(CommandFinder.aliasLookup(myLanguage));
 
-		}
+        //TODO replace with reflection code; this is just hardcoding VariableNode
+        if (word.charAt(0)==':') {
+            genericNode = new VariableNode(myTurtles, word.substring(1));
+        } else if (word.equals("to")) {
+            genericNode = new FunctionNode(myTurtles);
+        } else if (word.equals("dotimes")) {
+            genericNode = new DoTimesNode(myTurtles);
+        } else if (word.equals("for")) {
+            genericNode = new ForNode(myTurtles);
+        } else if (!isNumeric(word)) {
 
-		else if (isNumeric(word)) {
-			return new NumberNode(myTurtle, Double.parseDouble(word));
-		}
+            String command = commandsMap.get(word.toUpperCase());
+            Class<?> c = Class.forName(findClass(command));
 
-		return genericNode;
+            Constructor<?> constructor = c.getConstructor(List.class);
+            genericNode = (AbstractNode) constructor.newInstance(myTurtles);
 
-	}
+        }
 
-	private String findClass(String command) {
-		for (String s : PACKAGES) {
-			if (classExists(s + command + "Node")) {
-				String classLocation = s + command + "Node";
-				return classLocation;
-			}
-		}
-		return null;
-		/**
-		 * Need to throw exception up to View
-		 */
-	}
+        else if (isNumeric(word)) {
+            return new NumberNode(myTurtles, Double.parseDouble(word));
+        }
 
-	private boolean classExists(String className) {
-		try {
-			Class.forName(className);
 
-			return true;
-		} catch (ClassNotFoundException ex) {
-			return false;
-		}
-	}
+        return genericNode;
 
-	private boolean isNumeric(String str) {
-		try {
-			Double.parseDouble(str);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;
-	}
+    }
+
+
+    private String findClass(String command) {
+        for (String s : PACKAGES) {
+            if (classExists(s + command + "Node")) {
+                String classLocation = s + command + "Node";
+                return classLocation;
+            }
+        }
+        return null;
+        /**
+         * Need to throw exception up to View
+         */
+    }
+
+    private boolean classExists(String className) {
+        try {
+            Class.forName(className);
+
+            return true;
+        } catch (ClassNotFoundException ex) {
+            return false;
+        }
+    }
+
+    public boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

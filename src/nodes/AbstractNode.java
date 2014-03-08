@@ -1,12 +1,14 @@
 package nodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import turtle.Turtle;
 
 public abstract class AbstractNode {
     
-    private Turtle myTurtle;
+    private List<Turtle> myTurtles;
     
     private double myValue;
     private AbstractNode myParent;
@@ -14,9 +16,19 @@ public abstract class AbstractNode {
     private AbstractNode myLeftNode;
     private AbstractNode myRightNode;
     
-    public AbstractNode(Turtle turtle) {
-        myTurtle = turtle;
+    public AbstractNode(List<Turtle> turtles) {
+        myTurtles = turtles;
     }
+
+    public void setTurtles(List<Turtle> activeTurtles) {
+        myTurtles = activeTurtles;
+    }
+    
+    public List<Turtle> getTurtles() {
+        return myTurtles;
+    }
+    
+    
     
     public String toString() {
         return this.getClass().getName();
@@ -52,6 +64,7 @@ public abstract class AbstractNode {
     
     public void addChild(AbstractNode node) {
         myChildren.add(node);
+        node.setParent(this);
     }
     
     public boolean hasChild() {
@@ -61,8 +74,18 @@ public abstract class AbstractNode {
     /**
      * perform calculation changes the position of the turtle for all sub nodes and return the final value
      * @return
+     * @throws IOException 
+     * @throws NoSuchFieldException 
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
+     * @throws ClassNotFoundException 
      */
-    public abstract double evaluate();
+    public abstract double evaluate() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException;
+
 
     public List<AbstractNode> getChildren () {
         return myChildren;
@@ -79,5 +102,37 @@ public abstract class AbstractNode {
      * @return
      */
     public abstract boolean allowsMoreThanTwoChildren() ;
+
+
+    /**
+     * ONLY IMPLEMENTED IN FUNCTIONODE
+     * @return
+     */
+    public boolean isAlreadyDeclared () {
+        return false;
+    }
+
+    /**
+     * Override in VaraibleNode
+     * @param evaluate
+     */
+    public void setCurrentValue (double evaluate) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void setIsAlreadyDeclaredBoolean (boolean boo) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * for variable nodes and function nodes
+     * @return
+     */
+    public String getName () {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }

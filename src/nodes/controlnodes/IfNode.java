@@ -1,18 +1,21 @@
 package nodes.controlnodes;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import turtle.Turtle;
 import nodes.AbstractNode;
 
 public class IfNode extends AbstractNode {
 
-    private Turtle myTurtle; 
-    
-    public IfNode (Turtle turtle) {
-        super(turtle);
-        myTurtle = turtle;
+    private List<Turtle> myTurtles;
+
+    public IfNode (List<Turtle> turtles) {
+        super(turtles);
+        myTurtles = turtles;
     }
 
-    private double traverseSubtree() {
+    private double traverseSubtree() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         // check left (condition node)
         AbstractNode conditionNode = this.getLeftNode();
         double count = conditionNode.evaluate();
@@ -23,7 +26,7 @@ public class IfNode extends AbstractNode {
     }
 
     @Override
-    public double evaluate () {
+    public double evaluate () throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
         return traverseSubtree();
     }
 
