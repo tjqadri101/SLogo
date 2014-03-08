@@ -170,7 +170,6 @@ public class ActionDisplayPanel extends JPanel implements IView{
 		return buttons;
 
 	}
-
 	/*Used to add titled and bordered components in a grid LayoutManager
 	to this panel*/
 	private void addBorderedComponent(int gridX,int gridY,double weightX,

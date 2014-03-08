@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 /**
  * Probably not going to be implemented
