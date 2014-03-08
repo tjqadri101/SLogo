@@ -1,24 +1,11 @@
 package view;
 
-import java.awt.BorderLayout;
-
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.net.URI;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
-import turtle.Turtle;
 
 //this class holds the logic for the main pieces of each window - each has separate parser (model) and text input 
 public class WorkspacePanel extends JPanel {

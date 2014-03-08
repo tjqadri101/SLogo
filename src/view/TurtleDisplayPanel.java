@@ -43,8 +43,6 @@ public class TurtleDisplayPanel extends JPanel{
 			
 	}
 
-	
-
 	@Override
 	protected void paintComponent(Graphics g) {
 

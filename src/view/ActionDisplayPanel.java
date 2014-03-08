@@ -1,21 +1,14 @@
 package view;
 
-import javax.swing.BorderFactory;
 import javax.swing.JColorChooser;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.lang.reflect.Method;
-
-import javax.swing.border.EtchedBorder;
 
 public class ActionDisplayPanel extends GridBagPanel{
 
