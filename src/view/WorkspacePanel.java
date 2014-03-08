@@ -38,7 +38,7 @@ public class WorkspacePanel extends JPanel {
 		this.setBorder(
 	            BorderFactory.createTitledBorder("Workspace"));
 		this.setLayout(gl);
-		this.setPreferredSize(new Dimension(1024, 800));
+		this.setPreferredSize(new Dimension(1360, 768));
 		this.add(setAndMakeActionDisplay());
 		this.add(setAndMakeCommandCenter());
 		this.revalidate();

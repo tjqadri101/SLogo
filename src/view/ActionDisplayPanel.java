@@ -138,5 +138,4 @@ public class ActionDisplayPanel extends GridBagPanel{
 		b.addActionListener(l);
 		return b;
 	}
-
 }
