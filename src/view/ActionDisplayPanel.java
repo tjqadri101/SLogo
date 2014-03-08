@@ -31,12 +31,13 @@ import javax.swing.border.EtchedBorder;
 public class ActionDisplayPanel extends JPanel{
 
 	//Buttons for controlling the turtle and other miscelleneous actions
-	private JButton moveTurtleLeft = new JButton("Left");
+	/*private JButton moveTurtleLeft = new JButton("Left");
 	private JButton moveTurtleRight = new JButton("Right");
 	private JButton moveTurtleForward = new JButton("Forward");
 	private JButton moveTurtleBack = new JButton("Downwards");
-	private JButton togglePen = new JButton("Pen Toggle");
+	private JButton togglePen = new JButton("Pen Toggle");*/
 	private JButton colorChooser = new JButton("Choose a Pen color");
+	private JButton turtleGenerator = new JButton("Create Turtle");
 
 	private TurtleDisplayPanel turtleDisplayPanel;
 	private ScrollableTextArea myScrollableTextArea = new ScrollableTextArea(null);
@@ -53,9 +54,10 @@ public class ActionDisplayPanel extends JPanel{
 		addBorderedComponent(0,0,1,1,4, 2,turtleDisplayPanel,"Turtle display:");
 		addBorderedComponent(0,2,0,0,1,1,makePenColorChooser_Toggle(),"Modify Pen Options");
 		addBorderedComponent(1,2,0,0,1,1,makeButtonRotateR45(),"Rotate turtle:");
-		addBorderedComponent(2,2,0,0,2,1,makeTurtleMovementButtons(),"Press to move turtle!");
-		addBorderedComponent(0,3,0,.1,3,2,myScrollableTextArea,"Turtle state:");
-		addBorderedComponent(3,3,0,0,1,2,makeClear(),"Reset turtle and state:");
+		addBorderedComponent(2,2,0,0,1,1,makeTurtleMovementButtons(),"Press to move turtle!");
+		addBorderedComponent(3,2,0.1,0,1,1,makeClear(),"Reset");
+		addBorderedComponent(0,3,0,0.1,3,2,myScrollableTextArea,"Turtle state:");
+		addBorderedComponent(3,3,0.1,0,1,2,makeTurtle(),"Create");
 		
 		revalidate();
 		repaint();
@@ -67,25 +69,25 @@ public class ActionDisplayPanel extends JPanel{
 	}
 
 	private void showState(){
-		String messagePos = turtleDisplayPanel.getPositionInfo();
-		String messageAngle = "The turtle's heading is (" + turtleDisplayPanel.getAngle() + ")";
-		showMessage(messagePos + "\n" + messageAngle);
+		String messagePos = turtleDisplayPanel.getAllPositionInfos();
+		//String messageAngle = "The turtle's heading is (" + turtleDisplayPanel.getAngle() + ")";
+		showMessage(messagePos);
 	}
 
-	private JButton makeButtonRotateR45(){
+	private JComponent makeButtonRotateR45(){
 		JButton right = new JButton("Right Rotate");
 		right.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				turtleDisplayPanel.rotateTurtleRight();
+				turtleDisplayPanel.rotateTurtlesRight();
 				showState();
 			}
 		});
 		return right;
 	}
-	private JButton makeClear () {
-		JButton result = new JButton(("ClearCommand"));
-		result.addActionListener(new ActionListener() {
+	private JComponent makeClear () {
+		JButton clear = new JButton(("ClearCommand"));
+		clear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				myScrollableTextArea.setText("");
@@ -93,9 +95,20 @@ public class ActionDisplayPanel extends JPanel{
 				showState();
 			}
 		});
-		return result;
+		return clear;
 	}
 
+	private JComponent makeTurtle(){
+		JButton create = new JButton("CreateTurtle");
+		create.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				turtleDisplayPanel.createNewTurtleImage();
+
+			}
+		});
+		return create;
+	}
 	private JComponent makePenColorChooser_Toggle(){
 		JPanel colorButtons = new JPanel(new BorderLayout());
 		colorChooser.addActionListener(new ActionListener(){
@@ -110,7 +123,7 @@ public class ActionDisplayPanel extends JPanel{
 				}
 			}
 		});
-		
+		JButton togglePen = new JButton("Pen Toggle");
 		togglePen.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e){
@@ -127,7 +140,10 @@ public class ActionDisplayPanel extends JPanel{
 
 	private JComponent makeTurtleMovementButtons(){
 		JPanel buttons = new JPanel(new BorderLayout());
-
+		JButton moveTurtleLeft = new JButton("Left");
+		JButton moveTurtleRight = new JButton("Right");
+		JButton moveTurtleForward = new JButton("Forward");
+		JButton moveTurtleBack = new JButton("Downwards");
 		moveTurtleLeft.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -155,7 +171,7 @@ public class ActionDisplayPanel extends JPanel{
 		moveTurtleBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
-				turtleDisplayPanel.moveTurtleBack();
+				turtleDisplayPanel.moveTurtleDown();
 				showState();
 			}
 		});
