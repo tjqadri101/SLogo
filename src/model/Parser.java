@@ -30,7 +30,6 @@ public class Parser {
     private String myLanguage;
     private List<AbstractNode> myVariableNodes = new ArrayList<AbstractNode>();
     private List<AbstractNode> myFunctionNodes = new ArrayList<AbstractNode>();
-    
     private List<String> myVariables = new ArrayList<String>();
     
     public List<String> getVariables(){
@@ -52,7 +51,7 @@ public class Parser {
         }
     }
 
-    public void activeTurtle(Turtle turtle) {
+    public void activateTurtle(Turtle turtle) {
         for (int i=0;i<myInactiveTurtles.size();i++) {
             if (myInactiveTurtles.get(i).equals(turtle)) {
                 myInactiveTurtles.remove(i);
@@ -81,30 +80,21 @@ public class Parser {
         String[] words = myCommands.split(" ");
         Queue<String> queue = new LinkedList<String>();
         Stack<String> bracketStack = new Stack<String>(); 
-        for (String word : words) {
-            queue.add(word);
-        }
+        for (String word : words) { queue.add(word); }
         String currentWord = queue.poll();
         AbstractNode currentNode = nodeFactory.createNode(currentWord);
         root.setLeftNode(currentNode);
         while (!queue.isEmpty()) {
             boolean skipLeafCheck = false;
-            if (currentNode instanceof VariableNode) {
+            if (currentNode instanceof VariableNode || currentNode instanceof FunctionNode) {
                 if (findPreviouslyCreatedNodes(currentNode)!=null) {
                     currentNode = findPreviouslyCreatedNodes(currentNode);
                 } else {
                     skipLeafCheck=true;
                 }
-            } else if (currentNode instanceof FunctionNode) {
-                if (findPreviouslyCreatedNodes(currentNode)!=null) {
-                    currentNode = findPreviouslyCreatedNodes(currentNode);
-                } else {
-                    skipLeafCheck=true;
-                }
-            }
+            } 
             if (!skipLeafCheck) {
                 if (currentNode instanceof LeafNode || currentNode instanceof VariableNode || currentNode instanceof FunctionNode) {
-                    // return to parent
                     currentNode = currentNode.getParent();
                     if (currentNode instanceof VariableNode && (currentNode.getChildren().size() == 3 
                             || (currentNode.getChildren().size()==1 && !nodeFactory.isNumeric(queue.peek())))) {
@@ -122,92 +112,64 @@ public class Parser {
                 }
             }
             if (currentNode instanceof IfElseNode) {
-                AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
-                AbstractNode bnRight = new BlockNode(myTurtles);
-                currentNode.setLeftNode(bnLeft);
-                currentNode.setRightNode(bnRight);
-                AbstractNode conditionLeft = new ConditionNode(myTurtles); // create a condition node for left block
-                bnLeft.setLeftNode(conditionLeft);
-                bnLeft.setRightNode(new BlockNode(myTurtles));
-                currentNode = bnLeft.getLeftNode();
+                currentNode.setLeftNode(new BlockNode(myTurtles));
+                currentNode.setRightNode(new BlockNode(myTurtles));
+                currentNode.getLeftNode().setLeftNode(new ConditionNode(myTurtles));
+                currentNode.getLeftNode().setRightNode(new BlockNode(myTurtles));
+                currentNode = currentNode.getLeftNode().getLeftNode();
             }
-            if ((currentNode instanceof IfNode || currentNode instanceof RepeatNode 
-                    || currentNode instanceof DoTimesNode) && currentNode.getLeftNode() == null) {
-                AbstractNode bn = new BlockNode(myTurtles);// create 1 block node
-                AbstractNode conditionNode = new ConditionNode(myTurtles);// create 1 condition node
-                currentNode.setLeftNode(conditionNode);
-                currentNode.setRightNode(bn);
-                currentNode = conditionNode;
+            if ((currentNode instanceof IfNode||currentNode instanceof RepeatNode||currentNode instanceof DoTimesNode)&&currentNode.getLeftNode()==null) {
+                currentNode.setLeftNode(new ConditionNode(myTurtles));
+                currentNode.setRightNode(new BlockNode(myTurtles));
+                currentNode = currentNode.getLeftNode();
             }
             if (currentNode instanceof ForNode && currentNode.getLeftNode() == null) {
-                AbstractNode bnLeft = new BlockNode(myTurtles);// create 1 block node
-                AbstractNode bnRight = new BlockNode(myTurtles);
-                currentNode.setLeftNode(bnLeft);
-                currentNode.setRightNode(bnRight);
-                currentNode = bnLeft;
+                currentNode.setLeftNode(new BlockNode(myTurtles));
+                currentNode.setRightNode(new BlockNode(myTurtles));
+                currentNode = currentNode.getLeftNode();
             }
             if (currentNode instanceof FunctionNode) {
                 String functionName = queue.poll();
                 ((FunctionNode) currentNode).setName(functionName);
                 boolean hasTwoChildren=false;
                 String word="";
-                while(queue.poll().equals("[")){
-                    word = queue.peek(); //TODO TEST: before: poll()
-                }
+                while(queue.poll().equals("[")) word = queue.peek();
                 if (word.charAt(0)==':') {
                     hasTwoChildren=true;
                 }
                 if (hasTwoChildren) {
-                    AbstractNode bnLeft = new BlockNode(myTurtles);// create two block nodes
-                    AbstractNode bnRight = new BlockNode(myTurtles);
-                    currentNode.setLeftNode(bnLeft);
-                    currentNode.setRightNode(bnRight);
-                    currentNode = bnLeft;
+                    currentNode.setLeftNode(new BlockNode(myTurtles));
+                    currentNode.setRightNode(new BlockNode(myTurtles));
+                    currentNode = currentNode.getLeftNode();
                 } else {// if it's a normal declare of function without variables --> only one child
-                    AbstractNode bn = new BlockNode(myTurtles);
-                    currentNode.setLeftNode(bn);
-                    currentNode = bn;
+                    currentNode.setLeftNode(new BlockNode(myTurtles));
+                    currentNode = currentNode.getLeftNode();
                 }
             }
             String nextWord = queue.poll();
-            if (nextWord == null) {
-                return root;
-            }
-            for (int i=0;i<2;i++) {
-                if (nextWord.equals("[")) { 
-                    // if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
+            if (nextWord==null) return root;
+            while(nextWord.equals("[") || nextWord.equals("]")) {
+                if (nextWord.equals("[")){// if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
                     if (currentNode instanceof RepeatNode || currentNode instanceof IfNode 
                             || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) {
                         currentNode = currentNode.getRightNode(); // go to block
-                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
+                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode 
+                            || currentNode.getParent().getParent() instanceof IfElseNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
-                    } else if (currentNode.getParent()!=null) {
-                        if (currentNode.getParent().getParent() instanceof IfElseNode) {
-                            currentNode = currentNode.getParent().getRightNode(); // go to block
-                        }
-                    }
-                    nextWord = queue.poll();
-                }
-                if (nextWord.equals("]")) {  
-                    if (currentNode == null) {
-                        return root;
-                    }
+                    } 
+                } else if (nextWord.equals("]")) {  
+                    if (currentNode == null) return root;
                     if (!(currentNode instanceof DoTimesNode)) {
                         currentNode = currentNode.getParent();
-                        if (currentNode == null) {
-                            return root;
-                        }
+                        if (currentNode == null)  return root;
                         if (currentNode.getParent() instanceof IfElseNode) {
                             currentNode = currentNode.getParent();
                         }
                     }
-                    nextWord = queue.poll();
-                    if (nextWord == null) {
-                        return root;
-                    }
                 }
+                nextWord = queue.poll();
+                if (nextWord == null) return root;
             }
-
             AbstractNode nextNode = nodeFactory.createNode(nextWord); 
             if (currentNode.getLeftNode()== null) {
                 currentNode.setLeftNode(nextNode);
