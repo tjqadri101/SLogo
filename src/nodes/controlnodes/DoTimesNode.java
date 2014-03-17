@@ -58,5 +58,10 @@ public class DoTimesNode extends AbstractNode {
     public boolean allowsMoreThanTwoChildren () {
         return false;
     }
+    
+    @Override
+    public boolean hasTwoBlockNodes() {
+        return true;
+    }
 
 }

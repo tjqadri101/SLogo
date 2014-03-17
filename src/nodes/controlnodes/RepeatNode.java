@@ -40,5 +40,12 @@ public class RepeatNode extends AbstractNode {
     public boolean allowsMoreThanTwoChildren () {
         return false;
     }
+    
+
+    
+    @Override
+    public boolean hasOneConditionOneBlock() {
+        return true;
+    }
 
 }

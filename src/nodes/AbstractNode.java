@@ -101,8 +101,23 @@ public abstract class AbstractNode {
      * check if a node allows more than two child nodes (such as BlockNode)
      * @return
      */
-    public abstract boolean allowsMoreThanTwoChildren() ;
-
+    public abstract boolean allowsMoreThanTwoChildren();
+    
+    /**
+     * OVERRIDE IN CONTROL NODES ONLY: return true if the node has a condition node as 
+     * a left child node and a block node as a right child node
+     */
+    public boolean hasOneConditionOneBlock() {
+        return false;
+    }
+    
+    /**
+     * OVERRIDE IN CONTROL NODES ONLY: return true if the node has two block nodes as
+     *  both of its child nodes (EXCLUDE IFELSENODE)
+     */
+    public boolean hasTwoBlockNodes() {
+        return false;
+    }
 
     /**
      * ONLY IMPLEMENTED IN FUNCTIONODE

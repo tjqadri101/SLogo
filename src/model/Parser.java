@@ -32,32 +32,10 @@ public class Parser {
     private List<AbstractNode> myFunctionNodes = new ArrayList<AbstractNode>();
     private List<String> myVariables = new ArrayList<String>();
     
-    public List<String> getVariables(){
-    	return myVariables;
-    }
-
     public Parser (List<Turtle> turtles, String commands, String language) {
         myTurtles = turtles;
         myCommands = commands;
         myLanguage = language;
-    }
-
-    public void inactivateTurtle(Turtle turtle) {
-        for (int i=0;i<myTurtles.size();i++) {
-            if (myTurtles.get(i).equals(turtle)) {
-                myTurtles.remove(i);
-                myInactiveTurtles.add(turtle);
-            }
-        }
-    }
-
-    public void activateTurtle(Turtle turtle) {
-        for (int i=0;i<myInactiveTurtles.size();i++) {
-            if (myInactiveTurtles.get(i).equals(turtle)) {
-                myInactiveTurtles.remove(i);
-                myTurtles.add(turtle);
-            }
-        }
     }
 
     public boolean isValid() {
@@ -118,12 +96,12 @@ public class Parser {
                 currentNode.getLeftNode().setRightNode(new BlockNode(myTurtles));
                 currentNode = currentNode.getLeftNode().getLeftNode();
             }
-            if ((currentNode instanceof IfNode||currentNode instanceof RepeatNode||currentNode instanceof DoTimesNode)&&currentNode.getLeftNode()==null) {
+            if ((currentNode!=null && currentNode.hasOneConditionOneBlock()) &&currentNode.getLeftNode()==null) {
                 currentNode.setLeftNode(new ConditionNode(myTurtles));
                 currentNode.setRightNode(new BlockNode(myTurtles));
                 currentNode = currentNode.getLeftNode();
             }
-            if (currentNode instanceof ForNode && currentNode.getLeftNode() == null) {
+            if ((currentNode!=null && currentNode.hasTwoBlockNodes()) && currentNode.getLeftNode() == null) {
                 currentNode.setLeftNode(new BlockNode(myTurtles));
                 currentNode.setRightNode(new BlockNode(myTurtles));
                 currentNode = currentNode.getLeftNode();
@@ -150,16 +128,18 @@ public class Parser {
             if (nextWord==null) return root;
             while(nextWord.equals("[") || nextWord.equals("]")) {
                 if (nextWord.equals("[")){// if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
-                    if (currentNode instanceof RepeatNode || currentNode instanceof IfNode 
-                            || currentNode instanceof DoTimesNode || currentNode instanceof ForNode) {
+                    if (currentNode!=null && (currentNode.hasOneConditionOneBlock() || currentNode.hasTwoBlockNodes())) {
                         currentNode = currentNode.getRightNode(); // go to block
-                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode 
-                            || currentNode.getParent().getParent() instanceof IfElseNode) {
+                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
                         currentNode = currentNode.getParent().getRightNode(); // go to block
-                    } 
+                    } else if (currentNode.getParent() !=null) { 
+                        if (currentNode.getParent().getParent() instanceof IfElseNode) {
+                            currentNode = currentNode.getParent().getRightNode(); // go to block
+                        }
+                    }
                 } else if (nextWord.equals("]")) {  
                     if (currentNode == null) return root;
-                    if (!(currentNode instanceof DoTimesNode)) {
+                    if (!(currentNode instanceof DoTimesNode || currentNode instanceof ForNode)) {
                         currentNode = currentNode.getParent();
                         if (currentNode == null)  return root;
                         if (currentNode.getParent() instanceof IfElseNode) {
@@ -208,5 +188,8 @@ public class Parser {
             return root.evaluate();
         }
         return 1; 
+    }
+    public List<String> getVariables(){
+        return myVariables;
     }
 }

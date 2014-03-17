@@ -40,4 +40,10 @@ public class IfNode extends AbstractNode {
         return false;
     }
 
+
+    
+    @Override
+    public boolean hasOneConditionOneBlock() {
+        return true;
+    }
 }

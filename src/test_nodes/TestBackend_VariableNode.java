@@ -150,8 +150,9 @@ public class TestBackend_VariableNode {
         AbstractNode root = parser.createTree();
         assert (root instanceof BlockNode);
         assert (root.getLeftNode() instanceof DoTimesNode);
-        assert (root.getLeftNode().getLeftNode() instanceof VariableNode);
-        for (AbstractNode thisNode : root.getLeftNode().getLeftNode().getChildren()) {
+        assert (root.getLeftNode().getLeftNode() instanceof BlockNode);
+        assert (root.getLeftNode().getLeftNode().getLeftNode() instanceof VariableNode);
+        for (AbstractNode thisNode : root.getLeftNode().getLeftNode().getLeftNode().getChildren()) {
             assert (thisNode instanceof NumberNode);
         }
         assert (root.getLeftNode().getRightNode() instanceof BlockNode);

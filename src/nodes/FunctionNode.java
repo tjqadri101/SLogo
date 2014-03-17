@@ -44,4 +44,9 @@ public class FunctionNode extends AbstractNode{
     public boolean allowsMoreThanTwoChildren () {
         return false;
     }
+    
+//    @Override 
+//    public boolean hasTwoBlockNodes() {
+//        return true;
+//    }
 }

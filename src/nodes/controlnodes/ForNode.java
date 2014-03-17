@@ -64,4 +64,9 @@ public class ForNode extends AbstractNode {
         return false;
     }
 
+    
+    @Override
+    public boolean hasTwoBlockNodes() {
+        return true;
+    }
 }
