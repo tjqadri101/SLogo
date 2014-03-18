@@ -78,10 +78,31 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
  	
 ######abstract class AbstractNode: 
 	
-	constructors:
+	Constructor(s):
+	public AbstractNode(List<Turtle>)
 	
+	Public Methods:
+	public List<Turtle> getTurtles()
+	public void setTurtles(List<Turtle> turtles)
+	public AbstractNode getLeftNode()
+	public AbstractNode getRightNode()
+	public AbstractNode getParent()
+	public void setLeftNode(AbstractNode node)
+	public void setRightNode(AbstractNode node)
+	public void setParent(AbstractNode node)
+	public void addChild(AbstractNode node)
+	public boolean hasChild()
+	public List<AbstractNode> getChildren()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChilren()
+	public boolean hasOneConditionOneBlock(): return true when one condition node and one block node are current node's child nodes
+	public boolean hasTwoBlockNodes(): return true when two block nodes are current node's child nodes
+	public boolean isAlreadyDeclared(): (for function nodes and variable nodes) return true if the function or variable has already been declared
+	public void setCurrentValue()
+	public String getName(): (for function nodes and variable nodes) return the name of the function or variable
 	
-	public methods:
+	public double evaluate(): return the value of subtree
+
 
 ######class BlockNode:
 
@@ -125,7 +146,7 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 
 Viju, Talal, and Chad worked on developing the View and Controller (probably) package which will contain the front-end user interface classes.
 
-Tara, Benson, and Chad worked on developing the back-end user packages, which include turtle, parse, and nodes.
+Tara and Benson worked on developing the back-end user packages, which include turtle, parse, and nodes.
 		
 ###Why?
 

@@ -132,10 +132,6 @@ public abstract class AbstractNode {
         
     }
 
-    public void setIsAlreadyDeclaredBoolean (boolean boo) {
-        
-    }
-
     /**
      * for variable nodes and function nodes
      * @return
