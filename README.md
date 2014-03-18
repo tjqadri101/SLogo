@@ -106,11 +106,53 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 
 ######class BlockNode:
 
+	Constructor(s):
+	public BlockNode(List<Turtle>)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+
+
+
 ######class FunctionNode:
+
+	Constructor(s):
+	public FunctionNode(List<Turtle>)
+	
+	Public Methods:
+	public void setName(String name): set function name
+	public String getName()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+
 
 ######class MakeNode:
 
+	Constructor(s):
+	public MakeNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+
 ######class VariableNode:
+
+	Constructor(s):
+	public VariableNode(List<Turtle> turtles, String variabelName)
+	public VariableNode(List<Turtle> turtles, String variabelName, double value)
+	public VariableNode(List<Turtle> turtles, String variableName, double startingValue, double endingValue, double increment)
+	
+	Public Methods:
+	public void setCurrentValue(double value)
+	public void setIncrement(double value)
+	public String getName(): return variable name
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+
 
 ######class NodeFactory: (Benson)
 
@@ -118,8 +160,78 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 
 #####Package nodes.commandnodes: (Benson)
 
-#####Package nodes.controlnodes: (Tara)
+#####Package nodes.controlnodes:
 
+######class ConditionNode:
+
+	Constructor(s):
+	public ConditionNode(List<Turtle> turtles) 
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class DoTimesNode:
+
+	Constructor(s):
+	public DoTimesNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	public boolean hasTwoBlockNodes()
+	
+	
+######class ForNode:
+
+	Constructor(s):
+	public ForNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	public boolean hasTwoBlockNodes()
+	
+	
+######class IfElseNode:
+
+	Constructor(s):
+	public IfElseNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class IfNode:
+
+	Constructor(s):
+	public IfNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	public boolean hasOneConditionOneBlock()
+	
+	
+######class RepeatNode:
+
+	Constructor(s):
+	public RepeatNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	public boolean hasOneConditionOneBlock()
+	
+	
 #####Package nodes.displaynodes: (Benson)
 
 #####Package nodes.leafnodes: (Benson)
@@ -131,13 +243,7 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 ###Example Code
 
 
-		When user types ‘fd 50’ (assuming a turtle already exists on the canvas)
-		double oldX = myTurtle.getXPos();
-		double oldY = myTurtle.getYPos();
-		myParser = new Parser(‘fd 50’, myTurtle); 
-		parseAllFunctions(myParser.createAndStoreFunctions());
-		 drawTrailLine(oldX, oldY, myTurtle.getXPos, myTurtle.getYPos()): 
-
+		
 
 
 
