@@ -26,37 +26,62 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 - void drawTrailLine(oldXPos, old YPos, newXpos, newYpos): draw a trail line from 
   previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
 - void rotateTurtle()
-	
+
+####View and Controller: 
+	Talal, Chad, and Viju
+
+
+
+
+
 ####Model: 3 main packages: model, nodes, and turtle; within package nodes, there are sub-packages of different types of nodes
 
 #####Package turtle:
 
-######Class Turtle extends AbstractModel implements ITurtle
-	TODO 
+######Class Turtle extends AbstractModel implements ITurtle: (Benson)
 	
 #####Package model:
 
 ######Class Parser: 
+
+######Class Model:
+
+######Class CommandFinder: (Benson)
+
+######Class CommandReader: (Benson)
 
 #####Package nodes:
  	
 ######abstract class AbstractNode: 
 	
 	constructors:
-	- AbstractNode(Token token, double value)
-	- AbstractNode(Token token)
+	
 	
 	public methods:
-	- AbstractNode makeNode(Token token)
-	- AbstractNode getLeftNode()
-	- AbstractNode getRightNode()
-	- AbstractNode makeSibling(AbstractNode node): make another node a sibling (having the same parent node)
-	- void makeLeftChild(AbstractNode node)
-	- void makeRightChild(AbstractNode node)
-	- double getValue(AbstractNode node)
-	- void action(AbstractNode node): update position of the turtle
-	
-	
+
+######class BlockNode:
+
+######class FunctionNode:
+
+######class MakeNode:
+
+######class VariableNode:
+
+######class NodeFactory: (Benson)
+
+#####Package nodes.booleannodes: (Benson)
+
+#####Package nodes.commandnodes: (Benson)
+
+#####Package nodes.controlnodes: (Tara)
+
+#####Package nodes.displaynodes: (Benson)
+
+#####Package nodes.leafnodes: (Benson)
+
+#####Package nodes.mathnodes: (Benson)
+
+#####Package nodes.querynodes: (Benson)
 
 ###Example Code
 
