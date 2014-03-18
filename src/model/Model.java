@@ -2,25 +2,10 @@ package model;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import turtle.AbstractModel;
 import turtle.Turtle;
 
 public class Model {
-
-//	private List<Turtle> myAllTurtles = new ArrayList<Turtle>();
-//	private List<Turtle> myActiveTurtles = new ArrayList<Turtle>();
-//	private List<Turtle> myInactiveTurtles = new ArrayList<Turtle>();
-//	private Map<String, Parser> myWorkspaceParserMap = new HashMap<String, Parser>();
-
-	// private Map<String, List<Turtle>> myWorkspaceTurtleMap = new
-	// HashMap<String, List<Turtle>>();
-	// private Map<String, String> myWorkspaceCommandMap = new HashMap<String,
-	// String>();
 	
 	List<Turtle> myTurtles;
 	List<Turtle> postTurtles;
@@ -36,9 +21,7 @@ public class Model {
 		return myVariables;
 	}
 	
-
 	public Model() {
-
 	}
 
 	/**

@@ -41,8 +41,7 @@ public class Parser {
      * @return value to display in the view
      */
     public double doParse() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
-        AbstractNode node = createTree();
-        return traverseTree(node);
+        return traverseTree(createTree());
     }
 
     public AbstractNode createTree() throws ClassNotFoundException, 

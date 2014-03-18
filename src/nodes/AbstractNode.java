@@ -10,7 +10,6 @@ public abstract class AbstractNode {
     
     private List<Turtle> myTurtles;
     
-    private double myValue;
     private AbstractNode myParent;
     private List<AbstractNode> myChildren = new ArrayList<AbstractNode>();
     private AbstractNode myLeftNode;
@@ -27,8 +26,6 @@ public abstract class AbstractNode {
     public List<Turtle> getTurtles() {
         return myTurtles;
     }
-    
-    
     
     public String toString() {
         return this.getClass().getName();
@@ -132,12 +129,10 @@ public abstract class AbstractNode {
      * @param evaluate
      */
     public void setCurrentValue (double evaluate) {
-        // TODO Auto-generated method stub
         
     }
 
     public void setIsAlreadyDeclaredBoolean (boolean boo) {
-        // TODO Auto-generated method stub
         
     }
 
@@ -146,7 +141,6 @@ public abstract class AbstractNode {
      * @return
      */
     public String getName () {
-        // TODO Auto-generated method stub
         return null;
     }
     
