@@ -15,16 +15,11 @@ import nodes.MakeNode;
 import nodes.NodeFactory;
 import nodes.VariableNode;
 import nodes.controlnodes.ConditionNode;
-import nodes.controlnodes.DoTimesNode;
-import nodes.controlnodes.ForNode;
 import nodes.controlnodes.IfElseNode;
-import nodes.controlnodes.IfNode;
-import nodes.controlnodes.RepeatNode;
 import nodes.leafnodes.LeafNode;
 
 public class Parser {
     private List<Turtle> myTurtles;
-    private List<Turtle> myInactiveTurtles;
     private boolean myValidBoolean = true;
     private String myCommands;
     private String myLanguage;
@@ -107,39 +102,42 @@ public class Parser {
                 currentNode = currentNode.getLeftNode();
             }
             if (currentNode instanceof FunctionNode) {
-                String functionName = queue.poll();
-                ((FunctionNode) currentNode).setName(functionName);
+                ((FunctionNode) currentNode).setName(queue.poll());
                 boolean hasTwoChildren=false;
-                String word="";
-                while(queue.poll().equals("[")) word = queue.peek();
-                if (word.charAt(0)==':') {
+                while(queue.poll().equals("[")) bracketStack.push(queue.poll());
+                if (queue.peek().charAt(0)==':') {
                     hasTwoChildren=true;
                 }
                 if (hasTwoChildren) {
                     currentNode.setLeftNode(new BlockNode(myTurtles));
                     currentNode.setRightNode(new BlockNode(myTurtles));
-                    currentNode = currentNode.getLeftNode();
                 } else {// if it's a normal declare of function without variables --> only one child
                     currentNode.setLeftNode(new BlockNode(myTurtles));
-                    currentNode = currentNode.getLeftNode();
                 }
+                currentNode = currentNode.getLeftNode();
             }
             String nextWord = queue.poll();
-            if (nextWord==null) return root;
+            if (nextWord==null) {
+                myValidBoolean = bracketStack.isEmpty();
+                return root;
+            }
             while(nextWord.equals("[") || nextWord.equals("]")) {
                 if (nextWord.equals("[")){// if the parent node is a repeat node or an if node, or the parent of the parent node is an if else node
+                    bracketStack.push(nextWord);
                     if (currentNode!=null && (currentNode.hasOneConditionOneBlock() || currentNode.hasTwoBlockNodes())) {
                         currentNode = currentNode.getRightNode(); // go to block
-                    } else if (currentNode.getParent() instanceof RepeatNode || currentNode.getParent() instanceof IfNode) {
-                        currentNode = currentNode.getParent().getRightNode(); // go to block
-                    } else if (currentNode.getParent() !=null) { 
-                        if (currentNode.getParent().getParent() instanceof IfElseNode) {
-                            currentNode = currentNode.getParent().getRightNode(); // go to block
-                        }
+                    } else if (currentNode.getParent()!=null && currentNode.getParent().hasOneConditionOneBlock()) {
+                        currentNode = currentNode.getParent().getRightNode(); 
+                    } else if (currentNode.getParent() !=null && currentNode.getParent().getParent() instanceof IfElseNode) {
+                        currentNode = currentNode.getParent().getRightNode();
                     }
                 } else if (nextWord.equals("]")) {  
-                    if (currentNode == null) return root;
-                    if (!(currentNode instanceof DoTimesNode || currentNode instanceof ForNode)) {
+                    if (!bracketStack.pop().equals("[")) myValidBoolean=false;
+                    if (currentNode == null) {
+                        myValidBoolean = bracketStack.isEmpty();
+                        return root;
+                    }
+                    if (!currentNode.hasTwoBlockNodes()) {
                         currentNode = currentNode.getParent();
                         if (currentNode == null)  return root;
                         if (currentNode.getParent() instanceof IfElseNode) {
@@ -148,7 +146,10 @@ public class Parser {
                     }
                 }
                 nextWord = queue.poll();
-                if (nextWord == null) return root;
+                if (nextWord == null) {
+                    myValidBoolean = bracketStack.isEmpty();
+                    return root;
+                }
             }
             AbstractNode nextNode = nodeFactory.createNode(nextWord); 
             if (currentNode.getLeftNode()== null) {
@@ -161,6 +162,7 @@ public class Parser {
             currentNode = nextNode;
             currentWord = nextWord;
         }
+        myValidBoolean = bracketStack.isEmpty();
         return root;
     }
 
@@ -174,11 +176,10 @@ public class Parser {
         }
         return null;
     }
-
     public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
         if (root!=null) {
             for (AbstractNode childNode : root.getChildren()) {
-                if (childNode instanceof DoTimesNode || childNode instanceof ForNode) {
+                if (childNode.hasTwoBlockNodes() || childNode.hasOneConditionOneBlock()) {
                     childNode.evaluate();
                 } else { traverseTree(childNode); }
             }
@@ -189,7 +190,5 @@ public class Parser {
         }
         return 1; 
     }
-    public List<String> getVariables(){
-        return myVariables;
-    }
+    public List<String> getVariables(){ return myVariables; }
 }
