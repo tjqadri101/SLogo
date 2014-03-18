@@ -9,10 +9,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
 import controller.AbstractController;
 import controller.ModelController;
 import turtle.ITurtle;
@@ -118,6 +116,10 @@ public class WorkspacePanel extends JPanel implements IView{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+                catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 			}
 			
 		});

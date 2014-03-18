@@ -46,10 +46,7 @@ public class Model {
 	 */
 	public double processCommands(List<Turtle> turtles,
 			String commands, String language)
-			throws ClassNotFoundException, NoSuchMethodException,
-			SecurityException, InstantiationException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException,
-			NoSuchFieldException, IOException {
+			throws Exception {
 
 		myTurtles = turtles;
 		myCommands = commands;

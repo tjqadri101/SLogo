@@ -34,20 +34,13 @@ public class ModelController extends AbstractController {
 	}
 
 	public List<TurtleImage>  passToEnglishModel(List<TurtleImage> turtles, String command)
-			throws SecurityException, IllegalArgumentException,
-			ClassNotFoundException, NoSuchMethodException,
-			InstantiationException, IllegalAccessException,
-			InvocationTargetException, NoSuchFieldException, IOException {
+			throws Exception {
 
 		return passToModel(turtles, command, DEFAULT_LANGUAGE);
 	}
 
 	public List<TurtleImage>  passToModel(List<TurtleImage> turtles, String command,
-			String language) throws SecurityException,
-			IllegalArgumentException, ClassNotFoundException,
-			NoSuchMethodException, InstantiationException,
-			IllegalAccessException, InvocationTargetException,
-			NoSuchFieldException, IOException {
+			String language) throws Exception {
 
 		List<Turtle> backendTurtles = new ArrayList<Turtle>();
 

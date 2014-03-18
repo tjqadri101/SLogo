@@ -42,11 +42,7 @@ public abstract class AbstractController implements PropertyChangeListener {
 	}
 
 	public void setModelProperty(List<Turtle> turtles, String commands,
-			String language) throws SecurityException,
-			IllegalArgumentException, ClassNotFoundException,
-			NoSuchMethodException, InstantiationException,
-			IllegalAccessException, InvocationTargetException,
-			NoSuchFieldException, IOException {
+			String language) throws Exception {
 		myModel.processCommands(turtles, commands, language);
 	}
 	

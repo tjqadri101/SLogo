@@ -40,13 +40,11 @@ public class Parser {
      * call this method in Model; creates abstract syntax tree and traverse the tree
      * @return value to display in the view
      */
-    public double doParse() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+    public double doParse() throws Exception {
         return traverseTree(createTree());
     }
 
-    public AbstractNode createTree() throws ClassNotFoundException, 
-    NoSuchMethodException, SecurityException, InstantiationException, 
-    IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException, NoSuchFieldException {
+    public AbstractNode createTree() throws Exception {
         NodeFactory nodeFactory = new NodeFactory(myTurtles, myLanguage);
         AbstractNode root = new BlockNode(myTurtles);
         String[] words = myCommands.split(" ");
@@ -165,7 +163,7 @@ public class Parser {
         return root;
     }
 
-    private AbstractNode findPreviouslyCreatedNodes (AbstractNode currentNode) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {
+    private AbstractNode findPreviouslyCreatedNodes (AbstractNode currentNode) throws Exception {
         for (AbstractNode thisNode : myVariableNodes) {
             if (thisNode.getName().equals(currentNode.getName())) {
                 currentNode.setLeftNode(thisNode.getLeftNode()); 
@@ -175,7 +173,7 @@ public class Parser {
         }
         return null;
     }
-    public double traverseTree(AbstractNode root) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, IOException {  
+    public double traverseTree(AbstractNode root) throws Exception {  
         if (root!=null) {
             for (AbstractNode childNode : root.getChildren()) {
                 if (childNode.hasTwoBlockNodes() || childNode.hasOneConditionOneBlock()) {

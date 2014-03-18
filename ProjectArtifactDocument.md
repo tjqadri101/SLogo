@@ -2,7 +2,7 @@
 
 ##Introduction
 
-##Overview: all of us
+##Overview:
 
 ###Frontend Modules: Talal, Viju, and Chad
 
@@ -14,8 +14,10 @@
 
 ##Design Details: Benson and Tara
 
-###Model:
+###Model: (Tara)
 
-###Parser:
+###Parser: (Tara)
 
-###Nodes:
+###Nodes: (Tara)
+
+###Turtle: (Benson)
