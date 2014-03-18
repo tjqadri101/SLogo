@@ -1,12 +1,12 @@
-Project Artifact Document
+#Project Artifact Document
 
-I. Introduction
+##Introduction
 
-II. Overview: all of us
-
-
-III. User Interface Design: Talal, Viju, and Chad
+##Overview: all of us
 
 
-IV. Design Details: Benson and Tara
+##User Interface Design: Talal, Viju, and Chad
+
+
+##Design Details: Benson and Tara
 
