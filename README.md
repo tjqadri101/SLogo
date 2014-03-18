@@ -27,55 +27,20 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
   previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
 - void rotateTurtle()
 	
-####Model: 3 packages: turtle, parse, and nodes
-#####Interface Movable: 
-	public method:
-	- void updatePosition(double changeInX, double changeInY)
-	Example of creating a new turtle object in frontend: Movable turtle = new Turtle();
+####Model: 3 main packages: model, nodes, and turtle; within package nodes, there are sub-packages of different types of nodes
 
-#####Class TurtleFactory: 
-	public Turtle createTurtle();
+#####Package turtle:
 
-#####Class FunctionFactory:
-	public Function createFunction();
-
-#####Class Turtle implements Movable: double myXPos, double myYPos
-	public methods:
-	- double getXPos() 
-	- double getYPos()
-	- void updatePosition(double changeInX, changeInY)
-	- -void paint(); draws a turtle at the coordinates corresponding to myXPos and myYPos 
+######Class Turtle extends AbstractModel implements ITurtle
+	TODO 
 	
-#####Class Parser implements Token: 
-	Constructor:
-	- Parser(String text, Turtle turtle)
-	public methods:
-	- boolean isValid()
-	- void createAndStoreFunctions()
-	- List<Function> getFunctions() 
-	- void parseAllFunctions(List<Function>): calls tokenize, createTree, and compileTree in class Function, and updates turtle position
-	
-#####class Function:
-	Constructor: 
-	- Function(String text)
-	public methods:
-	- String getText()
-	- Token tokenize(Function function)
-	- AbstractNode createTree()
-	- void compileTree(AbstractNode node): interpret the tree and update the turtle position
+#####Package model:
 
-#####public interface Token: has public instance variables for parsing
-	- final String INITIAL_POSITION = "setxy";
-	- final String SET_PARAMETER = "set";
-	- final String PARAMETER = "parameter";
-	- final String FOR_LOOP = "repeat";
-	- final String RIGHT = "rt";
-	- final String FORWARD = "fd";
-	- final String LEFT = "lt";
-	- ...(more to add)
-	- Token tokenize(String text): implemented in Parser
+######Class Parser: 
+
+#####Package nodes:
  	
-#####abstract class AbstractNode: 
+######abstract class AbstractNode: 
 	
 	constructors:
 	- AbstractNode(Token token, double value)
@@ -91,19 +56,7 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 	- double getValue(AbstractNode node)
 	- void action(AbstractNode node): update position of the turtle
 	
-	The following public methods are mainly for for-loops and if-trees, in other types of Nodes where they're irrelevant they will be override with do nothing
-	- AbstractNode getStartingNode()
-	- AbstractNode getEndingNode()
-	- void setStartingNode()
-	- void setEndingNode()
 	
-
-- Class IfNode extends AbstractNode implements Token
-- Class ForNode extends AbstractNode implements Token
-- Class ActionNode extends AbstractNode implements Token
-- ... (more to add)
-- Class FdNode extends ActionNode
-- (more actions extends action node)
 
 ###Example Code
 
@@ -121,9 +74,9 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 ###Sub-teams
 
 
-Viju and Talal will work on developing the View and Controller (probably) package which will contain the front-end user interface classes.
+Viju, Talal, and Chad worked on developing the View and Controller (probably) package which will contain the front-end user interface classes.
 
-Tara, Benson, and Chad will work on developing the back-end user packages, which include turtle, parse, and nodes.
+Tara, Benson, and Chad worked on developing the back-end user packages, which include turtle, parse, and nodes.
 		
 ###Why?
 
