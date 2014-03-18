@@ -39,7 +39,11 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 #####Package turtle:
 
 ######Class Turtle extends AbstractModel implements ITurtle: (Benson)
-	
+
+######interface ITurtle: (Benson)
+
+######abstract class AbstractModel: (Benson)
+
 #####Package model:
 
 ######Class Parser: 
