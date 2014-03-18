@@ -48,8 +48,28 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
 
 ######Class Parser: 
 
+	Constructor(s):
+	public Parser(List<Turtle> turtles, String commands, String language)
+	
+	Public Methods:
+	public boolean isValid(): return true if the commands are valid syntax
+	public double doParse(): call this method in class Model; return value to display in the view
+	public AbstractNode createTree(): create an Abstract Syntax Tree; return the root
+	public double traverseTree(AbstractNode root): traverse an Abstract Syntax tree; return value to display in the view
+	public List<String> getVariables: return a list of variables
+	
+	
 ######Class Model:
 
+	Constructor(s):
+	public Model()
+	
+	Public Methods:
+	public List<Turtle> getTurtles()
+	public List<String> getVariables()
+	public double processCommands(List<Turtle> turtles, String commands, String language): process commands and return value to display
+	
+	
 ######Class CommandFinder: (Benson)
 
 ######Class CommandReader: (Benson)
