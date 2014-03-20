@@ -6,8 +6,6 @@ import java.util.List;
 import turtle.Turtle;
 
 public class MakeNode extends AbstractNode {
-
-    private List<Turtle> myTurtles;
     
     public MakeNode (List<Turtle> turtles) {
         super(turtles);
