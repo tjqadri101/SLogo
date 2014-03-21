@@ -22,7 +22,7 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 ###Backend
 
-The backend of our design includes three main packages: model, turtle, and nodes. The package parser contains class Parser, NodeFactory, and Model. Model is the manager of all workspaces; one workspace has one model and one controller, and each model keeps track of all of its respective Parser objects. NodeFactory creates nodes using reflection, and its method of creating new nodes is called in class Parser.
+The backend of our design includes three main packages: model, turtle, and nodes. The package parser contains class Parser, NodeFactory, and Model. Each workspace has one model and one controller, and each model keeps track of all of its respective Parser objects. NodeFactory creates nodes using reflection, and its method of creating new nodes is called in class Parser.
 
 Class Parser has two main methods: createTree() and traverseTree(). Method createTree() creates an Abstract Syntax Tree for the commands user enters into one workspace. A queue structure is used to store the individual words to be read. Each word is then passed into method createNode(), which is a method within class NodeFactory. 
 
@@ -48,11 +48,11 @@ The turtle package is the central module of SLogo. Within this package, class Tu
 
 The proceeding discussion will pertain to the interface design between the model and view where information is sent from the view to the model and fetched from the model to the view. The controller package and the turtle package are the two main components that make up this interface.
 
-The controller package contains abstract class AbstractController and class ModelController.  Abstract class AbstractController was created on the premise of extendability and in a time of uncertainty. At the time, an undefined hierarchy in the view made it uncertain how information would be fetched. 
+The controller package contains abstract class AbstractController and class ModelController.  Abstract class AbstractController was created on the premise of extendability and in a time of uncertainty. 
 
 AbstractController was designed in a way that allows us to add registered views and a registered model, given the situation that we wanted to reference multiple workspaces. Methods within AbstractController such as getTurtleList() and getVariables() make it possible to fetch information from the backend.
 
-Moreover, the one and only instance of Class Model is created in AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from the view.
+Moreover, one instance of Class Model is created per instance of a subclass that inherits AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from the view.
 
 Given such time constraints, an all-encompassing controller, class ModelController, was created. This class extends AbstractController and has method passToModel(), which is used to pass information to the backend. This method takes in a list of instances of TurtleImage (Class TurtleImage is displayed in the GUI and is used to represent a frontend replication of the backend turtle), a command, and a language.
 
@@ -95,8 +95,3 @@ This module was created to abstract the saving and loading of functions to the p
 ####WorkspacePanel
 A majority of this class’s functions deal with interacting with the panels that it contains. It creates and sets each one, which are all separate methods. It is essentially a container for the other panels – streamlining the communication that the controller makes between the front and the back ends. Thus, a majority of the functionality of this panel is essentially discussed in the ActionDisplayPanel piece and the ProgrammingPanel piece of this design details document.
 This follows the principles of increased readability and naming by keeping the pieces of our project that do separate things in separate functions and classes. While there may be a lot of classes, it is easier to see how they fit together and what the individual components do because we separated them.
-
-The WorkspacePanel has several get/set methods. These are created so the controller can gain access to these variables and use them for interaction between the front and back ends. 
-
-The PropertyChangeListener was created so the user can interact with the ProgrammingPanel. When the button is clicked the listener is activated and several events occur. The data is passed as a string to the back-end through the controller, the text area where the data was entered is cleared, and then the other panels are updated. 
-
