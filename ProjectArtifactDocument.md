@@ -22,7 +22,7 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 ###Backend
 
-The backend of our design includes three main packages: model, turtle, and nodes. The package parser contains class Parser, NodeFactory, and Model. Model is the manager of all workspaces; one workspace has one Parser, and Model keeps track of all the Parser objects. NodeFactory creates nodes using reflection, and its method of creating new nodes is called in class Parser.
+The backend of our design includes three main packages: model, turtle, and nodes. The package parser contains class Parser, NodeFactory, and Model. Model is the manager of all workspaces; one workspace has one model and one controller, and each model keeps track of all of its respective Parser objects. NodeFactory creates nodes using reflection, and its method of creating new nodes is called in class Parser.
 
 Class Parser has two main methods: createTree() and traverseTree(). Method createTree() creates an Abstract Syntax Tree for the commands user enters into one workspace. A queue structure is used to store the individual words to be read. Each word is then passed into method createNode(), which is a method within class NodeFactory. 
 
