@@ -81,6 +81,15 @@ One of the most integral components of the backend is the code parser. In order 
 	public void setList(List<TurtleImage> list): set the current list of TurtleImages in the panel
 	public String getAllPositionInfos(): return position and headings of all the TurtleImages
 
+######Class ActionDisplayPanel extends GridBagPanel:
+	
+	Constructor(s):
+	public ActionDisplayPanel()
+	
+	Public Methods:
+	public void showState(): show headings and coordinates of all the TurtleImages
+	public TurtleDisplayPanel getInstance(): return the instance of the TurtleDisplayPanel used in this instance of ActionDisplayPanel
+
 ####Controller:
 	Benson and Talal
 
