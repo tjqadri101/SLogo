@@ -90,10 +90,10 @@ public class TurtleImage implements ITurtle {
 		myColor = penColor;
 		if (myPen == 1) {
 			checkLineAddition(penColor);
-			for (Line2D line : lineList) {
+		}	
+		for (Line2D line : lineList) {
 				pen.setColor(lineColorMap.get(line));
 				pen.draw((Shape) line);
-			}
 		}
 	}
 

@@ -18,17 +18,42 @@ One of the most integral components of the backend is the code parser. In order 
 
 ###Packages
 
-####View Package: 
-######Class Panel: has a submit button, text field, label to display command history (uses jswing - can use JFrame to update frame), pop-up window to display error, and a canvas
-
-Instance variable: myParser
-Instance variable: myTurtlle (initially set by default to lie in the center of the canvas)
-- void drawTrailLine(oldXPos, old YPos, newXpos, newYpos): draw a trail line from 
-  previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
-- void rotateTurtle()
 
 ####View: 5 packages: view, turtle_graphics, preferences,functionStorage, and main. view.menuComponent is a sub-package of the view package
 	Talal, Chad, and Viju
+
+#####Package turtle_graphics:
+######Class TurtleFileChooser
+	Constructor(s):
+	No constructor
+
+	Public Methods:
+	public static File initFileChooser(): call this method in class TurtleImage; select and return image for a particular turtle
+
+######Class TurtleImage
+	Constructor(s)
+	public TurtleImage(int x, int y)
+
+	public Methods:
+	public BufferedImage setImage() throws IOException: sets the image file of turtle as a buffered image
+	public void paintTurtle(Graphics2D pen)
+	public void paintLines(Graphics2D pen, Color penColor, int myPen)
+	private void initializeTopLeftCorner(double xCenter, double yCenter): defines top left corner of image from center position co-ordinates since Graphics2D image is drawn with respect to top left corner
+	public void reinitialTurtle(); maintains the turtle in its current position again
+	public void moveTurtleStandardButtons(double deltaX, double deltaY): changes turtle position by specified deltaX and deltaY
+	public void updateTurtleState(double deltaX, double deltaY, double heading) 
+	public void rotateTurtleRight90()
+	public String getCanvasStateInfo(int panelWidth, int panelHeight): returns the turtle coordinates and angle
+	public void setTurtleCenter(int panelWidth, int panelHeight): sets turtle at center of a panel if inputted panelWidth and panelHeight are correct
+	public double getPrevX()
+	public double getPrevY() 
+	public double getDeltaX() 
+	public double getDeltaY() 
+	public double getAngle() 
+	public double getPenToggle() 
+	public double getCurX() 
+	public double getCurY() 
+	public String getPenColor() 
 
 
 ####Controller:
