@@ -40,6 +40,15 @@ Class Model is created in Part 3. We did not anticipate that there would be mult
 
 The turtle package is the central module of SLogo. Within this package, class Turtle contains all the properties that are updated by class Parser and are required by the view. The properties within each turtle instance are updated in real-time as traverseTree() is called. The methodology in which the information is extracted from class Turtle to the view leads us to the next component of our project.
 
+The proceeding discussion will pertain to the interface design between the model and view where information is sent from the view to the model and fetched from the model to the view. The controller package and the turtle package are the two main components that make up this interface.
+
+The controller package contains abstract class AbstractController and class ModelController.  Abstract class AbstractController was created on the premise of extendability and in a time of uncertainty. At the time, an undefined hierarchy in the view made it uncertain how information would be fetched. 
+
+AbstractController was designed in a way that allows us to add registered views and a registered model, given the situation that we wanted to reference multiple workspaces. Methods within AbstractController such as getTurtleList() and getVariables() make it possible to fetch information from the backend.
+
+Given such time constraints, an all-encompassing controller, class ModelController, was created. This class extends AbstractController and has method passToModel(), which is used to pass information to the backend. This method takes in a list of instances of TurtleImage (Class TurtleImage is displayed in the GUI and is used to represent a frontend replication of the backend turtle), a command, and a language.
+
+
 Tara to Benson: Turtle and Node Factory
 
 
