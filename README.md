@@ -94,14 +94,13 @@ One of the most integral components of the backend is the code parser. In order 
 	
 	
 ######Class PreferenceHelper
+	
 	Constructor(s):
 	No constructor
 	
 	Public Methods:
-	public static void write(TurtleDisplayPanel t, String filename) throws Exception: meant to write TurtleDisplayPanel as an XML file. 
-																					Faulty implementation not corrected before project deadline
-	public static TurtleDisplayPanel read() throws Exception: meant to load TurtleDisplayPanel from its preferences saved as an XML file. Not correctly
-															implemented before project deadline																					
+	public static void write(TurtleDisplayPanel t, String filename) throws Exception: meant to write TurtleDisplayPanel as an XML file. Faulty implementation not corrected before project deadline
+	public static TurtleDisplayPanel read() throws Exception: meant to load TurtleDisplayPanel from its preferences saved as an XML file. Not correctly implemented before project deadline																					
 
 ####Controller:
 	Benson and Talal
