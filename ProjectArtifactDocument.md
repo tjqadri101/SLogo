@@ -46,7 +46,16 @@ The controller package contains abstract class AbstractController and class Mode
 
 AbstractController was designed in a way that allows us to add registered views and a registered model, given the situation that we wanted to reference multiple workspaces. Methods within AbstractController such as getTurtleList() and getVariables() make it possible to fetch information from the backend.
 
+Moreover, the one and only instance of Class Model is created in AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from the view.
+
 Given such time constraints, an all-encompassing controller, class ModelController, was created. This class extends AbstractController and has method passToModel(), which is used to pass information to the backend. This method takes in a list of instances of TurtleImage (Class TurtleImage is displayed in the GUI and is used to represent a frontend replication of the backend turtle), a command, and a language.
+
+Within passToModel(), TurtleImage is converted into an ITurtle, which is an interface implemented by class Turtle. The purpose of ITurtle was to create a level of encapsulation between the model and view; there’s no need for the controller to have access to a complete instantiation of class turtle.
+
+Using all of these parameters, method passToModel() calls method processCommands(), which is a method residing in class Model. Method processCommands() is the highest level method within the backend.
+
+Class Workspace panel, the “top” module of the frontend, calls method passToEnglishModel() within a property listener method to bridge the connection between the frontend and the controller. Method passToEnglishModel() is a wrapper function of passToModel(). In other words, passToModel() is passed in with ‘English’ as the language of choice within passToEnglishModel(). Any language could have been chosen to be passed into passToModel(). This wrapper function was created because the frontend lacks the ability to choose a language of choice.
+
 
 
 Tara to Benson: Turtle and Node Factory
