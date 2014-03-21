@@ -52,7 +52,7 @@ The controller package contains abstract class AbstractController and class Mode
 
 AbstractController was designed in a way that allows us to add registered views and a registered model, given the situation that we wanted to reference multiple workspaces. Methods within AbstractController such as getTurtleList() and getVariables() make it possible to fetch information from the backend.
 
-Moreover, one instance of Class Model is created per instance of a subclass that inherits AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from the view.
+Moreover, one instance of Class Model is created per instance of a subclass that inherits AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from each view.
 
 Given such time constraints, an all-encompassing controller, class ModelController, was created. This class extends AbstractController and has method passToModel(), which is used to pass information to the backend. This method takes in a list of instances of TurtleImage (Class TurtleImage is displayed in the GUI and is used to represent a frontend replication of the backend turtle), a command, and a language.
 
@@ -68,13 +68,6 @@ The controller was conceptually designed to reduce the amount of direct communic
 
 Lastly, class Turtle extends abstract class AbstractModel. AbstractModel was created to improve communication between the controller and ITurtle by notifying the controller whenever a Turtle property changed. Although none of the methods from AbstractModel were implemented, the extension of AbstractModel provides a template for feasible changes in the future.
 
-####Model: (Tara)
-
-####Parser: (Tara)
-
-####Nodes: (Tara)
-
-####Turtle: (Benson)
 
 ###Frontend
 
