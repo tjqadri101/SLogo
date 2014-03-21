@@ -58,10 +58,9 @@ Despite the nomenclature, passToController() also contains method updateTurtleSt
 
 Class Workspace panel, the “top” module of the frontend, calls method passToEnglishModel() within a property listener method to bridge the connection between the frontend and the controller. Method passToEnglishModel() is a wrapper function of passToModel(). In other words, passToModel() is passed in with ‘English’ as the language of choice within passToEnglishModel(). Any language could have been chosen to be passed into passToModel(). This wrapper function was created because the frontend lacks the ability to choose a language of choice.
 
+The controller was conceptually designed to reduce the amount of direct communication between the model and view. The controller’s interaction with frontend is through the IView interface. Although there are no implemented methods from IView, this interface was planned to ping the controller whenever any changes occurred in the view.
 
-
-Tara to Benson: Turtle and Node Factory
-
+Lastly, class Turtle extends abstract class AbstractModel. AbstractModel was created to improve communication between the controller and ITurtle by notifying the controller whenever a Turtle property changed. Although none of the methods from AbstractModel were implemented, the extension of AbstractModel provides a template for feasible changes in the future.
 
 
 ###Frontend
