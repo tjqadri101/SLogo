@@ -27,11 +27,12 @@ Instance variable: myTurtlle (initially set by default to lie in the center of t
   previous x and y coordinate of the turtle and the new x and y coordinate of the turtle
 - void rotateTurtle()
 
-####View and Controller: 
+####View: 5 packages: view, turtle_graphics, preferences,functionStorage, and main. view.menuComponent is a sub-component of the vuew package
 	Talal, Chad, and Viju
 
 
-
+####Controller:
+	Benson and Talal
 
 
 ####Model: 3 main packages: model, nodes, and turtle; within package nodes, there are sub-packages of different types of nodes
