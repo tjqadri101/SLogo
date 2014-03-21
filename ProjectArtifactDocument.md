@@ -54,6 +54,8 @@ Within passToModel(), TurtleImage is converted into an ITurtle, which is an inte
 
 Using all of these parameters, method passToModel() calls method processCommands(), which is a method residing in class Model. Method processCommands() is the highest level method within the backend.
 
+Despite the nomenclature, passToController() also contains method updateTurtleState() that updates the x-coordinates, y-coordinates, and heading of a List of class TurtleImage (the frontend turtles). This design choice was influenced by the impending deadline.
+
 Class Workspace panel, the “top” module of the frontend, calls method passToEnglishModel() within a property listener method to bridge the connection between the frontend and the controller. Method passToEnglishModel() is a wrapper function of passToModel(). In other words, passToModel() is passed in with ‘English’ as the language of choice within passToEnglishModel(). Any language could have been chosen to be passed into passToModel(). This wrapper function was created because the frontend lacks the ability to choose a language of choice.
 
 
