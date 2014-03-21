@@ -95,3 +95,8 @@ This module was created to abstract the saving and loading of functions to the p
 ####WorkspacePanel
 A majority of this class’s functions deal with interacting with the panels that it contains. It creates and sets each one, which are all separate methods. It is essentially a container for the other panels – streamlining the communication that the controller makes between the front and the back ends. Thus, a majority of the functionality of this panel is essentially discussed in the ActionDisplayPanel piece and the ProgrammingPanel piece of this design details document.
 This follows the principles of increased readability and naming by keeping the pieces of our project that do separate things in separate functions and classes. While there may be a lot of classes, it is easier to see how they fit together and what the individual components do because we separated them.
+
+The WorkspacePanel has several get/set methods. These are created so the controller can gain access to these variables and use them for interaction between the front and back ends. 
+
+The PropertyChangeListener was created so the user can interact with the ProgrammingPanel. When the button is clicked the listener is activated and several events occur. The data is passed as a string to the back-end through the controller, the text area where the data was entered is cleared, and then the other panels are updated. 
+
