@@ -6,6 +6,12 @@
 
 ###Frontend Modules: Talal, Viju, and Chad
 
+####FunctionStorage
+This module deals with loading and saving the user-defined functions. The functionMenu class is called by the menu-builder, and this just serves to “package” the load and saving capabilities of this module. It hides the other classes in this module when it’s called. 
+
+####WorkspacePanel
+This class serves as a container for some of the pieces of the GUI. It contains a ProgrammingPanel and an ActionDisplayPanel. The ProgrammingPanel and the ActionDisplayPanel contain many things for the user, such as the buttons and the visual display– it is in a sense their “workspace”. The ProgrammingPanel interacts through the controller with the backend to pass commands while the ActionDisplayPanel is primarily a front-end component. The panels were divided in this manner to keep the separate functionalities separate, to keep the code more readable.
+
 ###Backend Modules: Benson and Tara
 
 
@@ -62,15 +68,30 @@ The controller was conceptually designed to reduce the amount of direct communic
 
 Lastly, class Turtle extends abstract class AbstractModel. AbstractModel was created to improve communication between the controller and ITurtle by notifying the controller whenever a Turtle property changed. Although none of the methods from AbstractModel were implemented, the extension of AbstractModel provides a template for feasible changes in the future.
 
+####Model: (Tara)
+
+####Parser: (Tara)
+
+####Nodes: (Tara)
+
+####Turtle: (Benson)
 
 ###Frontend
 
+####MenuComponents
+This module is for the components that are present in the menu bar. It contains two classes, ColorMenuComponent and FileMenuComponent. Both of these are enum objects. This module compartmentalizes the busy work for some of the menu creation. To add a new color choice for the background, the user just needs to modify the ColorMenuComponent file in a very intuitive way and to add a new option for the fileMenu, the user just needs to add the name of the button and the method that it calls in the FileMenuComponent. Thus, in the class where the menu is created, it just refers to these two classes instead of listing all the components in there, making for more readable code as well. 
 
+The individual components in the two classes are called and created in different ways – this shows that they can be implemented differently. ColorMenuComponent is created by just calling the different “variables” in each part, but the FileMenuComponent is created through reflection. The FileMenuComponent pieces contain names of functions that are called when different menu buttons are clicked, which is why this class implements reflection.  
 
-###Model: (Tara)
+This module was created to abstract some of the menu bar creation, making the code more readable and more easily extensible. This adheres to the design principles we learned in class as well. 
 
-###Parser: (Tara)
+####FunctionStorage
+This class handles the saving and loading of the user-defined functions to this project. It will ideally have contact with the controller to obtain the functions that it loads and saves. It is essentially just a saving and loading device right now – it will get the data that it needs to load and save from the controller. And this code is easily extensible as well. To add additional functionality, the user just needs to create another class and add it to this module and the functionMenu class. For example, if the user wanted to add the ability to combine files of functions together, the user would just need to create a class called FunctionCombiner (for example) and then add the functionality and then add it to the FunctionMenu Class. This menu could be created in a manner similar to the other menus in this project, but this functionality was not implemented. The names of this module might also be confusing, as they are verbs rather than nouns, but this could also be changed easily. 
 
-###Nodes: (Tara)
+The functionality for this class was not completely implemented, but we were planning on having the controller pass the functions to be saved through this class, thus keeping the communication between the front and back ends to a minimum, managed by the controller. 
 
-###Turtle: (Benson)
+This module was created to abstract the saving and loading of functions to the project. It could have been named “DataManager” and then the saving and loading preferences could also have been included here – this would reduce the repeated code and adhere to design principles of keeping this abstract and distant from their “implementations”. Unfortunately, we were not able to fully implement the functionality of either of these things, but we our design would have allowed us to easily add them. And even though the naming indicates otherwise, this module deals with interacting with different data, thus it adheres to design principles of keeping things separate, abstract, and extensible.
+
+####WorkspacePanel
+A majority of this class’s functions deal with interacting with the panels that it contains. It creates and sets each one, which are all separate methods. It is essentially a container for the other panels – streamlining the communication that the controller makes between the front and the back ends. Thus, a majority of the functionality of this panel is essentially discussed in the ActionDisplayPanel piece and the ProgrammingPanel piece of this design details document.
+This follows the principles of increased readability and naming by keeping the pieces of our project that do separate things in separate functions and classes. While there may be a lot of classes, it is easier to see how they fit together and what the individual components do because we separated them.
