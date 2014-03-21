@@ -23,18 +23,21 @@ One of the most integral components of the backend is the code parser. In order 
 	Talal, Chad, and Viju
 
 #####Package turtle_graphics:
-######Class TurtleFileChooser
+
+######Class TurtleFileChooser:
+
 	Constructor(s):
 	No constructor
 
 	Public Methods:
 	public static File initFileChooser(): call this method in class TurtleImage; select and return image for a particular turtle
 
-######Class TurtleImage
-	Constructor(s)
+######Class TurtleImage:
+
+	Constructor(s):
 	public TurtleImage(int x, int y)
 
-	public Methods:
+	Public Methods:
 	public BufferedImage setImage() throws IOException: sets the image file of turtle as a buffered image
 	public void paintTurtle(Graphics2D pen)
 	public void paintLines(Graphics2D pen, Color penColor, int myPen)
@@ -55,6 +58,28 @@ One of the most integral components of the backend is the code parser. In order 
 	public double getCurY() 
 	public String getPenColor() 
 
+#####Package view:
+
+######Class TurtleDisplayPanel:
+
+	Constructor(s):
+	public TurtleDisplayPanel()
+
+	Public Methods:
+	public void createNewTurtleImage(): create an instance of the TurtleImage class
+	protected void paintComponent(Graphics g): paint all the TurtleImage turtles and their associated lines
+	public void moveTurtleLeft(): move all TurtleImages horizontally left by 5 pixels from its current location w.r.t the center of panel
+	public void moveTurtleRight(): move all TurtleImages horizontally right by 5 pixels from its current location w.r.t the center of panel
+	public void moveTurtleDown(): move all TurtleImages vertically downwards by 5 pixels from its current location w.r.t the center of panel
+	public void moveTurtleForward(): move all TurtleImages vertically upwards by 5 pixels from its current location w.r.t the center of panel
+	public void rotateTurtlesRight(): calls each TurtleImage’s rotateTurtleRight90 method
+	public Color getColor(): get line pen color
+	public List<TurtleImage> getTurtleList()
+	public void setPenToggle(): turn line pen on or off
+	public void setColor(Color c) set line pen color
+	public void resetTurtle(): sets all the turtles at the panel’s center
+	public void setList(List<TurtleImage> list): set the current list of TurtleImages in the panel
+	public String getAllPositionInfos(): return position and headings of all the TurtleImages
 
 ####Controller:
 	Benson and Talal
