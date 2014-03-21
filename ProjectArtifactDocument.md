@@ -38,7 +38,7 @@ User defined variables and functions are stored in the Parser class. When they a
 
 Class Model is created in Part 3. We did not anticipate that there would be multiple workspaces and turtles when we implemented Part 2. We created the Model class, which is the "workspace manager" to deal with the change. We also change the constructors of all nodes from one turtle to a list of turtles. Class Model calls the .doParse() method in the Parser class to pass the commands. A list of turtles, commands, and user's choice of language are passed to the Parser class through the Parser constructor. (Tara to Benson: maybe explain more the interaction between the Model class and the controller?)
 
-The turtle package is the central module of SLogo. Within this package, class Turtle contains all the properties that are updated by class Parser and are required by the view. The properties within each turtle instance are updated in real-time as traverseTree() is called. 
+The turtle package is the central module of SLogo. Within this package, class Turtle contains all the properties that are updated by class Parser and are required by the view. The properties within each turtle instance are updated in real-time as traverseTree() is called. The methodology in which the information is extracted from class Turtle to the view leads us to the next component of our project.
 
 Tara to Benson: Turtle and Node Factory
 
