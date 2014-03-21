@@ -3,8 +3,7 @@ package view.menuComponents;
 public enum FileMenuComponent {
 	
 	NEW("New Workspace", "addNewWorkspace"),
-	OPEN("Open", null),
-	SAVE("Save Preferences", "savePreferences");
+	OPEN("Open", null);
 	
 	
 	private final String myLabel;

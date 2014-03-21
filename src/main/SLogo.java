@@ -101,13 +101,6 @@ public class SLogo extends JFrame {
 		workspacePanels.add(temp);
 	}
 
-	@SuppressWarnings("static-access")
-	private void savePreferences(){
-		JOptionPane askForPreferenceName = new JOptionPane();
-		askForPreferenceName.showInputDialog("Enter preference name");
-		//savedPreferences.add()
-	}
-
 	public static void main(String[] args) {
 		SLogo mySLogo = new SLogo();
 		//createAndShowMainWindow();
