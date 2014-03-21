@@ -24,15 +24,15 @@ One of the most integral components of the backend is the code parser. In order 
 
 #####Package turtle_graphics:
 
-######Class TurtleFileChooser:
+######Class TurtleFileChooser extends JFrame:
 
 	Constructor(s):
 	No constructor
 
 	Public Methods:
-	public static File initFileChooser(): call this method in class TurtleImage; select and return image for a particular turtle
+	public static File chooseImageFile(): call this method in class TurtleImage; select and return image for a particular turtle
 
-######Class TurtleImage:
+######Class TurtleImage implements ITurtle:
 
 	Constructor(s):
 	public TurtleImage(int x, int y)
@@ -48,19 +48,11 @@ One of the most integral components of the backend is the code parser. In order 
 	public void rotateTurtleRight90()
 	public String getCanvasStateInfo(int panelWidth, int panelHeight): returns the turtle coordinates and angle
 	public void setTurtleCenter(int panelWidth, int panelHeight): sets turtle at center of a panel if inputted panelWidth and panelHeight are correct
-	public double getPrevX()
-	public double getPrevY() 
-	public double getDeltaX() 
-	public double getDeltaY() 
-	public double getAngle() 
-	public double getPenToggle() 
-	public double getCurX() 
-	public double getCurY() 
-	public String getPenColor() 
+	
 
 #####Package view:
 
-######Class TurtleDisplayPanel:
+######Class TurtleDisplayPanel extends JPanel:
 
 	Constructor(s):
 	public TurtleDisplayPanel()
@@ -90,6 +82,27 @@ One of the most integral components of the backend is the code parser. In order 
 	public void showState(): show headings and coordinates of all the TurtleImages
 	public TurtleDisplayPanel getInstance(): return the instance of the TurtleDisplayPanel used in this instance of ActionDisplayPanel
 
+#####Package preferences:
+	
+######Class PreferenceChooser extends JFrame
+
+	Constructor(s):
+	No constructor
+	
+	Public Methods:
+	public static File choosePrefFile(): chooses and returns an XML file holding saved workspace
+	
+	
+######Class PreferenceHelper
+	Constructor(s):
+	No constructor
+	
+	Public Methods:
+	public static void write(TurtleDisplayPanel t, String filename) throws Exception: meant to write TurtleDisplayPanel as an XML file. 
+																					Faulty implementation not corrected before project deadline
+	public static TurtleDisplayPanel read() throws Exception: meant to load TurtleDisplayPanel from its preferences saved as an XML file. Not correctly
+															implemented before project deadline																					
+
 ####Controller:
 	Benson and Talal
 
@@ -101,6 +114,15 @@ One of the most integral components of the backend is the code parser. In order 
 ######Class Turtle extends AbstractModel implements ITurtle: (Benson)
 
 ######interface ITurtle: (Benson)
+	public double getPrevX()
+	public double getPrevY() 
+	public double getDeltaX() 
+	public double getDeltaY() 
+	public double getAngle() 
+	public double getPenToggle() 
+	public double getCurX() 
+	public double getCurY() 
+	public String getPenColor() 
 
 ######abstract class AbstractModel: (Benson)
 

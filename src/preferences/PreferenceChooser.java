@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class PreferenceChooser extends JFrame {
 
-	public static File initFileChooser() {
+	public static File choosePrefFile() {
 
 		File preferenceFile = null;
 

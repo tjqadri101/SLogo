@@ -49,7 +49,7 @@ public class TurtleImage implements ITurtle {
 		myAngle = 0;
 		lineList = new ArrayList<Line2D>();
 		lineColorMap = new HashMap<Line2D, Color>();
-		myTurtleFile = TurtleFileChooser.initFileChooser();
+		myTurtleFile = TurtleFileChooser.chooseImageFile();
 		try {
 			displayTurtle = setImage();
 		} catch (IOException e) {

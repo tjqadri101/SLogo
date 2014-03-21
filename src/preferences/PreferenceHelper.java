@@ -9,7 +9,7 @@ import view.TurtleDisplayPanel;
 
 public class PreferenceHelper {
 	 public static void write(TurtleDisplayPanel t, String filename) throws Exception{
-		 	File f = writeFile(filename);
+		 	File f = PreferenceHelper.writeFile(filename);
 	        XMLEncoder encoder =
 	           new XMLEncoder(
 	              new BufferedOutputStream(
@@ -19,7 +19,7 @@ public class PreferenceHelper {
 	    }
 	 
 	 public static TurtleDisplayPanel read() throws Exception {
-		 	File preferenceFile = PreferenceChooser.initFileChooser();
+		 	File preferenceFile = PreferenceChooser.choosePrefFile();
 	        XMLDecoder decoder =
 	            new XMLDecoder(new BufferedInputStream(
 	                new FileInputStream(preferenceFile)));
@@ -27,7 +27,7 @@ public class PreferenceHelper {
 	        decoder.close();
 	        return t;
 	    }
-	 public static File writeFile(String filename){
+	 private static File writeFile(String filename){
 		 String dirName = "./preferences/";
 		 File dir = new File (dirName);
 		 File actualFile = new File (dir, filename);
