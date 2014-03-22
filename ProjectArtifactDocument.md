@@ -6,14 +6,12 @@
 
 ###Frontend Modules: Talal, Viju, and Chad
 
-####SLogo
-This is where the main method of the program is kept. New workspaces are created from this method (workspace panel) as well as other key features. The menu bar is also created here.
 
 ####turtle_graphics package
 This module contains classes that load an image to use for the turtle in the GUI. It has a TurtleImage class which implements the ITurtle interface and uses Graphics2D to print all turtle images and their associated trail line. TurtleDisplayPanel holds a list of all the turtles to show in the GUI as instances of the TurtleImage class. The TurtleImage class is converted to Turtle class or viceversa during communication within the controller.
 
 ####TurtleDisplayPanel and ActionDisplayPanel
-The TurtleDisplayPanel sets up the environment for displaying the turles and their associated trail lines. It also hold a list of TurtleImages. This list is used by the controller (in the WorkspacePanel) while passing information to the model and also modified by the controller after processing information from the model. The ActionDisplayPanel holds an instance of the TurtleDisplayPanel along with buttons to give user ability to make changes in the display of the turtles. The ActionDisplayPanel also has a ScrollableTextArea which shows the current position and heading of each turtle. The ActionDisplayPanel is the second main component of the WorkspacePanel (the first being the ProgrammingPanel) and it allows for various display features to be implemented.
+The TurtleDisplayPanel sets up the environment for displaying the turles and their associated trail lines. It also hold a list of TurtleImages. This list is used by the controller (in the WorkspacePanel) while passing information to the model and also modified by the controller after processing information from the model. The ActionDisplayPanel holds an instance of the TurtleDisplayPanel along with buttons to give user ability to make changes in the display of the turtle. The ActionDisplayPanel also has a ScrollableTextArea which shows the current position and heading of each turtle. The ActionDisplayPanel is the second main component of the WorkspacePanel (the first being the ProgrammingPanel) and it allows for various display features to be implemented.
 
 
 ####FunctionStorage
@@ -21,6 +19,9 @@ This module deals with loading and saving the user-defined functions. The functi
 
 ####WorkspacePanel
 This class serves as a container for some of the pieces of the GUI. It contains a ProgrammingPanel and an ActionDisplayPanel. The ProgrammingPanel and the ActionDisplayPanel contain many things for the user, such as the buttons and the visual display– it is in a sense their “workspace”. The ProgrammingPanel interacts through the controller with the backend to pass commands while the ActionDisplayPanel is primarily a front-end component. The panels were divided in this manner to keep the separate functionalities separate, to keep the code more readable.
+
+####SLogo
+This is where the main method of the program is kept. Methods exist for creating new workspaces (WorkspacePanel) as well as other key features. The menu bar is also created here.
 
 ###Backend Modules: Benson and Tara
 
@@ -203,7 +204,7 @@ This class is essentially a JList set inside of a JScrollPane. The reason I crea
 This class is essentially a JList inside of a JScrollPane and contains a list of previous valid commands that the user executed. If we had more time, I would have used a ScrollableJList instead which would have made for simpler code and more efficiency. There are no input parameters to the constructor. The constructor simply adds a JList into the ExecutedCodePanel (ExecutedCodePanel extends JScrollPane), makes the JList uneditable, and adds itself as a MouseListener. The purpose of the MouseListener was so that whenever the user clicked on an item within the JList, that item would be sent to the backend for execution. We never ended up allowing the user to run previous valid commands but if we had more time it would have been straightforward to implement. Also, we would have added an addition to the PropertyChangeListener function in WorspacePanel to monitor changes in the ExecutedCodePanel whenever an item in the JList is double-clicked by the user and ready to be executed. The method addToCodeList simply adds whatever string is passed as a parameter to the JList contained in within this panel. Finally, this class implements MouseListener and is thus required to implement the MouseClicked method. This method essentially monitors the JList for whenever an item is double-clicked which signals that the user wants to execute the specified code snippet. The purpose of this class was to satisfy the requirement that previous commands be listed for the user to interact with. If we had more time, I would have found a way to avoid implementing MouseListener on this class in order to avoid useless code because only 1 out of the 5 required methods for MouseListener are actually implemented.
 
 ####SLogo:
-This class is is where the main functionality of the program is kept. New workspaces are created through this method. It keeps a list of all the workspaces and allows the user to choose them from a tabbed display. The menu bar is also created in this class. This is essentially the highest container - it also extends JFrame, which reinforces that idea. This has the main() method of the program meaning that it is where the first bits of code are ran. 
+This class is is where the main functionality of the program is kept. New workspaces are created through this class. It keeps a list of all the workspaces and allows the user to choose them from a tabbed display. The menu bar is also created in this class. This is essentially the highest container - it also extends JFrame, which reinforces that idea. This class also has the main() method of the SLogo program. 
 
 This code houses some special design principles. The menu bars are created using reflection and enums. This is described in more detail in the MenuComponents module, but to keep it brief, the enum values give strings that point to various functions in the SLogo class. These are the buttons that are created through reflection. Enums are also used to create the background color chooser which is in the menu bar as well, but this one does not use reflection, rather, the values are coded in to the class itself.
 
