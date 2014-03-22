@@ -4,6 +4,6 @@ import java.beans.PropertyChangeEvent;
 
 public interface IView {
 	
-public void modelPropertyListener(PropertyChangeEvent evt);
+public void modelPropertyChange(PropertyChangeEvent evt);
 
 }

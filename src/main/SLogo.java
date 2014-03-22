@@ -106,7 +106,7 @@ public class SLogo extends JFrame {
 		//createAndShowMainWindow();
 	}
 	
-	public JMenuItem makeMenuItem(String label, String method){
+	private JMenuItem makeMenuItem(String label, String method){
 		JMenuItem menuItemToAdd = new JMenuItem(label);
 		try {		
 			final Method onClickMethod = SLogo.class.getDeclaredMethod(method);
@@ -128,7 +128,7 @@ public class SLogo extends JFrame {
 		return menuItemToAdd;
 	}
 	
-	public JMenuItem makeColorMenuItem(String label, ActionListener listener){
+	private JMenuItem makeColorMenuItem(String label, ActionListener listener){
 		JMenuItem result = new JMenuItem(label);
 		result.addActionListener(listener);
 		return result;

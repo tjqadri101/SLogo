@@ -120,7 +120,7 @@ public class WorkspacePanel extends JPanel implements IView{
 	}
 
 	@Override
-	public void modelPropertyListener(PropertyChangeEvent evt) {
+	public void modelPropertyChange(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub
 
 		
