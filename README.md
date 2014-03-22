@@ -912,4 +912,4 @@ https://f.cloud.github.com/assets/4603228/2229071/7ba8d964-9ae6-11e3-9816-5d384c
 ###UML Design
 Located in the root directory of the master branch.
 
-https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/UML%20for%20Model.pdf
+https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/UML%20of%20Model.pdf
