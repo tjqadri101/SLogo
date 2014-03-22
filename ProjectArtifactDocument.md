@@ -15,42 +15,51 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 ###Backend Modules: Benson and Tara
 
 
-Model Package
+####Model Package
 
-Model Class – Highest level abstraction in the backend and directly communicates with controller module.
-•	processCommands() – Is a method that is called every time a command is executed in the frontend. This method creates an instance of class Parser.
+#####Model Class 
+– Highest level abstraction in the backend and directly communicates with controller module.
+- processCommands(): Is a method that is called every time a command is executed in the frontend. This method creates an instance of class Parser, which is the source of reading from the commands and updating the turtle.
 
-Parser Class – Parses String commands which are stored in a Queue. This class creates and traverses an Abstract Syntax Tree. During the traversal, nodes are executed and Turtle properties are updated. 
-•	createTree() – Creates nodes via instantiating class NodeFactory.
-•	traverseTree() – Traverses tree. All commands are executed and turtle properties updated in real-time alongside traversal.
+#####Parser Class 
+– Parses String commands which are stored in a queue. This class creates and traverses an Abstract Syntax Tree. During the traversal, nodes are executed and turtle properties are updated. 
+- createTree(): Creates nodes via instantiating class NodeFactory.
+- traverseTree(): Traverses tree. All commands are executed and turtle properties updated in real-time alongside traversal.
 
-Nodes Package
+####Nodes Package
 
-NodeFactory Class – Implements reflection to create nodes based on command. 
-•	CommandFinder() – Uses reflection to implement differen languages.
-•	CommandReader() – Creates map to reference node classes.
+#####NodeFactory Class
+– Implements reflection to create nodes based on command. 
+- CommandFinder(): Uses reflection to implement differen languages.
+- CommandReader(): Creates map to reference node classes.
 
-AbstractNode Abstract Class – Provides a template for the fundamental nodes that are to be implemented.
-•	AbstractNode(List<Turtle> turtles) – Constructor takes in a turtle argument. This updates the properties of each Turtle instance.
-•	setLeftNode()/setRightNode()/setParent()/addChild() – Used in creating the tree. Depending on the command, adds child nodes and parent reference nodes.
-•	getLeftNode()/getRightNode()/getParent()/getChildren() – Used in traversing the tree. Provides relevant data (conditional, value, etc) for traversal.
-•	has/allows methods – Returns boolean for tree traversal. 
-•	evaluate() – Returns value from executed command.
+#####AbstractNode Abstract Class
+– Provides a template for the fundamental nodes that are to be implemented.
+- AbstractNode(): Constructor takes in a turtle argument. This updates the properties of each turtle instance.
+- setLeftNode()/setRightNode()/setParent()/addChild(): Used in creating the tree. Depending on the command, adds child nodes and parent reference nodes.
+- getLeftNode()/getRightNode()/getParent()/getChildren(): Used in traversing the tree. Provides relevant data (conditional, value, etc) for traversal.
+-	has/allows methods: Returns boolean for tree traversal. 
+- evaluate(): Returns value from executed command.
 
-Node Classes – Each node inherits from AbstractNode or LeafNode and represents a specific command.
+#####Node Classes
+– Each node inherits from AbstractNode or LeafNode and represents a specific command.
 
-Turtle Package
+####Turtle Package
 
-Turtle Class – Contains properties that are created during tree traversal and are fetched by controller.
+#####Turtle Class
+– Contains properties that are created during tree traversal and are fetched by controller.
 
-Controller Package 
+####Controller Package 
 
-AbstractController – Provides a template that allows views and model to interact. An instance of a model and a list of views are instantiated per controller.
-•	setModelProperty() – Sends command, language, and list of ITurtles to the model and thus the parser.
+#####AbstractController
+– Provides a template that allows views and model to interact. An instance of a model and a list of views are instantiated per controller.
 
-ModelController -  Extends AbstractController to provide a way of interfacing the turtle properties from the backend to the frontend and vice versa.
-•	convertImagetoITurtle() – Method that converts class TurtleImage to class ITurtle. TurtleImage serves essentially as the frontend turtle. ITurtle is an interface implemented by class Turtle. ITurtle provides a functional approach for encapsulation; class Turtle doesn’t need to be referenced by class ModelController.
-•	passToModel() – Updates the backend end with commands via setModelProperty() while updating the frontend turtle.
+- setModelProperty(): Sends command, language, and list of ITurtles to the model and thus the parser.
+
+#####ModelController 
+- Extends AbstractController to provide a way of interfacing the turtle properties from the backend to the frontend and vice versa.
+- convertImagetoITurtle(): Method that converts class TurtleImage to class ITurtle. TurtleImage serves essentially as the frontend turtle. ITurtle is an interface implemented by class Turtle. ITurtle provides a functional approach for encapsulation; class Turtle doesn’t need to be referenced by class ModelController.
+- passToModel(): Updates the backend end with commands via setModelProperty() while updating the frontend turtle.
 
 
 ##User Interface Design: Talal, Viju, and Chad
