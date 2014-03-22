@@ -70,7 +70,7 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 
 ##User Interface Design: Talal, Viju, and Chad
-
+![First Screenshot](1.png "First Screenshot")
 
 ##Design Details: Benson and Tara
 
