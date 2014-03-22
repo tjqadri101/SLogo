@@ -70,11 +70,6 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 
 ##User Interface Design: Talal, Viju, and Chad
-![](https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/1.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8xLlBORyIsImV4cGlyZXMiOjEzOTYwNjczNDF9--7d73e301dd549e6e7d2b7c9ab809a48ecf742978)
-
-![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/2.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8yLlBORyIsImV4cGlyZXMiOjEzOTYwNjc0MjB9--6eda03e10b08dc57d0bb273bdd79435f0120172d)
-
-![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/3.png?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8zLnBuZyIsImV4cGlyZXMiOjEzOTYwNjc0Njh9--ad9b87b0e0d780f2b6fe59fa18a3a0612d3318fd)
 
 The user will interact with our program through several key components including the menu bar, the command input piece, and the buttons. The menu bar houses the parts dealing with the overall functionality of the project including choosing the background color, creating a new workspace, and saving user-defined functions. And once a user creates new workspaces, they can switch between them using the tab menu that is located under the menu bar. 
 
@@ -83,6 +78,22 @@ The buttons include moving the turtle, choosing a pen color, turning the pen on 
 There is also the panel that displays the turtle to the user, so they can see their commands in action. The user is able to choose what image to put here when the program is started and whenever a new workspace is created through a dialog. There are various other dialog windows that are popped by this project. These include when the user attempts to load or save their currently defined functions and when the user tries to load or save their preferences.
 
 Unfortunately, we do not have the front-end reporting any of the errors that the user might do when entering commands, but this functionality is present on the back-end. Because we have a higher-level container for the panels, we could simply pop a dialog through here when the controller deems it necessary, as it is the connection between the front and back ends. Thus, the framework of our project makes adding these features easy to do, speaking to the extensibility of our code. 
+
+![](https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/1.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8xLlBORyIsImV4cGlyZXMiOjEzOTYwNjczNDF9--7d73e301dd549e6e7d2b7c9ab809a48ecf742978)
+
+The snapshot above shows how a new image selection dialog pops up after clicking the "Create Turtle" button
+
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/2.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8yLlBORyIsImV4cGlyZXMiOjEzOTYwNjc0MjB9--6eda03e10b08dc57d0bb273bdd79435f0120172d)
+
+The snapshot above shows how a color chooser for the pen pops up after clicking "Choose a Pen Color" button
+
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/3.png?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8zLnBuZyIsImV4cGlyZXMiOjEzOTYwNjc5Njl9--89c6d3451b3c3bab9cb37fd658cf35be589a2596)
+
+The snapshot above shows the contents of the Display menu that allows the selection of a background color. It also shows multiple turtles in the workspace along with their traces. Previously executed commands and current variables can also be observed.
+
+
+The snapshot above shows the existence of multiple workspaces.
+
 
 ##Design Details: Benson and Tara
 
