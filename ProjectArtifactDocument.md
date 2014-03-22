@@ -6,6 +6,13 @@
 
 ###Frontend Modules: Talal, Viju, and Chad
 
+####turtle_graphics package
+This module contains classes that load an image to use for the turtle in the GUI. It has a TurtleImage class which implements the ITurtle interface and uses Graphics2D to print all turtle images and their associated trail line. TurtleDisplayPanel holds a list of all the turtles to show in the GUI as instances of the TurtleImage class. The TurtleImage class is converted to Turtle class or viceversa during communication within the controller.
+
+####TurtleDisplayPanel and ActionDisplayPanel
+The TurtleDisplayPanel sets up the environment for displaying the turles and their associated trail lines. It also hold a list of TurtleImages. This list is used by the controller (in the WorkspacePanel) while passing information to the model and also modified by the controller after processing information from the model. The ActionDisplayPanel holds an instance of the TurtleDisplayPanel along with buttons to give user ability to make changes in the display of the turtles. The ActionDisplayPanel also has a ScrollableTextArea which shows the current position and heading of each turtle. The ActionDisplayPanel is the second main component of the WorkspacePanel (the first being the ProgrammingPanel) and it allows for various display features to be implemented.
+
+
 ####FunctionStorage
 This module deals with loading and saving the user-defined functions. The functionMenu class is called by the menu-builder, and this just serves to “package” the load and saving capabilities of this module. It hides the other classes in this module when it’s called. 
 
