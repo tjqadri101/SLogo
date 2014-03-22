@@ -18,9 +18,18 @@ One of the most integral components of the backend is the code parser. In order 
 
 ###Packages
 
-
 ####View: 5 packages: view, turtle_graphics, preferences,functionStorage, and main. view.menuComponent is a sub-package of the view package
 	Talal, Chad, and Viju
+
+#####Package main:
+
+######Class Slogo extends JFrame:
+	
+	Constructor(s):
+	No constructor
+	
+	Public Methods:
+	static void main(String[] args): MAIN METHOD
 
 #####Package turtle_graphics:
 
