@@ -91,6 +91,7 @@ The snapshot above shows how a color chooser for the pen pops up after clicking 
 
 The snapshot above shows the contents of the Display menu that allows the selection of a background color. It also shows multiple turtles in the workspace along with their traces. Previously executed commands and current variables can also be observed.
 
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/4.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci80LlBORyIsImV4cGlyZXMiOjEzOTYwNjg2MTZ9--38498c3cfb802ae2208cca8c1367dce862c7627c)
 
 The snapshot above shows the existence of multiple workspaces.
 
