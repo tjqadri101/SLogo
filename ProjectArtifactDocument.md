@@ -17,6 +17,9 @@ The TurtleDisplayPanel sets up the environment for displaying the turles and the
 ####FunctionStorage
 This module deals with loading and saving the user-defined functions. The functionMenu class is called by the menu-builder, and this just serves to “package” the load and saving capabilities of this module. It hides the other classes in this module when it’s called. 
 
+####ProgrammingPanel
+This class holds the JTextArea for writing commands, a button for executing commands, a panel for the executed code, a hyperlink for command reference sheet, and scrollableJLists for the variables and the functions. The panel extends GridBagPanel and organizes all of its compnenets in a GridBagLayout. An instance variable of this panel is present in the WorkSpacePanel.
+
 ####WorkspacePanel
 This class serves as a container for some of the pieces of the GUI. It contains a ProgrammingPanel and an ActionDisplayPanel. The ProgrammingPanel and the ActionDisplayPanel contain many things for the user, such as the buttons and the visual display– it is in a sense their “workspace”. The ProgrammingPanel interacts through the controller with the backend to pass commands while the ActionDisplayPanel is primarily a front-end component. The panels were divided in this manner to keep the separate functionalities separate, to keep the code more readable.
 
