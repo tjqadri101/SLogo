@@ -15,6 +15,44 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 ###Backend Modules: Benson and Tara
 
 
+Model Package
+
+Model Class – Highest level abstraction in the backend and directly communicates with controller module.
+•	processCommands() – Is a method that is called every time a command is executed in the frontend. This method creates an instance of class Parser.
+
+Parser Class – Parses String commands which are stored in a Queue. This class creates and traverses an Abstract Syntax Tree. During the traversal, nodes are executed and Turtle properties are updated. 
+•	createTree() – Creates nodes via instantiating class NodeFactory.
+•	traverseTree() – Traverses tree. All commands are executed and turtle properties updated in real-time alongside traversal.
+
+Nodes Package
+
+NodeFactory Class – Implements reflection to create nodes based on command. 
+•	CommandFinder() – Uses reflection to implement differen languages.
+•	CommandReader() – Creates map to reference node classes.
+
+AbstractNode Abstract Class – Provides a template for the fundamental nodes that are to be implemented.
+•	AbstractNode(List<Turtle> turtles) – Constructor takes in a turtle argument. This updates the properties of each Turtle instance.
+•	setLeftNode()/setRightNode()/setParent()/addChild() – Used in creating the tree. Depending on the command, adds child nodes and parent reference nodes.
+•	getLeftNode()/getRightNode()/getParent()/getChildren() – Used in traversing the tree. Provides relevant data (conditional, value, etc) for traversal.
+•	has/allows methods – Returns boolean for tree traversal. 
+•	evaluate() – Returns value from executed command.
+
+Node Classes – Each node inherits from AbstractNode or LeafNode and represents a specific command.
+
+Turtle Package
+
+Turtle Class – Contains properties that are created during tree traversal and are fetched by controller.
+
+Controller Package 
+
+AbstractController – Provides a template that allows views and model to interact. An instance of a model and a list of views are instantiated per controller.
+•	setModelProperty() – Sends command, language, and list of ITurtles to the model and thus the parser.
+
+ModelController -  Extends AbstractController to provide a way of interfacing the turtle properties from the backend to the frontend and vice versa.
+•	convertImagetoITurtle() – Method that converts class TurtleImage to class ITurtle. TurtleImage serves essentially as the frontend turtle. ITurtle is an interface implemented by class Turtle. ITurtle provides a functional approach for encapsulation; class Turtle doesn’t need to be referenced by class ModelController.
+•	passToModel() – Updates the backend end with commands via setModelProperty() while updating the frontend turtle.
+
+
 ##User Interface Design: Talal, Viju, and Chad
 
 
@@ -22,7 +60,7 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 ###Backend
 
-The backend of our design includes three main packages: model, turtle, and nodes. The package parser contains class Parser, NodeFactory, and Model. Model is the manager of all workspaces; one workspace has one Parser, and Model keeps track of all the Parser objects. NodeFactory creates nodes using reflection, and its method of creating new nodes is called in class Parser.
+The backend of our design includes three main packages: model, turtle, and nodes. The package parser contains class Parser, NodeFactory, and Model. Each workspace has one model and one controller, and each model keeps track of all of its respective Parser objects. NodeFactory creates nodes using reflection, and its method of creating new nodes is called in class Parser.
 
 Class Parser has two main methods: createTree() and traverseTree(). Method createTree() creates an Abstract Syntax Tree for the commands user enters into one workspace. A queue structure is used to store the individual words to be read. Each word is then passed into method createNode(), which is a method within class NodeFactory. 
 
@@ -48,11 +86,11 @@ The turtle package is the central module of SLogo. Within this package, class Tu
 
 The proceeding discussion will pertain to the interface design between the model and view where information is sent from the view to the model and fetched from the model to the view. The controller package and the turtle package are the two main components that make up this interface.
 
-The controller package contains abstract class AbstractController and class ModelController.  Abstract class AbstractController was created on the premise of extendability and in a time of uncertainty. At the time, an undefined hierarchy in the view made it uncertain how information would be fetched. 
+The controller package contains abstract class AbstractController and class ModelController.  Abstract class AbstractController was created on the premise of extendability and in a time of uncertainty. 
 
 AbstractController was designed in a way that allows us to add registered views and a registered model, given the situation that we wanted to reference multiple workspaces. Methods within AbstractController such as getTurtleList() and getVariables() make it possible to fetch information from the backend.
 
-Moreover, the one and only instance of Class Model is created in AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from the view.
+Moreover, one instance of Class Model is created per instance of a subclass that inherits AbstractController. This design choice was based on the fact that only one model was needed to fufill the requirements from each view.
 
 Given such time constraints, an all-encompassing controller, class ModelController, was created. This class extends AbstractController and has method passToModel(), which is used to pass information to the backend. This method takes in a list of instances of TurtleImage (Class TurtleImage is displayed in the GUI and is used to represent a frontend replication of the backend turtle), a command, and a language.
 
@@ -68,25 +106,18 @@ The controller was conceptually designed to reduce the amount of direct communic
 
 Lastly, class Turtle extends abstract class AbstractModel. AbstractModel was created to improve communication between the controller and ITurtle by notifying the controller whenever a Turtle property changed. Although none of the methods from AbstractModel were implemented, the extension of AbstractModel provides a template for feasible changes in the future.
 
-####Model: (Tara)
-
-####Parser: (Tara)
-
-####Nodes: (Tara)
-
-####Turtle: (Benson)
 
 ###Frontend
 
 ####MenuComponents
-This module is for the components that are present in the menu bar. It contains two classes, ColorMenuComponent and FileMenuComponent. Both of these are enum objects. This module compartmentalizes the busy work for some of the menu creation. To add a new color choice for the background, the user just needs to modify the ColorMenuComponent file in a very intuitive way and to add a new option for the fileMenu, the user just needs to add the name of the button and the method that it calls in the FileMenuComponent. Thus, in the class where the menu is created, it just refers to these two classes instead of listing all the components in there, making for more readable code as well. 
+This module is for the components that are present in the menu bar. It contains two classes, ColorMenuComponent and FileMenuComponent. Both of these are enum objects. This module compartmentalizes the busy work for some of the menu creation. For extensibility, to add a new color choice for the background, one would modify the ColorMenuComponent file in a very intuitive way and to add a new option for the fileMenu, one just needs to add the name of the button and the method that it calls in the FileMenuComponent. Thus, in the class where the menu is created, it just refers to these two classes instead of listing all the components in there, making for more readable code as well. 
 
 The individual components in the two classes are called and created in different ways – this shows that they can be implemented differently. ColorMenuComponent is created by just calling the different “variables” in each part, but the FileMenuComponent is created through reflection. The FileMenuComponent pieces contain names of functions that are called when different menu buttons are clicked, which is why this class implements reflection.  
 
 This module was created to abstract some of the menu bar creation, making the code more readable and more easily extensible. This adheres to the design principles we learned in class as well. 
 
 ####FunctionStorage
-This class handles the saving and loading of the user-defined functions to this project. It will ideally have contact with the controller to obtain the functions that it loads and saves. It is essentially just a saving and loading device right now – it will get the data that it needs to load and save from the controller. And this code is easily extensible as well. To add additional functionality, the user just needs to create another class and add it to this module and the functionMenu class. For example, if the user wanted to add the ability to combine files of functions together, the user would just need to create a class called FunctionCombiner (for example) and then add the functionality and then add it to the FunctionMenu Class. This menu could be created in a manner similar to the other menus in this project, but this functionality was not implemented. The names of this module might also be confusing, as they are verbs rather than nouns, but this could also be changed easily. 
+This class handles the saving and loading of the user-defined functions to this project. It will ideally have contact with the controller to obtain the functions that it loads and saves. It is essentially just a saving and loading device right now – it will get the data that it needs to load and save from the controller. And this code is easily extensible as well. To add additional functionality, one would just create another class and add it to this module and the functionMenu class. For example, if a developer wanted to add the ability to combine files of functions together, they would just need to create a class called FunctionCombiner (for example) and then add the functionality and then add it to the FunctionMenu Class. This menu could be created in a manner similar to the other menus in this project, but this functionality was not implemented. The names of this module might also be confusing, as they are verbs rather than nouns, but this could also be changed easily. 
 
 The functionality for this class was not completely implemented, but we were planning on having the controller pass the functions to be saved through this class, thus keeping the communication between the front and back ends to a minimum, managed by the controller. 
 
@@ -95,3 +126,7 @@ This module was created to abstract the saving and loading of functions to the p
 ####WorkspacePanel
 A majority of this class’s functions deal with interacting with the panels that it contains. It creates and sets each one, which are all separate methods. It is essentially a container for the other panels – streamlining the communication that the controller makes between the front and the back ends. Thus, a majority of the functionality of this panel is essentially discussed in the ActionDisplayPanel piece and the ProgrammingPanel piece of this design details document.
 This follows the principles of increased readability and naming by keeping the pieces of our project that do separate things in separate functions and classes. While there may be a lot of classes, it is easier to see how they fit together and what the individual components do because we separated them.
+
+The WorkspacePanel has several get/set methods. These are created so the controller can gain access to these variables and use them for interaction between the front and back ends. 
+
+The PropertyChangeListener was created so the user can interact with the ProgrammingPanel. When the button is clicked the listener is activated and several events occur. The data is passed as a string to the back-end through the controller, the text area where the data was entered is cleared, and then the other panels are updated. 

@@ -18,9 +18,18 @@ One of the most integral components of the backend is the code parser. In order 
 
 ###Packages
 
-
 ####View: 5 packages: view, turtle_graphics, preferences,functionStorage, and main. view.menuComponent is a sub-package of the view package
 	Talal, Chad, and Viju
+
+#####Package main:
+
+######Class Slogo extends JFrame:
+	
+	Constructor(s):
+	No constructor
+	
+	Public Methods:
+	static void main(String[] args): MAIN METHOD
 
 #####Package turtle_graphics:
 
@@ -64,12 +73,12 @@ One of the most integral components of the backend is the code parser. In order 
 	public void moveTurtleRight(): move all TurtleImages horizontally right by 5 pixels from its current location w.r.t the center of panel
 	public void moveTurtleDown(): move all TurtleImages vertically downwards by 5 pixels from its current location w.r.t the center of panel
 	public void moveTurtleForward(): move all TurtleImages vertically upwards by 5 pixels from its current location w.r.t the center of panel
-	public void rotateTurtlesRight(): calls each TurtleImage’s rotateTurtleRight90 method
+	public void rotateTurtlesRight(): calls each TurtleImageï¿½s rotateTurtleRight90 method
 	public Color getColor(): get line pen color
 	public List<TurtleImage> getTurtleList()
 	public void setPenToggle(): turn line pen on or off
 	public void setColor(Color c) set line pen color
-	public void resetTurtle(): sets all the turtles at the panel’s center
+	public void resetTurtle(): sets all the turtles at the panelï¿½s center
 	public void setList(List<TurtleImage> list): set the current list of TurtleImages in the panel
 	public String getAllPositionInfos(): return position and headings of all the TurtleImages
 
@@ -81,6 +90,62 @@ One of the most integral components of the backend is the code parser. In order 
 	Public Methods:
 	public void showState(): show headings and coordinates of all the TurtleImages
 	public TurtleDisplayPanel getInstance(): return the instance of the TurtleDisplayPanel used in this instance of ActionDisplayPanel
+	
+######Class WorkspacePanel:
+	Constructor(s): 
+	Controller
+	
+	Public Methods:
+	void PropertyChange(PropertyChangeEvent evt): called by controller. Passes data to controller. Refreshes display.
+	Color getWorkspaceColor(): for controller.
+	String getCurrentFile(): for controller.
+	int getNumTurtles(): for controller.
+	void setBackgroundColor(Color c): for controller.
+	void modelPropertyChange(PropertyChangeEvent evt): null method
+
+######Subpackage menuComponents:
+
+######Class ColorMenuComponent:
+
+	Constructor(s):
+	No constructor
+	
+	Public Methods:
+	getColor(): used when creating the menu. Only called when menu is built.
+
+######Class FileMenuComponent 
+
+	Constructor(s):
+	No constructor
+	
+	Public Methods:
+	getLabel(): used when creating the menu. Only called when menu is built.
+	getCommand(): same as above
+
+
+#####Package functionStorage:
+
+######Class FunctionMenu:
+	Constructor(s):
+	Label: name of menu button
+	
+	Public Methods:
+	None
+
+######Class LoadFunctions:
+	Constructor(s):
+	JComponent: what the fileChooser dialog it is added to
+
+	Public Methods:
+	uploadFunctions: gets a File passed in and reads the functions from this file
+	
+######Class SaveFunctions:
+	Constructor(s):
+	JComponent: what the fileChooser dialog it is added to
+
+	Public Methods:
+	downloadFunctions: gets a File passed in and puts the functions in this file
+
 
 #####Package preferences:
 	
