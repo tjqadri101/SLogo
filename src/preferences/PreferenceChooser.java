@@ -6,7 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class PreferenceChooser extends JFrame {
+public class PreferenceChooser {
 
 	public static File choosePrefFile() {
 

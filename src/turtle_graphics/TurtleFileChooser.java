@@ -5,7 +5,7 @@ import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class TurtleFileChooser extends JFrame {
+public class TurtleFileChooser {
 
 	public static File chooseImageFile() {
 

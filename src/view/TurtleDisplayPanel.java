@@ -110,8 +110,7 @@ public class TurtleDisplayPanel extends JPanel {
 	public String getAllPositionInfos() {
 		String stateInfo = "";
 		for (TurtleImage t : frontTurtleList) {
-			stateInfo += t
-					.getCanvasStateInfo(this.getWidth(), this.getHeight());
+			stateInfo += t.getCanvasStateInfo(this.getWidth(), this.getHeight());
 		}
 		return stateInfo;
 	}

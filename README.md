@@ -33,7 +33,7 @@ One of the most integral components of the backend is the code parser. In order 
 
 #####Package turtle_graphics:
 
-######Class TurtleFileChooser extends JFrame:
+######Class TurtleFileChooser:
 
 	Constructor(s):
 	No constructor
@@ -149,7 +149,7 @@ One of the most integral components of the backend is the code parser. In order 
 
 #####Package preferences:
 	
-######Class PreferenceChooser extends JFrame
+######Class PreferenceChooser
 
 	Constructor(s):
 	No constructor
