@@ -70,7 +70,7 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 
 ##User Interface Design: Talal, Viju, and Chad
-![](https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/1.PNG)
+![first snap](https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/1.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8xLlBORyIsImV4cGlyZXMiOjEzOTYwNjczNDF9--7d73e301dd549e6e7d2b7c9ab809a48ecf742978)
 
 ##Design Details: Benson and Tara
 
