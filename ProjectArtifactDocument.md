@@ -2,6 +2,13 @@
 
 ##Introduction
 
+Ostensibly, SLogo may seem like a trivial toy. One may ask, “What’s the purpose of watching a turtle draw lines across the screen?” The purpose SLogo is to provide the user a coding experience where he or she can better understand and better visualize the execution of code.
+
+With the goal of providing such an experience, we employed a MVC design structure. In the backend, our main design revolved around parsing. We created an Abstract Syntax Tree to serve as a modular structure that could continually adapt to an increasingly complex set of commands. The frontend consisted of a number of panels that together served as a GUI. 
+
+Our design goal of this project was to make communication between the model and view as ‘seamless’ as possible by reducing the number of dependencies between the two. To achieve this, a controller was created and served as a mediator that passed only relevant information back-and-forth. An effective MVC model would in turn yield better communication between the frontend and backend members.
+
+
 ##Overview:
 
 ###Frontend Modules: Talal, Viju, and Chad
