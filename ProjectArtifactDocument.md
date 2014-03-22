@@ -70,11 +70,11 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 
 ##User Interface Design: Talal, Viju, and Chad
-![first snap](https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/1.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8xLlBORyIsImV4cGlyZXMiOjEzOTYwNjczNDF9--7d73e301dd549e6e7d2b7c9ab809a48ecf742978)
+![](https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/1.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8xLlBORyIsImV4cGlyZXMiOjEzOTYwNjczNDF9--7d73e301dd549e6e7d2b7c9ab809a48ecf742978)
 
-![second] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/2.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8yLlBORyIsImV4cGlyZXMiOjEzOTYwNjc0MjB9--6eda03e10b08dc57d0bb273bdd79435f0120172d)
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/2.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8yLlBORyIsImV4cGlyZXMiOjEzOTYwNjc0MjB9--6eda03e10b08dc57d0bb273bdd79435f0120172d)
 
-![third] {https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/3.png?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8zLnBuZyIsImV4cGlyZXMiOjEzOTYwNjc0Njh9--ad9b87b0e0d780f2b6fe59fa18a3a0612d3318fd)
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/3.png?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8zLnBuZyIsImV4cGlyZXMiOjEzOTYwNjc0Njh9--ad9b87b0e0d780f2b6fe59fa18a3a0612d3318fd)
 
 ##Design Details: Benson and Tara
 
