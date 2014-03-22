@@ -88,34 +88,7 @@ public class WorkspacePanel extends JPanel implements IView{
 					myActionDisplayPanel.showState();
 					variables.addAll(controller.getVariables());
 					myProgrammingPanel.addInstanceVariables(variables);
-				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NoSuchMethodException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NoSuchFieldException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
                 catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -147,8 +120,9 @@ public class WorkspacePanel extends JPanel implements IView{
 	}
 
 	@Override
-	public void modelPropertyChange(PropertyChangeEvent evt) {
+	public void modelPropertyListener(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub
+
 		
 	}
 }
