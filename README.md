@@ -912,6 +912,4 @@ We chose to not use JGame for front end because there is a lot of code that is s
 https://f.cloud.github.com/assets/4603228/2229071/7ba8d964-9ae6-11e3-9816-5d384c2d8a83.png
 
 ###UML Design
-Located in the root directory of the master branch.
-
-https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/UML%20of%20Model.pdf
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/UML.jpg?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci9VTUwuanBnIiwiZXhwaXJlcyI6MTM5NjEwNjA2MX0%3D--4796447e788ddd88d97cf2eb1f9905939ce7c331)
