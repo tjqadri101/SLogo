@@ -74,7 +74,7 @@ This class serves as a container for some of the pieces of the GUI. It contains 
 
 ![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/2.PNG?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8yLlBORyIsImV4cGlyZXMiOjEzOTYwNjc0MjB9--6eda03e10b08dc57d0bb273bdd79435f0120172d)
 
-![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/3.png?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8zLnBuZyIsImV4cGlyZXMiOjEzOTYwNjc0Njh9--ad9b87b0e0d780f2b6fe59fa18a3a0612d3318fd)
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/3.png?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci8zLnBuZyIsImV4cGlyZXMiOjEzOTYwNjc5Njl9--89c6d3451b3c3bab9cb37fd658cf35be589a2596)
 
 The user will interact with our program through several key components including the menu bar, the command input piece, and the buttons. The menu bar houses the parts dealing with the overall functionality of the project including choosing the background color, creating a new workspace, and saving user-defined functions. And once a user creates new workspaces, they can switch between them using the tab menu that is located under the menu bar. 
 
