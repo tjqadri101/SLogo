@@ -56,7 +56,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public void updateTurtleState(double deltaX, double deltaY, double heading) 
 	public void rotateTurtleRight90()
 	public String getCanvasStateInfo(int panelWidth, int panelHeight): returns the turtle coordinates and angle
-	public void setTurtleCenter(int panelWidth, int panelHeight): sets turtle at center of a panel if inputted panelWidth and panelHeight are correct
+	public void setTurtleCenter(int panelWidth, int panelHeight): sets turtle at center of a panel if inputted panelWidth and panelHeight are correct. Clears all the trace lines associated with this TurtleImage
 	
 
 #####Package view:
