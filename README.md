@@ -309,7 +309,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public double evaluate(): return the value of subtree
 
 
-######class BlockNode:
+######class BlockNode extends AbstractNode:
 
 	Constructor(s):
 	public BlockNode(List<Turtle>)
@@ -321,7 +321,7 @@ One of the most integral components of the backend is the code parser. In order 
 
 
 
-######class FunctionNode:
+######class FunctionNode extends AbstractNode:
 
 	Constructor(s):
 	public FunctionNode(List<Turtle>)
@@ -333,7 +333,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean allowsMoreThanTwoChildren()
 
 
-######class MakeNode:
+######class MakeNode extends AbstractNode:
 
 	Constructor(s):
 	public MakeNode(List<Turtle> turtles)
@@ -344,7 +344,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean allowsMoreThanTwoChildren()
 	
 
-######class VariableNode:
+######class VariableNode extends AbstractNode:
 
 	Constructor(s):
 	public VariableNode(List<Turtle> turtles, String variabelName)
@@ -559,7 +559,7 @@ One of the most integral components of the backend is the code parser. In order 
 
 #####Package nodes.controlnodes:
 
-######class ConditionNode:
+######class ConditionNode extends AbstractNode:
 
 	Constructor(s):
 	public ConditionNode(List<Turtle> turtles) 
@@ -570,7 +570,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean allowsMoreThanTwoChildren()
 	
 	
-######class DoTimesNode:
+######class DoTimesNode extends AbstractNode:
 
 	Constructor(s):
 	public DoTimesNode(List<Turtle> turtles)
@@ -582,7 +582,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean hasTwoBlockNodes()
 	
 	
-######class ForNode:
+######class ForNode extends AbstractNode:
 
 	Constructor(s):
 	public ForNode(List<Turtle> turtles)
@@ -594,7 +594,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean hasTwoBlockNodes()
 	
 	
-######class IfElseNode:
+######class IfElseNode extends AbstractNode:
 
 	Constructor(s):
 	public IfElseNode(List<Turtle> turtles)
@@ -605,7 +605,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean allowsMoreThanTwoChildren()
 	
 	
-######class IfNode:
+######class IfNode extends AbstractNode:
 
 	Constructor(s):
 	public IfNode(List<Turtle> turtles)
@@ -617,7 +617,7 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean hasOneConditionOneBlock()
 	
 	
-######class RepeatNode:
+######class RepeatNode extends AbstractNode:
 
 	Constructor(s):
 	public RepeatNode(List<Turtle> turtles)
@@ -898,7 +898,9 @@ One of the most integral components of the backend is the code parser. In order 
 ###Sub-teams
 
 
-Viju, Talal, and Chad worked on developing the View and Controller (probably) package which will contain the front-end user interface classes.
+Viju, Talal, and Chad worked on developing the view package which contains the front-end user interface classes.
+
+Benson and Talal worked on the controller which interfaces the view with the model.
 
 Tara and Benson worked on developing the back-end user packages, which include turtle, parse, and nodes.
 		
