@@ -175,9 +175,49 @@ One of the most integral components of the backend is the code parser. In order 
 
 #####Package turtle:
 
-######Class Turtle extends AbstractModel implements ITurtle: (Benson)
+######Class Turtle extends AbstractModel implements ITurtle:
 
-######interface ITurtle: (Benson)
+	Constructor(s):
+	public Turtle()
+	public Turtle(double initialX, double initialY, double angle)
+	public Turtle(ITurtle iturtle)
+	
+	Public Methods:
+	public void setPenColor(double colorIndex)
+	public void setTurtleShape(double shapeIndex)
+	public void setID(String id)
+	public String getID()
+	public void updatePosition(double changeInAngle, double changeInDistance)
+	public void clearScreen()
+	public void resetClear()
+	public void setPosition(double xCoord, double yCoord)
+	public void setHeading(double angle)
+	public void setPenUp()
+	public void setPenDown()
+	public void setInvisible()
+	public void setVisible()
+	public double getXPos()
+	public double getYPos()
+	public double getAngle()
+	public double getPen() 
+	public double getVisibility() 
+	public String getLangauge() 
+	public double getPenColorIndex()
+	public double getMyShapeIndex()
+	
+	public double getPrevX()
+	public double getPrevY() 
+	public double getDeltaX() 
+	public double getDeltaY() 
+	public double getAngle() 
+	public double getPenToggle() 
+	public double getCurX() 
+	public double getCurY() 
+	public String getPenColor() 
+	
+	
+
+######interface ITurtle:
 	public double getPrevX()
 	public double getPrevY() 
 	public double getDeltaX() 
@@ -188,7 +228,14 @@ One of the most integral components of the backend is the code parser. In order 
 	public double getCurY() 
 	public String getPenColor() 
 
-######abstract class AbstractModel: (Benson)
+######abstract class AbstractModel:
+
+	Constructor(s):
+	public AbstractModel()
+	
+	Public Methods:
+	public void addPropertyChangeListener(PropertyChangeListener listener) 
+	public void removePropertyChangeListener(PropertyChangeListener listener) 
 
 #####Package model:
 
@@ -216,9 +263,21 @@ One of the most integral components of the backend is the code parser. In order 
 	public double processCommands(List<Turtle> turtles, String commands, String language): process commands and return value to display
 	
 	
-######Class CommandFinder: (Benson)
+######Class CommandFinder:
 
-######Class CommandReader: (Benson)
+	Constructor(s):
+	public CommandFinder()
+	
+	Public Methods:
+	public static String aliasLookup(String language)
+
+######Class CommandReader: 
+
+	Constructor(s):
+	public CommandReader()
+	
+	Public Methods:
+	public static Map<String, String> readCommands(String fileName)
 
 #####Package nodes:
  	
@@ -300,11 +359,203 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean allowsMoreThanTwoChildren()
 
 
-######class NodeFactory: (Benson)
+######class NodeFactory:
 
-#####Package nodes.booleannodes: (Benson)
+	Constructor(s):
+	public NodeFactory(List<Turtle> turtles, String language) 
+	
+	Public Methods:
+	public AbstractNode createNode(String word)
+	
 
-#####Package nodes.commandnodes: (Benson)
+#####Package nodes.booleannodes:
+
+######class CompareNode extends AbstractNode:
+
+	Constructor(s):
+	public CompareNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+
+######class GreaterNode extends CompareNode:
+
+	Constructor(s):
+	public GreaterNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class OrNode extends CompareNode:
+
+	Constructor(s):
+	public OrNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class NotNode extends AbstractNode:
+
+	Constructor(s):
+	public NotNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allosMoreThanTwoChildren()
+	
+	
+
+######class NotEqualNode extends CompareNode:
+
+	Constructor(s):
+	public NotEqualNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class LessNode extends CompareNode:
+
+	Constructor(s):
+	public LessNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class LessNode extends CompareNode:
+
+	Constructor(s):
+	public LessNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class AndNode extends CompareNode:
+
+	Constructor(s):
+	public AndbenNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()	
+
+#####Package nodes.commandnodes:
+
+######class LeftNode extends AbstractNode:
+
+	Constructor(s):
+	public LeftNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+
+
+######class RightNode extends AbstractNode:
+
+	Constructor(s):
+	public RightNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class SetHeadingNode extends AbstractNode:
+
+	Constructor(s):
+	public SetHeadingNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class SetXYNode extends AbstractNode:
+
+	Constructor(s):
+	public SetXYNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class BackNode extends AbstractNode:
+
+	Constructor(s):
+	public BackNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class ForwardNode extends AbstractNode:
+
+	Constructor(s):
+	public ForwardNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class ShowTurtleNode extends LeafNode:
+
+	Constructor(s):
+	public ShowTurtleNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class ClearScreenNode extends LeafNode:
+
+	Constructor(s):
+	public ClearScreenNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()	
+
+
+######class PenUpNode extends LeafNode:
+
+	Constructor(s):
+	public PenUpNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+
+######class PenDownNode extends LeafNode:
+
+	Constructor(s):
+	public PenDownNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class HomeNode extends LeafNode:
+
+	Constructor(s):
+	public HomeNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()	
 
 #####Package nodes.controlnodes:
 
@@ -378,13 +629,264 @@ One of the most integral components of the backend is the code parser. In order 
 	public boolean hasOneConditionOneBlock()
 	
 	
-#####Package nodes.displaynodes: (Benson)
+#####Package nodes.displaynodes:
 
-#####Package nodes.leafnodes: (Benson)
+######class PenColorNode extends LeafNode:
 
-#####Package nodes.mathnodes: (Benson)
+	Constructor(s):
+	public PenColorNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class ShapeNode extends LeafNode:
 
-#####Package nodes.querynodes: (Benson)
+	Constructor(s):
+	public ShapeNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class SetShapeNode extends LeafNode:
+
+	Constructor(s):
+	public SetShapeNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class SetPenColorNode extends AbstractNode:
+
+	Constructor(s):
+	public SetPenColorNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()	
+
+#####Package nodes.leafnodes:
+
+######class LeafNode extends AbstractNode:
+
+	Constructor(s):
+	public LeafNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+
+######class NumberNode extends LeafNode:
+
+	Constructor(s):
+	public NumberNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()	
+
+#####Package nodes.mathnodes:
+
+
+######class RandomNode extends AbstractNode:
+
+	Constructor(s):
+	public RandomNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class RemainderNode extends AbstractNode:
+
+	Constructor(s):
+	public RemainderNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class SinNode extends AbstractNode:
+
+	Constructor(s):
+	public SinNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()	
+	
+	
+######class SumNode extends AbstractNode:
+
+	Constructor(s):
+	public SumNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class QuotientNode extends AbstractNode:
+
+	Constructor(s):
+	public QuotientNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()	
+	
+	
+######class ProductNode extends AbstractNode:
+
+	Constructor(s):
+	public ProuctNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()	
+	
+######class TanNode extends AbstractNode:
+
+	Constructor(s):
+	public TanNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+######class PowNode extends AbstractNode:
+
+	Constructor(s):
+	public PowNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+######class MinusNode extends AbstractNode:
+
+	Constructor(s):
+	public MinusNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()	
+
+
+######class ATanNode extends AbstractNode:
+
+	Constructor(s):
+	public AtanNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+######class CosNode extends AbstractNode:
+
+	Constructor(s):
+	public CosNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+
+######class DifferenceNode extends AbstractNode:
+
+	Constructor(s):
+	public DifferenceNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+
+
+######class LogNode extends AbstractNode:
+
+	Constructor(s):
+	public LogNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	public boolean allowsTwoChildren()
+	public boolean allowsMoreThanTwoChildren()
+	
+	
+#####class MathResults
+
+	Constructor(s):
+	public MathResults()
+	
+	Public Methods:
+	public static List<String> getMathResultsList()
+	public static void addToMathResultsList(String result)
+	
+#####Package nodes.querynodes:
+
+
+######class HeadingNode extends LeafNode:
+
+	Constructor(s):
+	public HeadingNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class PenDownPNode extends AbstractNode:
+
+	Constructor(s):
+	public PenDownPNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+
+######class ShowingNode extends AbstractNode:
+
+	Constructor(s):
+	public ShowingNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+
+######class XCorNode extends AbstractNode:
+
+	Constructor(s):
+	public XCorNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()
+	
+	
+######class YCorNode extends AbstractNode:
+
+	Constructor(s):
+	public YCorNode(List<Turtle> turtles)
+	
+	Public Methods:
+	public double evaluate()	
 
 ###Example Code
 
@@ -410,4 +912,4 @@ https://f.cloud.github.com/assets/4603228/2229071/7ba8d964-9ae6-11e3-9816-5d384c
 ###UML Design
 Located in the root directory of the master branch.
 
-Model: https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/UML%20of%20Model.pdf
+https://github.com/duke-compsci308-spring2014/slogo_team01/blob/master/UML%20for%20Model.pdf
