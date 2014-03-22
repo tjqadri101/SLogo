@@ -75,6 +75,7 @@ This is where the main method of the program is kept. Methods exist for creating
 - convertImagetoITurtle(): Method that converts class TurtleImage to class ITurtle. TurtleImage serves essentially as the frontend turtle. ITurtle is an interface implemented by class Turtle. ITurtle provides a functional approach for encapsulation; class Turtle doesn’t need to be referenced by class ModelController.
 - passToModel(): Updates the backend end with commands via setModelProperty() while updating the frontend turtle.
 
+![] (https://raw.githubusercontent.com/duke-compsci308-spring2014/slogo_team01/master/UML.jpg?token=6359679__eyJzY29wZSI6IlJhd0Jsb2I6ZHVrZS1jb21wc2NpMzA4LXNwcmluZzIwMTQvc2xvZ29fdGVhbTAxL21hc3Rlci9VTUwuanBnIiwiZXhwaXJlcyI6MTM5NjEwNjA2MX0%3D--4796447e788ddd88d97cf2eb1f9905939ce7c331)
 
 ##User Interface Design: Talal, Viju, and Chad
 
